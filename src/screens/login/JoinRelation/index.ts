@@ -1,0 +1,1 @@
+export { JoinRelationScreen } from './JoinRelationScreen'
