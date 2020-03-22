@@ -1,5 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
-import { SelectScreenNavigator } from './screens/login/SelectScreenNavigator'
+import { ConnectContext } from './Connect.context'
+import { NotConnectedNavigator } from './screens/notConnected/NotConnectedNavigator'
+import { ConnectedNavigator } from './screens/connected/ConnectedNavigator'
 
-export const Main = () => <SelectScreenNavigator />
+export const Main = () => {
+  const { isConnected } = useContext(ConnectContext)
+
+  if (isConnected) {
+    return <ConnectedNavigator />
+  }
+
+  return <NotConnectedNavigator />
+}

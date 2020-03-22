@@ -15,5 +15,6 @@ module.exports = {
     'react/prop-types': 'off',
     'react/no-unescaped-entities': 'off',
     'react/display-name': 'off',
+    '@typescript-eslint/ban-ts-ignore': 'off',
   },
 }

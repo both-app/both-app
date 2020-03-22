@@ -2,15 +2,15 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
 
-import { SelectScreen } from './SelectScreen'
+import { colors } from '../../res/colors'
+import { SelectScreen } from './Select'
 import { SignUpScreen } from './SignUp'
 import { JoinRelationScreen } from './JoinRelation'
 import { SignInScreen } from './SignIn'
-import { colors } from '../../res/colors'
 
 const Stack = createStackNavigator()
 
-export const SelectScreenNavigator = () => (
+export const NotConnectedNavigator = () => (
   <Stack.Navigator initialRouteName="Select" headerMode="screen">
     <Stack.Screen
       name="Select"
