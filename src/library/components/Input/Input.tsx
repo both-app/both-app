@@ -14,7 +14,8 @@ interface InputProps {
   placeholder: string
   keyboardType?: KeyboardType
   isTheLast?: boolean
-  onEndEditing: TextInputProps['onEndEditing']
+  onEndEditing: (text: string) => void
+  error?: string
 }
 
 export const Input: FC<InputProps> = ({
@@ -23,18 +24,22 @@ export const Input: FC<InputProps> = ({
   keyboardType,
   isTheLast = false,
   onEndEditing,
+  error = '',
 }) => {
   const [value, setValue] = useState<string | null>(null)
 
-  const handleOnChangeText = useCallback(setValue, [])
+  const handleOnChangeText = (value) => setValue(value)
 
-  const inputStyle = useMemo(() => {
-    if (!value) {
-      return styles.input
-    }
+  const handleOnEndEditing = () => onEndEditing(value)
 
-    return { ...styles.input, ...styles.activeInput }
-  }, [value])
+  const inputStyle = useMemo(
+    () => ({
+      ...styles.input,
+      ...(value ? styles.activeInput : {}),
+      ...(error ? styles.errorInput : {}),
+    }),
+    [value, error]
+  )
 
   return (
     <View style={isTheLast ? {} : styles.container}>
@@ -45,7 +50,7 @@ export const Input: FC<InputProps> = ({
         placeholder={placeholder}
         style={inputStyle}
         onChangeText={handleOnChangeText}
-        onEndEditing={onEndEditing}
+        onEndEditing={handleOnEndEditing}
       />
     </View>
   )
@@ -64,6 +69,10 @@ const styles = StyleSheet.create({
   activeInput: {
     borderBottomColor: '#CDCDCD',
     color: '#A3A3A3',
+  },
+  errorInput: {
+    borderBottomColor: colors.pink,
+    color: colors.pink,
   },
   label: {
     marginBottom: 15,
