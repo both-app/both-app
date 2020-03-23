@@ -1,11 +1,10 @@
 import React, { useContext } from 'react'
 
-import { ConnectContext } from './Connect.context'
-import { AuthNavigator } from './screens/auth/AuthNavigator'
-import { ConnectedNavigator } from './screens/connected/ConnectedNavigator'
+import { AuthNavigator, AuthContext } from './screens/auth'
+import { ConnectedNavigator } from './screens/connected'
 
 export const Main = () => {
-  const { isConnected } = useContext(ConnectContext)
+  const { isConnected } = useContext(AuthContext)
 
   if (isConnected) {
     return <ConnectedNavigator />

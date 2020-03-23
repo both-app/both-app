@@ -4,10 +4,10 @@ import { View, StyleSheet } from 'react-native'
 import { Button } from '../../../library/components/Button'
 import { Section } from '../../../library/components/Section'
 import { Input } from '../../../library/components/Input'
-import { ConnectContext } from '../../../Connect.context'
+import { AuthContext } from '../Auth.context'
 
 export const SignUpScreen = () => {
-  const { setIsConnected } = useContext(ConnectContext)
+  const { setIsConnected } = useContext(AuthContext)
 
   return (
     <View style={styles.container}>

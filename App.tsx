@@ -2,13 +2,13 @@ import 'react-native-gesture-handler'
 
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
-import { ConnectContextProvider } from './src/Connect.context'
-import { Main } from './src'
+import { AuthContextProvider } from './src/screens/auth'
+import { Main } from './src/Main'
 
 export default () => (
-  <ConnectContextProvider>
+  <AuthContextProvider>
     <NavigationContainer>
       <Main />
     </NavigationContainer>
-  </ConnectContextProvider>
+  </AuthContextProvider>
 )
