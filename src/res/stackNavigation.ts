@@ -15,12 +15,16 @@ const styles = StyleSheet.create({
   headerLeft: {
     marginLeft: 10,
   },
+  headerRight: {
+    marginRight: 20,
+  },
 })
 
 const stackHeaderOptions: StackHeaderOptions = {
   headerStyle: styles.headerContainer,
   headerTitleStyle: styles.headerTitle,
   headerLeftContainerStyle: styles.headerLeft,
+  headerRightContainerStyle: styles.headerRight,
   headerBackTitleVisible: false,
   headerTintColor: 'white',
 }

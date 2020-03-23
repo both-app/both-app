@@ -16,5 +16,6 @@ module.exports = {
     'react/no-unescaped-entities': 'off',
     'react/display-name': 'off',
     '@typescript-eslint/ban-ts-ignore': 'off',
+    '@typescript-eslint/camelcase': 'off',
   },
 }
