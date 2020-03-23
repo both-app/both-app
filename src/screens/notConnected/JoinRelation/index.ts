@@ -1,1 +1,0 @@
-export { JoinRelationScreen } from './JoinRelationScreen'

@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import { Button } from '../../library/components/Button'
+import { Button } from '../../../library/components/Button'
 
 export const SelectScreen = () => {
   const navigation = useNavigation()
@@ -13,7 +13,7 @@ export const SelectScreen = () => {
       <Button variation="primary" onAction={goTo('SignUp')}>
         S'inscrire
       </Button>
-      <Button variation="dark" onAction={goTo('JoinRelation')}>
+      <Button variation="dark" onAction={goTo('Join')}>
         Rejoindre une relation
       </Button>
       <Button variation="light" onAction={goTo('SignIn')}>

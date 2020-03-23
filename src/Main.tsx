@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 
 import { ConnectContext } from './Connect.context'
-import { NotConnectedNavigator } from './screens/notConnected/NotConnectedNavigator'
+import { AuthNavigator } from './screens/auth/AuthNavigator'
 import { ConnectedNavigator } from './screens/connected/ConnectedNavigator'
 
 export const Main = () => {
@@ -11,5 +11,5 @@ export const Main = () => {
     return <ConnectedNavigator />
   }
 
-  return <NotConnectedNavigator />
+  return <AuthNavigator />
 }

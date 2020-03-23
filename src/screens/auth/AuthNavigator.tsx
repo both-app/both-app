@@ -5,12 +5,12 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { colors } from '../../res/colors'
 import { SelectScreen } from './Select'
 import { SignUpScreen } from './SignUp'
-import { JoinRelationScreen } from './JoinRelation'
+import { JoinScreen } from './Join'
 import { SignInScreen } from './SignIn'
 
 const Stack = createStackNavigator()
 
-export const NotConnectedNavigator = () => (
+export const AuthNavigator = () => (
   <Stack.Navigator initialRouteName="Select" headerMode="screen">
     <Stack.Screen
       name="Select"
@@ -29,8 +29,8 @@ export const NotConnectedNavigator = () => (
       }}
     />
     <Stack.Screen
-      name="JoinRelation"
-      component={JoinRelationScreen}
+      name="Join"
+      component={JoinScreen}
       options={{
         headerTitle: 'Rejoindre une relation',
         headerStyle: styles.headerContainer,

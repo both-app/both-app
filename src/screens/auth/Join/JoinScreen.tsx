@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 
-export const JoinRelationScreen = () => (
+export const JoinScreen = () => (
   <View style={styles.container}>
     <Text>JoinRelation</Text>
   </View>
