@@ -8,10 +8,15 @@ import { TabBar } from './components/TabBar/TabBar'
 
 const Tab = createBottomTabNavigator()
 
+const ROUTES = {
+  DASHBOARD: 'Dashboard',
+  RELATION: 'Relation',
+}
+
 export const AppNavigator = () => (
-  <Tab.Navigator initialRouteName="Dashboard" tabBar={TabBar}>
+  <Tab.Navigator initialRouteName={ROUTES.DASHBOARD} tabBar={TabBar}>
     <Tab.Screen
-      name="Dashboard"
+      name={ROUTES.DASHBOARD}
       component={DashboardNavigator}
       options={{
         tabBarIcon: ({ size, color }) => (
@@ -20,7 +25,7 @@ export const AppNavigator = () => (
       }}
     />
     <Tab.Screen
-      name="Relation"
+      name={ROUTES.RELATION}
       component={RelationNavigator}
       options={{
         tabBarIcon: ({ size, color }) => (

@@ -9,25 +9,32 @@ import { SignInScreen } from './SignIn'
 
 const Stack = createStackNavigator()
 
+const ROUTES = {
+  SELECT: 'Select',
+  SIGN_UP: 'SignUp',
+  JOIN: 'Join',
+  SIGN_IN: 'SignIn',
+}
+
 export const AuthNavigator = () => (
-  <Stack.Navigator initialRouteName="Select" headerMode="screen">
+  <Stack.Navigator initialRouteName={ROUTES.SELECT} headerMode="screen">
     <Stack.Screen
-      name="Select"
+      name={ROUTES.SELECT}
       component={SelectScreen}
       options={getStackOptions({ headerShown: false })}
     />
     <Stack.Screen
-      name="SignUp"
+      name={ROUTES.SIGN_UP}
       component={SignUpScreen}
       options={getStackOptions({ headerTitle: "S'inscrire" })}
     />
     <Stack.Screen
-      name="Join"
+      name={ROUTES.JOIN}
       component={JoinScreen}
       options={getStackOptions({ headerTitle: 'Rejoindre une relation' })}
     />
     <Stack.Screen
-      name="SignIn"
+      name={ROUTES.SIGN_IN}
       component={SignInScreen}
       options={getStackOptions({ headerTitle: 'Se connecter' })}
     />

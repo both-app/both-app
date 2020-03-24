@@ -1,9 +1,7 @@
 import React from 'react'
-import { View, TouchableOpacity, StyleSheet, Text } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { SwipeListView } from '@nvthai/react-native-swipe-list-view'
 import { ListItem } from './components/ListItem/ListItem'
-import { colors } from '../../../res/colors'
-import { IconButton } from '../../../library/components/IconButton'
 import { ListActions } from './components/ListActions'
 
 const ITEMS = [
@@ -45,10 +43,11 @@ export const DashboardScreen = () => (
       useFlatList
       data={ITEMS}
       disableRightSwipe
+      keyExtractor={(_, index) => `${index}`}
       renderItem={(data) => <ListItem index={data.index} item={data.item} />}
-      renderHiddenItem={(data) => <ListActions />}
+      renderHiddenItem={() => <ListActions />}
       rightOpenValue={-75}
-      stopRightSwipe={-75}
+      stopRightSwipe={-150}
     />
   </View>
 )

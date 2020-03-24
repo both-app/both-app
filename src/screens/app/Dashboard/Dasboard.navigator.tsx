@@ -1,23 +1,40 @@
-import React from 'react'
+import React, { useLayoutEffect } from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 
 import { DashboardScreen } from './DashboardScreen'
 import { NewTaskScreen } from './NewTask'
-import { getStackOptions } from '../../../res/stackNavigation'
+import {
+  getStackOptions,
+  getCurrentRouteName,
+} from '../../../res/stackNavigation'
 import { IconButton } from '../../../library/components/IconButton'
 
 const Stack = createStackNavigator()
 
+const ROUTES = {
+  DASHBOARD: 'Dasboard',
+  NEW_TASK: 'New Task',
+}
+
 export const DashboardNavigator = () => {
   const navigation = useNavigation()
+  const route = useRoute()
 
-  const goTo = (screenName: string) => () => navigation.navigate(screenName)
+  useLayoutEffect(() => {
+    const routeName = getCurrentRouteName(route)
+
+    if (routeName === ROUTES.NEW_TASK) {
+      navigation.setOptions({ tabBarVisible: false })
+    } else {
+      navigation.setOptions({ tabBarVisible: true })
+    }
+  }, [navigation, route])
 
   return (
-    <Stack.Navigator initialRouteName="Dashboard">
+    <Stack.Navigator initialRouteName={ROUTES.DASHBOARD}>
       <Stack.Screen
-        name="Dashboard"
+        name={ROUTES.DASHBOARD}
         component={DashboardScreen}
         options={getStackOptions({
           headerTitle: 'Dashboard',
@@ -27,13 +44,13 @@ export const DashboardNavigator = () => {
               width={25}
               height={25}
               fill="white"
-              onAction={goTo('New Task')}
+              onAction={() => navigation.navigate(ROUTES.NEW_TASK)}
             />
           ),
         })}
       />
       <Stack.Screen
-        name="New Task"
+        name={ROUTES.NEW_TASK}
         component={NewTaskScreen}
         options={getStackOptions({ headerTitle: 'Ajouter une tâche' })}
       />
