@@ -5,8 +5,14 @@ import AddCircle from '../../../../assets/icons/add_circle.svg'
 import Dashboard from '../../../../assets/icons/dashboard.svg'
 import Relation from '../../../../assets/icons/relation.svg'
 import BrokenHeart from '../../../../assets/icons/broken_heart.svg'
+import Trash from '../../../../assets/icons/trash.svg'
 
-type IconName = 'add_circle' | 'dashboard' | 'relation' | 'broken_heart'
+type IconName =
+  | 'add_circle'
+  | 'dashboard'
+  | 'relation'
+  | 'broken_heart'
+  | 'trash'
 
 export interface IconProps extends SvgProps {
   iconName: IconName
@@ -18,6 +24,7 @@ export const Icon: FC<IconProps> = ({ iconName, ...props }) => {
     dashboard: Dashboard,
     relation: Relation,
     broken_heart: BrokenHeart,
+    trash: Trash,
   }
 
   const Icon = mapping[iconName]
