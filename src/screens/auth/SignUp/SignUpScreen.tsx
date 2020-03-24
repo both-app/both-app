@@ -5,6 +5,7 @@ import { Button } from '../../../library/components/Button'
 import { Section } from '../../../library/components/Section'
 import { Input } from '../../../library/components/Input'
 import { AuthContext } from '../Auth.context'
+import { Dropdown } from '../../../library/components/Dropdown'
 
 export const SignUpScreen = () => {
   const { setIsConnected } = useContext(AuthContext)
@@ -17,6 +18,7 @@ export const SignUpScreen = () => {
         placeholder="Entrez votre prénom"
         onEndEditing={console.log}
       />
+      <Dropdown label="Sexe" placeholder="Choissiez votre sexe" />
       <Input
         label="Email"
         placeholder="Entrez votre email"

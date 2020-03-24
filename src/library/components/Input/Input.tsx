@@ -1,6 +1,7 @@
 import React, { FC, useState, useMemo } from 'react'
-import { View, Text, TextInput, StyleSheet, KeyboardType } from 'react-native'
+import { View, TextInput, StyleSheet, KeyboardType } from 'react-native'
 import { colors } from '../../../res/colors'
+import { Label } from '../Label'
 
 interface InputProps {
   label: string
@@ -36,7 +37,7 @@ export const Input: FC<InputProps> = ({
 
   return (
     <View style={isTheLast ? {} : styles.container}>
-      <Text style={styles.label}>{label}</Text>
+      <Label>{label}</Label>
       <TextInput
         numberOfLines={1}
         keyboardType={keyboardType}
@@ -67,12 +68,5 @@ const styles = StyleSheet.create({
   errorInput: {
     borderBottomColor: colors.pink,
     color: colors.pink,
-  },
-  label: {
-    fontFamily: 'gotham-medium',
-    fontWeight: 'bold',
-    fontSize: 20,
-    color: colors.pink,
-    marginBottom: 15,
   },
 })
