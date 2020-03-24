@@ -18,7 +18,15 @@ export const SignUpScreen = () => {
         placeholder="Entrez votre prénom"
         onEndEditing={console.log}
       />
-      <Dropdown label="Sexe" placeholder="Choissiez votre sexe" />
+      <Dropdown
+        label="Sexe"
+        placeholder="Choissiez votre sexe"
+        items={[
+          { label: 'Homme', value: 'h' },
+          { label: 'Femme', value: 'f' },
+          { label: 'Non binaire', value: 'nb' },
+        ]}
+      />
       <Input
         label="Email"
         placeholder="Entrez votre email"

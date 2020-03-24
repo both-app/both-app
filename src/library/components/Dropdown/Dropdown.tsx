@@ -6,9 +6,10 @@ import { Label } from '../Label'
 interface DropdownProps {
   label: string
   placeholder: string
+  items: Array<{ label: string; value: string }>
 }
 
-export const Dropdown: FC<DropdownProps> = ({ label, placeholder }) => (
+export const Dropdown: FC<DropdownProps> = ({ label, placeholder, items }) => (
   <View style={styles.container}>
     <Label>{label}</Label>
     <RNPickerSelect
@@ -18,11 +19,7 @@ export const Dropdown: FC<DropdownProps> = ({ label, placeholder }) => (
         placeholder: styles.input,
         inputIOS: styles.input,
       }}
-      items={[
-        { label: 'Homme', value: 'h' },
-        { label: 'Femme', value: 'f' },
-        { label: 'Non binaire', value: 'nb' },
-      ]}
+      items={items}
     ></RNPickerSelect>
   </View>
 )
