@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.pink,
   },
   headerTitle: {
+    fontFamily: 'gotham-medium',
     color: 'white',
   },
   headerLeft: {

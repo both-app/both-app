@@ -1084,6 +1084,11 @@
     "@types/yargs" "^15.0.0"
     chalk "^3.0.0"
 
+"@nvthai/react-native-swipe-list-view@^1.5.16":
+  version "1.5.16"
+  resolved "https://registry.yarnpkg.com/@nvthai/react-native-swipe-list-view/-/react-native-swipe-list-view-1.5.16.tgz#8c1677b840f8a7b485d32cd56fc8203c085a2b52"
+  integrity sha512-BLv+1roSOiRfbfddCIHXXCJi80hESNHczx3F7LeBF6HHk4Up7viaP15Y3hu7wHRFj5+yw6VGPv3uGluAQP62Gw==
+
 "@react-native-community/cli-debugger-ui@^3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@react-native-community/cli-debugger-ui/-/cli-debugger-ui-3.0.0.tgz#d01d08d1e5ddc1633d82c7d84d48fff07bd39416"
@@ -4624,7 +4629,7 @@ metro-cache@^0.56.4:
     mkdirp "^0.5.1"
     rimraf "^2.5.4"
 
-metro-config@0.59.0, metro-config@^0.59.0:
+metro-config@0.59.0:
   version "0.59.0"
   resolved "https://registry.yarnpkg.com/metro-config/-/metro-config-0.59.0.tgz#9844e388069321dd7403e49f0d495a81f9aa0fef"
   integrity sha512-MDsknFG9vZ4Nb5VR6OUDmGHaWz6oZg/FtE3up1zVBKPVRTXE1Z+k7zypnPtMXjMh3WHs/Sy4+wU1xnceE/zdnA==

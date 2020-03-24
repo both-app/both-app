@@ -2,6 +2,8 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { Button } from '../../../library/components/Button'
+import BarsIcon from '../../../../assets/bars.svg'
+import { Logo } from '../../../library/components/Logo'
 
 export const SelectScreen = () => {
   const navigation = useNavigation()
@@ -10,27 +12,44 @@ export const SelectScreen = () => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.logoContainer}>
+        <Logo />
+      </View>
       <Button variation="primary" onAction={goTo('SignUp')}>
         S'inscrire
       </Button>
       <Button variation="dark" onAction={goTo('Join')}>
         Rejoindre une relation
       </Button>
-      <Button variation="light" onAction={goTo('SignIn')}>
+      <Button variation="light" onAction={goTo('SignIn')} style={styles.margin}>
         Se connecter
       </Button>
+
+      <BarsIcon width={200} />
     </View>
   )
 }
 
 const styles = StyleSheet.create({
+  logoContainer: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'flex-end',
-    paddingBottom: 50,
+    paddingBottom: 60,
     paddingRight: 20,
     paddingLeft: 20,
+  },
+  margin: {
+    marginBottom: 20,
   },
 })

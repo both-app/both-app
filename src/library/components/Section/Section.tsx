@@ -14,6 +14,7 @@ export const Section: FC<SectionProps> = ({ name, style = {} }) => (
 const styles = StyleSheet.create({
   section: {
     color: colors.greyDark,
+    fontFamily: 'gotham-bold',
     fontSize: 25,
     fontWeight: 'bold',
   },

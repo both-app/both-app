@@ -5,9 +5,15 @@ import { colors } from '../../../res/colors'
 interface ButtonProps {
   variation: 'primary' | 'light' | 'dark'
   onAction?: VoidFunction
+  style?: any
 }
 
-export const Button: FC<ButtonProps> = ({ children, variation, onAction }) => {
+export const Button: FC<ButtonProps> = ({
+  children,
+  variation,
+  onAction,
+  style,
+}) => {
   const buttonStyle = useMemo(() => {
     const variationStyle = {
       primary: styles.pinkButton,
@@ -15,8 +21,8 @@ export const Button: FC<ButtonProps> = ({ children, variation, onAction }) => {
       dark: styles.darkButton,
     }[variation]
 
-    return { ...styles.button, ...variationStyle }
-  }, [])
+    return { ...styles.button, ...variationStyle, ...style }
+  }, [style])
 
   const textStyle = useMemo(
     () =>
@@ -46,9 +52,13 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   whiteText: {
+    fontFamily: 'gotham-medium',
+    fontSize: 15,
     color: 'white',
   },
   darkText: {
+    fontFamily: 'gotham-medium',
+    fontSize: 15,
     color: colors.greyDark,
   },
   pinkButton: {

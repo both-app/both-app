@@ -1,12 +1,5 @@
-import React, { FC, useState, useCallback, useMemo } from 'react'
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  KeyboardType,
-  TextInputProps,
-} from 'react-native'
+import React, { FC, useState, useMemo } from 'react'
+import { View, Text, TextInput, StyleSheet, KeyboardType } from 'react-native'
 import { colors } from '../../../res/colors'
 
 interface InputProps {
@@ -61,10 +54,11 @@ const styles = StyleSheet.create({
     marginBottom: 25,
   },
   input: {
+    fontFamily: 'gotham-book',
+    fontSize: 15,
     borderBottomColor: '#EBEBEB',
     borderBottomWidth: 2,
     paddingBottom: 10,
-    fontSize: 15,
   },
   activeInput: {
     borderBottomColor: '#CDCDCD',
@@ -75,9 +69,10 @@ const styles = StyleSheet.create({
     color: colors.pink,
   },
   label: {
-    marginBottom: 15,
-    color: colors.pink,
+    fontFamily: 'gotham-medium',
     fontWeight: 'bold',
     fontSize: 20,
+    color: colors.pink,
+    marginBottom: 15,
   },
 })
