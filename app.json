@@ -23,6 +23,18 @@
     "packagerOpts": {
       "config": "metro.config.js",
       "sourceExts": ["js", "jsx", "svg", "ts", "tsx"]
+    },
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "Both",
+            "project": "Both-App",
+            "authToken": "6d0e949e174e4b7fa10f9d9b770487bd82b57deb2d0b4569884536028d1bdae3"
+          }
+        }
+      ]
     }
   }
 }
