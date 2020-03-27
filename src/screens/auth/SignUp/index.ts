@@ -1,1 +1,0 @@
-export { SignUpScreen } from './SignUpScreen'

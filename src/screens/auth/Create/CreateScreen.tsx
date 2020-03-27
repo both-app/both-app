@@ -4,10 +4,10 @@ import { View, StyleSheet } from 'react-native'
 import { Button } from '../../../library/components/Button'
 import { Section } from '../../../library/components/Section'
 import { Input } from '../../../library/components/Input'
-import { AuthContext } from '../Auth.context'
 import { Dropdown } from '../../../library/components/Dropdown'
+import { AuthContext } from '../Auth.context'
 
-export const SignUpScreen = () => {
+export const CreateScreen = () => {
   const { setIsConnected } = useContext(AuthContext)
 
   return (
@@ -27,31 +27,10 @@ export const SignUpScreen = () => {
           { label: 'Non binaire', value: 'nb' },
         ]}
       />
-      <Input
-        label="Email"
-        placeholder="Entrez votre email"
-        keyboardType="email-address"
-        onEndEditing={console.log}
-      />
-      <Input
-        label="Mot de passe"
-        placeholder="Entrez un mot de passe"
-        keyboardType="default"
-        isTheLast
-        onEndEditing={console.log}
-      />
-
-      <Section name="Mon partenaire" style={styles.section} />
-      <Input
-        label="Email"
-        placeholder="Entrez l'email de votre partenaire"
-        keyboardType="email-address"
-        onEndEditing={console.log}
-      />
 
       <View style={styles.buttonContainer}>
         <Button variation="dark" onAction={() => setIsConnected(true)}>
-          Créer une room
+          Créer la relation
         </Button>
       </View>
     </View>

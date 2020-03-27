@@ -1,9 +1,10 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
+
 import { Button } from '../../../library/components/Button'
-import BarsIcon from '../../../../assets/bars.svg'
 import { Logo } from '../../../library/components/Logo'
+import BarsIcon from '../../../../assets/bars.svg'
 
 export const SelectScreen = () => {
   const navigation = useNavigation()
@@ -15,14 +16,11 @@ export const SelectScreen = () => {
       <View style={styles.logoContainer}>
         <Logo />
       </View>
-      <Button variation="primary" onAction={goTo('SignUp')}>
-        S'inscrire
+      <Button variation="primary" onAction={goTo('Create')}>
+        Créer une relation
       </Button>
-      <Button variation="dark" onAction={goTo('Join')}>
+      <Button variation="dark" onAction={goTo('Join')} style={styles.margin}>
         Rejoindre une relation
-      </Button>
-      <Button variation="light" onAction={goTo('SignIn')} style={styles.margin}>
-        Se connecter
       </Button>
 
       <BarsIcon width={200} />

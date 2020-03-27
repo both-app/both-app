@@ -4,6 +4,7 @@ import { useNavigation, useRoute } from '@react-navigation/native'
 
 import { DashboardScreen } from './DashboardScreen'
 import { NewTaskScreen } from './NewTask'
+
 import {
   getStackOptions,
   getCurrentRouteName,
