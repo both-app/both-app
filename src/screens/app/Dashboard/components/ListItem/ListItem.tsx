@@ -1,7 +1,8 @@
 import React, { FC } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import { Icon } from '../../../../../library/components/Icon'
-import { colors } from '../../../../../res/colors'
+
+import { Icon } from 'library/components/Icon'
+import { colors } from 'res/colors'
 import { Counter } from '../Counter'
 
 interface ListItemProps {

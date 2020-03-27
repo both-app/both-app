@@ -2,8 +2,8 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
-import { Button } from '../../../library/components/Button'
-import { Logo } from '../../../library/components/Logo'
+import { Button } from 'library/components/Button'
+import { Logo } from 'library/components/Logo'
 import BarsIcon from '../../../../assets/bars.svg'
 
 export const SelectScreen = () => {

@@ -6,6 +6,12 @@
     "moduleResolution": "node",
     "noEmit": true,
     "skipLibCheck": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "baseUrl": "./src",
+    "paths": {
+      "screens": ["./screens"],
+      "library": ["./library"],
+      "res": ["./res"]
+    }
   }
 }

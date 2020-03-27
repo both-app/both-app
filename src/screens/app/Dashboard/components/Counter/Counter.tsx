@@ -1,7 +1,8 @@
 import React, { FC } from 'react'
 import { TouchableOpacity, Text, View, StyleSheet } from 'react-native'
-import { Icon } from '../../../../../library/components/Icon'
-import { colors } from '../../../../../res/colors'
+
+import { Icon } from 'library/components/Icon'
+import { colors } from 'res/colors'
 
 interface CounterProps {
   count: number

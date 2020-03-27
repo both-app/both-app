@@ -3,8 +3,8 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 import { RelationScreen } from './RelationScreen'
 
-import { IconButton } from '../../../library/components/IconButton'
-import { getStackOptions } from '../../../res/stackNavigation'
+import { IconButton } from 'library/components/IconButton'
+import { getStackOptions } from 'res/stackNavigation'
 import { AuthContext } from '../../auth'
 
 const Stack = createStackNavigator()

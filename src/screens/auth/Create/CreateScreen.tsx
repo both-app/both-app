@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 import { View, StyleSheet } from 'react-native'
 
-import { Button } from '../../../library/components/Button'
-import { Section } from '../../../library/components/Section'
-import { Input } from '../../../library/components/Input'
-import { Dropdown } from '../../../library/components/Dropdown'
+import { Button } from 'library/components/Button'
+import { Section } from 'library/components/Section'
+import { Input } from 'library/components/Input'
+import { Dropdown } from 'library/components/Dropdown'
 import { AuthContext } from '../Auth.context'
 
 export const CreateScreen = () => {

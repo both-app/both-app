@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 
 import { AuthNavigator, AuthContext } from './screens/auth'
-import { AppNavigator } from './screens/app'
-import { useFonts } from './library/hooks/useFonts'
+import { AppNavigator } from 'screens/app'
+import { useFonts } from 'library/hooks/useFonts'
 
 export const Main = () => {
   const { isConnected } = useContext(AuthContext)

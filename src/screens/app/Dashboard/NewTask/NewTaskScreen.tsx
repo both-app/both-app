@@ -1,8 +1,9 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
-import { Input } from '../../../../library/components/Input'
-import { Dropdown } from '../../../../library/components/Dropdown'
-import { Button } from '../../../../library/components/Button'
+
+import { Input } from 'library/components/Input'
+import { Dropdown } from 'library/components/Dropdown'
+import { Button } from 'library/components/Button'
 
 export const NewTaskScreen = () => {
   return (

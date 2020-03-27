@@ -5,11 +5,8 @@ import { useNavigation, useRoute } from '@react-navigation/native'
 import { DashboardScreen } from './DashboardScreen'
 import { NewTaskScreen } from './NewTask'
 
-import {
-  getStackOptions,
-  getCurrentRouteName,
-} from '../../../res/stackNavigation'
-import { IconButton } from '../../../library/components/IconButton'
+import { IconButton } from 'library/components/IconButton'
+import { getStackOptions, getCurrentRouteName } from 'res/stackNavigation'
 
 const Stack = createStackNavigator()
 

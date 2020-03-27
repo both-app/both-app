@@ -1,7 +1,8 @@
 import React, { FC } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import { IconButton } from '../../../../../library/components/IconButton'
-import { colors } from '../../../../../res/colors'
+
+import { IconButton } from 'library/components/IconButton'
+import { colors } from 'res/colors'
 
 export const ListActions = () => (
   <View style={styles.container}>

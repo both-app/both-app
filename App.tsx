@@ -4,6 +4,7 @@ import React from 'react'
 import * as Sentry from 'sentry-expo'
 import Constants from 'expo-constants'
 import { NavigationContainer } from '@react-navigation/native'
+
 import { AuthContextProvider } from './src/screens/auth'
 import { Main } from './src/Main'
 

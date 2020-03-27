@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { DashboardNavigator } from './Dashboard'
 import { RelationNavigator } from './Relation'
 
-import { Icon } from '../../library/components/Icon'
+import { Icon } from 'library/components/Icon'
 import { TabBar } from './components/TabBar/TabBar'
 
 const Tab = createBottomTabNavigator()

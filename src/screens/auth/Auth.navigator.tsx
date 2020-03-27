@@ -5,7 +5,7 @@ import { SelectScreen } from './Select'
 import { CreateScreen } from './Create'
 import { JoinScreen } from './Join'
 
-import { getStackOptions } from '../../res/stackNavigation'
+import { getStackOptions } from 'res/stackNavigation'
 
 const Stack = createStackNavigator()
 
