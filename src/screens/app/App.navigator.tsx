@@ -1,8 +1,7 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
-import { DashboardNavigator } from './Dashboard'
-import { RelationNavigator } from './Relation'
+import { DashboardNavigator } from './screens/Dashboard'
 
 import { Icon } from 'library/components/Icon'
 import { TabBar } from './components/TabBar/TabBar'

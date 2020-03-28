@@ -1,41 +1,59 @@
-import React, { FC, useMemo } from 'react'
+import React, { FC } from 'react'
 import { Text, StyleSheet, TouchableOpacity } from 'react-native'
-import { colors } from '../../../res/colors'
+
+import { IconProps, Icon } from '../Icon'
+import { colors } from 'res/colors'
+
+const variations = {
+  primary: {
+    button: {
+      backgroundColor: colors.blueDark,
+    },
+    text: {
+      color: 'white',
+    },
+  },
+  secondary: {
+    button: {
+      backgroundColor: colors.beigeDark,
+    },
+    text: {
+      color: colors.blueDark,
+    },
+  },
+}
+
+type Variation = 'primary' | 'secondary'
 
 interface ButtonProps {
-  variation: 'primary' | 'light' | 'dark'
   onAction?: VoidFunction
-  style?: any
+  variation?: Variation
+  leftIcon?: IconProps['iconName']
+  marginTop?: number
 }
 
 export const Button: FC<ButtonProps> = ({
   children,
-  variation,
   onAction,
-  style,
+  leftIcon,
+  variation = 'primary',
+  ...props
 }) => {
-  const buttonStyle = useMemo(() => {
-    const variationStyle = {
-      primary: styles.pinkButton,
-      light: styles.lightButton,
-      dark: styles.darkButton,
-    }[variation]
+  const buttonStyle = {
+    ...styles.button,
+    ...variations[variation].button,
+    ...(leftIcon ? { paddingLeft: 16 } : { paddingLeft: 24 }),
+    ...props,
+  }
 
-    return { ...styles.button, ...variationStyle, ...style }
-  }, [style])
-
-  const textStyle = useMemo(
-    () =>
-      ({
-        primary: styles.whiteText,
-        light: styles.darkText,
-        dark: styles.whiteText,
-      }[variation]),
-    []
-  )
+  const textStyle = {
+    ...styles.text,
+    ...variations[variation].text,
+  }
 
   return (
     <TouchableOpacity style={buttonStyle} onPress={onAction}>
+      {leftIcon && <Icon iconName={leftIcon} style={styles.leftIcon} />}
       <Text style={textStyle}>{children}</Text>
     </TouchableOpacity>
   )
@@ -43,31 +61,21 @@ export const Button: FC<ButtonProps> = ({
 
 const styles = StyleSheet.create({
   button: {
-    width: '100%',
-    backgroundColor: '#EF3061',
+    display: 'flex',
+    flexDirection: 'row',
     alignItems: 'center',
-    paddingTop: 20,
-    paddingBottom: 20,
-    borderRadius: 30,
-    marginBottom: 10,
+    justifyContent: 'center',
+    paddingTop: 14,
+    paddingBottom: 14,
+    paddingRight: 24,
+    borderRadius: 35,
   },
-  whiteText: {
-    fontFamily: 'gotham-medium',
-    fontSize: 15,
+  leftIcon: {
     color: 'white',
+    marginRight: 8,
   },
-  darkText: {
-    fontFamily: 'gotham-medium',
-    fontSize: 15,
-    color: colors.greyDark,
-  },
-  pinkButton: {
-    backgroundColor: colors.pink,
-  },
-  lightButton: {
-    backgroundColor: colors.greyLight,
-  },
-  darkButton: {
-    backgroundColor: colors.greyDark,
+  text: {
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 })

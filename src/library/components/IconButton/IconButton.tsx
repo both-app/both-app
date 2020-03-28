@@ -5,6 +5,7 @@ import { Icon, IconProps } from '../Icon'
 
 interface IconButtonProps extends IconProps {
   onAction?: () => void
+  style: any
 }
 
 export const IconButton: FC<IconButtonProps> = ({ onAction, ...props }) => {

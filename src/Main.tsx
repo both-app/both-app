@@ -7,10 +7,7 @@ import { useFonts } from 'library/hooks/useFonts'
 export const Main = () => {
   const { isConnected } = useContext(AuthContext)
   const { fontsLoaded } = useFonts({
-    'gotham-bold': require('../assets/fonts/gothamRounded/GothamRoundedBold.ttf'),
-    'gotham-book': require('../assets/fonts/gothamRounded/GothamRoundedBook.ttf'),
-    'gotham-light': require('../assets/fonts/gothamRounded/GothamRoundedLight.ttf'),
-    'gotham-medium': require('../assets/fonts/gothamRounded/GothamRoundedMedium.ttf'),
+    'DMSerifDisplay-Regular': require('../assets/fonts/DMSerifDisplay-Regular.ttf'),
   })
 
   if (!fontsLoaded) {
