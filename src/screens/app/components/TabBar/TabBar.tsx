@@ -1,87 +1,73 @@
 import React, { FC } from 'react'
-import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs'
+import { LinearGradient } from 'expo-linear-gradient'
 
-import { colors } from '../../../../res/colors'
+import { TabBarItem } from './TabBarItem'
 
 export const TabBar: FC<BottomTabBarProps> = ({
   state,
   descriptors,
   navigation,
 }) => (
-  <View style={styles.tabBar}>
-    {state.routes.map((route, index) => {
-      const { options } = descriptors[route.key]
-      const label =
-        options.tabBarLabel !== undefined
-          ? options.tabBarLabel
-          : options.title !== undefined
-          ? options.title
-          : route.name
+  <View style={styles.nav}>
+    <LinearGradient
+      style={styles.navContainer}
+      colors={['rgba(249,240,235,0)', 'rgba(249,240,235,100)']}
+    >
+      {state.routes.map((route, index) => {
+        const { options } = descriptors[route.key]
+        const isFocused = state.index === index
 
-      const isFocused = state.index === index
+        const onPress = () => {
+          const event = navigation.emit({
+            type: 'tabPress',
+            target: route.key,
+            canPreventDefault: true,
+          })
 
-      const onPress = () => {
-        const event = navigation.emit({
-          type: 'tabPress',
-          target: route.key,
-          canPreventDefault: true,
-        })
-
-        if (!isFocused && !event.defaultPrevented) {
-          navigation.navigate(route.name)
+          if (!isFocused && !event.defaultPrevented) {
+            navigation.navigate(route.name)
+          }
         }
-      }
 
-      const onLongPress = () => {
-        navigation.emit({
-          type: 'tabLongPress',
-          target: route.key,
-        })
-      }
+        const onLongPress = () => {
+          navigation.emit({
+            type: 'tabLongPress',
+            target: route.key,
+          })
+        }
 
-      return (
-        <TouchableOpacity
-          key={index}
-          accessibilityRole="button"
-          accessibilityStates={isFocused ? ['selected'] : []}
-          accessibilityLabel={options.tabBarAccessibilityLabel}
-          testID={options.tabBarTestID}
-          onPress={onPress}
-          onLongPress={onLongPress}
-          style={styles.tabBarItem}
-        >
-          {options.tabBarIcon &&
-            options.tabBarIcon({
-              focused: isFocused,
-              color: isFocused ? colors.pink : colors.greyDark,
-              size: 22,
-            })}
-          <Text
-            style={{
-              color: isFocused ? colors.pink : colors.greyDark,
-              marginTop: 5,
-            }}
+        return (
+          <TabBarItem
+            key={index}
+            onPress={onPress}
+            onLongPress={onLongPress}
+            isFocused={isFocused}
           >
-            {label}
-          </Text>
-        </TouchableOpacity>
-      )
-    })}
+            {options.tabBarIcon &&
+              options.tabBarIcon({
+                focused: isFocused,
+                size: isFocused ? 32 : 20,
+                color: 'white',
+              })}
+          </TabBarItem>
+        )
+      })}
+    </LinearGradient>
   </View>
 )
 
 const styles = StyleSheet.create({
-  tabBar: {
-    flexDirection: 'row',
-    backgroundColor: colors.light,
-    paddingTop: 13,
-    paddingBottom: 25,
-    borderTopWidth: 1,
-    borderTopColor: '#F0F0F0',
+  nav: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
   },
-  tabBarItem: {
-    flex: 1,
+  navContainer: {
+    display: 'flex',
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
   },

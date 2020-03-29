@@ -14,7 +14,9 @@ export const Main = () => {
     return null
   }
 
-  if (isConnected) {
+  // TODO To replace by isConnected
+  // eslint-disable-next-line no-constant-condition
+  if (true) {
     return <AppNavigator />
   }
 
