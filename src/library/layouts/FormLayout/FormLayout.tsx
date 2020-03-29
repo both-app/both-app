@@ -44,7 +44,7 @@ export const FormLayout: FC<FormLayoutProps> = ({
 
         {onCloseAction && (
           <IconButton
-            iconName="plus"
+            iconName="close"
             onAction={onCloseAction}
             iconStyle={styles.iconStyle}
           />
