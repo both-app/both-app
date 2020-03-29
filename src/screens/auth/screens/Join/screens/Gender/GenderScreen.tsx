@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import { Button } from 'library/components/Button'
-import { Label } from 'screens/auth/components/Label'
+import { Label } from 'library/components/Label'
 import { Error } from 'screens/auth/components/Error'
 import { SelectGender } from 'screens/auth/components/SelectGender'
 import { FormLayout } from 'library/layouts/FormLayout'
