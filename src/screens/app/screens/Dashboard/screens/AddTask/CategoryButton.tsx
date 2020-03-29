@@ -4,12 +4,15 @@ import { StyleSheet } from 'react-native'
 import { CardButton } from 'screens/app/components/CardButton'
 import { colors } from 'res/colors'
 
-interface CategoryProps {
+interface CategoryButtonProps {
   category: Category
   tasks: Task[]
 }
 
-export const Category: FC<CategoryProps> = ({ category, tasks }) => {
+export const CategoryButton: FC<CategoryButtonProps> = ({
+  category,
+  tasks,
+}) => {
   const activeCardButtonContainer = {
     backgroundColor: category.color,
   }

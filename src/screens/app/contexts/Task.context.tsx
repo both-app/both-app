@@ -1,35 +1,6 @@
 import React, { FC, createContext, useState, useMemo, useEffect } from 'react'
 
-const TASKS: Task[] = [
-  {
-    id: 'A',
-    categoryId: '3', // Animaux
-    icon: '🍗',
-    name: 'Donner à manger',
-    points: 1,
-  },
-  {
-    id: 'B',
-    categoryId: '3', // Animaux
-    icon: '🐶',
-    name: 'Promener le chien',
-    points: 4,
-  },
-  {
-    id: 'C',
-    categoryId: '3', // Animaux
-    icon: '😼',
-    name: 'Netoyer la litière',
-    points: 3,
-  },
-  {
-    id: 'D',
-    categoryId: '3', // Animaux
-    icon: '🐾',
-    name: 'Aller chez le véto',
-    points: 2,
-  },
-]
+import { TASKS } from 'res/fixtures'
 
 interface TaskContextProps {
   getTasksByCategoryId: (id: string) => Task[]

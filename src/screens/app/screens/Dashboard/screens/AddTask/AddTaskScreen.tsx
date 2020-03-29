@@ -6,7 +6,7 @@ import { FormLayout } from 'library/layouts/FormLayout'
 import { Label } from 'library/components/Label'
 import { CategoryContext } from 'screens/app/contexts/Category.context'
 import { TaskContext } from 'screens/app/contexts/Task.context'
-import { Category } from './Category'
+import { CategoryButton } from './CategoryButton'
 
 export const AddTaskScreen = () => {
   const { categories } = useContext(CategoryContext)
@@ -21,7 +21,7 @@ export const AddTaskScreen = () => {
     >
       <View style={styles.taskTypesContainer}>
         {categories.map((category) => (
-          <Category
+          <CategoryButton
             key={category.id}
             category={category}
             tasks={getTasksByCategoryId(category.id)}

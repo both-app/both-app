@@ -1,45 +1,6 @@
 import React, { FC, createContext, useState, useMemo, useEffect } from 'react'
 
-import { colors } from 'res/colors'
-
-const CATEGORIES: Category[] = [
-  {
-    id: '1',
-    icon: '🧺',
-    color: colors.pink,
-    name: 'Quotidien',
-  },
-  {
-    id: '2',
-    icon: '🍕',
-    color: colors.pink,
-    name: 'Alimentation',
-  },
-  {
-    id: '3',
-    icon: '🐶',
-    color: colors.blueLight,
-    name: 'Animaux',
-  },
-  {
-    id: '4',
-    icon: '🧽',
-    color: colors.blueLight,
-    name: 'Ménage',
-  },
-  {
-    id: '5',
-    icon: '🧸',
-    color: colors.blueDark,
-    name: 'Enfants',
-  },
-  {
-    id: '6',
-    icon: '💙',
-    color: colors.blueDark,
-    name: 'Spécial couple',
-  },
-]
+import { CATEGORIES } from 'res/fixtures'
 
 interface CategoryContextProps {
   categories: Category[]
