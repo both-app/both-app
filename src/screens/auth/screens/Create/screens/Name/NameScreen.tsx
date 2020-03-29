@@ -6,8 +6,7 @@ import { Button } from 'library/components/Button'
 import { Label } from 'screens/auth/components/Label'
 import { Error } from 'screens/auth/components/Error'
 import { Input } from 'screens/auth/components/Input'
-import { ScreenContainer } from 'screens/auth/components/ScreenContainer'
-import { FormContainer } from 'screens/auth/components/FormContainer'
+import { FormLayout } from 'library/layouts/FormLayout'
 import { CreateContext } from '../../Create.context'
 
 export const NameScreen = () => {
@@ -33,29 +32,25 @@ export const NameScreen = () => {
   }
 
   return (
-    <ScreenContainer onBackAction={() => navigation.navigate('Select')}>
-      <FormContainer
-        containerStyle={styles.formContainer}
-        label={
-          <Label primary="Bonjour ☀️" secondary="Comment t'appelles-tu ?" />
-        }
-        field={
-          <Input placeholder="Ton prénom" onChangeText={handleOnChangeText} />
-        }
-        error={
-          <Error
-            hideError={!hasError}
-            primary="🤔 Flemme de taper ton prénom ?"
-            secondary="Aide : Mets au moins tes initiales pour continuer…"
-          />
-        }
-        submit={
-          <Button onAction={handleOnNext} leftIcon="arrow_right_circle">
-            Continuer
-          </Button>
-        }
-      />
-    </ScreenContainer>
+    <FormLayout
+      onBackAction={() => navigation.navigate('Select')}
+      containerStyle={styles.formContainer}
+      label={<Label primary="Bonjour ☀️" secondary="Comment t'appelles-tu ?" />}
+      error={
+        <Error
+          hideError={!hasError}
+          primary="🤔 Flemme de taper ton prénom ?"
+          secondary="Aide : Mets au moins tes initiales pour continuer…"
+        />
+      }
+      submit={
+        <Button onAction={handleOnNext} leftIcon="arrow_right_circle">
+          Continuer
+        </Button>
+      }
+    >
+      <Input placeholder="Ton prénom" onChangeText={handleOnChangeText} />
+    </FormLayout>
   )
 }
 

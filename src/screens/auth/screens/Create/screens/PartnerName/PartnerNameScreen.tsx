@@ -6,8 +6,7 @@ import { Button } from 'library/components/Button'
 import { Label } from 'screens/auth/components/Label'
 import { Error } from 'screens/auth/components/Error'
 import { Input } from 'screens/auth/components/Input'
-import { ScreenContainer } from 'screens/auth/components/ScreenContainer'
-import { FormContainer } from 'screens/auth/components/FormContainer'
+import { FormLayout } from 'library/layouts/FormLayout'
 import { CreateContext } from '../../Create.context'
 import { AuthContext } from 'screens/auth/Auth.context'
 
@@ -35,29 +34,27 @@ export const PartnerNameScreen = () => {
   }
 
   return (
-    <ScreenContainer onBackAction={() => navigation.goBack()}>
-      <FormContainer
-        containerStyle={styles.formContainer}
-        label={
-          <Label primary="You rock 🤟" secondary="Et qui est ton acolyte ?" />
-        }
-        field={
-          <Input placeholder="Son prénom" onChangeText={handleOnChangeText} />
-        }
-        error={
-          <Error
-            hideError={!hasError}
-            primary="🤭 Oula, tu ne connais pas son prénom ?"
-            secondary="Aide : Fais un effort ou bien trouve toi un acolyte..."
-          />
-        }
-        submit={
-          <Button onAction={handleOnNext} leftIcon="check">
-            Terminer
-          </Button>
-        }
-      />
-    </ScreenContainer>
+    <FormLayout
+      onBackAction={() => navigation.goBack()}
+      containerStyle={styles.formContainer}
+      label={
+        <Label primary="You rock 🤟" secondary="Et qui est ton acolyte ?" />
+      }
+      error={
+        <Error
+          hideError={!hasError}
+          primary="🤭 Oula, tu ne connais pas son prénom ?"
+          secondary="Aide : Fais un effort ou bien trouve toi un acolyte..."
+        />
+      }
+      submit={
+        <Button onAction={handleOnNext} leftIcon="check">
+          Terminer
+        </Button>
+      }
+    >
+      <Input placeholder="Son prénom" onChangeText={handleOnChangeText} />
+    </FormLayout>
   )
 }
 

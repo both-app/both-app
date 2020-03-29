@@ -6,8 +6,7 @@ import { Button } from 'library/components/Button'
 import { Label } from 'screens/auth/components/Label'
 import { Error } from 'screens/auth/components/Error'
 import { SelectGender } from 'screens/auth/components/SelectGender'
-import { ScreenContainer } from 'screens/auth/components/ScreenContainer'
-import { FormContainer } from 'screens/auth/components/FormContainer'
+import { FormLayout } from 'library/layouts/FormLayout'
 import { CreateContext } from '../../Create.context'
 
 export const GenderScreen = () => {
@@ -33,25 +32,25 @@ export const GenderScreen = () => {
   }
 
   return (
-    <ScreenContainer onBackAction={() => navigation.goBack()}>
-      <FormContainer
-        containerStyle={styles.formContainer}
-        label={<Label primary={`${values.name} 👋`} secondary="Tu es..." />}
-        field={<SelectGender value={values.gender} onChange={handleOnChange} />}
-        error={
-          <Error
-            hideError={!hasError}
-            primary="😘 Qui que tu sois, reste tel que tu es !"
-            secondary="Aide : Choisi un genre pour continuer..."
-          />
-        }
-        submit={
-          <Button onAction={handleOnNext} leftIcon="arrow_right_circle">
-            Continuer
-          </Button>
-        }
-      />
-    </ScreenContainer>
+    <FormLayout
+      onBackAction={() => navigation.goBack()}
+      containerStyle={styles.formContainer}
+      label={<Label primary={`${values.name} 👋`} secondary="Tu es..." />}
+      error={
+        <Error
+          hideError={!hasError}
+          primary="😘 Qui que tu sois, reste tel que tu es !"
+          secondary="Aide : Choisi un genre pour continuer..."
+        />
+      }
+      submit={
+        <Button onAction={handleOnNext} leftIcon="arrow_right_circle">
+          Continuer
+        </Button>
+      }
+    >
+      <SelectGender value={values.gender} onChange={handleOnChange} />
+    </FormLayout>
   )
 }
 

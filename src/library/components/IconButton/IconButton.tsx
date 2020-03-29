@@ -5,12 +5,13 @@ import { Icon, IconProps } from '../Icon'
 
 interface IconButtonProps extends IconProps {
   onAction?: () => void
-  buttonStyle: any
-  style: any
+  iconStyle?: any
+  buttonStyle?: any
 }
 
 export const IconButton: FC<IconButtonProps> = ({
   onAction,
+  iconStyle,
   buttonStyle,
   ...props
 }) => {
@@ -21,7 +22,7 @@ export const IconButton: FC<IconButtonProps> = ({
 
   return (
     <TouchableOpacity onPress={handleOnPress} style={buttonStyle}>
-      <Icon {...props} />
+      <Icon style={iconStyle} {...props} />
     </TouchableOpacity>
   )
 }

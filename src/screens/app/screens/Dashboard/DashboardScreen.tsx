@@ -6,6 +6,7 @@ import {
   SectionList,
   ScrollView,
 } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
 import { colors } from 'res/colors'
 import { Header, Week, Counter, Info } from './components/Header'
@@ -73,40 +74,44 @@ const DATA = [
   },
 ]
 
-export const DashboardScreen = () => (
-  <View style={styles.container}>
-    <Header>
-      <Week>Semaine 17 • Samedi 28 mars</Week>
+export const DashboardScreen = () => {
+  const navigation = useNavigation()
 
-      <Counter
-        leftUserName="Mathieu"
-        rightUserName="Charlotte"
-        leftPoints={7}
-        rightPoints={0}
-      />
+  return (
+    <View style={styles.container}>
+      <Header>
+        <Week>Semaine 17 • Samedi 28 mars</Week>
 
-      <Info
-        primary="🏆 T’es premier au classement"
-        secondary="Normal t’es seul… Relance ton acolyte !"
-      />
-    </Header>
-
-    <ScrollView style={styles.listContainer}>
-      <ButtonAddTask />
-
-      <SafeAreaView style={styles.list}>
-        <SectionList
-          sections={DATA}
-          keyExtractor={(item, index) => item + index}
-          renderItem={({ item }) => <Task {...item} />}
-          renderSectionHeader={({ section: { title } }) => (
-            <Section title={title} />
-          )}
+        <Counter
+          leftUserName="Mathieu"
+          rightUserName="Charlotte"
+          leftPoints={7}
+          rightPoints={0}
         />
-      </SafeAreaView>
-    </ScrollView>
-  </View>
-)
+
+        <Info
+          primary="🏆 T’es premier au classement"
+          secondary="Normal t’es seul… Relance ton acolyte !"
+        />
+      </Header>
+
+      <ScrollView style={styles.listContainer}>
+        <ButtonAddTask onPress={() => navigation.navigate('AddTask')} />
+
+        <SafeAreaView style={styles.list}>
+          <SectionList
+            sections={DATA}
+            keyExtractor={(item, index) => item + index}
+            renderItem={({ item }) => <Task {...item} />}
+            renderSectionHeader={({ section: { title } }) => (
+              <Section title={title} />
+            )}
+          />
+        </SafeAreaView>
+      </ScrollView>
+    </View>
+  )
+}
 
 const styles = StyleSheet.create({
   container: {

@@ -20,7 +20,7 @@ type IconName =
 
 export interface IconProps extends SvgProps {
   iconName: IconName
-  style: any
+  style?: any
 }
 
 export const Icon: FC<IconProps> = ({ iconName, ...props }) => {
