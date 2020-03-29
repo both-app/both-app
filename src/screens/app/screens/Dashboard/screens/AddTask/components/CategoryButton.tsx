@@ -7,11 +7,15 @@ import { colors } from 'res/colors'
 interface CategoryButtonProps {
   category: Category
   tasks: Task[]
+  onAction: VoidFunction
+  active: boolean
 }
 
 export const CategoryButton: FC<CategoryButtonProps> = ({
   category,
   tasks,
+  onAction,
+  active,
 }) => {
   const activeCardButtonContainer = {
     backgroundColor: category.color,
@@ -26,6 +30,8 @@ export const CategoryButton: FC<CategoryButtonProps> = ({
       icon={category.icon}
       title={category.name}
       subtitle={`${tasks.length} tâches`}
+      onAction={onAction}
+      active={active}
     />
   )
 }

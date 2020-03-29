@@ -3,13 +3,13 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { useNavigation, useRoute } from '@react-navigation/core'
 
 import { DashboardScreen } from './DashboardScreen'
-import { AddTaskScreen } from './screens/AddTask'
+import { AddTaskNavigator } from './screens/AddTask'
 import { getCurrentRouteName } from 'res/stackNavigation'
 
 const Stack = createStackNavigator()
 
 const ROUTES = {
-  DASHBOARD: 'Dasboard',
+  DASHBOARD: 'Dashboard',
   ADD_TASK: 'AddTask',
 }
 
@@ -34,7 +34,7 @@ export const DashboardNavigator = () => {
       mode="modal"
     >
       <Stack.Screen name={ROUTES.DASHBOARD} component={DashboardScreen} />
-      <Stack.Screen name={ROUTES.ADD_TASK} component={AddTaskScreen} />
+      <Stack.Screen name={ROUTES.ADD_TASK} component={AddTaskNavigator} />
     </Stack.Navigator>
   )
 }

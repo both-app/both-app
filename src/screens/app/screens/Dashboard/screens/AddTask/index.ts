@@ -1,1 +1,1 @@
-export { AddTaskScreen } from './AddTaskScreen'
+export { AddTaskNavigator } from './AddTask.navigator'
