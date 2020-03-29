@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 
 import { AuthNavigator, AuthContext } from './screens/auth'
-import { AppNavigator } from 'screens/app'
+import { App } from 'screens/app'
 import { useFonts } from 'library/hooks/useFonts'
 
 export const Main = () => {
@@ -16,8 +16,8 @@ export const Main = () => {
 
   // TODO To replace by isConnected
   // eslint-disable-next-line no-constant-condition
-  if (isConnected) {
-    return <AppNavigator />
+  if (true) {
+    return <App />
   }
 
   return <AuthNavigator />

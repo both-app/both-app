@@ -1,1 +1,1 @@
-export { AppNavigator } from './App.navigator'
+export { App } from './App'

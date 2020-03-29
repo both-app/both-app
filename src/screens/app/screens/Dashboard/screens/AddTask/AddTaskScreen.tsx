@@ -1,11 +1,16 @@
-import React from 'react'
-import { Text, StyleSheet, View } from 'react-native'
+import React, { useContext } from 'react'
+import { StyleSheet, View } from 'react-native'
 import { useNavigation } from '@react-navigation/core'
 
 import { FormLayout } from 'library/layouts/FormLayout'
 import { Label } from 'library/components/Label'
+import { CategoryContext } from 'screens/app/contexts/Category.context'
+import { TaskContext } from 'screens/app/contexts/Task.context'
+import { Category } from './Category'
 
 export const AddTaskScreen = () => {
+  const { categories } = useContext(CategoryContext)
+  const { getTasksByCategoryId } = useContext(TaskContext)
   const navigation = useNavigation()
 
   return (
@@ -15,7 +20,13 @@ export const AddTaskScreen = () => {
       label={<Label primary="Sélectionne..." secondary="Une catégorie 📦" />}
     >
       <View style={styles.taskTypesContainer}>
-        <Text>Categories</Text>
+        {categories.map((category) => (
+          <Category
+            key={category.id}
+            category={category}
+            tasks={getTasksByCategoryId(category.id)}
+          />
+        ))}
       </View>
     </FormLayout>
   )
