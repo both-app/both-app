@@ -2,17 +2,19 @@ import React, { useContext, useState, useEffect } from 'react'
 import { StyleSheet, ScrollView } from 'react-native'
 import { useNavigation, useRoute } from '@react-navigation/core'
 
-import { FormLayout } from 'library/layouts/FormLayout'
-import { Label } from 'library/components/Label'
 import { CategoryContext } from 'screens/app/contexts/Category.context'
 import { TaskContext } from 'screens/app/contexts/Task.context'
-import { TaskButton } from '../components/TaskButton'
+
+import { FormLayout } from 'library/layouts/FormLayout'
+import { Label } from 'library/components/Label'
+import { CardButton } from 'library/components/CardButton'
 
 export const ChooseTaskScreen = () => {
   const [selectedCategory, setCategory] = useState<Category>()
+  const [selectedTaskId, setSelectedTaskId] = useState('')
 
   const { getCategoryById } = useContext(CategoryContext)
-  const { getTasksByCategoryId } = useContext(TaskContext)
+  const { getTasksByCategoryId, setTaskIdCompleted } = useContext(TaskContext)
 
   const route = useRoute()
   const navigation = useNavigation()
@@ -27,7 +29,10 @@ export const ChooseTaskScreen = () => {
   }, [])
 
   const handleOnAction = (taskId: string) => {
+    setSelectedTaskId(taskId)
+
     setTimeout(() => {
+      setTaskIdCompleted(taskId)
       navigation.navigate('Dashboard')
     }, 500)
   }
@@ -45,10 +50,14 @@ export const ChooseTaskScreen = () => {
     >
       <ScrollView style={styles.tasksContainer}>
         {getTasksByCategoryId(categoryId).map((task) => (
-          <TaskButton
+          <CardButton
             key={task.id}
-            task={task}
+            emoji={task.icon}
+            title={task.name}
             onAction={() => handleOnAction(task.id)}
+            activeBackgroundColor={selectedCategory?.color}
+            activeTextColor="white"
+            active={selectedTaskId === task.id}
           />
         ))}
       </ScrollView>

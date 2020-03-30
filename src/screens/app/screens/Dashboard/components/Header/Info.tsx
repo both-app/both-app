@@ -1,19 +1,20 @@
 import React, { FC } from 'react'
-import { Text, StyleSheet, View } from 'react-native'
+import { Text, StyleSheet, View, ViewStyle } from 'react-native'
 
 interface InfoProps {
   primary: string
   secondary: string
+  containerStyle?: ViewStyle
 }
 
-export const Info: FC<InfoProps> = ({ primary, secondary }) => {
+export const Info: FC<InfoProps> = ({ primary, secondary, containerStyle }) => {
   const primaryStyle = {
     ...styles.text,
     ...styles.bold,
   }
 
   return (
-    <View style={styles.container}>
+    <View style={{ ...styles.container, ...containerStyle }}>
       <Text style={primaryStyle}>{primary}</Text>
       <Text style={styles.text}>{secondary}</Text>
     </View>
@@ -22,7 +23,6 @@ export const Info: FC<InfoProps> = ({ primary, secondary }) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 24,
     alignItems: 'center',
   },
   text: {

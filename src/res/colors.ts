@@ -8,9 +8,10 @@ export const colors = {
   blueLight: '#71C2E8',
   purple: '#7489E1',
   pinkDark: '#E87180',
+  green: '#37D37D',
 }
 
-export const LightenDarkenColor = (col: string, amt: number) => {
+export const lightenDarkenColor = (col: string, amt: number) => {
   let usePound = false
 
   if (col[0] == '#') {

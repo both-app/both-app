@@ -7,29 +7,34 @@ import {
   TextStyle,
   ViewStyle,
 } from 'react-native'
+
 import { fonts } from 'res/fonts'
-import { LightenDarkenColor } from 'res/colors'
+import { lightenDarkenColor, colors } from 'res/colors'
 
 export interface CardButtonProps {
-  icon: string
+  emoji: string
   title: string
   subtitle?: string
   containerStyle?: ViewStyle
-  activeContainerStyle?: ViewStyle
+  activeBackgroundColor?: string
   textStyle?: TextStyle
-  activeTextStyle?: TextStyle
+  activeTextColor?: string
   rightContent?: ReactNode
   active?: boolean
-  onAction: VoidFunction
+  onAction?: VoidFunction
   points?: number
+  disabled?: boolean
 }
 
 export const CardButton: FC<CardButtonProps> = ({
-  icon,
+  emoji,
   title,
   subtitle,
   onAction,
   points,
+  activeBackgroundColor = lightenDarkenColor(colors.beigeDark, -20),
+  activeTextColor = colors.blueDark,
+  disabled,
   ...props
 }) => {
   const [isActive, setIsActive] = useState(false)
@@ -37,29 +42,28 @@ export const CardButton: FC<CardButtonProps> = ({
   const containerStyle = {
     ...styles.container,
     ...props.containerStyle,
-    ...(isActive || props.active ? props.activeContainerStyle : {}),
+    ...(isActive || props.active
+      ? { backgroundColor: activeBackgroundColor }
+      : {}),
   }
 
   const titleStyle = {
     ...styles.text,
     ...props.textStyle,
     ...styles.medium,
-    ...(isActive || props.active ? props.activeTextStyle : {}),
+    ...(isActive || props.active ? { color: activeTextColor } : {}),
   }
 
   const subTitleStyle = {
     ...styles.text,
     ...props.textStyle,
     ...styles.subtitle,
-    ...(isActive || props.active ? props.activeTextStyle : {}),
+    ...(isActive || props.active ? { color: activeTextColor } : {}),
   }
 
   const rightInnerStyle = {
     ...styles.rightInner,
-    backgroundColor: LightenDarkenColor(
-      props.containerStyle.backgroundColor,
-      -15
-    ),
+    backgroundColor: lightenDarkenColor(containerStyle.backgroundColor, -15),
   }
 
   const onPressOut = () => setIsActive(false)
@@ -73,9 +77,10 @@ export const CardButton: FC<CardButtonProps> = ({
       onPressOut={onPressOut}
       onPressIn={onPressIn}
       onPress={onAction}
+      disabled={disabled}
     >
       <View style={styles.leftInner}>
-        <Text style={styles.icon}>{icon}</Text>
+        <Text style={styles.emoji}>{emoji}</Text>
         <View style={styles.texts}>
           <Text style={titleStyle}>{title}</Text>
           {subtitle && <Text style={subTitleStyle}>{subtitle}</Text>}
@@ -98,6 +103,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    backgroundColor: colors.beigeDark,
     paddingTop: 17,
     paddingBottom: 17,
     paddingLeft: 16,
@@ -111,7 +117,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  icon: {
+  emoji: {
     fontSize: 26,
   },
   texts: {
@@ -121,7 +127,7 @@ const styles = StyleSheet.create({
     opacity: 0.75,
   },
   text: {
-    color: 'white',
+    color: colors.blueDark,
     fontSize: 14,
   },
   medium: {

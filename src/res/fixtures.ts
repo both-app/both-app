@@ -301,3 +301,18 @@ export const TASKS: Task[] = [
   ...CHILDREN_TASKS,
   ...LOVE_TASK,
 ]
+
+export const USER_A = {
+  id: '0000',
+  firstname: 'Mathieu',
+}
+
+export const RELATION_TASKS: RelationTask[] = [
+  {
+    id: 'X',
+    userId: USER_A.id,
+    taskId: ANIMAL_TASKS[0].id,
+    relationId: 'R',
+    createdAt: '',
+  },
+]

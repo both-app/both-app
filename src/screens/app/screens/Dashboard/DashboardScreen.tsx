@@ -10,9 +10,10 @@ import { useNavigation } from '@react-navigation/native'
 
 import { colors } from 'res/colors'
 import { Header, Week, Counter, Info } from './components/Header'
-import { ButtonAddTask } from './components/ButtonAddTask'
 import { Task } from './components/Task'
 import { Section } from './components/Section'
+import { TaskAddedModalContainer } from './components/TaskAddedModal'
+import { CardButton } from 'library/components/CardButton'
 
 const DATA = [
   {
@@ -95,13 +96,19 @@ export const DashboardScreen = () => {
         />
       </Header>
 
+      <TaskAddedModalContainer />
+
       <ScrollView style={styles.listContainer}>
-        <ButtonAddTask onPress={() => navigation.navigate('AddTask')} />
+        <CardButton
+          emoji="➕"
+          title="Ajouter une tâche"
+          onAction={() => navigation.navigate('AddTask')}
+        />
 
         <SafeAreaView style={styles.list}>
           <SectionList
             sections={DATA}
-            keyExtractor={(item, index) => item + index}
+            keyExtractor={(_, index) => `${index}`}
             renderItem={({ item }) => <Task {...item} />}
             renderSectionHeader={({ section: { title } }) => (
               <Section title={title} />
@@ -117,7 +124,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.blueDark,
-    position: 'relative',
   },
   listContainer: {
     flex: 1,

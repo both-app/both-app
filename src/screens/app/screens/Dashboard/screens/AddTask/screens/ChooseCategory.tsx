@@ -1,12 +1,13 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { useNavigation } from '@react-navigation/core'
 
-import { FormLayout } from 'library/layouts/FormLayout'
-import { Label } from 'library/components/Label'
 import { CategoryContext } from 'screens/app/contexts/Category.context'
 import { TaskContext } from 'screens/app/contexts/Task.context'
-import { CategoryButton } from '../components/CategoryButton'
+
+import { FormLayout } from 'library/layouts/FormLayout'
+import { Label } from 'library/components/Label'
+import { CardButton } from 'library/components/CardButton'
 
 export const ChooseCategoryScreen = () => {
   const [selectedCategoryId, setSelectedCategoryId] = useState('')
@@ -37,12 +38,15 @@ export const ChooseCategoryScreen = () => {
     >
       <View style={styles.categoriesContainer}>
         {categories.map((category) => (
-          <CategoryButton
+          <CardButton
             key={category.id}
-            category={category}
-            tasks={getTasksByCategoryId(category.id)}
+            emoji={category.icon}
+            title={category.name}
+            subtitle={`${getTasksByCategoryId(category.id).length} tâches`}
             onAction={() => handleOnAction(category.id)}
             active={selectedCategoryId === category.id}
+            activeBackgroundColor={category.color}
+            activeTextColor="white"
           />
         ))}
       </View>

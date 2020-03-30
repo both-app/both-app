@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
     paddingTop: 80,
     paddingLeft: 24,
     paddingRight: 24,
+    paddingBottom: 24,
     display: 'flex',
     alignItems: 'center',
     backgroundColor: colors.blueDark,
