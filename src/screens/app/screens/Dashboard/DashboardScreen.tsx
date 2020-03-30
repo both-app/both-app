@@ -13,6 +13,7 @@ import { Header, Week, Counter, Info } from './components/Header'
 import { Task } from './components/Task'
 import { Section } from './components/Section'
 import { TaskAddedModalContainer } from './components/TaskAddedModal'
+import { ShareCodeModalContainer } from './components/ShareCodeModal'
 import { CardButton } from 'library/components/CardButton'
 
 const DATA = [
@@ -96,8 +97,6 @@ export const DashboardScreen = () => {
         />
       </Header>
 
-      <TaskAddedModalContainer />
-
       <ScrollView style={styles.listContainer}>
         <CardButton
           emoji="➕"
@@ -116,6 +115,9 @@ export const DashboardScreen = () => {
           />
         </SafeAreaView>
       </ScrollView>
+
+      <ShareCodeModalContainer />
+      <TaskAddedModalContainer />
     </View>
   )
 }

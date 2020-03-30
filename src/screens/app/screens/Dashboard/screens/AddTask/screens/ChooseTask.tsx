@@ -57,6 +57,7 @@ export const ChooseTaskScreen = () => {
             onAction={() => handleOnAction(task.id)}
             activeBackgroundColor={selectedCategory?.color}
             activeTextColor="white"
+            points={task.points}
             active={selectedTaskId === task.id}
           />
         ))}
