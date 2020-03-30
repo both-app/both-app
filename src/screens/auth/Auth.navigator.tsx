@@ -17,6 +17,7 @@ export const AuthNavigator = () => (
   <Stack.Navigator
     initialRouteName={ROUTES.SELECT}
     headerMode="none"
+    mode="modal"
     screenOptions={{ gestureEnabled: false }}
   >
     <Stack.Screen name={ROUTES.SELECT} component={SelectScreen} />

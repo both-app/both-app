@@ -1,15 +1,14 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
-import { Button } from 'library/components/Button'
-import { Logo } from 'library/components/Logo'
 import { colors } from 'res/colors'
+
+import { Logo } from 'library/components/Logo'
+import { Label } from 'library/components/Label'
 
 export const SelectScreen = () => {
   const navigation = useNavigation()
-
-  const goTo = (screenName: string) => () => navigation.navigate(screenName)
 
   return (
     <View style={styles.container}>
@@ -17,13 +16,16 @@ export const SelectScreen = () => {
         <Logo />
       </View>
 
-      <View style={styles.buttonsContainer}>
-        <Button variation="primary" onAction={goTo('Join')}>
-          Rejoindre un acolyte
-        </Button>
-        <Button marginTop={16} variation="secondary" onAction={goTo('Create')}>
-          Créer une relation
-        </Button>
+      <View style={styles.bottom}>
+        <Label primary="Bienvenue sur Both 👋" secondary="Commençons..." />
+
+        <TouchableOpacity
+          style={styles.textContainer}
+          onPress={() => navigation.navigate('Create')}
+          activeOpacity={1}
+        >
+          <Text style={styles.putYourName}>Tape ton prénom</Text>
+        </TouchableOpacity>
       </View>
     </View>
   )
@@ -32,15 +34,27 @@ export const SelectScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: colors.blueDark,
     justifyContent: 'space-between',
-    backgroundColor: colors.beigeLight,
   },
   logoContainer: {
-    marginTop: 244,
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  buttonsContainer: {
-    marginBottom: 32,
-    marginLeft: 24,
-    marginRight: 24,
+  bottom: {
+    backgroundColor: colors.beigeLight,
+    paddingTop: 32,
+    paddingBottom: 110,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    alignItems: 'center',
+  },
+  textContainer: {
+    marginTop: 48,
+  },
+  putYourName: {
+    fontSize: 28,
+    color: 'rgba(12,35,51,0.25)',
   },
 })

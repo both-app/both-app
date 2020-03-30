@@ -2,7 +2,6 @@ import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
 import Both from '../../../../assets/both.svg'
-import { colors } from 'res/colors'
 
 export const Logo = () => (
   <View style={styles.container}>
@@ -20,7 +19,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 14,
-    color: colors.blueDark,
+    color: 'white',
     marginTop: 18,
   },
 })
