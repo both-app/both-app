@@ -22,7 +22,7 @@ export const ChooseCategoryScreen = () => {
 
     setTimeout(() => {
       navigation.navigate('ChooseTask', { categoryId })
-    }, 500)
+    }, 150)
   }
 
   const handleOnClose = () => {

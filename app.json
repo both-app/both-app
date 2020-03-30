@@ -4,9 +4,7 @@
     "slug": "Both",
     "privacy": "public",
     "sdkVersion": "36.0.0",
-    "platforms": [
-      "ios"
-    ],
+    "platforms": ["ios"],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -17,33 +15,13 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": false
     },
     "packagerOpts": {
       "config": "metro.config.js",
-      "sourceExts": [
-        "js",
-        "jsx",
-        "svg",
-        "ts",
-        "tsx"
-      ]
-    },
-    "hooks": {
-      "postPublish": [
-        {
-          "file": "sentry-expo/upload-sourcemaps",
-          "config": {
-            "organization": "Both",
-            "project": "Both-App",
-            "authToken": "6d0e949e174e4b7fa10f9d9b770487bd82b57deb2d0b4569884536028d1bdae3"
-          }
-        }
-      ]
+      "sourceExts": ["js", "jsx", "svg", "ts", "tsx"]
     },
     "description": "Share love & daily tasks",
     "githubUrl": "https://github.com/mathieuletyrant/both-app"

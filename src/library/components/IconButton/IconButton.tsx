@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { TouchableOpacity, Vibration } from 'react-native'
+import { TouchableOpacity } from 'react-native'
 
 import { Icon, IconProps } from '../Icon'
 
@@ -16,7 +16,6 @@ export const IconButton: FC<IconButtonProps> = ({
   ...props
 }) => {
   const handleOnPress = () => {
-    Vibration.vibrate(0.05)
     onAction && onAction()
   }
 

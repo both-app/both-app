@@ -16,7 +16,7 @@ export const Main = () => {
 
   // TODO To replace by isConnected
   // eslint-disable-next-line no-constant-condition
-  if (true) {
+  if (isConnected) {
     return <App />
   }
 
