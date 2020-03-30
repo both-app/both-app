@@ -34,7 +34,7 @@ export const ChooseTaskScreen = () => {
     setTimeout(() => {
       setTaskIdCompleted(taskId)
       navigation.navigate('Dashboard')
-    }, 150)
+    }, 200)
   }
 
   return (
