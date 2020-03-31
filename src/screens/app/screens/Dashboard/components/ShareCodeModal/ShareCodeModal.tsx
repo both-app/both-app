@@ -1,11 +1,8 @@
 import React, { FC } from 'react'
-import { StyleSheet } from 'react-native'
-
-import { colors } from 'res/colors'
-import { Info } from '../Header'
-import { Counter } from './Counter'
+import { View, StyleSheet } from 'react-native'
 
 import { Badge } from 'library/components/Badge'
+import { Info } from 'library/components/Info'
 import { Modal } from 'library/components/Modal'
 import { Code } from './Code'
 
@@ -29,15 +26,17 @@ export const ShareCodeModal: FC<ShareCodeModalProps> = ({
     onAction={onAction}
     primaryActionIconName="share"
   >
-    <Badge color={colors.purple}>Invite Charlotte 💬</Badge>
+    <Badge color="purple">Invite Charlotte 💬</Badge>
 
     <Code code={code} />
 
-    <Info
-      containerStyle={styles.infoContainer}
-      primary="📲 Voici le code de te relation sur both "
-      secondary="Partage le à ton acolyte pour qu’il te rejoigne !"
-    />
+    <View style={styles.infoContainer}>
+      <Info
+        color="white"
+        primary="📲 Voici le code de te relation sur both "
+        secondary="Partage le à ton acolyte pour qu’il te rejoigne !"
+      />
+    </View>
   </Modal>
 )
 

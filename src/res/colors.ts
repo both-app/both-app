@@ -1,4 +1,4 @@
-export const colors = {
+export const colors: Record<Color, string> = {
   beigeLight: '#F9F0EB',
   beigeDark: '#EEE2DC',
   blueDark: '#0C2333',
@@ -9,7 +9,21 @@ export const colors = {
   purple: '#7489E1',
   pinkDark: '#E87180',
   green: '#37D37D',
+  white: '#FFFFFF',
 }
+
+export type Color =
+  | 'beigeLight'
+  | 'beigeDark'
+  | 'blueDark'
+  | 'pink'
+  | 'greyDark'
+  | 'yellow'
+  | 'blueLight'
+  | 'purple'
+  | 'pinkDark'
+  | 'green'
+  | 'white'
 
 export const lightenDarkenColor = (col: string, amt: number) => {
   let usePound = false

@@ -1,14 +1,15 @@
 import React, { FC } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import { Color, colors } from 'res/colors'
 
 interface BadgeProps {
-  color: string
+  color: Color
 }
 
 export const Badge: FC<BadgeProps> = ({ color, children }) => {
   const badgeStyle = {
     ...styles.badge,
-    backgroundColor: color,
+    backgroundColor: colors[color],
   }
 
   return (

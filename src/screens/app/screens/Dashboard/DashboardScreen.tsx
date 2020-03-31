@@ -9,7 +9,8 @@ import {
 import { useNavigation } from '@react-navigation/native'
 
 import { colors } from 'res/colors'
-import { Header, Week, Counter, Info } from './components/Header'
+import { Info } from 'library/components/Info'
+import { Header, Week, Counter } from './components/Header'
 import { Task } from './components/Task'
 import { Section } from './components/Section'
 import { TaskAddedModalContainer } from './components/TaskAddedModal'
@@ -92,6 +93,7 @@ export const DashboardScreen = () => {
         />
 
         <Info
+          color="white"
           primary="🏆 T’es premier au classement"
           secondary="Normal t’es seul… Relance ton acolyte !"
         />

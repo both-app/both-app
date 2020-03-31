@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { SvgProps } from 'react-native-svg'
 
-import ArrowRightCircle from '../../../../assets/icons/arrow-right-circle.svg'
+import ArrowRight from '../../../../assets/icons/arrow-right.svg'
 import ChevronLeft from '../../../../assets/icons/chevron-left.svg'
 import Check from '../../../../assets/icons/check.svg'
 import Plus from '../../../../assets/icons/plus.svg'
@@ -12,7 +12,7 @@ import X from '../../../../assets/icons/x.svg'
 import Share from '../../../../assets/icons/share.svg'
 
 type IconName =
-  | 'arrow_right_circle'
+  | 'arrow_right'
   | 'chevron_left'
   | 'check'
   | 'plus'
@@ -29,7 +29,7 @@ export interface IconProps extends SvgProps {
 
 export const Icon: FC<IconProps> = ({ iconName, ...props }) => {
   const mapping: Record<IconName, React.FC<SvgProps>> = {
-    arrow_right_circle: ArrowRightCircle,
+    arrow_right: ArrowRight,
     chevron_left: ChevronLeft,
     check: Check,
     plus: Plus,

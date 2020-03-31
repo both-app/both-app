@@ -2,19 +2,18 @@ import React, { useContext, useState } from 'react'
 import { StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
-import { Button } from 'library/components/Button'
+import { Info } from 'library/components/Info'
 import { Label } from 'library/components/Label'
-import { Error } from 'screens/auth/components/Error'
 import { InputCode } from 'screens/auth/components/InputCode'
 import { FormLayout } from 'library/layouts/FormLayout'
-import { JoinContext } from '../../Join.context'
+import { CreateContext } from '../../Create.context'
 
 const CODE_LENGTH = 6
 
 export const CodeScreen = () => {
   const navigation = useNavigation()
   const [hasError, setHasError] = useState(false)
-  const { values, setValue } = useContext(JoinContext)
+  const { values, setValue } = useContext(CreateContext)
 
   const handleOnNext = () => {
     if (!values.code || values.code.length < CODE_LENGTH) {
@@ -35,20 +34,17 @@ export const CodeScreen = () => {
 
   return (
     <FormLayout
-      onBackAction={() => navigation.navigate('Select')}
+      onBackAction={() => navigation.navigate('DoYouHaveCode')}
+      onNextAction={handleOnNext}
       containerStyle={styles.formContainer}
       label={<Label primary="Bonjour ☀️" secondary="Saisis ton code..." />}
-      error={
-        <Error
-          hideError={!hasError}
+      bottomInfo={
+        <Info
+          hide={!hasError}
+          color="pink"
           primary="😥 Code invalide !"
           secondary="Aide : Vérifie bien le code que ton acolyte t'as donné..."
         />
-      }
-      submit={
-        <Button onAction={handleOnNext} leftIcon="arrow_right_circle">
-          Continuer
-        </Button>
       }
     >
       <InputCode

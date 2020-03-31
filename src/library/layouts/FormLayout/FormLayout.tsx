@@ -8,24 +8,28 @@ import {
 } from 'react-native'
 
 import { colors } from 'res/colors'
+import { MinimalButton } from 'library/components/MinimalButton'
+import { Button } from 'library/components/Button'
 import { IconButton } from 'library/components/IconButton'
 
 interface FormLayoutProps {
   containerStyle: any
   label: ReactNode
-  error?: ReactNode
-  submit?: ReactNode
+  bottomInfo?: ReactNode
   onBackAction?: VoidFunction
   onCloseAction?: VoidFunction
+  onNextAction?: VoidFunction
+  onFinishAction?: VoidFunction
 }
 
 export const FormLayout: FC<FormLayoutProps> = ({
   containerStyle,
   label,
-  error,
-  submit,
+  bottomInfo,
   onBackAction,
   onCloseAction,
+  onFinishAction,
+  onNextAction,
   children,
 }) => (
   <KeyboardAvoidingView
@@ -35,18 +39,18 @@ export const FormLayout: FC<FormLayoutProps> = ({
     <TouchableWithoutFeedback>
       <>
         {onBackAction && (
-          <IconButton
+          <MinimalButton
             iconName="chevron_left"
             onAction={onBackAction}
-            iconStyle={styles.iconStyle}
+            iconColor="blueDark"
           />
         )}
 
         {onCloseAction && (
-          <IconButton
+          <MinimalButton
             iconName="close"
             onAction={onCloseAction}
-            iconStyle={styles.iconStyle}
+            iconColor="blueDark"
           />
         )}
 
@@ -54,10 +58,30 @@ export const FormLayout: FC<FormLayoutProps> = ({
           {label}
           {children}
 
-          {(submit || error) && (
+          {(onNextAction || onFinishAction || bottomInfo) && (
             <View style={styles.bottomContainer}>
-              {error}
-              <View style={styles.buttonContainer}>{submit}</View>
+              {bottomInfo}
+              <View style={styles.buttonContainer}>
+                {onNextAction && (
+                  <IconButton
+                    iconName="arrow_right"
+                    onAction={onNextAction}
+                    size={64}
+                    buttonColor="blueDark"
+                    iconColor="white"
+                  />
+                )}
+
+                {onFinishAction && (
+                  <IconButton
+                    iconName="check"
+                    onAction={onFinishAction}
+                    size={64}
+                    buttonColor="blueDark"
+                    iconColor="white"
+                  />
+                )}
+              </View>
             </View>
           )}
         </View>
@@ -74,17 +98,11 @@ const styles = StyleSheet.create({
     paddingRight: 24,
     backgroundColor: colors.beigeLight,
   },
-  backButton: {
-    color: colors.blueDark,
-  },
   buttonContainer: {
     alignItems: 'center',
     marginTop: 16,
   },
   bottomContainer: {
     marginBottom: 32,
-  },
-  iconStyle: {
-    color: colors.blueDark,
   },
 })

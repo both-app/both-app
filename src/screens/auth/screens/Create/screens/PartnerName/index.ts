@@ -1,1 +1,0 @@
-export { PartnerNameScreen } from './PartnerNameScreen'

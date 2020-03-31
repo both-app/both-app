@@ -5,6 +5,9 @@ interface CreateContextProps {
     name: string
     gender: string
     partnerName: string
+    code: string
+    type: string
+    birthdayDate: string
   }
   setValue: (
     fieldName: keyof CreateContextProps['values'],
@@ -13,7 +16,14 @@ interface CreateContextProps {
 }
 
 const CreateContext = createContext<CreateContextProps>({
-  values: { name: '', partnerName: '', gender: '' },
+  values: {
+    name: '',
+    partnerName: '',
+    gender: '',
+    type: 'JOIN',
+    code: '',
+    birthdayDate: '',
+  },
   // @ts-ignore
   setValue: () => {},
 })
@@ -23,6 +33,9 @@ const CreateContextProvider: FC = ({ children }) => {
     name: '',
     partnerName: '',
     gender: '',
+    type: 'JOIN',
+    code: '',
+    birthdayDate: '',
   })
 
   const setValue = (fieldName: string, value: string) =>

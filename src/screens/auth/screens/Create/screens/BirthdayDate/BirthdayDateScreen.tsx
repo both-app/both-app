@@ -2,22 +2,21 @@ import React, { useContext, useState } from 'react'
 import { StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
-import { Button } from 'library/components/Button'
 import { Label } from 'library/components/Label'
-import { Error } from 'screens/auth/components/Error'
+import { Info } from 'library/components/Info'
 import { Input } from 'screens/auth/components/Input'
 import { FormLayout } from 'library/layouts/FormLayout'
 import { CreateContext } from '../../Create.context'
 import { AuthContext } from 'screens/auth/Auth.context'
 
-export const PartnerNameScreen = () => {
+export const BirthdayDateScreen = () => {
   const navigation = useNavigation()
   const [hasError, setHasError] = useState(false)
   const { values, setValue } = useContext(CreateContext)
   const { setIsConnected } = useContext(AuthContext)
 
-  const handleOnNext = () => {
-    if (!values.partnerName) {
+  const handleOnFinish = () => {
+    if (!values.birthdayDate) {
       return setHasError(true)
     }
 
@@ -30,30 +29,25 @@ export const PartnerNameScreen = () => {
       setHasError(false)
     }
 
-    setValue('partnerName', value)
+    setValue('birthdayDate', value)
   }
 
   return (
     <FormLayout
       onBackAction={() => navigation.goBack()}
+      onFinishAction={handleOnFinish}
       containerStyle={styles.formContainer}
-      label={
-        <Label primary="You rock 🤟" secondary="Et qui est ton acolyte ?" />
-      }
-      error={
-        <Error
-          hideError={!hasError}
-          primary="🤭 Oula, tu ne connais pas son prénom ?"
-          secondary="Aide : Fais un effort ou bien trouve toi un acolyte..."
+      label={<Label primary="Et enfin 🎁" secondary="Ton anniversaire..." />}
+      bottomInfo={
+        <Info
+          hide={!hasError}
+          color="pink"
+          primary="🙄 Es-tu certain de ta date d’anniversaire ?"
+          secondary="Aide : Fais un effort ou bien demande à ta maman…"
         />
       }
-      submit={
-        <Button onAction={handleOnNext} leftIcon="check">
-          Terminer
-        </Button>
-      }
     >
-      <Input placeholder="Son prénom" onChangeText={handleOnChangeText} />
+      <Input placeholder="Ton age" onChangeText={handleOnChangeText} />
     </FormLayout>
   )
 }

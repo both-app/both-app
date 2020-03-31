@@ -13,7 +13,7 @@ type InputCodeProps = {
   length: number
   value: string
   placeholder: string
-  onChange?: (code: string) => void | Promise<void>
+  onChange?: (code: string) => void
 }
 
 export const InputCode: FC<InputCodeProps> = ({
@@ -72,8 +72,6 @@ export const InputCode: FC<InputCodeProps> = ({
         ref={textInputCode}
         autoFocus
         caretHidden={true}
-        textContentType="oneTimeCode"
-        keyboardType="number-pad"
         onChangeText={onChangeText}
         maxLength={length}
         autoCapitalize="characters"
@@ -93,7 +91,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: colors.beigeDark,
-    minWidth: 33,
+    minWidth: 35,
     borderRadius: 8,
     paddingTop: 4,
     paddingRight: 8,

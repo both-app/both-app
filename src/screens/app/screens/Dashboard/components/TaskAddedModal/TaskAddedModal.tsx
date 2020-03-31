@@ -1,11 +1,10 @@
 import React, { FC } from 'react'
-import { StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 
-import { colors } from 'res/colors'
-import { Info } from '../Header'
 import { Counter } from './Counter'
 
 import { Badge } from 'library/components/Badge'
+import { Info } from 'library/components/Info'
 import { Modal } from 'library/components/Modal'
 
 interface TaskAddedModalProps {
@@ -28,15 +27,17 @@ export const TaskAddedModal: FC<TaskAddedModalProps> = ({
     onAction={onAction}
     primaryActionIconName="check"
   >
-    <Badge color={colors.green}>Bravo Mathieu 🎉</Badge>
+    <Badge color="green">Bravo Mathieu 🎉</Badge>
 
     <Counter points={task?.points} />
 
-    <Info
-      containerStyle={styles.infoContainer}
-      primary="👏 On vient de les ajouter à ton compteur"
-      secondary="Continue comme ça !"
-    />
+    <View style={styles.infoContainer}>
+      <Info
+        color="white"
+        primary="👏 On vient de les ajouter à ton compteur"
+        secondary="Continue comme ça !"
+      />
+    </View>
   </Modal>
 )
 

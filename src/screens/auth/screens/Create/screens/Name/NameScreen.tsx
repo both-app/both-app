@@ -2,11 +2,11 @@ import React, { useContext, useState } from 'react'
 import { StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
-import { Button } from 'library/components/Button'
 import { Label } from 'library/components/Label'
-import { Error } from 'screens/auth/components/Error'
-import { Input } from 'screens/auth/components/Input'
+import { Info } from 'library/components/Info'
 import { FormLayout } from 'library/layouts/FormLayout'
+
+import { Input } from 'screens/auth/components/Input'
 import { CreateContext } from '../../Create.context'
 
 export const NameScreen = () => {
@@ -19,7 +19,7 @@ export const NameScreen = () => {
       return setHasError(true)
     }
 
-    navigation.navigate('Gender')
+    navigation.navigate('DoYouHaveCode')
     return setHasError(false)
   }
 
@@ -34,19 +34,16 @@ export const NameScreen = () => {
   return (
     <FormLayout
       onBackAction={() => navigation.navigate('Select')}
+      onNextAction={handleOnNext}
       containerStyle={styles.formContainer}
       label={<Label primary="Bonjour ☀️" secondary="Comment t'appelles-tu ?" />}
-      error={
-        <Error
-          hideError={!hasError}
+      bottomInfo={
+        <Info
+          hide={!hasError}
+          color="pink"
           primary="🤔 Flemme de taper ton prénom ?"
           secondary="Aide : Mets au moins tes initiales pour continuer…"
         />
-      }
-      submit={
-        <Button onAction={handleOnNext} leftIcon="arrow_right_circle">
-          Continuer
-        </Button>
       }
     >
       <Input placeholder="Ton prénom" onChangeText={handleOnChangeText} />

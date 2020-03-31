@@ -1,16 +1,11 @@
 import React, { FC } from 'react'
-import {
-  Modal as RModal,
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native'
+import { Modal as RModal, View, Text, StyleSheet } from 'react-native'
 
-import { IconButton } from 'library/components/IconButton'
-import { Icon, IconProps } from 'library/components/Icon'
+import { MinimalButton } from 'library/components/MinimalButton'
+import { IconProps } from 'library/components/Icon'
 
 import { colors, lightenDarkenColor } from 'res/colors'
+import { IconButton } from '../IconButton'
 
 interface ModalProps {
   visible: boolean
@@ -34,7 +29,7 @@ export const Modal: FC<ModalProps> = ({
         {emoji && <Text style={styles.emoji}>{emoji}</Text>}
 
         <View style={styles.closeButtonContainer}>
-          <IconButton
+          <MinimalButton
             iconName="close"
             style={styles.closeButton}
             onAction={onClose}
@@ -43,14 +38,13 @@ export const Modal: FC<ModalProps> = ({
 
         {children}
 
-        <TouchableOpacity style={styles.primaryButton} onPress={onAction}>
-          <Icon
-            iconName={primaryActionIconName}
-            width={30}
-            height={30}
-            style={{ color: 'white' }}
-          />
-        </TouchableOpacity>
+        <IconButton
+          iconName={primaryActionIconName}
+          iconColor="white"
+          buttonStyle={styles.primaryButton}
+          onAction={onAction}
+          size={64}
+        />
       </View>
     </View>
   </RModal>
@@ -101,12 +95,7 @@ const styles = StyleSheet.create({
     color: '#607788',
   },
   primaryButton: {
-    width: 64,
-    height: 64,
-    alignItems: 'center',
-    justifyContent: 'center',
     marginTop: 24,
-    borderRadius: 19.2,
     backgroundColor: lightenDarkenColor(colors.blueDark, 20),
   },
 })

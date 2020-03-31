@@ -2,10 +2,9 @@ import React, { useContext, useState } from 'react'
 import { StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
-import { Button } from 'library/components/Button'
 import { Label } from 'library/components/Label'
-import { Error } from 'screens/auth/components/Error'
-import { SelectGender } from 'screens/auth/components/SelectGender'
+import { Info } from 'library/components/Info'
+import { Select } from 'screens/auth/components/Select'
 import { FormLayout } from 'library/layouts/FormLayout'
 import { CreateContext } from '../../Create.context'
 
@@ -19,7 +18,7 @@ export const GenderScreen = () => {
       return setHasError(true)
     }
 
-    navigation.navigate('PartnerName')
+    navigation.navigate('BirthdayDate')
     return setHasError(false)
   }
 
@@ -34,22 +33,27 @@ export const GenderScreen = () => {
   return (
     <FormLayout
       onBackAction={() => navigation.goBack()}
+      onNextAction={handleOnNext}
       containerStyle={styles.formContainer}
       label={<Label primary={`${values.name} 👋`} secondary="Tu es..." />}
-      error={
-        <Error
-          hideError={!hasError}
+      bottomInfo={
+        <Info
+          hide={!hasError}
+          color="pink"
           primary="😘 Qui que tu sois, reste tel que tu es !"
           secondary="Aide : Choisi un genre pour continuer..."
         />
       }
-      submit={
-        <Button onAction={handleOnNext} leftIcon="arrow_right_circle">
-          Continuer
-        </Button>
-      }
     >
-      <SelectGender value={values.gender} onChange={handleOnChange} />
+      <Select
+        value={values.gender}
+        onChange={handleOnChange}
+        options={[
+          { emoji: '👩', label: 'Je suis une femme', value: 'woman' },
+          { emoji: '👱‍♂️', label: 'Je suis un homme', value: 'man' },
+          { emoji: '💖', label: 'Je me définis autrement', value: 'other' },
+        ]}
+      />
     </FormLayout>
   )
 }
