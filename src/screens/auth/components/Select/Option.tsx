@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.beigeDark,
+    backgroundColor: colors.skin200,
     paddingTop: 32,
     paddingBottom: 32,
     paddingLeft: 24,
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 14,
-    color: colors.blueDark,
+    color: colors.dark100,
     fontWeight: '500',
   },
   texts: {
@@ -85,6 +85,6 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   blueContainer: {
-    backgroundColor: colors.blueDark,
+    backgroundColor: colors.dark100,
   },
 })

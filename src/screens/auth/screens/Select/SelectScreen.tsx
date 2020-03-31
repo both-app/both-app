@@ -34,7 +34,7 @@ export const SelectScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.blueDark,
+    backgroundColor: colors.dark100,
     justifyContent: 'space-between',
   },
   logoContainer: {
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   bottom: {
-    backgroundColor: colors.beigeLight,
+    backgroundColor: colors.skin100,
     paddingTop: 32,
     paddingBottom: 110,
     borderTopLeftRadius: 10,

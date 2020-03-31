@@ -32,8 +32,8 @@ export const CardButton: FC<CardButtonProps> = ({
   subtitle,
   onAction,
   points,
-  activeBackgroundColor = lightenDarkenColor(colors.beigeDark, -20),
-  activeTextColor = colors.blueDark,
+  activeBackgroundColor = lightenDarkenColor(colors.skin200, -20),
+  activeTextColor = colors.dark100,
   disabled,
   ...props
 }) => {
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: colors.beigeDark,
+    backgroundColor: colors.skin200,
     paddingTop: 17,
     paddingBottom: 17,
     paddingLeft: 16,
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     opacity: 0.75,
   },
   text: {
-    color: colors.blueDark,
+    color: colors.dark100,
     fontSize: 14,
   },
   medium: {

@@ -34,7 +34,7 @@ export const DoYouHaveCodeScreen = () => {
       bottomInfo={
         <Info
           hide={false}
-          color="blueDark"
+          color="dark100"
           primary="💡Une clé te permet de rejoindre une relation !"
           secondary="Aide : Ton acolyte doit t’inviter en t’envoyer un code."
         />

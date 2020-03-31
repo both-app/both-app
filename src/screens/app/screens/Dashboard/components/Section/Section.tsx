@@ -14,7 +14,7 @@ export const Section: FC<SectionProps> = ({ title }) => (
 const styles = StyleSheet.create({
   section: {
     fontSize: 14,
-    color: colors.blueDark,
+    color: colors.dark100,
     marginTop: 16,
   },
 })

@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
 import { fonts } from 'res/fonts'
+import { colors } from 'res/colors'
 
 import Enveloppes from '../../../../../../../assets/enveloppes.svg'
 
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
   },
   shape: {
     borderRadius: 24.6,
-    backgroundColor: '#0A1D2B',
+    backgroundColor: colors.dark200,
     zIndex: 100,
     paddingTop: 8,
     paddingRight: 24,

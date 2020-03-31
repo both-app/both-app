@@ -1,29 +1,49 @@
-export const colors: Record<Color, string> = {
-  beigeLight: '#F9F0EB',
-  beigeDark: '#EEE2DC',
-  blueDark: '#0C2333',
-  pink: '#C14E7C',
-  greyDark: '#BDBCBD',
-  yellow: '#E1B674',
-  blueLight: '#71C2E8',
-  purple: '#7489E1',
-  pinkDark: '#E87180',
-  green: '#37D37D',
-  white: '#FFFFFF',
-}
-
-export type Color =
-  | 'beigeLight'
-  | 'beigeDark'
-  | 'blueDark'
-  | 'pink'
-  | 'greyDark'
-  | 'yellow'
-  | 'blueLight'
-  | 'purple'
-  | 'pinkDark'
-  | 'green'
+export type AppColor =
+  | 'dark100'
+  | 'dark200'
+  | 'grey'
   | 'white'
+  | 'skin100'
+  | 'skin200'
+  | 'danger'
+  | 'warning'
+  | 'success'
+  | 'highlight100'
+  | 'highlight200'
+
+export type CategoryColor =
+  | 'daily'
+  | 'food'
+  | 'animals'
+  | 'housework'
+  | 'children'
+  | 'specialCouple'
+
+export type Color = AppColor | CategoryColor
+
+export const colors = {
+  // APP
+  dark100: '#0C2333',
+  dark200: '#0A1D2B',
+  grey: '#BDBCBD',
+  white: '#FFFFFF',
+  skin100: '#F9F0EB',
+  skin200: '#EEE2DC',
+  danger: '#C14E7C',
+  warning: '#F4A82C',
+  success: '#69CE7F',
+  highlight100: '#7489E1',
+  highlight200: '#A8B9FE',
+  categories: {
+    // CATEGORIES
+    daily: '#E87180',
+    food: '#E1B674',
+    animals: '#71C2E8',
+    housework: '#69CE7F',
+    children: '#FFA171',
+    specialCouple: '#7489E1',
+  },
+}
 
 export const lightenDarkenColor = (col: string, amt: number) => {
   let usePound = false

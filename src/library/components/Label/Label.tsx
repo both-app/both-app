@@ -23,6 +23,6 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: fonts['DMSerifDisplay-Regular'],
     fontSize: 26,
-    color: colors.blueDark,
+    color: colors.dark100,
   },
 })

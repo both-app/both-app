@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   code: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.beigeDark,
+    backgroundColor: colors.skin200,
     minWidth: 35,
     borderRadius: 8,
     paddingTop: 4,
@@ -102,10 +102,10 @@ const styles = StyleSheet.create({
   },
   codeText: {
     fontSize: 28,
-    color: colors.blueDark,
+    color: colors.dark100,
   },
   codeTextPlaceholder: {
-    color: colors.greyDark,
+    color: colors.grey,
   },
   input: {
     fontSize: 0,

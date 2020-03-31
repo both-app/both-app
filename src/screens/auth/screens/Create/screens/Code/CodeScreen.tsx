@@ -41,7 +41,7 @@ export const CodeScreen = () => {
       bottomInfo={
         <Info
           hide={!hasError}
-          color="pink"
+          color="danger"
           primary="😥 Code invalide !"
           secondary="Aide : Vérifie bien le code que ton acolyte t'as donné..."
         />

@@ -17,65 +17,7 @@ import { TaskAddedModalContainer } from './components/TaskAddedModal'
 import { ShareCodeModalContainer } from './components/ShareCodeModal'
 import { CardButton } from 'library/components/CardButton'
 
-const DATA = [
-  {
-    title: 'Samedi 28 mars',
-    data: [
-      {
-        color: colors.pinkDark,
-        icon: '🧺',
-        title: 'Étendre le linge',
-        author: 'Mathieu',
-        points: 2,
-      },
-      {
-        color: colors.yellow,
-        icon: '🛍',
-        title: 'Faire les courses',
-        author: 'Mathieu',
-        points: 2,
-      },
-      {
-        color: colors.blueLight,
-        icon: '🐶',
-        title: 'Sortir le chien',
-        author: 'Mathieu',
-        points: 3,
-      },
-    ],
-  },
-  {
-    title: 'Vendredi 27 mars',
-    data: [
-      {
-        color: colors.yellow,
-        icon: '🛍',
-        title: 'Faire les courses',
-        author: 'Mathieu',
-        points: 2,
-      },
-      {
-        color: colors.blueLight,
-        icon: '🐶',
-        title: 'Sortir le chien',
-        author: 'Mathieu',
-        points: 3,
-      },
-    ],
-  },
-  {
-    title: 'Jeudi 27 mars',
-    data: [
-      {
-        color: colors.purple,
-        icon: '💞',
-        title: 'Créer la relation Both',
-        author: 'Mathieu',
-        points: 2,
-      },
-    ],
-  },
-]
+const DATA = []
 
 export const DashboardScreen = () => {
   const navigation = useNavigation()
@@ -127,11 +69,11 @@ export const DashboardScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.blueDark,
+    backgroundColor: colors.dark100,
   },
   listContainer: {
     flex: 1,
-    backgroundColor: colors.beigeLight,
+    backgroundColor: colors.skin100,
     borderTopRightRadius: 10,
     borderTopLeftRadius: 10,
     paddingTop: 24,

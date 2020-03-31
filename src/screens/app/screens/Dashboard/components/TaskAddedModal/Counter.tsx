@@ -1,8 +1,10 @@
 import React, { FC } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
-import Confetti from '../../../../../../../assets/confetti.svg'
 import { fonts } from 'res/fonts'
+import { colors } from 'res/colors'
+
+import Confetti from '../../../../../../../assets/confetti.svg'
 
 interface CounterProps {
   points: number
@@ -30,7 +32,7 @@ const styles = StyleSheet.create({
     width: 120,
     height: 120,
     borderRadius: 120 / 2,
-    backgroundColor: '#0A1D2B',
+    backgroundColor: colors.dark200,
     position: 'relative',
     alignItems: 'center',
     justifyContent: 'center',

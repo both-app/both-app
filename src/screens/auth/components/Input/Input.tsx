@@ -21,6 +21,6 @@ export const Input: FC<InputProps> = ({ placeholder, onChangeText }) => (
 const styles = StyleSheet.create({
   input: {
     fontSize: 28,
-    color: colors.blueDark,
+    color: colors.dark100,
   },
 })

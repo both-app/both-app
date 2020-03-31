@@ -31,7 +31,7 @@ export const TabBarItem: FC<TabBarItemProps> = ({
 
 const styles = StyleSheet.create({
   shadowButton: {
-    shadowColor: colors.blueDark,
+    shadowColor: colors.dark100,
     shadowOffset: {
       width: 0,
       height: 6,
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     height: 40,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.blueDark,
+    backgroundColor: colors.dark100,
     paddingTop: 11,
     paddingRight: 10,
     paddingBottom: 10,

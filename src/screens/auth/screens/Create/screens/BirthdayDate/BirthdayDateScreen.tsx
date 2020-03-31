@@ -41,7 +41,7 @@ export const BirthdayDateScreen = () => {
       bottomInfo={
         <Info
           hide={!hasError}
-          color="pink"
+          color="danger"
           primary="🙄 Es-tu certain de ta date d’anniversaire ?"
           secondary="Aide : Fais un effort ou bien demande à ta maman…"
         />

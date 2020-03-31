@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.60)',
   },
   modal: {
-    backgroundColor: colors.blueDark,
+    backgroundColor: colors.dark100,
     borderRadius: 19.2,
     paddingLeft: 50,
     paddingRight: 50,
@@ -96,6 +96,6 @@ const styles = StyleSheet.create({
   },
   primaryButton: {
     marginTop: 24,
-    backgroundColor: lightenDarkenColor(colors.blueDark, 20),
+    backgroundColor: lightenDarkenColor(colors.dark100, 20),
   },
 })

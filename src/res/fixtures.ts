@@ -1,38 +1,40 @@
+import { colors } from './colors'
+
 export const CATEGORIES: Category[] = [
   {
     id: '1',
     icon: '🧺',
-    color: '#E87180',
+    color: colors.categories.daily,
     name: 'Quotidien',
   },
   {
     id: '2',
     icon: '🍕',
-    color: '#E1B674',
+    color: colors.categories.food,
     name: 'Alimentation',
   },
   {
     id: '3',
     icon: '🐶',
-    color: '#71C2EB',
+    color: colors.categories.animals,
     name: 'Animaux',
   },
   {
     id: '4',
     icon: '🧽',
-    color: '#69CE7F',
+    color: colors.categories.housework,
     name: 'Ménage',
   },
   {
     id: '5',
     icon: '🧸',
-    color: '#FFA171',
+    color: colors.categories.children,
     name: 'Enfants',
   },
   {
     id: '6',
     icon: '💙',
-    color: '#7489E1',
+    color: colors.categories.specialCouple,
     name: 'Spécial couple',
   },
 ]

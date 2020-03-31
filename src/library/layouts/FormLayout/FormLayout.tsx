@@ -9,7 +9,6 @@ import {
 
 import { colors } from 'res/colors'
 import { MinimalButton } from 'library/components/MinimalButton'
-import { Button } from 'library/components/Button'
 import { IconButton } from 'library/components/IconButton'
 
 interface FormLayoutProps {
@@ -42,7 +41,7 @@ export const FormLayout: FC<FormLayoutProps> = ({
           <MinimalButton
             iconName="chevron_left"
             onAction={onBackAction}
-            iconColor="blueDark"
+            iconColor="dark100"
           />
         )}
 
@@ -50,7 +49,7 @@ export const FormLayout: FC<FormLayoutProps> = ({
           <MinimalButton
             iconName="close"
             onAction={onCloseAction}
-            iconColor="blueDark"
+            iconColor="dark100"
           />
         )}
 
@@ -67,7 +66,7 @@ export const FormLayout: FC<FormLayoutProps> = ({
                     iconName="arrow_right"
                     onAction={onNextAction}
                     size={64}
-                    buttonColor="blueDark"
+                    buttonColor="dark100"
                     iconColor="white"
                   />
                 )}
@@ -77,7 +76,7 @@ export const FormLayout: FC<FormLayoutProps> = ({
                     iconName="check"
                     onAction={onFinishAction}
                     size={64}
-                    buttonColor="blueDark"
+                    buttonColor="dark100"
                     iconColor="white"
                   />
                 )}
@@ -96,7 +95,7 @@ const styles = StyleSheet.create({
     paddingTop: 80,
     paddingLeft: 24,
     paddingRight: 24,
-    backgroundColor: colors.beigeLight,
+    backgroundColor: colors.skin100,
   },
   buttonContainer: {
     alignItems: 'center',

@@ -39,7 +39,7 @@ export const GenderScreen = () => {
       bottomInfo={
         <Info
           hide={!hasError}
-          color="pink"
+          color="danger"
           primary="😘 Qui que tu sois, reste tel que tu es !"
           secondary="Aide : Choisi un genre pour continuer..."
         />

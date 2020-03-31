@@ -26,7 +26,7 @@ export const ShareCodeModal: FC<ShareCodeModalProps> = ({
     onAction={onAction}
     primaryActionIconName="share"
   >
-    <Badge color="purple">Invite Charlotte 💬</Badge>
+    <Badge color="highlight100">Invite Charlotte 💬</Badge>
 
     <Code code={code} />
 

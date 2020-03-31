@@ -40,7 +40,7 @@ export const NameScreen = () => {
       bottomInfo={
         <Info
           hide={!hasError}
-          color="pink"
+          color="danger"
           primary="🤔 Flemme de taper ton prénom ?"
           secondary="Aide : Mets au moins tes initiales pour continuer…"
         />

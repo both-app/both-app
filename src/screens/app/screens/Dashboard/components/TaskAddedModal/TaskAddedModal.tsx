@@ -27,7 +27,7 @@ export const TaskAddedModal: FC<TaskAddedModalProps> = ({
     onAction={onAction}
     primaryActionIconName="check"
   >
-    <Badge color="green">Bravo Mathieu 🎉</Badge>
+    <Badge color="success">Bravo Mathieu 🎉</Badge>
 
     <Counter points={task?.points} />
 
