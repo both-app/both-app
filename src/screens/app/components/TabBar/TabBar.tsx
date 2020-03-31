@@ -5,6 +5,8 @@ import { LinearGradient } from 'expo-linear-gradient'
 
 import { TabBarItem } from './TabBarItem'
 
+import { colors } from 'res/colors'
+
 export const TabBar: FC<BottomTabBarProps> = ({
   state,
   descriptors,
@@ -49,7 +51,7 @@ export const TabBar: FC<BottomTabBarProps> = ({
               options.tabBarIcon({
                 focused: isFocused,
                 size: isFocused ? 32 : 20,
-                color: 'white',
+                color: colors.white,
               })}
           </TabBarItem>
         )

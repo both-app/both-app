@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   counter: {
     fontFamily: fonts['DMSerifDisplay-Regular'],
     fontSize: 40,
-    color: 'white',
+    color: colors.white,
   },
   avatar: {
     width: 48,

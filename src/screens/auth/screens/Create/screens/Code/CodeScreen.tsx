@@ -32,24 +32,33 @@ export const CodeScreen = () => {
     setValue('code', value)
   }
 
+  const handleOnBack = () => {
+    setValue('code', '')
+
+    navigation.navigate('DoYouHaveCode')
+  }
+
   return (
     <FormLayout
-      onBackAction={() => navigation.navigate('DoYouHaveCode')}
+      onBackAction={handleOnBack}
       onNextAction={handleOnNext}
       containerStyle={styles.formContainer}
-      label={<Label primary="Bonjour ☀️" secondary="Saisis ton code..." />}
+      label={
+        <Label primary="Ton acolyte t’attend 🥰" secondary="Tape ta clé…" />
+      }
       bottomInfo={
         <Info
           hide={!hasError}
+          withVibration
           color="danger"
           primary="😥 Code invalide !"
-          secondary="Aide : Vérifie bien le code que ton acolyte t'as donné..."
+          secondary="Aide : Vérifie bien le code que ton acolyte t'a donné..."
         />
       }
     >
       <InputCode
         value={values.code}
-        placeholder="537207"
+        placeholder="------"
         length={CODE_LENGTH}
         onChange={handleOnChangeText}
       />

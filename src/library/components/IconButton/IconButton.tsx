@@ -32,7 +32,11 @@ export const IconButton: FC<IconButtonProps> = ({ onAction, ...props }) => {
   }
 
   return (
-    <TouchableOpacity style={buttonStyle} onPress={handleOnPress}>
+    <TouchableOpacity
+      style={buttonStyle}
+      onPress={handleOnPress}
+      activeOpacity={0.9}
+    >
       <Icon style={iconStyle} width={30} height={30} {...props} />
     </TouchableOpacity>
   )

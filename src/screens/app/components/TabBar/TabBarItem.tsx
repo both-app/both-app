@@ -60,7 +60,4 @@ const styles = StyleSheet.create({
     height: 64,
     borderRadius: 19.2,
   },
-  iconStyle: {
-    color: 'white',
-  },
 })

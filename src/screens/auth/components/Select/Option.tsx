@@ -14,24 +14,20 @@ interface OptionProps {
 
 export const Option: FC<OptionProps> = memo(
   ({ emoji, label, onAction, value, selected, extraInfo }) => {
-    const [isActive, setIsActive] = useState(false)
-
     const containerStyle = {
       ...styles.container,
-      ...(selected || isActive ? styles.blueContainer : {}),
+      ...(selected ? styles.blueContainer : {}),
     }
 
     const labelStyle = {
       ...styles.label,
-      ...(selected || isActive ? styles.whiteText : {}),
+      ...(selected ? styles.whiteText : {}),
     }
 
     const extraInfoStyle = {
       ...styles.extraInfo,
-      ...(selected || isActive ? styles.extraInfoActive : {}),
+      ...(selected ? styles.extraInfoActive : {}),
     }
-
-    const handleOnPressInOrOut = () => setIsActive(!isActive)
 
     const handleOnPress = () => onAction(value)
 
@@ -39,9 +35,7 @@ export const Option: FC<OptionProps> = memo(
       <TouchableOpacity
         style={containerStyle}
         onPress={handleOnPress}
-        activeOpacity={1}
-        onPressIn={handleOnPressInOrOut}
-        onPressOut={handleOnPressInOrOut}
+        activeOpacity={0.8}
       >
         <Text style={styles.emoji}>{emoji}</Text>
         <View style={styles.texts}>
@@ -76,13 +70,14 @@ const styles = StyleSheet.create({
     marginLeft: 24,
   },
   extraInfo: {
-    color: 'rgba(12,35,51,0.75)',
+    color: colors.dark100,
+    opacity: 0.75,
   },
   extraInfoActive: {
-    color: 'rgba(255,255,255,0.75)',
+    color: colors.white,
   },
   whiteText: {
-    color: 'white',
+    color: colors.white,
   },
   blueContainer: {
     backgroundColor: colors.dark100,

@@ -143,10 +143,10 @@ const styles = StyleSheet.create({
   pointsNumber: {
     fontFamily: fonts['DMSerifDisplay-Regular'],
     fontSize: 26,
-    color: 'white',
+    color: colors.white,
   },
   pointsText: {
-    color: 'white',
+    color: colors.white,
     fontSize: 8,
     position: 'relative',
     top: -6,

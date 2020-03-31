@@ -4,8 +4,9 @@ import { useNavigation } from '@react-navigation/native'
 
 import { colors } from 'res/colors'
 
-import { Logo } from 'library/components/Logo'
 import { Label } from 'library/components/Label'
+
+import { Logo } from '../../components/Logo'
 
 export const SelectScreen = () => {
   const navigation = useNavigation()
@@ -22,7 +23,7 @@ export const SelectScreen = () => {
         <TouchableOpacity
           style={styles.textContainer}
           onPress={() => navigation.navigate('Create')}
-          activeOpacity={1}
+          activeOpacity={0.5}
         >
           <Text style={styles.putYourName}>Tape ton prénom</Text>
         </TouchableOpacity>
@@ -55,6 +56,6 @@ const styles = StyleSheet.create({
   },
   putYourName: {
     fontSize: 28,
-    color: 'rgba(12,35,51,0.25)',
+    color: colors.grey,
   },
 })

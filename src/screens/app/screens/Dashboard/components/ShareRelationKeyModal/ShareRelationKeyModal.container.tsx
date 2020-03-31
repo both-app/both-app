@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { Share } from 'react-native'
 
-import { ShareCodeModal } from './ShareCodeModal'
+import { ShareRelationKeyModal } from './ShareRelationKeyModal'
 
 const CODE = '000000'
 
-export const ShareCodeModalContainer = () => {
+export const ShareRelationKeyModalContainer = () => {
   const [modalIsOpen, setModalIsOpen] = useState(true)
 
   const handleOnClose = () => {
@@ -16,7 +16,7 @@ export const ShareCodeModalContainer = () => {
     try {
       await Share.share({
         title: 'Join Both relation',
-        message: `Code: ${CODE}`,
+        message: `Coucou, retrouve moi sur both pour partager de l’amour et un peu de notre quotidien ! Télécharge l’app. en cliquant sur le lien ci-dessous et utilise la clé ${CODE} pour me rejoindre ❤️`,
       })
     } finally {
       handleOnClose()
@@ -24,7 +24,7 @@ export const ShareCodeModalContainer = () => {
   }
 
   return (
-    <ShareCodeModal
+    <ShareRelationKeyModal
       code={CODE}
       visible={modalIsOpen}
       onAction={handleOnAction}

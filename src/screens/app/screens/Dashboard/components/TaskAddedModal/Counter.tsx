@@ -51,13 +51,13 @@ const styles = StyleSheet.create({
   pointNumber: {
     fontFamily: fonts['DMSerifDisplay-Regular'],
     fontSize: 78,
-    color: 'white',
+    color: colors.white,
     position: 'relative',
     top: -5,
   },
   pointText: {
     fontSize: 24,
-    color: 'white',
+    color: colors.white,
     fontWeight: '500',
     position: 'relative',
     top: -25,

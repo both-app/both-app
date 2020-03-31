@@ -37,6 +37,8 @@ export const ChooseTaskScreen = () => {
     }, 200)
   }
 
+  const tasks = getTasksByCategoryId(categoryId)
+
   return (
     <FormLayout
       containerStyle={styles.formContainer}
@@ -48,8 +50,11 @@ export const ChooseTaskScreen = () => {
         />
       }
     >
-      <ScrollView style={styles.tasksContainer}>
-        {getTasksByCategoryId(categoryId).map((task) => (
+      <ScrollView
+        style={styles.tasksContainer}
+        showsVerticalScrollIndicator={false}
+      >
+        {tasks.map((task, index) => (
           <CardButton
             key={task.id}
             emoji={task.icon}
@@ -59,6 +64,10 @@ export const ChooseTaskScreen = () => {
             activeTextColor="white"
             points={task.points}
             active={selectedTaskId === task.id}
+            containerStyle={{
+              marginTop: index === 0 ? 72 : 10,
+              marginBottom: index === tasks.length - 1 ? 56 : 0,
+            }}
           />
         ))}
       </ScrollView>
@@ -71,6 +80,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   tasksContainer: {
-    marginTop: 72,
+    marginTop: 8,
   },
 })

@@ -16,7 +16,7 @@ export const TaskAddedModalContainer = () => {
 
       setTimeout(() => {
         setModalIsOpen(true)
-      }, 500)
+      }, 100)
     }
   }, [taskIdCompleted])
 

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, ScrollView } from 'react-native'
 import { useNavigation } from '@react-navigation/core'
 
 import { CategoryContext } from 'screens/app/contexts/Category.context'
@@ -36,8 +36,11 @@ export const ChooseCategoryScreen = () => {
       onCloseAction={handleOnClose}
       label={<Label primary="Sélectionne..." secondary="Une catégorie 📦" />}
     >
-      <View style={styles.categoriesContainer}>
-        {categories.map((category) => (
+      <ScrollView
+        style={styles.categoriesContainer}
+        showsVerticalScrollIndicator={false}
+      >
+        {categories.map((category, index) => (
           <CardButton
             key={category.id}
             emoji={category.icon}
@@ -47,9 +50,13 @@ export const ChooseCategoryScreen = () => {
             active={selectedCategoryId === category.id}
             activeBackgroundColor={category.color}
             activeTextColor="white"
+            containerStyle={{
+              marginTop: index === 0 ? 72 : 10,
+              marginBottom: index === categories.length - 1 ? 56 : 0,
+            }}
           />
         ))}
-      </View>
+      </ScrollView>
     </FormLayout>
   )
 }
@@ -59,6 +66,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   categoriesContainer: {
-    marginTop: 72,
+    marginTop: 8,
   },
 })

@@ -6,10 +6,17 @@ interface InfoProps {
   primary: string
   secondary: string
   hide?: boolean
+  withVibration?: boolean
   color: Color
 }
 
-export const Info: FC<InfoProps> = ({ primary, secondary, hide, color }) => {
+export const Info: FC<InfoProps> = ({
+  primary,
+  secondary,
+  hide,
+  color,
+  withVibration,
+}) => {
   const containerStyle = {
     ...styles.container,
     ...(hide ? { opacity: 0 } : { opacity: 1 }),
@@ -27,7 +34,7 @@ export const Info: FC<InfoProps> = ({ primary, secondary, hide, color }) => {
   }
 
   useEffect(() => {
-    if (!hide) {
+    if (!hide && withVibration) {
       // TODO Improve the vibration
       Vibration.vibrate(1)
     }

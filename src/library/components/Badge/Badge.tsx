@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+
 import { Color, colors } from 'res/colors'
 
 interface BadgeProps {
@@ -30,6 +31,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: 'white',
+    color: colors.white,
   },
 })

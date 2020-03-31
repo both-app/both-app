@@ -39,6 +39,7 @@ export const GenderScreen = () => {
       bottomInfo={
         <Info
           hide={!hasError}
+          withVibration
           color="danger"
           primary="😘 Qui que tu sois, reste tel que tu es !"
           secondary="Aide : Choisi un genre pour continuer..."
@@ -50,7 +51,7 @@ export const GenderScreen = () => {
         onChange={handleOnChange}
         options={[
           { emoji: '👩', label: 'Je suis une femme', value: 'woman' },
-          { emoji: '👱‍♂️', label: 'Je suis un homme', value: 'man' },
+          { emoji: '🧔', label: 'Je suis un homme', value: 'man' },
           { emoji: '💖', label: 'Je me définis autrement', value: 'other' },
         ]}
       />

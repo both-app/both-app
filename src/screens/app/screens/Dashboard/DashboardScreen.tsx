@@ -14,7 +14,7 @@ import { Header, Week, Counter } from './components/Header'
 import { Task } from './components/Task'
 import { Section } from './components/Section'
 import { TaskAddedModalContainer } from './components/TaskAddedModal'
-import { ShareCodeModalContainer } from './components/ShareCodeModal'
+import { ShareRelationKeyModalContainer } from './components/ShareRelationKeyModal'
 import { CardButton } from 'library/components/CardButton'
 
 const DATA = []
@@ -41,7 +41,10 @@ export const DashboardScreen = () => {
         />
       </Header>
 
-      <ScrollView style={styles.listContainer}>
+      <ScrollView
+        style={styles.listContainer}
+        showsVerticalScrollIndicator={false}
+      >
         <CardButton
           emoji="➕"
           title="Ajouter une tâche"
@@ -60,7 +63,7 @@ export const DashboardScreen = () => {
         </SafeAreaView>
       </ScrollView>
 
-      <ShareCodeModalContainer />
+      <ShareRelationKeyModalContainer />
       <TaskAddedModalContainer />
     </View>
   )

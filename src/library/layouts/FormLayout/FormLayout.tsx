@@ -7,9 +7,10 @@ import {
   Platform,
 } from 'react-native'
 
-import { colors } from 'res/colors'
 import { MinimalButton } from 'library/components/MinimalButton'
 import { IconButton } from 'library/components/IconButton'
+
+import { colors } from 'res/colors'
 
 interface FormLayoutProps {
   containerStyle: any
@@ -53,7 +54,7 @@ export const FormLayout: FC<FormLayoutProps> = ({
           />
         )}
 
-        <View style={containerStyle}>
+        <View style={{ marginTop: 24, ...containerStyle }}>
           {label}
           {children}
 
@@ -92,7 +93,7 @@ export const FormLayout: FC<FormLayoutProps> = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 80,
+    paddingTop: 55,
     paddingLeft: 24,
     paddingRight: 24,
     backgroundColor: colors.skin100,

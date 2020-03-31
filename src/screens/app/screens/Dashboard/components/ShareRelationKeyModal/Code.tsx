@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { Text, StyleSheet, View } from 'react-native'
 
 import { fonts } from 'res/fonts'
 import { colors } from 'res/colors'
@@ -11,9 +11,9 @@ interface CodeProps {
 }
 
 export const Code: FC<CodeProps> = ({ code }) => (
-  <View style={styles.codeContainer}>
+  <View style={styles.container}>
     <View style={{ ...styles.shape, ...styles.shapeShadow }}>
-      <Text style={styles.code}>{code.split('').join(' ')}</Text>
+      <Text style={styles.key}>{code.split('').join(' ')}</Text>
     </View>
 
     <Enveloppes fill="white" style={{ position: 'absolute' }} />
@@ -21,7 +21,7 @@ export const Code: FC<CodeProps> = ({ code }) => (
 )
 
 const styles = StyleSheet.create({
-  codeContainer: {
+  container: {
     height: 217,
     marginTop: 32,
     alignItems: 'center',
@@ -46,9 +46,9 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     elevation: 10,
   },
-  code: {
+  key: {
     fontFamily: fonts['DMSerifDisplay-Regular'],
     fontSize: 48,
-    color: 'white',
+    color: colors.white,
   },
 })

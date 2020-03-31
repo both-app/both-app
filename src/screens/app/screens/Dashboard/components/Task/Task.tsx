@@ -1,14 +1,13 @@
 import React from 'react'
+import { StyleSheet } from 'react-native'
 
 import { CardButton } from 'library/components/CardButton'
+
+import { colors } from 'res/colors'
 
 export const Task = ({ color, icon, title, author, points }) => {
   const containerStyle = {
     backgroundColor: color,
-  }
-
-  const textStyle = {
-    color: 'white',
   }
 
   return (
@@ -18,8 +17,14 @@ export const Task = ({ color, icon, title, author, points }) => {
       subtitle={`Par ${author}`}
       points={points}
       containerStyle={containerStyle}
-      textStyle={textStyle}
+      textStyle={styles.cardText}
       disabled
     />
   )
 }
+
+const styles = StyleSheet.create({
+  cardText: {
+    color: colors.white,
+  },
+})
