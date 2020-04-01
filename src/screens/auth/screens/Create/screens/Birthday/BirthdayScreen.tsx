@@ -10,17 +10,17 @@ import { AuthContext } from 'screens/auth/Auth.context'
 import { CreateContext } from '../../Create.context'
 import { isValidDate } from 'res/date'
 
-export const BirthdayDateScreen = () => {
+export const BirthdayScreen = () => {
   const navigation = useNavigation()
   const [hasError, setHasError] = useState(false)
   const { values, setValue } = useContext(CreateContext)
   const { setIsConnected } = useContext(AuthContext)
 
   const handleOnFinish = () => {
-    const dateParsed = values.birthdayDate.split('/').map(Number)
+    const dateParsed = values.birthday.split('/').map(Number)
 
     if (
-      !values.birthdayDate ||
+      !values.birthday ||
       !isValidDate(dateParsed[0], dateParsed[1], dateParsed[2])
     ) {
       return setHasError(true)
@@ -35,7 +35,7 @@ export const BirthdayDateScreen = () => {
       setHasError(false)
     }
 
-    setValue('birthdayDate', date)
+    setValue('birthday', date)
   }
 
   return (

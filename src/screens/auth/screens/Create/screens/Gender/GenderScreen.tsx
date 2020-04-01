@@ -18,7 +18,7 @@ export const GenderScreen = () => {
       return setHasError(true)
     }
 
-    navigation.navigate('BirthdayDate')
+    navigation.navigate('Birthday')
     return setHasError(false)
   }
 
