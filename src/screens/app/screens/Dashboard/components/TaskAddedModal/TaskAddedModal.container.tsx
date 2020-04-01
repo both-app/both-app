@@ -1,4 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
+import * as Haptics from 'expo-haptics'
+
 import { TaskAddedModal } from './TaskAddedModal'
 import { TaskContext } from 'screens/app/contexts/Task.context'
 
@@ -14,7 +16,11 @@ export const TaskAddedModalContainer = () => {
       const taskAdded = getTaskById(taskIdCompleted)
       setTaskAdded(taskAdded)
 
-      setTimeout(() => {
+      setTimeout(async () => {
+        await Haptics.notificationAsync(
+          Haptics.NotificationFeedbackType.Success
+        )
+
         setModalIsOpen(true)
       }, 100)
     }

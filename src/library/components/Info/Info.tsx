@@ -1,5 +1,7 @@
 import React, { FC, useEffect } from 'react'
-import { Text, StyleSheet, View, Vibration } from 'react-native'
+import { Text, StyleSheet, View } from 'react-native'
+import * as Haptics from 'expo-haptics'
+
 import { Color, colors } from 'res/colors'
 
 interface InfoProps {
@@ -34,9 +36,12 @@ export const Info: FC<InfoProps> = ({
   }
 
   useEffect(() => {
+    const hapticsFeedback = async () => {
+      await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error)
+    }
+
     if (!hide && withVibration) {
-      // TODO Improve the vibration
-      Vibration.vibrate(1)
+      hapticsFeedback()
     }
   }, [hide])
 

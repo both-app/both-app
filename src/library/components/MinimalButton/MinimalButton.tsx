@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import { TouchableOpacity } from 'react-native'
+import * as Haptics from 'expo-haptics'
 
 import { Icon, IconProps } from '../Icon'
 import { Color, colors } from 'res/colors'
@@ -15,7 +16,9 @@ export const MinimalButton: FC<MinimalButtonProps> = ({
   buttonStyle,
   ...props
 }) => {
-  const handleOnPress = () => {
+  const handleOnPress = async () => {
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+
     onAction && onAction()
   }
 

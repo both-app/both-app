@@ -66,17 +66,17 @@ export const CardButton: FC<CardButtonProps> = ({
     backgroundColor: lightenDarkenColor(containerStyle.backgroundColor, -15),
   }
 
-  const onPressOut = () => setIsActive(false)
+  const handleOnPressInOrOut = () => setIsActive(!isActive)
 
-  const onPressIn = () => setIsActive(true)
+  const handleOnPress = () => onAction && onAction()
 
   return (
     <TouchableOpacity
       style={containerStyle}
       activeOpacity={1}
-      onPressOut={onPressOut}
-      onPressIn={onPressIn}
-      onPress={onAction}
+      onPressOut={handleOnPressInOrOut}
+      onPressIn={handleOnPressInOrOut}
+      onPress={handleOnPress}
       disabled={disabled}
     >
       <View style={styles.leftInner}>

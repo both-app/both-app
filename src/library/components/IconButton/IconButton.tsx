@@ -1,5 +1,6 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 import { TouchableOpacity, StyleSheet } from 'react-native'
+import * as Haptics from 'expo-haptics'
 
 import { Icon, IconProps } from '../Icon'
 import { Color, colors } from 'res/colors'
@@ -14,7 +15,11 @@ interface IconButtonProps extends IconProps {
 }
 
 export const IconButton: FC<IconButtonProps> = ({ onAction, ...props }) => {
-  const handleOnPress = () => onAction()
+  const handleOnPress = async () => {
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+
+    return onAction()
+  }
 
   const buttonStyle = {
     width: props.size,
