@@ -3,6 +3,7 @@ import { Text, StyleSheet, View } from 'react-native'
 
 import { fonts } from 'res/fonts'
 import { colors } from 'res/colors'
+import { Avatar } from './Avatar'
 
 interface CounterProps {
   leftUserName: string
@@ -18,15 +19,12 @@ export const Counter: FC<CounterProps> = ({
   rightPoints,
 }) => (
   <View style={styles.countainer}>
-    <View style={styles.avatar}>
-      <Text style={styles.avatarText}>{leftUserName[0] || ''}</Text>
-    </View>
+    <Avatar firstname={leftUserName[0]} />
+
     <Text style={styles.counter}>
       {leftPoints} : {rightPoints}
     </Text>
-    <View style={styles.avatar}>
-      <Text style={styles.avatarText}>{rightUserName[0] || ''}</Text>
-    </View>
+    <Avatar isLoading firstname={rightUserName[1]} />
   </View>
 )
 
@@ -43,18 +41,5 @@ const styles = StyleSheet.create({
     fontFamily: fonts['DMSerifDisplay-Regular'],
     fontSize: 40,
     color: colors.white,
-  },
-  avatar: {
-    width: 48,
-    height: 48,
-    backgroundColor: colors.skin100,
-    borderWidth: 1,
-    borderRadius: 48,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  avatarText: {
-    fontFamily: fonts['DMSerifDisplay-Regular'],
-    fontSize: 26,
   },
 })
