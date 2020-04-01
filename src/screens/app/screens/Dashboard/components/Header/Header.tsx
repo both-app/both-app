@@ -9,7 +9,6 @@ export const Header: FC = ({ children }) => (
 
 const styles = StyleSheet.create({
   headerContainer: {
-    paddingTop: 80,
     paddingLeft: 24,
     paddingRight: 24,
     paddingBottom: 24,

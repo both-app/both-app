@@ -1,9 +1,11 @@
 import React, { FC } from 'react'
 import { Text, StyleSheet, View } from 'react-native'
 
+import { Avatar } from 'library/components/Avatar'
+
 import { fonts } from 'res/fonts'
 import { colors } from 'res/colors'
-import { Avatar } from './Avatar'
+import { useCounter } from './useCounter'
 
 interface CounterProps {
   leftUserName: string
@@ -15,18 +17,27 @@ interface CounterProps {
 export const Counter: FC<CounterProps> = ({
   leftUserName,
   rightUserName,
-  leftPoints,
-  rightPoints,
-}) => (
-  <View style={styles.countainer}>
-    <Avatar firstname={leftUserName[0]} />
+  ...props
+}) => {
+  const leftPoints = useCounter({ value: props.leftPoints, timeout: 150 })
+  const rightPoints = useCounter({ value: props.rightPoints, timeout: 150 })
 
-    <Text style={styles.counter}>
-      {leftPoints} : {rightPoints}
-    </Text>
-    <Avatar isLoading firstname={rightUserName[1]} />
-  </View>
-)
+  return (
+    <View style={styles.countainer}>
+      <Avatar firstname={leftUserName[0]} size="small" />
+
+      <Text>
+        <Text style={{ ...styles.counter, ...styles.left }}>{leftPoints}</Text>
+        <Text style={styles.counter}> : </Text>
+        <Text style={{ ...styles.counter, ...styles.right }}>
+          {rightPoints}
+        </Text>
+      </Text>
+
+      <Avatar isLoading firstname="⏳" size="small" />
+    </View>
+  )
+}
 
 const styles = StyleSheet.create({
   countainer: {
@@ -39,7 +50,13 @@ const styles = StyleSheet.create({
   },
   counter: {
     fontFamily: fonts['DMSerifDisplay-Regular'],
-    fontSize: 40,
+    fontSize: 48,
     color: colors.white,
+  },
+  left: {
+    alignItems: 'flex-end',
+  },
+  right: {
+    alignItems: 'flex-start',
   },
 })

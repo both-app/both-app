@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useLayoutEffect } from 'react'
 import {
   View,
   StyleSheet,
@@ -14,6 +14,7 @@ import { Header, Week, Counter } from './components/Header'
 import { Task } from './components/Task'
 import { Section } from './components/Section'
 import { TaskAddedModalContainer } from './components/TaskAddedModal'
+import { WeekModal } from './components/WeekModal'
 import { ShareRelationKeyModalContainer } from './components/ShareRelationKeyModal'
 import { CardButton } from 'library/components/CardButton'
 
@@ -21,6 +22,8 @@ const DATA = []
 
 export const DashboardScreen = () => {
   const navigation = useNavigation()
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+  const [modal2IsOpen, setModal2IsOpen] = useState(false)
 
   return (
     <View style={styles.container}>
@@ -30,7 +33,7 @@ export const DashboardScreen = () => {
         <Counter
           leftUserName="Mathieu"
           rightUserName="Charlotte"
-          leftPoints={7}
+          leftPoints={25}
           rightPoints={0}
         />
 
@@ -51,6 +54,18 @@ export const DashboardScreen = () => {
           onAction={() => navigation.navigate('AddTask')}
         />
 
+        <CardButton
+          emoji="🥶"
+          title="Je suis le meilleur"
+          onAction={() => setModalIsOpen(true)}
+        />
+
+        <CardButton
+          emoji="🥵"
+          title="Je suis le plus nul"
+          onAction={() => setModal2IsOpen(true)}
+        />
+
         <SafeAreaView style={styles.list}>
           <SectionList
             sections={DATA}
@@ -63,6 +78,18 @@ export const DashboardScreen = () => {
         </SafeAreaView>
       </ScrollView>
 
+      <WeekModal
+        type="winner"
+        visible={modalIsOpen}
+        onClose={() => setModalIsOpen(false)}
+        onAction={() => setModalIsOpen(false)}
+      />
+      <WeekModal
+        type="loser"
+        visible={modal2IsOpen}
+        onClose={() => setModal2IsOpen(false)}
+        onAction={() => setModal2IsOpen(false)}
+      />
       <ShareRelationKeyModalContainer />
       <TaskAddedModalContainer />
     </View>
@@ -73,6 +100,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.dark100,
+    paddingTop: 65,
   },
   listContainer: {
     flex: 1,

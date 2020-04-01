@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     color: colors.dark100,
   },
   codeTextPlaceholder: {
-    color: colors.grey,
+    color: colors.grey100,
   },
   input: {
     fontSize: 0,

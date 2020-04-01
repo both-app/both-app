@@ -21,9 +21,7 @@ export const InputDate: FC<InputDateProps> = ({ onChange }) => {
   const [day, setDay] = useState('')
 
   useEffect(() => {
-    if (year.length === 4 && month.length === 2 && day.length === 2) {
-      onChange(`${year}/${month}/${day}`)
-    }
+    onChange(`${year}/${month}/${day}`)
   }, [day, month, year])
 
   const onPressCode = () => {
@@ -124,7 +122,7 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   placeholder: {
-    color: colors.grey,
+    color: colors.grey100,
     fontSize: 28,
   },
   value: {

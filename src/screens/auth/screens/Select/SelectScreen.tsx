@@ -56,6 +56,6 @@ const styles = StyleSheet.create({
   },
   putYourName: {
     fontSize: 28,
-    color: colors.grey,
+    color: colors.grey100,
   },
 })

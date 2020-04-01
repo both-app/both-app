@@ -1,7 +1,8 @@
 export type AppColor =
   | 'dark100'
   | 'dark200'
-  | 'grey'
+  | 'grey100'
+  | 'grey200'
   | 'white'
   | 'skin100'
   | 'skin200'
@@ -25,7 +26,8 @@ export const colors = {
   // APP
   dark100: '#0C2333',
   dark200: '#0A1D2B',
-  grey: '#BDBCBD',
+  grey100: '#BDBCBD',
+  grey200: '#607788',
   white: '#FFFFFF',
   skin100: '#F9F0EB',
   skin200: '#EEE2DC',

@@ -22,6 +22,7 @@ export const ChooseCategoryScreen = () => {
 
     setTimeout(() => {
       navigation.navigate('ChooseTask', { categoryId })
+      setSelectedCategoryId('')
     }, 50)
   }
 
