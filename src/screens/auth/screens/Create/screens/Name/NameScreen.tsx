@@ -19,7 +19,7 @@ export const NameScreen = () => {
       return setHasError(true)
     }
 
-    navigation.navigate('DoYouHaveCode')
+    navigation.navigate('JoinOrCreateScreen')
     return setHasError(false)
   }
 

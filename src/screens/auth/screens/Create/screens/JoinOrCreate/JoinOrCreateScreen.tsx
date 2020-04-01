@@ -9,7 +9,7 @@ import { FormLayout } from 'library/layouts/FormLayout'
 import { Select } from 'screens/auth/components/Select'
 import { CreateContext } from '../../Create.context'
 
-export const DoYouHaveCodeScreen = () => {
+export const JoinOrCreateScreen = () => {
   const navigation = useNavigation()
   const { values, setValue } = useContext(CreateContext)
 
@@ -36,7 +36,7 @@ export const DoYouHaveCodeScreen = () => {
           hide={false}
           color="dark100"
           primary="💡Une clé te permet de rejoindre une relation !"
-          secondary="Aide : Ton acolyte doit t’inviter en t’envoyer un code."
+          secondary="Aide : Ton acolyte doit t’inviter en t’envoyer la clé de votre relation, un code unique comportant 6 caractères."
         />
       }
     >

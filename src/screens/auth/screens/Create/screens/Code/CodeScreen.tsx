@@ -35,7 +35,7 @@ export const CodeScreen = () => {
   const handleOnBack = () => {
     setValue('code', '')
 
-    navigation.navigate('DoYouHaveCode')
+    navigation.goBack()
   }
 
   return (

@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 import { NameScreen } from './screens/Name'
 import { GenderScreen } from './screens/Gender'
-import { DoYouHaveCodeScreen } from './screens/DoYouHaveCode'
+import { JoinOrCreateScreen } from './screens/JoinOrCreate'
 import { CodeScreen } from './screens/Code'
 import { BirthdayDateScreen } from './screens/BirthdayDate'
 
@@ -19,7 +19,7 @@ export const CreateNavigator = () => (
     >
       <Stack.Screen component={NameScreen} name="Name" />
       <Stack.Screen component={GenderScreen} name="Gender" />
-      <Stack.Screen component={DoYouHaveCodeScreen} name="DoYouHaveCode" />
+      <Stack.Screen component={JoinOrCreateScreen} name="JoinOrCreateScreen" />
       <Stack.Screen component={CodeScreen} name="Code" />
       <Stack.Screen component={BirthdayDateScreen} name="BirthdayDate" />
     </Stack.Navigator>

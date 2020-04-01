@@ -4,10 +4,11 @@ import { useNavigation } from '@react-navigation/native'
 
 import { Label } from 'library/components/Label'
 import { Info } from 'library/components/Info'
-import { Input } from 'screens/auth/components/Input'
 import { FormLayout } from 'library/layouts/FormLayout'
-import { CreateContext } from '../../Create.context'
+import { InputDate } from 'screens/auth/components/InputDate'
 import { AuthContext } from 'screens/auth/Auth.context'
+import { CreateContext } from '../../Create.context'
+import { isValidDate } from 'res/date'
 
 export const BirthdayDateScreen = () => {
   const navigation = useNavigation()
@@ -16,7 +17,12 @@ export const BirthdayDateScreen = () => {
   const { setIsConnected } = useContext(AuthContext)
 
   const handleOnFinish = () => {
-    if (!values.birthdayDate) {
+    const dateParsed = values.birthdayDate.split('/').map(Number)
+
+    if (
+      !values.birthdayDate ||
+      !isValidDate(dateParsed[0], dateParsed[1], dateParsed[2])
+    ) {
       return setHasError(true)
     }
 
@@ -24,12 +30,12 @@ export const BirthdayDateScreen = () => {
     return setHasError(false)
   }
 
-  const handleOnChangeText = (value) => {
-    if (value) {
+  const handleOnChangeText = (date: string) => {
+    if (date) {
       setHasError(false)
     }
 
-    setValue('birthdayDate', value)
+    setValue('birthdayDate', date)
   }
 
   return (
@@ -48,7 +54,7 @@ export const BirthdayDateScreen = () => {
         />
       }
     >
-      <Input placeholder="Ton age" onChangeText={handleOnChangeText} />
+      <InputDate onChange={handleOnChangeText} />
     </FormLayout>
   )
 }

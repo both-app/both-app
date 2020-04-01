@@ -10,8 +10,8 @@ import { Main } from './src/Main'
 
 Sentry.init({
   dsn: 'https://3247720673cf460bb7979a5e0554d98f@sentry.io/5175612',
-  enableInExpoDevelopment: true,
-  debug: true,
+  enableInExpoDevelopment: false,
+  debug: false,
 })
 
 Sentry.setRelease(Constants.manifest.revisionId)
