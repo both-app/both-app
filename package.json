@@ -30,6 +30,7 @@
     "expo-haptics": "8.0.0",
     "expo-linear-gradient": "8.0.0",
     "global": "4.4.0",
+    "node-emoji": "1.10.0",
     "react": "16.9.0",
     "react-dom": "16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
@@ -38,11 +39,11 @@
     "react-native-safe-area-context": "0.6.0",
     "react-native-screens": "2.0.0-alpha.12",
     "react-native-svg": "9.13.3",
-    "react-native-web": "0.12.2",
-    "sentry-expo": "2.0.3"
+    "react-native-web": "0.12.2"
   },
   "devDependencies": {
     "@babel/core": "7.9.0",
+    "@types/node-emoji": "1.8.1",
     "@types/react": "16.9.0",
     "@types/react-native": "0.62.0",
     "@typescript-eslint/eslint-plugin": "2.25.0",
