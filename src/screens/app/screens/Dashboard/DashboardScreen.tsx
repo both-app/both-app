@@ -1,40 +1,37 @@
-import React, { useState, useLayoutEffect } from 'react'
-import {
-  View,
-  StyleSheet,
-  SafeAreaView,
-  SectionList,
-  ScrollView,
-} from 'react-native'
+import React, { useState } from 'react'
+import { View, StyleSheet, ScrollView, RefreshControl } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import { colors } from 'res/colors'
-import { Info } from 'library/components/Info'
-import { Header, Week, Counter } from './components/Header'
-import { Task } from './components/Task'
-import { Section } from './components/Section'
-import { TaskAddedModalContainer } from './components/TaskAddedModal'
-import { WeekModal } from './components/WeekModal'
-import { ShareRelationKeyModalContainer } from './components/ShareRelationKeyModal'
-import { CardButton } from 'library/components/CardButton'
 
-const DATA = []
+import { Info } from 'library/components/Info'
+import { CardButton } from 'library/components/CardButton'
+import { Header, Week, Body } from './components/Header'
+import { TaskAddedModalContainer } from './components/TaskAddedModal'
+import { ShareRelationKeyModalContainer } from './components/ShareRelationKeyModal'
 
 export const DashboardScreen = () => {
   const navigation = useNavigation()
-  const [modalIsOpen, setModalIsOpen] = useState(false)
-  const [modal2IsOpen, setModal2IsOpen] = useState(false)
+  const [isFetchingList, setIsFetchingList] = useState(false)
+
+  const handleOnRefresh = () => {
+    setIsFetchingList(true)
+
+    setTimeout(() => {
+      setIsFetchingList(false)
+    }, 5000)
+  }
 
   return (
     <View style={styles.container}>
       <Header>
         <Week>Semaine 17 • Samedi 28 mars</Week>
 
-        <Counter
+        <Body
           leftUserName="Mathieu"
           rightUserName="Charlotte"
-          leftPoints={25}
-          rightPoints={0}
+          leftPoints={105}
+          rightPoints={10}
         />
 
         <Info
@@ -47,49 +44,21 @@ export const DashboardScreen = () => {
       <ScrollView
         style={styles.listContainer}
         showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl
+            refreshing={isFetchingList}
+            onRefresh={handleOnRefresh}
+          />
+        }
       >
         <CardButton
           emoji="➕"
           title="Ajouter une tâche"
+          withHapticFeedback
           onAction={() => navigation.navigate('AddTask')}
         />
-
-        <CardButton
-          emoji="🥶"
-          title="Je suis le meilleur"
-          onAction={() => setModalIsOpen(true)}
-        />
-
-        <CardButton
-          emoji="🥵"
-          title="Je suis le plus nul"
-          onAction={() => setModal2IsOpen(true)}
-        />
-
-        <SafeAreaView style={styles.list}>
-          <SectionList
-            sections={DATA}
-            keyExtractor={(_, index) => `${index}`}
-            renderItem={({ item }) => <Task {...item} />}
-            renderSectionHeader={({ section: { title } }) => (
-              <Section title={title} />
-            )}
-          />
-        </SafeAreaView>
       </ScrollView>
 
-      <WeekModal
-        type="winner"
-        visible={modalIsOpen}
-        onClose={() => setModalIsOpen(false)}
-        onAction={() => setModalIsOpen(false)}
-      />
-      <WeekModal
-        type="loser"
-        visible={modal2IsOpen}
-        onClose={() => setModal2IsOpen(false)}
-        onAction={() => setModal2IsOpen(false)}
-      />
       <ShareRelationKeyModalContainer />
       <TaskAddedModalContainer />
     </View>

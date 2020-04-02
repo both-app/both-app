@@ -7,32 +7,40 @@ import { fonts } from 'res/fonts'
 import { colors } from 'res/colors'
 import { useCounter } from './useCounter'
 
-interface CounterProps {
+interface BodyProps {
   leftUserName: string
   rightUserName: string
   leftPoints: number
   rightPoints: number
 }
 
-export const Counter: FC<CounterProps> = ({
+export const Body: FC<BodyProps> = ({
   leftUserName,
   rightUserName,
   ...props
 }) => {
-  const leftPoints = useCounter({ value: props.leftPoints, timeout: 150 })
-  const rightPoints = useCounter({ value: props.rightPoints, timeout: 150 })
+  const leftPoints = useCounter(props.leftPoints)
+  const rightPoints = useCounter(props.rightPoints)
 
   return (
-    <View style={styles.countainer}>
+    <View style={styles.bodyContainer}>
       <Avatar firstname={leftUserName[0]} size="small" />
 
-      <Text>
-        <Text style={{ ...styles.counter, ...styles.left }}>{leftPoints}</Text>
-        <Text style={styles.counter}> : </Text>
-        <Text style={{ ...styles.counter, ...styles.right }}>
-          {rightPoints}
-        </Text>
-      </Text>
+      <View style={styles.counterContainer}>
+        <View style={styles.left}>
+          <Text style={{ ...styles.text, ...styles.leftText }}>
+            {leftPoints}
+          </Text>
+        </View>
+
+        <View>
+          <Text style={styles.text}> : </Text>
+        </View>
+
+        <View style={styles.right}>
+          <Text style={styles.text}>{rightPoints}</Text>
+        </View>
+      </View>
 
       <Avatar isLoading firstname="⏳" size="small" />
     </View>
@@ -40,7 +48,7 @@ export const Counter: FC<CounterProps> = ({
 }
 
 const styles = StyleSheet.create({
-  countainer: {
+  bodyContainer: {
     display: 'flex',
     width: '100%',
     flexDirection: 'row',
@@ -48,15 +56,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 8,
   },
-  counter: {
+  counterContainer: {
+    flex: 1,
+    borderColor: 'red',
+    flexDirection: 'row',
+  },
+  text: {
     fontFamily: fonts['DMSerifDisplay-Regular'],
     fontSize: 48,
     color: colors.white,
   },
   left: {
-    alignItems: 'flex-end',
+    flex: 1,
+  },
+  leftText: {
+    textAlign: 'right',
   },
   right: {
-    alignItems: 'flex-start',
+    flex: 1,
   },
 })

@@ -8,7 +8,7 @@ interface InfoProps {
   primary: string
   secondary: string
   hide?: boolean
-  withVibration?: boolean
+  withHapticFeedback?: boolean
   color: Color
 }
 
@@ -17,7 +17,7 @@ export const Info: FC<InfoProps> = ({
   secondary,
   hide,
   color,
-  withVibration,
+  withHapticFeedback,
 }) => {
   const containerStyle = {
     ...styles.container,
@@ -40,7 +40,7 @@ export const Info: FC<InfoProps> = ({
       await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error)
     }
 
-    if (!hide && withVibration) {
+    if (!hide && withHapticFeedback) {
       hapticsFeedback()
     }
   }, [hide])

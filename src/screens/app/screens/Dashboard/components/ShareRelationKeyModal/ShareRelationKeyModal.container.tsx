@@ -6,7 +6,7 @@ import { ShareRelationKeyModal } from './ShareRelationKeyModal'
 const CODE = '000000'
 
 export const ShareRelationKeyModalContainer = () => {
-  const [modalIsOpen, setModalIsOpen] = useState(true)
+  const [modalIsOpen, setModalIsOpen] = useState(false)
 
   const handleOnClose = () => {
     setModalIsOpen(false)

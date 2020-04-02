@@ -7,6 +7,7 @@ import {
   TextStyle,
   ViewStyle,
 } from 'react-native'
+import * as Haptics from 'expo-haptics'
 
 import { fonts } from 'res/fonts'
 import { lightenDarkenColor, colors } from 'res/colors'
@@ -24,6 +25,7 @@ export interface CardButtonProps {
   onAction?: VoidFunction
   points?: number
   disabled?: boolean
+  withHapticFeedback?: boolean
 }
 
 export const CardButton: FC<CardButtonProps> = ({
@@ -35,6 +37,7 @@ export const CardButton: FC<CardButtonProps> = ({
   activeBackgroundColor = lightenDarkenColor(colors.skin200, -20),
   activeTextColor = colors.dark100,
   disabled,
+  withHapticFeedback,
   ...props
 }) => {
   const [isActive, setIsActive] = useState(false)
@@ -68,7 +71,13 @@ export const CardButton: FC<CardButtonProps> = ({
 
   const handleOnPressInOrOut = () => setIsActive(!isActive)
 
-  const handleOnPress = () => onAction && onAction()
+  const handleOnPress = async () => {
+    if (withHapticFeedback) {
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+    }
+
+    onAction && onAction()
+  }
 
   return (
     <TouchableOpacity
