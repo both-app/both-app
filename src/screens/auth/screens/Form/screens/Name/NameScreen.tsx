@@ -2,25 +2,24 @@ import React, { useContext, useState } from 'react'
 import { StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
-import { Info } from 'library/components/Info'
 import { Label } from 'library/components/Label'
-import { InputCode } from 'screens/auth/components/InputCode'
+import { Info } from 'library/components/Info'
 import { FormLayout } from 'library/layouts/FormLayout'
-import { CreateContext } from '../../Create.context'
 
-const CODE_LENGTH = 6
+import { Input } from 'screens/auth/components/Input'
+import { AuthFormContext } from '../../../../AuthForm.context'
 
-export const CodeScreen = () => {
+export const NameScreen = () => {
   const navigation = useNavigation()
   const [hasError, setHasError] = useState(false)
-  const { values, setValue } = useContext(CreateContext)
+  const { values, setValue } = useContext(AuthFormContext)
 
   const handleOnNext = () => {
-    if (!values.code || values.code.length < CODE_LENGTH) {
+    if (!values.name) {
       return setHasError(true)
     }
 
-    navigation.navigate('Gender')
+    navigation.navigate('JoinOrCreate')
     return setHasError(false)
   }
 
@@ -29,39 +28,26 @@ export const CodeScreen = () => {
       setHasError(false)
     }
 
-    setValue('code', value)
-  }
-
-  const handleOnBack = () => {
-    setValue('code', '')
-
-    navigation.goBack()
+    setValue('name', value)
   }
 
   return (
     <FormLayout
-      onBackAction={handleOnBack}
+      onBackAction={() => navigation.navigate('Select')}
       onNextAction={handleOnNext}
       containerStyle={styles.formContainer}
-      label={
-        <Label primary="Ton acolyte t’attend 🥰" secondary="Tape ta clé…" />
-      }
+      label={<Label primary="Bonjour ☀️" secondary="Comment t'appelles-tu ?" />}
       bottomInfo={
         <Info
           hide={!hasError}
-          withVibration
+          withHapticFeedback
           color="danger"
-          primary="😥 Code invalide !"
-          secondary="Aide : Vérifie bien le code que ton acolyte t'a donné..."
+          primary="🤔 Flemme de taper ton prénom ?"
+          secondary="Aide : Mets au moins tes initiales pour continuer…"
         />
       }
     >
-      <InputCode
-        value={values.code}
-        placeholder="------"
-        length={CODE_LENGTH}
-        onChange={handleOnChangeText}
-      />
+      <Input placeholder="Ton prénom" onChangeText={handleOnChangeText} />
     </FormLayout>
   )
 }

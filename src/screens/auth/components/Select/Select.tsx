@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useState, useEffect } from 'react'
 import { View, StyleSheet } from 'react-native'
 
 import { Option } from './Option'
@@ -14,8 +14,12 @@ interface SelectProps {
   }>
 }
 
-export const Select: FC<SelectProps> = ({ onChange, value, options }) => {
+export const Select: FC<SelectProps> = ({ value, onChange, options }) => {
   const [selectedValue, setValue] = useState(value)
+
+  useEffect(() => {
+    setValue(value)
+  }, [value])
 
   const handleOnAction = (value: string) => {
     setValue(value)

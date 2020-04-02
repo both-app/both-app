@@ -7,19 +7,19 @@ import { Info } from 'library/components/Info'
 import { FormLayout } from 'library/layouts/FormLayout'
 
 import { Input } from 'screens/auth/components/Input'
-import { CreateContext } from '../../Create.context'
+import { AuthFormContext } from '../../../../AuthForm.context'
 
-export const NameScreen = () => {
+export const SpecialGenderScreen = () => {
   const navigation = useNavigation()
   const [hasError, setHasError] = useState(false)
-  const { values, setValue } = useContext(CreateContext)
+  const { values, setValue } = useContext(AuthFormContext)
 
   const handleOnNext = () => {
-    if (!values.name) {
+    if (!values.specialGender) {
       return setHasError(true)
     }
 
-    navigation.navigate('JoinOrCreateScreen')
+    navigation.navigate('Birthday')
     return setHasError(false)
   }
 
@@ -28,26 +28,33 @@ export const NameScreen = () => {
       setHasError(false)
     }
 
-    setValue('name', value)
+    setValue('specialGender', value)
+  }
+
+  const handleOnBack = () => {
+    setValue('specialGender', '')
+    setValue('gender', '')
+
+    navigation.navigate('Gender')
   }
 
   return (
     <FormLayout
-      onBackAction={() => navigation.navigate('Select')}
+      onBackAction={handleOnBack}
       onNextAction={handleOnNext}
       containerStyle={styles.formContainer}
-      label={<Label primary="Bonjour ☀️" secondary="Comment t'appelles-tu ?" />}
+      label={<Label primary="010101" secondary="010101" />}
       bottomInfo={
         <Info
           hide={!hasError}
-          withVibration
+          withHapticFeedback
           color="danger"
           primary="🤔 Flemme de taper ton prénom ?"
           secondary="Aide : Mets au moins tes initiales pour continuer…"
         />
       }
     >
-      <Input placeholder="Ton prénom" onChangeText={handleOnChangeText} />
+      <Input placeholder="Dit nous" onChangeText={handleOnChangeText} />
     </FormLayout>
   )
 }

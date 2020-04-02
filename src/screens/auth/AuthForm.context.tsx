@@ -1,26 +1,28 @@
 import React, { FC, createContext, useState, useMemo } from 'react'
 
-interface CreateContextProps {
+interface AuthFormContextProps {
   values: {
     name: string
     gender: string
+    specialGender: string
     partnerName: string
     code: string
     type: string
     birthday: string
   }
   setValue: (
-    fieldName: keyof CreateContextProps['values'],
+    fieldName: keyof AuthFormContextProps['values'],
     value: string
   ) => void
 }
 
-const CreateContext = createContext<CreateContextProps>({
+const AuthFormContext = createContext<AuthFormContextProps>({
   values: {
     name: '',
     partnerName: '',
     gender: '',
-    type: 'JOIN',
+    specialGender: '',
+    type: '',
     code: '',
     birthday: '',
   },
@@ -28,12 +30,13 @@ const CreateContext = createContext<CreateContextProps>({
   setValue: () => {},
 })
 
-const CreateContextProvider: FC = ({ children }) => {
+const AuthFormContextProvider: FC = ({ children }) => {
   const [state, setState] = useState({
     name: '',
     partnerName: '',
     gender: '',
-    type: 'JOIN',
+    specialGender: '',
+    type: '',
     code: '',
     birthday: '',
   })
@@ -41,7 +44,7 @@ const CreateContextProvider: FC = ({ children }) => {
   const setValue = (fieldName: string, value: string) =>
     setState({ ...state, [fieldName]: value })
 
-  const createContextApi = useMemo(
+  const authContextApi = useMemo(
     () => ({
       values: state,
       setValue,
@@ -50,10 +53,10 @@ const CreateContextProvider: FC = ({ children }) => {
   )
 
   return (
-    <CreateContext.Provider value={createContextApi}>
+    <AuthFormContext.Provider value={authContextApi}>
       {children}
-    </CreateContext.Provider>
+    </AuthFormContext.Provider>
   )
 }
 
-export { CreateContext, CreateContextProvider }
+export { AuthFormContext, AuthFormContextProvider }

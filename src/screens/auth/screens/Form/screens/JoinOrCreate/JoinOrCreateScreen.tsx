@@ -7,28 +7,25 @@ import { Info } from 'library/components/Info'
 import { FormLayout } from 'library/layouts/FormLayout'
 
 import { Select } from 'screens/auth/components/Select'
-import { CreateContext } from '../../Create.context'
+import { AuthFormContext } from '../../../../AuthForm.context'
 
 export const JoinOrCreateScreen = () => {
   const navigation = useNavigation()
-  const { values, setValue } = useContext(CreateContext)
+  const { values, setValue } = useContext(AuthFormContext)
 
-  const handleOnNext = () => {
-    if (values.type === 'JOIN') {
-      return navigation.navigate('Code')
-    } else if (values.type === 'CREATE') {
-      return navigation.navigate('Gender')
-    }
-  }
-
-  const handleOnChange = (value) => {
+  const handleOnChange = (value: 'JOIN' | 'CREATE') => {
     setValue('type', value)
+
+    if (value === 'JOIN') {
+      return navigation.navigate('Code')
+    }
+
+    return navigation.navigate('Gender')
   }
 
   return (
     <FormLayout
       onBackAction={() => navigation.goBack()}
-      onNextAction={handleOnNext}
       containerStyle={styles.formContainer}
       label={<Label primary="Enchanté 🙂" secondary="As tu une clé ?" />}
       bottomInfo={

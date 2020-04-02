@@ -7,13 +7,13 @@ import { Info } from 'library/components/Info'
 import { FormLayout } from 'library/layouts/FormLayout'
 import { InputDate } from 'screens/auth/components/InputDate'
 import { AuthContext } from 'screens/auth/Auth.context'
-import { CreateContext } from '../../Create.context'
+import { AuthFormContext } from '../../../../AuthForm.context'
 import { isValidDate } from 'res/date'
 
 export const BirthdayScreen = () => {
   const navigation = useNavigation()
   const [hasError, setHasError] = useState(false)
-  const { values, setValue } = useContext(CreateContext)
+  const { values, setValue } = useContext(AuthFormContext)
   const { setIsConnected } = useContext(AuthContext)
 
   const handleOnFinish = () => {
@@ -38,16 +38,22 @@ export const BirthdayScreen = () => {
     setValue('birthday', date)
   }
 
+  const handleOnBack = () => {
+    setValue('gender', '')
+
+    navigation.goBack()
+  }
+
   return (
     <FormLayout
-      onBackAction={() => navigation.goBack()}
+      onBackAction={handleOnBack}
       onFinishAction={handleOnFinish}
       containerStyle={styles.formContainer}
       label={<Label primary="Et enfin 🎁" secondary="Ton anniversaire..." />}
       bottomInfo={
         <Info
           hide={!hasError}
-          withVibration
+          withHapticFeedback
           color="danger"
           primary="🙄 Es-tu certain de ta date d’anniversaire ?"
           secondary="Aide : Fais un effort ou bien demande à ta maman…"

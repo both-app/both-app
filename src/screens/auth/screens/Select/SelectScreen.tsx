@@ -5,7 +5,6 @@ import { useNavigation } from '@react-navigation/native'
 import { colors } from 'res/colors'
 
 import { Label } from 'library/components/Label'
-
 import { Logo } from '../../components/Logo'
 
 export const SelectScreen = () => {
@@ -22,7 +21,7 @@ export const SelectScreen = () => {
 
         <TouchableOpacity
           style={styles.textContainer}
-          onPress={() => navigation.navigate('Create')}
+          onPress={() => navigation.navigate('Form')}
           activeOpacity={0.5}
         >
           <Text style={styles.putYourName}>Tape ton prénom</Text>

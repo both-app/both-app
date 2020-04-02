@@ -1,50 +1,37 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import { Label } from 'library/components/Label'
-import { Info } from 'library/components/Info'
 import { Select } from 'screens/auth/components/Select'
 import { FormLayout } from 'library/layouts/FormLayout'
-import { CreateContext } from '../../Create.context'
+import { AuthFormContext } from '../../../../AuthForm.context'
 
 export const GenderScreen = () => {
   const navigation = useNavigation()
-  const [hasError, setHasError] = useState(false)
-  const { values, setValue } = useContext(CreateContext)
+  const { values, setValue } = useContext(AuthFormContext)
 
-  const handleOnNext = () => {
-    if (!values.gender) {
-      return setHasError(true)
+  const handleOnChange = (value: 'woman' | 'man' | 'other') => {
+    setValue('gender', value)
+
+    if (value === 'other') {
+      return navigation.navigate('SpecialGender')
     }
 
-    navigation.navigate('Birthday')
-    return setHasError(false)
+    return navigation.navigate('Birthday')
   }
 
-  const handleOnChange = (value) => {
-    if (value) {
-      setHasError(false)
-    }
+  const handleOnBack = () => {
+    setValue('type', '')
 
-    setValue('gender', value)
+    navigation.goBack()
   }
 
   return (
     <FormLayout
-      onBackAction={() => navigation.goBack()}
-      onNextAction={handleOnNext}
+      onBackAction={handleOnBack}
       containerStyle={styles.formContainer}
       label={<Label primary={`${values.name} 👋`} secondary="Tu es..." />}
-      bottomInfo={
-        <Info
-          hide={!hasError}
-          withVibration
-          color="danger"
-          primary="😘 Qui que tu sois, reste tel que tu es !"
-          secondary="Aide : Choisi un genre pour continuer..."
-        />
-      }
     >
       <Select
         value={values.gender}
