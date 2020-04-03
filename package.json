@@ -29,6 +29,7 @@
     "expo-cli": "3.17.8",
     "expo-haptics": "8.0.0",
     "expo-linear-gradient": "8.0.0",
+    "expo-web-browser": "8.0.0",
     "global": "4.4.0",
     "node-emoji": "1.10.0",
     "react": "16.9.0",

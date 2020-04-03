@@ -8,17 +8,20 @@ import { useRotationAnimation } from './useRotationEffect'
 
 interface AvatarProps {
   isLoading?: boolean
-  firstname: string
+  firstname?: string
   size: 'large' | 'medium' | 'small'
   borderColor?: Color
+  backgroundColor?: Color
   onAction?: VoidFunction
 }
 
 export const Avatar: FC<AvatarProps> = ({
   firstname,
+  children,
   isLoading,
   size = 48,
   borderColor,
+  backgroundColor,
   onAction,
 }) => {
   const { rotateData, startRotate } = useRotationAnimation({
@@ -50,6 +53,7 @@ export const Avatar: FC<AvatarProps> = ({
     width: sizeNumber,
     height: sizeNumber,
     borderRadius: sizeNumber / 2,
+    ...(backgroundColor ? { backgroundColor: colors[backgroundColor] } : {}),
     ...(borderColor
       ? {
           borderWidth: 4,
@@ -69,7 +73,8 @@ export const Avatar: FC<AvatarProps> = ({
   return (
     <TouchableOpacity activeOpacity={1} onPress={handleOnPress}>
       <Animated.View style={avatarStyle}>
-        <Text style={avatarText}>{firstname[0]}</Text>
+        {firstname && <Text style={avatarText}>{firstname[0]}</Text>}
+        {children}
       </Animated.View>
     </TouchableOpacity>
   )

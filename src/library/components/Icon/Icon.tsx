@@ -10,6 +10,7 @@ import Heart from '../../../../assets/icons/heart.svg'
 import List from '../../../../assets/icons/list.svg'
 import X from '../../../../assets/icons/x.svg'
 import Share from '../../../../assets/icons/share.svg'
+import Camera from '../../../../assets/icons/camera.svg'
 
 type IconName =
   | 'arrow_right'
@@ -21,6 +22,7 @@ type IconName =
   | 'list'
   | 'close'
   | 'share'
+  | 'camera'
 
 export interface IconProps extends SvgProps {
   iconName: IconName
@@ -38,6 +40,7 @@ export const Icon: FC<IconProps> = ({ iconName, ...props }) => {
     list: List,
     close: X,
     share: Share,
+    camera: Camera,
   }
 
   const Icon = mapping[iconName]

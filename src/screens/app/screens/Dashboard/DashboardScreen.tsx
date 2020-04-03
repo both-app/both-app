@@ -32,6 +32,7 @@ export const DashboardScreen = () => {
           rightUserName="Charlotte"
           leftPoints={105}
           rightPoints={10}
+          onOpenProfil={() => navigation.navigate('Profil')}
         />
 
         <Info
