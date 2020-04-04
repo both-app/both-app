@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Alert } from 'react-native'
 import * as WebBrowser from 'expo-web-browser'
 import { useNavigation } from '@react-navigation/native'
 
@@ -11,13 +11,33 @@ import { CardButton } from 'library/components/CardButton'
 import { MinimalButton } from 'library/components/MinimalButton'
 import { AvatarContainer } from './components/Avatar'
 import { CameraContext, Camera } from '../Camera'
+import { AuthContext } from 'screens/auth'
 
 export const ProfilScreen = () => {
   const navigation = useNavigation()
+  const { setIsConnected } = useContext(AuthContext)
   const { cameraIsOpen } = useContext(CameraContext)
 
   const handleFeedback = async () => {
     await WebBrowser.openBrowserAsync('https://payfit.com')
+  }
+
+  const handleRateApp = async () => {
+    await WebBrowser.openBrowserAsync('https://payfit.com')
+  }
+
+  const handleEndRelation = () => {
+    Alert.alert('Êtes vous sûrs ?', '', [
+      {
+        text: 'Non',
+        style: 'cancel',
+      },
+      {
+        text: 'Oui',
+        style: 'destructive',
+        onPress: () => setIsConnected(false),
+      },
+    ])
   }
 
   if (cameraIsOpen) {
@@ -55,6 +75,7 @@ export const ProfilScreen = () => {
           emoji="💔"
           title="Mettre fin à la relation"
           subtitle="C’est fini avec Charlotte..?"
+          onAction={handleEndRelation}
           withHapticFeedback
         />
         <CardButton
@@ -74,6 +95,7 @@ export const ProfilScreen = () => {
           emoji="⭐️"
           title="Donner 5 étoiles sur le store"
           subtitle="Ça nous ferait vraiment plaisir"
+          onAction={handleRateApp}
           withHapticFeedback
         />
       </View>
