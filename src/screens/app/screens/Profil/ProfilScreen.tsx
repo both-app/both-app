@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import * as WebBrowser from 'expo-web-browser'
 import { useNavigation } from '@react-navigation/native'
@@ -6,21 +6,22 @@ import { useNavigation } from '@react-navigation/native'
 import { colors } from 'res/colors'
 import { fonts } from 'res/fonts'
 
-import { Avatar } from 'library/components/Avatar'
 import { Info } from 'library/components/Info'
-import { Icon } from 'library/components/Icon'
 import { CardButton } from 'library/components/CardButton'
 import { MinimalButton } from 'library/components/MinimalButton'
+import { AvatarContainer } from './components/Avatar'
+import { CameraContext, Camera } from '../Camera'
 
 export const ProfilScreen = () => {
   const navigation = useNavigation()
+  const { cameraIsOpen } = useContext(CameraContext)
 
   const handleFeedback = async () => {
     await WebBrowser.openBrowserAsync('https://payfit.com')
   }
 
-  const handleOnChangeAvatar = () => {
-    alert('Change avatar')
+  if (cameraIsOpen) {
+    return <Camera />
   }
 
   return (
@@ -33,18 +34,7 @@ export const ProfilScreen = () => {
         />
       </View>
 
-      <Avatar
-        size="medium"
-        onAction={handleOnChangeAvatar}
-        backgroundColor="dark200"
-      >
-        <Icon
-          iconName="camera"
-          width={32}
-          height={32}
-          style={{ color: colors.white }}
-        />
-      </Avatar>
+      <AvatarContainer />
 
       <Text style={styles.firstname}>Mathieu</Text>
 

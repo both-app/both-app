@@ -24,7 +24,7 @@ export const Avatar: FC<AvatarProps> = ({
   backgroundColor,
   onAction,
 }) => {
-  const { rotateData, startRotate } = useRotationAnimation({
+  const { rotateData, startRotate, stopRotate } = useRotationAnimation({
     iteration: -1,
     rotationDuration: 2000,
     delayBetweenRotations: 3000,
@@ -45,6 +45,8 @@ export const Avatar: FC<AvatarProps> = ({
   useEffect(() => {
     if (isLoading) {
       startRotate()
+    } else {
+      stopRotate()
     }
   }, [isLoading])
 

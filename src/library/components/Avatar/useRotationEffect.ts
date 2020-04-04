@@ -31,6 +31,8 @@ export const useRotationAnimation = ({
     ).start()
   }
 
+  const stopRotate = () => value.stopAnimation()
+
   const rotateData = value.interpolate({
     inputRange: [0, 1],
     outputRange: ['0deg', '360deg'],
@@ -38,6 +40,7 @@ export const useRotationAnimation = ({
 
   return {
     startRotate,
+    stopRotate,
     rotateData,
   }
 }

@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { ActionSheetProvider } from '@expo/react-native-action-sheet'
 
 import { AppNavigator } from './App.navigator'
 import { CategoryContextProvider } from './contexts/Category.context'
@@ -9,7 +10,9 @@ export const App = () => (
   <CategoryContextProvider>
     <TaskContextProvider>
       <RelationTaskContextProvider>
-        <AppNavigator />
+        <ActionSheetProvider>
+          <AppNavigator />
+        </ActionSheetProvider>
       </RelationTaskContextProvider>
     </TaskContextProvider>
   </CategoryContextProvider>
