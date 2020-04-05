@@ -10,11 +10,13 @@ import { Header, Week, Body } from './components/Header'
 import { TaskAddedModalContainer } from './components/TaskAddedModal'
 import { ShareRelationKeyModalContainer } from './components/ShareRelationKeyModal'
 import { UsersContext } from 'screens/app/contexts/Users.context'
+import { RelationContext } from 'screens/app/contexts/Relation.context'
 
 export const DashboardScreen = () => {
   const navigation = useNavigation()
   const [isFetchingList, setIsFetchingList] = useState(false)
   const { me } = useContext(UsersContext)
+  const { setShareKeyModal } = useContext(RelationContext)
 
   const handleOnRefresh = () => {
     setIsFetchingList(true)
@@ -24,6 +26,10 @@ export const DashboardScreen = () => {
     }, 5000)
   }
 
+  const goToTheProfilPage = () => navigation.navigate('Profil')
+
+  const openShareKeyModal = () => setShareKeyModal(true)
+
   return (
     <View style={styles.container}>
       <Header>
@@ -32,9 +38,10 @@ export const DashboardScreen = () => {
         <Body
           leftUserName={me.firstName}
           rightUserName="Charlotte"
-          leftPoints={105}
-          rightPoints={10}
-          onOpenProfil={() => navigation.navigate('Profil')}
+          leftPoints={0}
+          rightPoints={0}
+          onLeftAction={goToTheProfilPage}
+          onRightAction={openShareKeyModal}
         />
 
         <Info

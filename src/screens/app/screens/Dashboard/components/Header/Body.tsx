@@ -12,13 +12,15 @@ interface BodyProps {
   rightUserName: string
   leftPoints: number
   rightPoints: number
-  onOpenProfil: VoidFunction
+  onLeftAction: VoidFunction
+  onRightAction?: VoidFunction
 }
 
 export const Body: FC<BodyProps> = ({
   leftUserName,
   rightUserName,
-  onOpenProfil,
+  onLeftAction,
+  onRightAction,
   ...props
 }) => {
   const leftPoints = useCounter(props.leftPoints)
@@ -29,7 +31,7 @@ export const Body: FC<BodyProps> = ({
       <Avatar
         firstname={leftUserName[0]}
         size="small"
-        onAction={onOpenProfil}
+        onAction={onLeftAction}
       />
 
       <View style={styles.counterContainer}>
@@ -48,7 +50,7 @@ export const Body: FC<BodyProps> = ({
         </View>
       </View>
 
-      <Avatar isLoading firstname="⏳" size="small" />
+      <Avatar isLoading firstname="⏳" size="small" onAction={onRightAction} />
     </View>
   )
 }

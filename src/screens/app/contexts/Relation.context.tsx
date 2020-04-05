@@ -1,4 +1,6 @@
 import React, { FC, createContext, useMemo, useEffect, useState } from 'react'
+import * as Sentry from 'sentry-expo'
+
 import { getItem } from 'res/storage'
 
 interface RelationContextProps {
@@ -28,6 +30,7 @@ const RelationContextProvider: FC = ({ children }) => {
       ])
 
       if (relation) {
+        Sentry.setContext('relation', relation)
         setRelation(relation)
       }
 

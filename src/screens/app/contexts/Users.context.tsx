@@ -1,4 +1,6 @@
 import React, { FC, createContext, useState, useMemo, useEffect } from 'react'
+import * as Sentry from 'sentry-expo'
+
 import { getItem } from 'res/storage'
 
 interface UsersContextState {
@@ -29,6 +31,7 @@ const UsersContextProvider: FC = ({ children }) => {
       const users = (await getItem('users')) as UsersContextState
 
       if (users) {
+        Sentry.setUser(users.me)
         setState(users)
       }
     }
@@ -36,12 +39,7 @@ const UsersContextProvider: FC = ({ children }) => {
     reHydrateData()
   }, [])
 
-  const usersContextApi = useMemo(
-    () => ({
-      ...state,
-    }),
-    [state]
-  )
+  const usersContextApi = useMemo(() => state, [state])
 
   return (
     <UsersContext.Provider value={usersContextApi}>
