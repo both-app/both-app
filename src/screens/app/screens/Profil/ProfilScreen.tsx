@@ -9,14 +9,12 @@ import { fonts } from 'res/fonts'
 import { Info } from 'library/components/Info'
 import { CardButton } from 'library/components/CardButton'
 import { MinimalButton } from 'library/components/MinimalButton'
-import { AvatarContainer } from './components/Avatar'
-import { CameraContext, Camera } from '../Camera'
 import { AuthContext } from 'screens/auth'
+import { Avatar } from 'library/components/Avatar'
 
 export const ProfilScreen = () => {
   const navigation = useNavigation()
   const { logout } = useContext(AuthContext)
-  const { cameraIsOpen } = useContext(CameraContext)
 
   const handleFeedback = async () => {
     await WebBrowser.openBrowserAsync('https://payfit.com')
@@ -40,10 +38,6 @@ export const ProfilScreen = () => {
     ])
   }
 
-  if (cameraIsOpen) {
-    return <Camera />
-  }
-
   return (
     <View style={styles.container}>
       <View style={styles.close}>
@@ -54,7 +48,7 @@ export const ProfilScreen = () => {
         />
       </View>
 
-      <AvatarContainer />
+      <Avatar size="medium" backgroundColor="dark200" firstname="M" />
 
       <Text style={styles.firstname}>Mathieu</Text>
 
