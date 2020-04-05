@@ -1,4 +1,5 @@
 import React, { FC, createContext, useMemo, useEffect, useState } from 'react'
+import * as Sentry from 'sentry-expo'
 
 import { getItem, setItem, clear } from 'res/storage'
 
@@ -41,6 +42,9 @@ const AuthContextProvider: FC = ({ children }) => {
       setItem('relation', params.relation),
       setItem('users', { me: params.user }),
     ])
+
+    Sentry.setUser(params.user)
+    Sentry.setContext('relation', params.relation)
 
     setIsConnected(true)
   }
