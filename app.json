@@ -34,6 +34,19 @@
       ]
     },
     "description": "Share love & daily tasks",
-    "githubUrl": "https://github.com/mathieuletyrant/both-app"
+    "githubUrl": "https://github.com/mathieuletyrant/both-app",
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "both",
+            "project": "both-app",
+            "authToken": "d639bbc54bed494db9425fddad35b83ca2fb55ba1f6e4525b834f66ec5475fb4",
+            "url": ""
+          }
+        }
+      ]
+    }
   }
 }
