@@ -2,13 +2,11 @@ import React, { FC, createContext, useState, useMemo } from 'react'
 
 interface AuthFormContextProps {
   values: {
-    name: string
+    firstName: string
     gender: string
-    specialGender: string
-    partnerName: string
     code: string
     type: string
-    birthday: string
+    birthDate: string
   }
   setValue: (
     fieldName: keyof AuthFormContextProps['values'],
@@ -18,13 +16,11 @@ interface AuthFormContextProps {
 
 const AuthFormContext = createContext<AuthFormContextProps>({
   values: {
-    name: '',
-    partnerName: '',
+    firstName: '',
     gender: '',
-    specialGender: '',
     type: '',
     code: '',
-    birthday: '',
+    birthDate: '',
   },
   // @ts-ignore
   setValue: () => {},
@@ -32,13 +28,11 @@ const AuthFormContext = createContext<AuthFormContextProps>({
 
 const AuthFormContextProvider: FC = ({ children }) => {
   const [state, setState] = useState({
-    name: '',
-    partnerName: '',
+    firstName: '',
     gender: '',
-    specialGender: '',
     type: '',
     code: '',
-    birthday: '',
+    birthDate: '',
   })
 
   const setValue = (fieldName: string, value: string) =>

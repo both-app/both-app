@@ -1,1 +1,0 @@
-export { NameScreen } from './NameScreen'

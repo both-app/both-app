@@ -1,12 +1,11 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 
-import { NameScreen } from './screens/Name'
+import { FirstNameScreen } from './screens/FirstName'
 import { GenderScreen } from './screens/Gender'
-import { SpecialGenderScreen } from './screens/SpecialGender'
 import { JoinOrCreateScreen } from './screens/JoinOrCreate'
 import { CodeScreen } from './screens/Code'
-import { BirthdayScreen } from './screens/Birthday'
+import { BirthDateScreen } from './screens/BirthDate'
 
 import { AuthFormContextProvider } from '../../AuthForm.context'
 
@@ -18,12 +17,11 @@ export const FormNavigator = () => (
       headerMode="none"
       screenOptions={{ gestureEnabled: false }}
     >
-      <Stack.Screen component={NameScreen} name="Name" />
+      <Stack.Screen component={FirstNameScreen} name="FirstName" />
       <Stack.Screen component={GenderScreen} name="Gender" />
-      <Stack.Screen component={SpecialGenderScreen} name="SpecialGender" />
       <Stack.Screen component={JoinOrCreateScreen} name="JoinOrCreate" />
       <Stack.Screen component={CodeScreen} name="Code" />
-      <Stack.Screen component={BirthdayScreen} name="Birthday" />
+      <Stack.Screen component={BirthDateScreen} name="BirthDate" />
     </Stack.Navigator>
   </AuthFormContextProvider>
 )

@@ -11,14 +11,10 @@ export const GenderScreen = () => {
   const navigation = useNavigation()
   const { values, setValue } = useContext(AuthFormContext)
 
-  const handleOnChange = (value: 'woman' | 'man' | 'other') => {
+  const handleOnChange = (value: 'female' | 'male' | 'other') => {
     setValue('gender', value)
 
-    if (value === 'other') {
-      return navigation.navigate('SpecialGender')
-    }
-
-    return navigation.navigate('Birthday')
+    return navigation.navigate('BirthDate')
   }
 
   const handleOnBack = () => {
@@ -31,14 +27,14 @@ export const GenderScreen = () => {
     <FormLayout
       onBackAction={handleOnBack}
       containerStyle={styles.formContainer}
-      label={<Label primary={`${values.name} 👋`} secondary="Tu es..." />}
+      label={<Label primary={`${values.firstName} 👋`} secondary="Tu es..." />}
     >
       <Select
         value={values.gender}
         onChange={handleOnChange}
         options={[
-          { emoji: '👩', label: 'Je suis une femme', value: 'woman' },
-          { emoji: '🧔', label: 'Je suis un homme', value: 'man' },
+          { emoji: '👩', label: 'Je suis une femme', value: 'female' },
+          { emoji: '🧔', label: 'Je suis un homme', value: 'male' },
           { emoji: '💖', label: 'Je me définis autrement', value: 'other' },
         ]}
       />

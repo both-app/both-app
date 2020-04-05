@@ -1,1 +1,0 @@
-export { SpecialGenderScreen } from './SpecialGenderScreen'

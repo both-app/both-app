@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { ActionSheetProvider } from '@expo/react-native-action-sheet'
 
 import { AppNavigator } from './App.navigator'
