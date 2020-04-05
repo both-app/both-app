@@ -2,36 +2,50 @@ import React, { FC, createContext, useMemo, useEffect, useState } from 'react'
 import { getItem } from 'res/storage'
 
 interface RelationContextProps {
+  shareKeyModalOpen: boolean
   relation: Relation
+  setShareKeyModal: (value: boolean) => void
 }
 
 const RelationContext = createContext<RelationContextProps>({
+  shareKeyModalOpen: false,
   relation: {
     id: '',
     code: '',
   },
+  setShareKeyModal: () => {},
 })
 
 const RelationContextProvider: FC = ({ children }) => {
-  const [relation, setRelation] = useState({ id: '', code: '' })
+  const [shareKeyModalOpen, setShareKeyModal] = useState<boolean>(false)
+  const [relation, setRelation] = useState<Relation>({ id: '', code: '' })
 
   useEffect(() => {
-    const checkIfRelation = async () => {
-      const relation = await getItem('relation')
+    const reHydrateData = async () => {
+      const [relation, shareKeyModalInited] = await Promise.all([
+        getItem('relation'),
+        getItem('shareKeyModalInited'),
+      ])
 
       if (relation) {
         setRelation(relation)
       }
+
+      if (!shareKeyModalInited) {
+        setShareKeyModal(true)
+      }
     }
 
-    checkIfRelation()
+    reHydrateData()
   }, [])
 
   const relationContextApi = useMemo(
     () => ({
+      shareKeyModalOpen,
+      setShareKeyModal,
       relation,
     }),
-    [relation]
+    [relation, shareKeyModalOpen, setShareKeyModal]
   )
 
   return (

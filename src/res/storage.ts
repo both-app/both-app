@@ -1,6 +1,6 @@
 import { AsyncStorage } from 'react-native'
 
-export type StorageKey = 'jwtToken' | 'relation' | 'shareKeyModalDisplayed'
+export type StorageKey = 'jwtToken' | 'relation' | 'shareKeyModalInited'
 
 export const setItem = (key: StorageKey, value: any) =>
   AsyncStorage.setItem(key, JSON.stringify(value))
