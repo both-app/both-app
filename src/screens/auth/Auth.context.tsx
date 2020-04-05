@@ -1,60 +1,52 @@
-import React, { FC, createContext, useState, useMemo } from 'react'
-import { api, APIResponse } from 'res/api'
-import { setItem } from 'res/storage'
+import React, { FC, createContext, useMemo, useState, useEffect } from 'react'
+import { getItem, setItem, removeItem } from 'res/storage'
 
 interface AuthContextProps {
   isConnected: boolean
-  setIsConnected: () => void
+  login: (jwtToken: string) => Promise<void>
+  logout: () => Promise<void>
 }
-
-type AuthResponse = APIResponse<{
-  jwtToken: string
-  relation: { id: string; code: string }
-  user: {
-    id: string
-    firstName: string
-    gender: string
-    relationId: string
-    birthDate: string
-  }
-}>
 
 const AuthContext = createContext<AuthContextProps>({
   isConnected: false,
   // @ts-ignore
-  setIsConnected: (value: boolean) => ({}),
+  login: () => {},
+  // @ts-ignore
+  logout: () => {},
 })
 
 const AuthContextProvider: FC = ({ children }) => {
-  const [isConnected, setIsConnected] = useState(false)
+  const [isConnected, setIsConnected] = useState<boolean>(false)
 
-  const createRelation = async (params: {
-    firstName: string
-    birthDate: number
-    gender: string
-  }) => {
-    const result = await api.post<AuthResponse>('relation', params)
+  useEffect(() => {
+    const checkIfConnected = async () => {
+      const jwtToken = await getItem('jwtToken')
 
-    await setItem('jwtToken', result.data.data.jwtToken)
+      if (jwtToken) {
+        setIsConnected(true)
+      }
+    }
+
+    checkIfConnected()
+  }, [])
+
+  const login = async (jwtToken: string) => {
+    await setItem('jwtToken', jwtToken)
+    setIsConnected(true)
   }
 
-  const joinRelation = async (params: {
-    firstName: string
-    birthDate: number
-    gender: string
-    code: string
-  }) => {
-    const result = await api.post<AuthResponse>('relation/join', params)
-
-    await setItem('jwtToken', result.data.data.jwtToken)
+  const logout = async () => {
+    await removeItem('jwtToken')
+    setIsConnected(false)
   }
 
   const authContextApi = useMemo(
     () => ({
       isConnected,
-      setIsConnected,
+      login,
+      logout,
     }),
-    [setIsConnected, isConnected]
+    [isConnected, login, logout]
   )
 
   return (

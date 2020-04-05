@@ -15,7 +15,7 @@ import { AuthContext } from 'screens/auth'
 
 export const ProfilScreen = () => {
   const navigation = useNavigation()
-  const { setIsConnected } = useContext(AuthContext)
+  const { logout } = useContext(AuthContext)
   const { cameraIsOpen } = useContext(CameraContext)
 
   const handleFeedback = async () => {
@@ -35,7 +35,7 @@ export const ProfilScreen = () => {
       {
         text: 'Oui',
         style: 'destructive',
-        onPress: () => setIsConnected(false),
+        onPress: logout,
       },
     ])
   }

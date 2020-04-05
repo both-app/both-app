@@ -9,30 +9,67 @@ import { InputDate } from 'screens/auth/components/InputDate'
 import { AuthContext } from 'screens/auth/Auth.context'
 import { AuthFormContext } from '../../../../AuthForm.context'
 import { isValidDate } from 'res/date'
+import { AuthApiContext } from 'screens/auth/AuthApi.context'
 
 export const BirthDateScreen = () => {
   const navigation = useNavigation()
-  const [hasError, setHasError] = useState(false)
-  const { values, setValue } = useContext(AuthFormContext)
-  const { setIsConnected } = useContext(AuthContext)
+  const [error, setError] = useState<[string, string] | []>([])
 
-  const handleOnFinish = () => {
+  const { values, setValue } = useContext(AuthFormContext)
+  const { createRelation, joinRelation } = useContext(AuthApiContext)
+  const { login } = useContext(AuthContext)
+
+  const handleOnFinish = async () => {
     const dateParsed = values.birthDate.split('/').map(Number)
 
     if (
       !values.birthDate ||
       !isValidDate(dateParsed[0], dateParsed[1], dateParsed[2])
     ) {
-      return setHasError(true)
+      return setError([
+        '🙄 Es-tu certain de ta date d’anniversaire ?',
+        'Aide : Fais un effort ou bien demande à ta maman...',
+      ])
     }
 
-    setIsConnected(true)
-    return setHasError(false)
+    if (values.type === 'CREATE') {
+      return createRelationAndLogin()
+    }
+
+    return joinRelationAndLogin()
+  }
+
+  const createRelationAndLogin = async () => {
+    const result = await createRelation({
+      firstName: values.firstName,
+      birthDate: new Date(values.birthDate).getTime(),
+      gender: values.gender,
+    })
+
+    login(result.data.data.jwtToken)
+  }
+
+  const joinRelationAndLogin = async () => {
+    try {
+      const result = await joinRelation({
+        firstName: values.firstName,
+        birthDate: new Date(values.birthDate).getTime(),
+        gender: values.gender,
+        code: values.code,
+      })
+
+      login(result.data.data.jwtToken)
+    } catch (e) {
+      setError([
+        '😥 Code invalide !',
+        "Aide : Vérifie bien le code que ton acolyte t'a donné...",
+      ])
+    }
   }
 
   const handleOnChangeText = (date: string) => {
     if (date) {
-      setHasError(false)
+      setError([])
     }
 
     setValue('birthDate', date)
@@ -52,11 +89,11 @@ export const BirthDateScreen = () => {
       label={<Label primary="Et enfin 🎁" secondary="Ton anniversaire..." />}
       bottomInfo={
         <Info
-          hide={!hasError}
+          hide={!error.length}
           withHapticFeedback
           color="danger"
-          primary="🙄 Es-tu certain de ta date d’anniversaire ?"
-          secondary="Aide : Fais un effort ou bien demande à ta maman…"
+          primary={error[0]}
+          secondary={error[1]}
         />
       }
     >

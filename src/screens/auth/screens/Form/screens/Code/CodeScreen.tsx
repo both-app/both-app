@@ -12,21 +12,24 @@ const CODE_LENGTH = 6
 
 export const CodeScreen = () => {
   const navigation = useNavigation()
-  const [hasError, setHasError] = useState(false)
+  const [error, setError] = useState<[string, string] | []>([])
   const { values, setValue } = useContext(AuthFormContext)
 
   const handleOnNext = () => {
     if (!values.code || values.code.length < CODE_LENGTH) {
-      return setHasError(true)
+      return setError([
+        '😥 Code invalide !',
+        "Aide : Vérifie bien le code que ton acolyte t'a donné...",
+      ])
     }
 
     navigation.navigate('Gender')
-    return setHasError(false)
+    return setError([])
   }
 
   const handleOnChangeText = (value) => {
     if (value) {
-      setHasError(false)
+      setError([])
     }
 
     setValue('code', value)
@@ -49,11 +52,11 @@ export const CodeScreen = () => {
       }
       bottomInfo={
         <Info
-          hide={!hasError}
+          hide={!error.length}
           withHapticFeedback
           color="danger"
-          primary="😥 Code invalide !"
-          secondary="Aide : Vérifie bien le code que ton acolyte t'a donné..."
+          primary={error[0]}
+          secondary={error[1]}
         />
       }
     >

@@ -11,21 +11,31 @@ import { AuthFormContext } from '../../../../AuthForm.context'
 
 export const FirstNameScreen = () => {
   const navigation = useNavigation()
-  const [hasError, setHasError] = useState(false)
+  const [error, setError] = useState<[string, string] | []>([])
   const { values, setValue } = useContext(AuthFormContext)
 
   const handleOnNext = () => {
     if (!values.firstName) {
-      return setHasError(true)
+      return setError([
+        '🤔 Flemme de taper ton prénom ?',
+        'Aide : Mets au moins tes initiales pour continuer...',
+      ])
+    }
+
+    if (values.firstName.length < 2) {
+      return setError([
+        '😰 Soit plus précis',
+        'Aide : Il faut au minimum 2 caractères, tu peux le faire...',
+      ])
     }
 
     navigation.navigate('JoinOrCreate')
-    return setHasError(false)
+    return setError([])
   }
 
   const handleOnChangeText = (value) => {
     if (value) {
-      setHasError(false)
+      setError([])
     }
 
     setValue('firstName', value)
@@ -39,11 +49,11 @@ export const FirstNameScreen = () => {
       label={<Label primary="Bonjour ☀️" secondary="Comment t'appelles-tu ?" />}
       bottomInfo={
         <Info
-          hide={!hasError}
+          hide={!error.length}
           withHapticFeedback
           color="danger"
-          primary="🤔 Flemme de taper ton prénom ?"
-          secondary="Aide : Mets au moins tes initiales pour continuer…"
+          primary={error[0]}
+          secondary={error[1]}
         />
       }
     >

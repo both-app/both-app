@@ -8,7 +8,7 @@ export interface APIResponse<T> {
 }
 
 export const api = axios.create({
-  baseURL: 'https://api.com/',
+  baseURL: 'https://both-app.herokuapp.com/',
   headers: {
     Accept: 'application/json',
   },
