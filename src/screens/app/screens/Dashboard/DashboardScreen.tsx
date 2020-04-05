@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext } from 'react'
 import { View, StyleSheet, ScrollView, RefreshControl } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
@@ -9,16 +9,12 @@ import { CardButton } from 'library/components/CardButton'
 import { Header, Week, Body } from './components/Header'
 import { TaskAddedModalContainer } from './components/TaskAddedModal'
 import { ShareRelationKeyModalContainer } from './components/ShareRelationKeyModal'
-import { RelationContext } from 'screens/app/contexts/Relation.context'
+import { UsersContext } from 'screens/app/contexts/Users.context'
 
 export const DashboardScreen = () => {
   const navigation = useNavigation()
   const [isFetchingList, setIsFetchingList] = useState(false)
-  const { relation } = useContext(RelationContext)
-
-  useEffect(() => {
-    console.log('RELATION', relation)
-  }, [relation])
+  const { me } = useContext(UsersContext)
 
   const handleOnRefresh = () => {
     setIsFetchingList(true)
@@ -34,7 +30,7 @@ export const DashboardScreen = () => {
         <Week>Semaine 17 • Samedi 28 mars</Week>
 
         <Body
-          leftUserName="Mathieu"
+          leftUserName={me.firstName}
           rightUserName="Charlotte"
           leftPoints={105}
           rightPoints={10}

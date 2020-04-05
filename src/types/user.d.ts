@@ -1,7 +1,7 @@
 interface User {
   id: string
   firstName: string
-  gender: string
+  gender: 'male' | 'female' | 'other'
   relationId: string
   birthDate: string
 }

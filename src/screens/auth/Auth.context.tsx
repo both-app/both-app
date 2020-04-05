@@ -1,9 +1,14 @@
 import React, { FC, createContext, useMemo, useEffect, useState } from 'react'
+
 import { getItem, setItem, clear } from 'res/storage'
 
 interface AuthContextProps {
   isConnected: boolean
-  login: (params: { jwtToken: string; relation: Relation }) => Promise<void>
+  login: (params: {
+    jwtToken: string
+    relation: Relation
+    user: User
+  }) => Promise<void>
   logout: () => Promise<void>
 }
 
@@ -19,7 +24,7 @@ const AuthContextProvider: FC = ({ children }) => {
   const [isConnected, setIsConnected] = useState(false)
 
   useEffect(() => {
-    const checkIfConnected = async () => {
+    const reHydrateData = async () => {
       const jwtToken = await getItem('jwtToken')
 
       if (jwtToken) {
@@ -27,13 +32,14 @@ const AuthContextProvider: FC = ({ children }) => {
       }
     }
 
-    checkIfConnected()
+    reHydrateData()
   }, [])
 
   const login: AuthContextProps['login'] = async (params) => {
     await Promise.all([
       setItem('jwtToken', params.jwtToken),
       setItem('relation', params.relation),
+      setItem('users', { me: params.user }),
     ])
 
     setIsConnected(true)

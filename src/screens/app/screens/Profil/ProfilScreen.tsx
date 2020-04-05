@@ -11,10 +11,12 @@ import { CardButton } from 'library/components/CardButton'
 import { MinimalButton } from 'library/components/MinimalButton'
 import { AuthContext } from 'screens/auth'
 import { Avatar } from 'library/components/Avatar'
+import { UsersContext } from 'screens/app/contexts/Users.context'
 
 export const ProfilScreen = () => {
   const navigation = useNavigation()
   const { logout } = useContext(AuthContext)
+  const { me } = useContext(UsersContext)
 
   const handleFeedback = async () => {
     await WebBrowser.openBrowserAsync('https://payfit.com')
@@ -48,9 +50,14 @@ export const ProfilScreen = () => {
         />
       </View>
 
-      <Avatar size="medium" backgroundColor="dark200" firstname="M" />
+      <Avatar
+        size="medium"
+        backgroundColor="dark200"
+        firstname={me.firstName}
+        avatarColor="white"
+      />
 
-      <Text style={styles.firstname}>Mathieu</Text>
+      <Text style={styles.firstname}>{me.firstName}</Text>
 
       <Info
         color="dark200"

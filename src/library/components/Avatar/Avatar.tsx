@@ -12,16 +12,17 @@ interface AvatarProps {
   size: 'large' | 'medium' | 'small'
   borderColor?: Color
   backgroundColor?: Color
+  avatarColor?: Color
   onAction?: VoidFunction
 }
 
 export const Avatar: FC<AvatarProps> = ({
   firstname,
-  children,
   isLoading,
   size = 48,
   borderColor,
   backgroundColor,
+  avatarColor,
   onAction,
 }) => {
   const { rotateData, startRotate, stopRotate } = useRotationAnimation({
@@ -67,6 +68,7 @@ export const Avatar: FC<AvatarProps> = ({
 
   const avatarText = {
     ...styles.avatarText,
+    ...(avatarColor ? { color: colors[avatarColor] } : {}),
     fontSize,
   }
 
@@ -76,7 +78,6 @@ export const Avatar: FC<AvatarProps> = ({
     <TouchableOpacity activeOpacity={1} onPress={handleOnPress}>
       <Animated.View style={avatarStyle}>
         {firstname && <Text style={avatarText}>{firstname[0]}</Text>}
-        {children}
       </Animated.View>
     </TouchableOpacity>
   )
