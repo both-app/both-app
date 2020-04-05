@@ -1,9 +1,9 @@
-import React, { FC, createContext, useMemo, useState, useEffect } from 'react'
-import { getItem, setItem, removeItem } from 'res/storage'
+import React, { FC, createContext, useMemo, useEffect, useState } from 'react'
+import { getItem, setItem, clear } from 'res/storage'
 
 interface AuthContextProps {
   isConnected: boolean
-  login: (jwtToken: string) => Promise<void>
+  login: (params: { jwtToken: string; relation: Relation }) => Promise<void>
   logout: () => Promise<void>
 }
 
@@ -16,7 +16,7 @@ const AuthContext = createContext<AuthContextProps>({
 })
 
 const AuthContextProvider: FC = ({ children }) => {
-  const [isConnected, setIsConnected] = useState<boolean>(false)
+  const [isConnected, setIsConnected] = useState(false)
 
   useEffect(() => {
     const checkIfConnected = async () => {
@@ -30,13 +30,17 @@ const AuthContextProvider: FC = ({ children }) => {
     checkIfConnected()
   }, [])
 
-  const login = async (jwtToken: string) => {
-    await setItem('jwtToken', jwtToken)
+  const login: AuthContextProps['login'] = async (params) => {
+    await Promise.all([
+      setItem('jwtToken', params.jwtToken),
+      setItem('relation', params.relation),
+    ])
+
     setIsConnected(true)
   }
 
   const logout = async () => {
-    await removeItem('jwtToken')
+    await clear()
     setIsConnected(false)
   }
 

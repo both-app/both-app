@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { View, StyleSheet, ScrollView, RefreshControl } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
@@ -9,10 +9,16 @@ import { CardButton } from 'library/components/CardButton'
 import { Header, Week, Body } from './components/Header'
 import { TaskAddedModalContainer } from './components/TaskAddedModal'
 import { ShareRelationKeyModalContainer } from './components/ShareRelationKeyModal'
+import { RelationContext } from 'screens/app/contexts/Relation.context'
 
 export const DashboardScreen = () => {
   const navigation = useNavigation()
   const [isFetchingList, setIsFetchingList] = useState(false)
+  const { relation } = useContext(RelationContext)
+
+  useEffect(() => {
+    console.log('RELATION', relation)
+  }, [relation])
 
   const handleOnRefresh = () => {
     setIsFetchingList(true)

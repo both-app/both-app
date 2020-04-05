@@ -1,16 +1,16 @@
 import { AsyncStorage } from 'react-native'
 
-export type StorageKey = 'jwtToken'
+export type StorageKey = 'jwtToken' | 'relation' | 'shareKeyModalDisplayed'
 
-export const setItem = async (key: StorageKey, value: any) => {
-  try {
-    await AsyncStorage.setItem(key, value)
-    console.log('AsyncStorage Success: ', key, value)
-  } catch (error) {
-    console.log('AsyncStorage Error: ' + error.message)
-  }
+export const setItem = (key: StorageKey, value: any) =>
+  AsyncStorage.setItem(key, JSON.stringify(value))
+
+export const getItem = async (key: StorageKey) => {
+  const value = await AsyncStorage.getItem(key)
+
+  return JSON.parse(value)
 }
 
-export const getItem = (key: StorageKey) => AsyncStorage.getItem(key)
-
 export const removeItem = (key: StorageKey) => AsyncStorage.removeItem(key)
+
+export const clear = () => AsyncStorage.clear()

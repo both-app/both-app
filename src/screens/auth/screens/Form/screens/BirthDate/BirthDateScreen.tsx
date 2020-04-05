@@ -46,7 +46,7 @@ export const BirthDateScreen = () => {
       gender: values.gender,
     })
 
-    login(result.data.data.jwtToken)
+    login(result.data.data)
   }
 
   const joinRelationAndLogin = async () => {
@@ -58,7 +58,7 @@ export const BirthDateScreen = () => {
         code: values.code,
       })
 
-      login(result.data.data.jwtToken)
+      login(result.data.data)
     } catch (e) {
       setError([
         '😥 Code invalide !',

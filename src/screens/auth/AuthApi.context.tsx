@@ -4,14 +4,8 @@ import { AxiosResponse } from 'axios'
 
 type AuthResponse = APIResponse<{
   jwtToken: string
-  relation: { id: string; code: string }
-  user: {
-    id: string
-    firstName: string
-    gender: string
-    relationId: string
-    birthDate: string
-  }
+  relation: Relation
+  user: User
 }>
 
 interface AuthApiContextProps {
