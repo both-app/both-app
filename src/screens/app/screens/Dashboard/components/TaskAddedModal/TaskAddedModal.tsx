@@ -22,7 +22,7 @@ export const TaskAddedModal: FC<TaskAddedModalProps> = ({
 }) => (
   <Modal
     visible={visible}
-    emoji={task?.icon}
+    emoji={task?.emoji}
     onClose={onClose}
     onAction={onAction}
     primaryActionIconName="check"

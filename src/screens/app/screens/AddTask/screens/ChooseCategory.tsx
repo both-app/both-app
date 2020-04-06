@@ -9,6 +9,8 @@ import { FormLayout } from 'library/layouts/FormLayout'
 import { Label } from 'library/components/Label'
 import { CardButton } from 'library/components/CardButton'
 
+import { wait } from 'res/utils'
+
 export const ChooseCategoryScreen = () => {
   const [selectedCategoryId, setSelectedCategoryId] = useState('')
 
@@ -17,13 +19,13 @@ export const ChooseCategoryScreen = () => {
 
   const navigation = useNavigation()
 
-  const handleOnAction = (categoryId: string) => {
+  const handleOnAction = async (categoryId: string) => {
     setSelectedCategoryId(categoryId)
 
-    setTimeout(() => {
-      navigation.navigate('ChooseTask', { categoryId })
-      setSelectedCategoryId('')
-    }, 50)
+    await wait(50)
+
+    navigation.navigate('ChooseTask', { categoryId })
+    setSelectedCategoryId('')
   }
 
   const handleOnClose = () => {

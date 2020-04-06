@@ -1,4 +1,11 @@
-import React, { FC, createContext, useState, useMemo, useEffect } from 'react'
+import React, {
+  FC,
+  createContext,
+  useState,
+  useMemo,
+  useEffect,
+  useCallback,
+} from 'react'
 
 import { api, APIResponse } from 'res/api'
 import { setItem, getItem } from 'res/storage'
@@ -42,9 +49,10 @@ const CategoryContextProvider: FC = ({ children }) => {
     reHydrateData()
   }, [])
 
-  const getCategoryById = (categoryId: string) => {
-    return categories.find(({ id }) => id === categoryId)
-  }
+  const getCategoryById = useCallback(
+    (categoryId: string) => categories.find(({ id }) => id === categoryId),
+    [categories]
+  )
 
   const categoryContextApi = useMemo(
     () => ({

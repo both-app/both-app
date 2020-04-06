@@ -1,4 +1,4 @@
-interface RelationTask {
+interface UserTask {
   id: string
   taskId: string
   userId: string

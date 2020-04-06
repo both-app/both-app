@@ -5,6 +5,8 @@ import { useNavigation, useRoute } from '@react-navigation/core'
 import { CategoryContext } from 'screens/app/contexts/Category.context'
 import { TaskContext } from 'screens/app/contexts/Task.context'
 
+import { wait } from 'res/utils'
+
 import { FormLayout } from 'library/layouts/FormLayout'
 import { Label } from 'library/components/Label'
 import { CardButton } from 'library/components/CardButton'
@@ -28,13 +30,13 @@ export const ChooseTaskScreen = () => {
     setCategory(category)
   }, [])
 
-  const handleOnAction = (taskId: string) => {
+  const handleOnAction = async (taskId: string) => {
     setSelectedTaskId(taskId)
 
-    setTimeout(() => {
-      setTaskIdCompleted(taskId)
-      navigation.navigate('Dashboard')
-    }, 200)
+    await wait(200)
+
+    setTaskIdCompleted(taskId)
+    navigation.navigate('Dashboard')
   }
 
   const tasks = getTasksByCategoryId(categoryId)

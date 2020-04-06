@@ -4,4 +4,5 @@ interface Task {
   emoji: string
   name: string
   points: number
+  serverOnly: boolean
 }

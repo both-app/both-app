@@ -1,4 +1,11 @@
-import React, { FC, createContext, useState, useMemo, useEffect } from 'react'
+import React, {
+  FC,
+  createContext,
+  useState,
+  useMemo,
+  useEffect,
+  useCallback,
+} from 'react'
 
 import { api, APIResponse } from 'res/api'
 import { setItem, getItem } from 'res/storage'
@@ -49,9 +56,13 @@ const TaskContextProvider: FC = ({ children }) => {
     reHydrateData()
   }, [])
 
-  const getTasksByCategoryId = (categoryId: string) => {
-    return tasks.filter((task) => task.categoryId === categoryId)
-  }
+  const getTasksByCategoryId = useCallback(
+    (categoryId: string) =>
+      tasks
+        .filter((task) => task.categoryId === categoryId)
+        .filter((task) => !task.serverOnly),
+    [tasks]
+  )
 
   const getTaskById = (taskId: string) => {
     return tasks.find((task) => task.id === taskId)

@@ -3,12 +3,14 @@ import { View, StyleSheet, ScrollView, RefreshControl } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import { colors } from 'res/colors'
+import { wait } from 'res/utils'
 
 import { Info } from 'library/components/Info'
 import { CardButton } from 'library/components/CardButton'
 import { Header, Week, Body } from './components/Header'
 import { TaskAddedModalContainer } from './components/TaskAddedModal'
 import { ShareRelationKeyModalContainer } from './components/ShareRelationKeyModal'
+
 import { UsersContext } from 'screens/app/contexts/Users.context'
 import { RelationContext } from 'screens/app/contexts/Relation.context'
 
@@ -18,12 +20,12 @@ export const DashboardScreen = () => {
   const { me } = useContext(UsersContext)
   const { setShareKeyModal } = useContext(RelationContext)
 
-  const handleOnRefresh = () => {
+  const handleOnRefresh = async () => {
     setIsFetchingList(true)
 
-    setTimeout(() => {
-      setIsFetchingList(false)
-    }, 5000)
+    await wait(500)
+
+    setIsFetchingList(false)
   }
 
   const goToTheProfilPage = () => navigation.navigate('Profil')
