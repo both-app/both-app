@@ -44,7 +44,7 @@ export const ChooseCategoryScreen = () => {
         {categories.map((category, index) => (
           <CardButton
             key={category.id}
-            emoji={category.icon}
+            emoji={category.emoji}
             title={category.name}
             subtitle={`${getTasksByCategoryId(category.id).length} tâches`}
             onAction={() => handleOnAction(category.id)}

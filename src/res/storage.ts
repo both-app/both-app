@@ -6,6 +6,8 @@ export type StorageKey =
   | 'relation'
   | 'shareKeyModalInited'
   | 'users'
+  | 'categories'
+  | 'tasks'
 
 export const setItem = (key: StorageKey, value: any) => {
   try {

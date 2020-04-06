@@ -45,7 +45,7 @@ export const ChooseTaskScreen = () => {
       onBackAction={() => navigation.goBack()}
       label={
         <Label
-          primary={`${selectedCategory?.name} ${selectedCategory?.icon}`}
+          primary={`${selectedCategory?.name} ${selectedCategory?.emoji}`}
           secondary="Et qu'as tu fait ?"
         />
       }
@@ -57,7 +57,7 @@ export const ChooseTaskScreen = () => {
         {tasks.map((task, index) => (
           <CardButton
             key={task.id}
-            emoji={task.icon}
+            emoji={task.emoji}
             title={task.name}
             onAction={() => handleOnAction(task.id)}
             activeBackgroundColor={selectedCategory?.color}

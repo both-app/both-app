@@ -1,6 +1,10 @@
 import React, { FC, createContext, useState, useMemo, useEffect } from 'react'
 
-import { CATEGORIES } from 'res/fixtures'
+import { api, APIResponse } from 'res/api'
+import { setItem, getItem } from 'res/storage'
+import { getNativeEmoji } from 'res/emoji'
+
+type CategoriesResponse = APIResponse<{ categories: Category[] }>
 
 interface CategoryContextProps {
   categories: Category[]
@@ -17,11 +21,25 @@ const CategoryContextProvider: FC = ({ children }) => {
   const [categories, setCategories] = useState<Category[]>([])
 
   useEffect(() => {
-    const fetchCategories = () => {
-      setCategories(CATEGORIES)
+    const fetchCategories = async () => {
+      const result = await api.get<CategoriesResponse>('/categories')
+
+      const newCategories = result.data.data.categories.map((category) => ({
+        ...category,
+        emoji: getNativeEmoji(category.emoji),
+      }))
+
+      setItem('categories', newCategories)
+      setCategories(newCategories)
     }
 
-    fetchCategories()
+    const reHydrateData = async () => {
+      const newCategories = await getItem('categories')
+      setCategories(newCategories)
+      fetchCategories()
+    }
+
+    reHydrateData()
   }, [])
 
   const getCategoryById = (categoryId: string) => {

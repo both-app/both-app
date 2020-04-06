@@ -1,6 +1,6 @@
 interface Category {
   id: string
-  icon: string
+  emoji: string
   name: string
   color: string
 }

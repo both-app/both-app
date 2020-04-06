@@ -1,6 +1,8 @@
 import React, { FC, createContext, useState, useMemo, useEffect } from 'react'
 
-import { TASKS } from 'res/fixtures'
+import { api, APIResponse } from 'res/api'
+import { setItem, getItem } from 'res/storage'
+import { getNativeEmoji } from 'res/emoji'
 
 interface TaskContextProps {
   getTasksByCategoryId: (id: string) => Task[]
@@ -8,6 +10,8 @@ interface TaskContextProps {
   taskIdCompeted: string
   setTaskIdCompleted: (id: string) => void
 }
+
+type TasksResponse = APIResponse<{ tasks: Task[] }>
 
 const TaskContext = createContext<TaskContextProps>({
   // @ts-ignore
@@ -24,11 +28,25 @@ const TaskContextProvider: FC = ({ children }) => {
   const [taskIdCompleted, setTaskIdCompleted] = useState<string>()
 
   useEffect(() => {
-    const fetchTasks = () => {
-      setTasks(TASKS)
+    const fetchTasks = async () => {
+      const result = await api.get<TasksResponse>('/tasks')
+
+      const tasks = result.data.data.tasks.map((task) => ({
+        ...task,
+        emoji: getNativeEmoji(task.emoji),
+      }))
+
+      setItem('tasks', tasks)
+      setTasks(tasks)
     }
 
-    fetchTasks()
+    const reHydrateData = async () => {
+      const tasks = await getItem('tasks')
+      setTasks(tasks)
+      fetchTasks()
+    }
+
+    reHydrateData()
   }, [])
 
   const getTasksByCategoryId = (categoryId: string) => {

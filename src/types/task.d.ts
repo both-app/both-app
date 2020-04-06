@@ -1,7 +1,7 @@
 interface Task {
   id: string
   categoryId: string
-  icon: string
+  emoji: string
   name: string
   points: number
 }
