@@ -26,6 +26,7 @@ export interface CardButtonProps {
   points?: number
   disabled?: boolean
   withHapticFeedback?: boolean
+  onLongPress?: VoidFunction
 }
 
 export const CardButton: FC<CardButtonProps> = ({
@@ -38,6 +39,7 @@ export const CardButton: FC<CardButtonProps> = ({
   activeTextColor = colors.dark100,
   disabled,
   withHapticFeedback,
+  onLongPress,
   ...props
 }) => {
   const [isActive, setIsActive] = useState(false)
@@ -87,6 +89,7 @@ export const CardButton: FC<CardButtonProps> = ({
       onPressIn={handleOnPressInOrOut}
       onPress={handleOnPress}
       disabled={disabled}
+      onLongPress={onLongPress}
     >
       <View style={styles.leftInner}>
         <Text style={styles.emoji}>{emoji}</Text>

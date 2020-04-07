@@ -1,1 +1,1 @@
-export { TaskAddedModalContainer } from './TaskAddedModal.container'
+export { TaskAddedModalContainer as TaskAddedModal } from './TaskAddedModal.container'

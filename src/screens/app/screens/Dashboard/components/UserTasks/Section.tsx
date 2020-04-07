@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
   section: {
     fontSize: 14,
     color: colors.dark100,
+    textTransform: 'capitalize',
     marginTop: 16,
   },
 })

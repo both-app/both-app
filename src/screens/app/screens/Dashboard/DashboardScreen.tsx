@@ -1,32 +1,23 @@
-import React, { useState, useContext } from 'react'
-import { View, StyleSheet, ScrollView, RefreshControl } from 'react-native'
+import React, { useContext } from 'react'
+import { View, StyleSheet, StatusBar } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import { colors } from 'res/colors'
-import { wait } from 'res/utils'
 
 import { Info } from 'library/components/Info'
-import { CardButton } from 'library/components/CardButton'
 import { Header, Week, Body } from './components/Header'
-import { TaskAddedModalContainer } from './components/TaskAddedModal'
-import { ShareRelationKeyModalContainer } from './components/ShareRelationKeyModal'
+import { TaskAddedModal } from './components/TaskAddedModal'
+import { ShareRelationKeyModal } from './components/ShareRelationKeyModal'
 
 import { UsersContext } from 'screens/app/contexts/Users.context'
 import { RelationContext } from 'screens/app/contexts/Relation.context'
 
+import { UserTasks } from './components/UserTasks'
+
 export const DashboardScreen = () => {
   const navigation = useNavigation()
-  const [isFetchingList, setIsFetchingList] = useState(false)
   const { me } = useContext(UsersContext)
   const { setShareKeyModal } = useContext(RelationContext)
-
-  const handleOnRefresh = async () => {
-    setIsFetchingList(true)
-
-    await wait(500)
-
-    setIsFetchingList(false)
-  }
 
   const goToTheProfilPage = () => navigation.navigate('Profil')
 
@@ -34,8 +25,9 @@ export const DashboardScreen = () => {
 
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="light-content" />
       <Header>
-        <Week>Semaine 17 • Samedi 28 mars</Week>
+        <Week />
 
         <Body
           leftUserName={me.firstName}
@@ -53,26 +45,10 @@ export const DashboardScreen = () => {
         />
       </Header>
 
-      <ScrollView
-        style={styles.listContainer}
-        showsVerticalScrollIndicator={false}
-        refreshControl={
-          <RefreshControl
-            refreshing={isFetchingList}
-            onRefresh={handleOnRefresh}
-          />
-        }
-      >
-        <CardButton
-          emoji="➕"
-          title="Ajouter une tâche"
-          withHapticFeedback
-          onAction={() => navigation.navigate('AddTask')}
-        />
-      </ScrollView>
+      <UserTasks />
 
-      <ShareRelationKeyModalContainer />
-      <TaskAddedModalContainer />
+      <ShareRelationKeyModal />
+      <TaskAddedModal />
     </View>
   )
 }
@@ -82,18 +58,5 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.dark100,
     paddingTop: 65,
-  },
-  listContainer: {
-    flex: 1,
-    backgroundColor: colors.skin100,
-    borderTopRightRadius: 10,
-    borderTopLeftRadius: 10,
-    paddingTop: 24,
-    paddingLeft: 24,
-    paddingRight: 24,
-    paddingBottom: 13,
-  },
-  list: {
-    flex: 1,
   },
 })

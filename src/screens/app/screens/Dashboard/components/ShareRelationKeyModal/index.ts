@@ -1,1 +1,1 @@
-export { ShareRelationKeyModalContainer } from './ShareRelationKeyModal.container'
+export { ShareRelationKeyModalContainer as ShareRelationKeyModal } from './ShareRelationKeyModal.container'

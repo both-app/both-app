@@ -49,7 +49,10 @@ const TaskContextProvider: FC = ({ children }) => {
 
     const reHydrateData = async () => {
       const tasks = await getItem('tasks')
-      setTasks(tasks)
+      if (tasks) {
+        setTasks(tasks)
+      }
+
       fetchTasks()
     }
 
@@ -64,9 +67,10 @@ const TaskContextProvider: FC = ({ children }) => {
     [tasks]
   )
 
-  const getTaskById = (taskId: string) => {
-    return tasks.find((task) => task.id === taskId)
-  }
+  const getTaskById = useCallback(
+    (taskId: string) => tasks.find((task) => task.id === taskId),
+    [tasks]
+  )
 
   const taskContextApi = useMemo(
     () => ({

@@ -9,14 +9,14 @@ import { UserTaskContextProvider } from './contexts/UserTask.context'
 
 export const App = () => (
   <UsersContextProvider>
-    <UserTaskContextProvider>
-      <RelationContextProvider>
-        <CategoryContextProvider>
-          <TaskContextProvider>
+    <CategoryContextProvider>
+      <TaskContextProvider>
+        <UserTaskContextProvider>
+          <RelationContextProvider>
             <AppNavigator />
-          </TaskContextProvider>
-        </CategoryContextProvider>
-      </RelationContextProvider>
-    </UserTaskContextProvider>
+          </RelationContextProvider>
+        </UserTaskContextProvider>
+      </TaskContextProvider>
+    </CategoryContextProvider>
   </UsersContextProvider>
 )

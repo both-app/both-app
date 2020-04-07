@@ -10,6 +10,7 @@ import { wait } from 'res/utils'
 import { FormLayout } from 'library/layouts/FormLayout'
 import { Label } from 'library/components/Label'
 import { CardButton } from 'library/components/CardButton'
+import { UserTaskContext } from 'screens/app/contexts/UserTask.context'
 
 export const ChooseTaskScreen = () => {
   const [selectedCategory, setCategory] = useState<Category>()
@@ -17,6 +18,7 @@ export const ChooseTaskScreen = () => {
 
   const { getCategoryById } = useContext(CategoryContext)
   const { getTasksByCategoryId, setTaskIdCompleted } = useContext(TaskContext)
+  const { addNewUserTask } = useContext(UserTaskContext)
 
   const route = useRoute()
   const navigation = useNavigation()
@@ -32,6 +34,8 @@ export const ChooseTaskScreen = () => {
 
   const handleOnAction = async (taskId: string) => {
     setSelectedTaskId(taskId)
+
+    addNewUserTask(taskId)
 
     await wait(200)
 

@@ -42,7 +42,10 @@ const CategoryContextProvider: FC = ({ children }) => {
 
     const reHydrateData = async () => {
       const newCategories = await getItem('categories')
-      setCategories(newCategories)
+      if (newCategories) {
+        setCategories(newCategories)
+      }
+
       fetchCategories()
     }
 

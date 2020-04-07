@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserTaskReducer deleteUserTask 1`] = `
+Object {
+  "allIds": Array [],
+  "byId": Object {
+    "A": Object {
+      "createdAt": "2020-04-06T18:52:08.085Z",
+      "id": "A",
+      "relationId": "relationIdA",
+      "taskId": "taskIdA",
+      "userId": "userIdA",
+    },
+  },
+}
+`;
+
+exports[`UserTaskReducer pushAllUserTasks 1`] = `
+Object {
+  "allIds": Array [
+    "B",
+    "C",
+  ],
+  "byId": Object {
+    "B": Object {
+      "createdAt": "2020-04-06",
+      "id": "B",
+      "relationId": "relationIdA",
+      "taskId": "taskId1",
+      "userId": "userIdA",
+    },
+    "C": Object {
+      "createdAt": "2020-04-06",
+      "id": "C",
+      "relationId": "relationIdA",
+      "taskId": "taskId1",
+      "userId": "userIdB",
+    },
+  },
+}
+`;
+
+exports[`UserTaskReducer pushUserTask 1`] = `
+Object {
+  "allIds": Array [
+    "B",
+    "A",
+  ],
+  "byId": Object {
+    "A": Object {
+      "createdAt": "2020-04-06T18:52:08.085Z",
+      "id": "A",
+      "relationId": "relationIdA",
+      "taskId": "taskIdA",
+      "userId": "userIdA",
+    },
+    "B": Object {
+      "createdAt": "2020-04-06",
+      "id": "B",
+      "relationId": "relationIdA",
+      "taskId": "taskId1",
+      "userId": "userIdA",
+    },
+  },
+}
+`;
