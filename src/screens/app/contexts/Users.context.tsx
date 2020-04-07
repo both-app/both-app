@@ -54,9 +54,10 @@ const UsersContextProvider: FC = ({ children }) => {
     const reHydrateData = async () => {
       const users = (await getItem('users')) as UsersContextState
 
+      Sentry.setUser(users.me)
+
       if (users) {
-        Sentry.setUser(users.me)
-        setState(users)
+        setState({ ...state, ...users })
       }
 
       fetchUsers()

@@ -3,14 +3,14 @@ import { Text, StyleSheet } from 'react-native'
 
 import { colors } from 'res/colors'
 
-const getNumberOfWeek = (now) => {
+const getNumberOfWeek = (now: Date) => {
   const firstDayOfYear = new Date(now.getFullYear(), 0, 1)
   // @ts-ignore
   const pastDaysOfYear = (now - firstDayOfYear) / 86400000
   return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7)
 }
 
-export const Week = () => {
+export const WeekInfo = () => {
   const now = new Date()
 
   const todayDate = now.toLocaleDateString('fr-FR', {

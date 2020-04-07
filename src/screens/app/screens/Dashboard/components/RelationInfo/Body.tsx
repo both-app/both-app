@@ -5,11 +5,12 @@ import { Avatar } from 'library/components/Avatar'
 
 import { fonts } from 'res/fonts'
 import { colors } from 'res/colors'
+
 import { useCounter } from './useCounter'
 
 interface BodyProps {
-  leftUserName: string
-  rightUserName: string
+  leftFirstName: string
+  rightFirstName: string
   leftPoints: number
   rightPoints: number
   onLeftAction: VoidFunction
@@ -17,8 +18,8 @@ interface BodyProps {
 }
 
 export const Body: FC<BodyProps> = ({
-  leftUserName,
-  rightUserName,
+  leftFirstName,
+  rightFirstName,
   onLeftAction,
   onRightAction,
   ...props
@@ -28,11 +29,7 @@ export const Body: FC<BodyProps> = ({
 
   return (
     <View style={styles.bodyContainer}>
-      <Avatar
-        firstname={leftUserName[0]}
-        size="small"
-        onAction={onLeftAction}
-      />
+      <Avatar firstname={leftFirstName} size="small" onAction={onLeftAction} />
 
       <View style={styles.counterContainer}>
         <View style={styles.left}>
@@ -50,7 +47,11 @@ export const Body: FC<BodyProps> = ({
         </View>
       </View>
 
-      <Avatar isLoading firstname="⏳" size="small" onAction={onRightAction} />
+      <Avatar
+        firstname={rightFirstName}
+        size="small"
+        onAction={onRightAction}
+      />
     </View>
   )
 }

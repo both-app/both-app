@@ -5,6 +5,7 @@ import {
   TouchableWithoutFeedback,
   KeyboardAvoidingView,
   Platform,
+  StatusBar,
 } from 'react-native'
 
 import { MinimalButton } from 'library/components/MinimalButton'
@@ -36,6 +37,7 @@ export const FormLayout: FC<FormLayoutProps> = ({
     style={styles.container}
     behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
   >
+    <StatusBar barStyle="dark-content" />
     <TouchableWithoutFeedback>
       <>
         {onBackAction && (
