@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { View, Text, StyleSheet, Alert } from 'react-native'
+import { View, Text, StyleSheet, Alert, StatusBar } from 'react-native'
 import * as WebBrowser from 'expo-web-browser'
 import { useNavigation } from '@react-navigation/native'
 
@@ -12,11 +12,15 @@ import { MinimalButton } from 'library/components/MinimalButton'
 import { AuthContext } from 'screens/auth'
 import { Avatar } from 'library/components/Avatar'
 import { UsersContext } from 'screens/app/contexts/Users.context'
+import { RelationContext } from 'screens/app/contexts/Relation.context'
+import { useT } from 'res/i18n'
 
 export const ProfilScreen = () => {
+  const { t } = useT()
   const navigation = useNavigation()
   const { logout } = useContext(AuthContext)
   const { me } = useContext(UsersContext)
+  const { relation } = useContext(RelationContext)
 
   const handleFeedback = async () => {
     await WebBrowser.openBrowserAsync('https://payfit.com')
@@ -27,21 +31,31 @@ export const ProfilScreen = () => {
   }
 
   const handleEndRelation = () => {
-    Alert.alert('Êtes vous sûrs ?', '', [
+    Alert.alert(t('alert:endRelation:title'), '', [
       {
-        text: 'Non',
+        text: t('alert:endRelation:noButton'),
         style: 'cancel',
       },
       {
-        text: 'Oui',
+        text: t('alert:endRelation:yesButton'),
         style: 'destructive',
         onPress: logout,
       },
     ])
   }
 
+  const daysOfRelation = () => {
+    const now = new Date()
+    const dateOfCreation = new Date(relation.createdAt)
+    const differenceInTime = now.getTime() - dateOfCreation.getTime()
+    const differenceInDay = Math.round(differenceInTime / (1000 * 3600 * 24))
+
+    return differenceInDay + 1
+  }
+
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="dark-content" />
       <View style={styles.close}>
         <MinimalButton
           iconName="close"
@@ -61,41 +75,44 @@ export const ProfilScreen = () => {
 
       <Info
         color="dark200"
-        primary="✨ 12 jours de relation"
-        secondary="On est vraiment heureux et touché que tu partages une partie de ton quotidien avec Both"
+        primary={t('app:screen:profil:numberOfRelationDays', {
+          count: daysOfRelation(),
+          days: daysOfRelation(),
+        })}
+        secondary={t('app:screen:profil:thankToUseBoth')}
       />
 
       <View style={styles.links}>
         <CardButton
           emoji="⚙️"
-          title="Paramètres"
-          subtitle="Les trucs qu’on ne savait pas où ranger"
+          title={t('app:screen:profil:button:settings:title')}
+          subtitle={t('app:screen:profil:button:settings:subtitle')}
           withHapticFeedback
         />
         <CardButton
           emoji="💔"
-          title="Mettre fin à la relation"
-          subtitle="C’est fini avec Charlotte..?"
+          title={t('app:screen:profil:button:endRelation:title')}
+          subtitle={t('app:screen:profil:button:endRelation:subtitle')}
           onAction={handleEndRelation}
           withHapticFeedback
         />
         <CardButton
           emoji="👪"
-          title="Le trio derrière l’app Both"
-          subtitle="Coucou c’est nous !"
+          title={t('app:screen:profil:button:theTeam:title')}
+          subtitle={t('app:screen:profil:button:theTeam:subtitle')}
           withHapticFeedback
         />
         <CardButton
           emoji="💡"
-          title="Partager des idées d’amélioration"
-          subtitle="Nouvelle catégorie ou fonctionnalité"
+          title={t('app:screen:profil:button:shareIdeas:title')}
+          subtitle={t('app:screen:profil:button:shareIdeas:subtitle')}
           onAction={handleFeedback}
           withHapticFeedback
         />
         <CardButton
           emoji="⭐️"
-          title="Donner 5 étoiles sur le store"
-          subtitle="Ça nous ferait vraiment plaisir"
+          title={t('app:screen:profil:button:voteTheApp:title')}
+          subtitle={t('app:screen:profil:button:voteTheApp:subtitle')}
           onAction={handleRateApp}
           withHapticFeedback
         />

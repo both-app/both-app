@@ -7,7 +7,7 @@ import { ChooseTaskScreen } from './screens/ChooseTask'
 export const Stack = createStackNavigator()
 
 export const AddTaskNavigator = () => (
-  <Stack.Navigator headerMode="none" screenOptions={{ gestureEnabled: false }}>
+  <Stack.Navigator headerMode="none">
     <Stack.Screen component={ChooseCategoryScreen} name="ChooseCategory" />
     <Stack.Screen component={ChooseTaskScreen} name="ChooseTask" />
   </Stack.Navigator>

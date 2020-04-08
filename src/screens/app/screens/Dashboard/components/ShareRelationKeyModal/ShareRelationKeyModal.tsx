@@ -5,6 +5,7 @@ import { Badge } from 'library/components/Badge'
 import { Info } from 'library/components/Info'
 import { Modal } from 'library/components/Modal'
 import { Code } from './Code'
+import { useT } from 'res/i18n'
 
 interface ShareRelationKeyModalProps {
   visible: boolean
@@ -18,27 +19,33 @@ export const ShareRelationKeyModal: FC<ShareRelationKeyModalProps> = ({
   onClose,
   onAction,
   code,
-}) => (
-  <Modal
-    visible={visible}
-    emoji="💌"
-    onClose={onClose}
-    onAction={onAction}
-    primaryActionIconName="share"
-  >
-    <Badge color="highlight100">Invite ton acolyte 💬</Badge>
+}) => {
+  const { t } = useT()
 
-    <Code code={code} />
+  return (
+    <Modal
+      visible={visible}
+      emoji="💌"
+      onClose={onClose}
+      onAction={onAction}
+      primaryActionIconName="share"
+    >
+      <Badge color="highlight100">
+        {t('modal:shareRelationKey:badgeText')}
+      </Badge>
 
-    <View style={styles.infoContainer}>
-      <Info
-        color="white"
-        primary="📲 Voici la clé de te relation sur Both"
-        secondary="Partage la à ton acolyte pour qu’il te rejoigne !"
-      />
-    </View>
-  </Modal>
-)
+      <Code code={code} />
+
+      <View style={styles.infoContainer}>
+        <Info
+          color="white"
+          primary={t('modal:shareRelationKey:info:primary')}
+          secondary={t('modal:shareRelationKey:info:secondary')}
+        />
+      </View>
+    </Modal>
+  )
+}
 
 const styles = StyleSheet.create({
   infoContainer: {

@@ -1,11 +1,14 @@
 import React, { useContext } from 'react'
 import { Share } from 'react-native'
 
+import { setItem } from 'res/storage'
+import { useT } from 'res/i18n'
+
 import { ShareRelationKeyModal } from './ShareRelationKeyModal'
 import { RelationContext } from 'screens/app/contexts/Relation.context'
-import { setItem } from 'res/storage'
 
 export const ShareRelationKeyModalContainer = () => {
+  const { t } = useT()
   const { shareKeyModalOpen, relation, setShareKeyModal } = useContext(
     RelationContext
   )
@@ -18,8 +21,10 @@ export const ShareRelationKeyModalContainer = () => {
   const handleOnAction = async () => {
     try {
       await Share.share({
-        title: 'Join Both relation',
-        message: `Coucou, retrouve moi sur both pour partager de l’amour et un peu de notre quotidien ! Télécharge l’app. en cliquant sur le lien ci-dessous et utilise la clé ${relation.code} pour me rejoindre ❤️`,
+        title: t('modal:shareRelationKey:shareBySMS:title'),
+        message: t('modal:shareRelationKey:shareBySMS:message', {
+          code: relation.code,
+        }),
       })
     } finally {
       handleOnClose()

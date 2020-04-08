@@ -6,6 +6,7 @@ import { CategoryContext } from 'screens/app/contexts/Category.context'
 import { TaskContext } from 'screens/app/contexts/Task.context'
 
 import { wait } from 'res/utils'
+import { useT } from 'res/i18n'
 
 import { FormLayout } from 'library/layouts/FormLayout'
 import { Label } from 'library/components/Label'
@@ -13,6 +14,7 @@ import { CardButton } from 'library/components/CardButton'
 import { UserTaskContext } from 'screens/app/contexts/UserTask.context'
 
 export const ChooseTaskScreen = () => {
+  const { t } = useT()
   const [selectedCategory, setCategory] = useState<Category>()
   const [selectedTaskId, setSelectedTaskId] = useState('')
 
@@ -52,7 +54,7 @@ export const ChooseTaskScreen = () => {
       label={
         <Label
           primary={`${selectedCategory?.name} ${selectedCategory?.emoji}`}
-          secondary="Et qu'as tu fait ?"
+          secondary={t('app:screen:newUserTask:chooseTask:subtitle')}
         />
       }
     >

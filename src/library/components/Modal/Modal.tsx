@@ -1,10 +1,11 @@
 import React, { FC } from 'react'
 import { Modal as RModal, View, Text, StyleSheet } from 'react-native'
 
+import { colors, lightenDarkenColor } from 'res/colors'
+
 import { MinimalButton } from 'library/components/MinimalButton'
 import { IconProps } from 'library/components/Icon'
 
-import { colors, lightenDarkenColor } from 'res/colors'
 import { IconButton } from '../IconButton'
 
 interface ModalProps {

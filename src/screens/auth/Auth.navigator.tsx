@@ -17,11 +17,7 @@ const ROUTES = {
 export const AuthNavigator = () => (
   <AuthFormContextProvider>
     <AuthApiContextProvider>
-      <Stack.Navigator
-        initialRouteName={ROUTES.SELECT}
-        headerMode="none"
-        screenOptions={{ gestureEnabled: false }}
-      >
+      <Stack.Navigator initialRouteName={ROUTES.SELECT} headerMode="none">
         <Stack.Screen name={ROUTES.SELECT} component={SelectScreen} />
         <Stack.Screen name={ROUTES.FORM} component={FormNavigator} />
       </Stack.Navigator>

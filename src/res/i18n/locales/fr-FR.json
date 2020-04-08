@@ -1,0 +1,86 @@
+{
+  "week": "Semaine",
+  "points": {
+    "one": "point",
+    "other": "points"
+  },
+  "auth:screen:select:title": "Bienvenue sur Both 👋",
+  "auth:screen:select:subtitle": "Commençons...",
+  "auth:screen:select:tapYourFirstname": "Tape ton prénom",
+
+  "auth:screen:form:birthDate:title": "Et enfin 🎁",
+  "auth:screen:form:birthDate:subtitle": "Ton anniversaire...",
+  "auth:screen:form:birthDate:error:wrongDate:title": "🙄 Es-tu certain de ta date d’anniversaire ?",
+  "auth:screen:form:birthDate:error:wrongDate:subtitle": "Aide : Fais un effort ou bien demande à ta maman...",
+  "auth:screen:form:birthDate:error:wrongCode:title": "😥 Code invalide !",
+  "auth:screen:form:birthDate:error:wrongCode:subtitle": "Aide : Vérifie bien le code que ton acolyte t'a donné...",
+
+  "auth:screen:form:code:title": "Ton acolyte t’attend 🥰",
+  "auth:screen:form:code:subtitle": "Tape ta clé...",
+  "auth:screen:form:code:error:wrongCode:title": "😥 Code invalide !",
+  "auth:screen:form:code:error:wrongCode:subtitle": "Aide : Vérifie bien le code que ton acolyte t'a donné...",
+
+  "auth:screen:form:firstName:title": "Bonjour ☀️",
+  "auth:screen:form:firstName:subtitle": "Comment t'appelles-tu ?",
+  "auth:screen:form:firstName:input": "Ton prénom",
+  "auth:screen:form:firstName:error:empty:title": "🤔 Flemme de taper ton prénom ?",
+  "auth:screen:form:firstName:error:empty:subtitle": "Aide : Mets au moins tes initiales pour continuer...",
+  "auth:screen:form:firstName:error:minimumCharacters:title": "😰 Soit plus précis",
+  "auth:screen:form:firstName:error:minimumCharacters:subtitle": "Aide : Il faut au minimum 2 caractères, tu peux le faire...",
+
+  "auth:screen:form:gender:subtitle": "Tu es...",
+  "auth:screen:form:gender:select:woman:label": "Je suis une femme",
+  "auth:screen:form:gender:select:male:label": "Je suis un homme",
+  "auth:screen:form:gender:select:other:label": "Je me définis autrement",
+  "auth:screen:form:joinOrCreate:title": "Enchanté 🙂",
+  "auth:screen:form:joinOrCreate:subtitle": "As tu une clé ?",
+  "auth:screen:form:joinOrCreate:select:join:label": "Oui, je suis invité par un acolyte",
+  "auth:screen:form:joinOrCreate:select:join:subtitle": "Rejoindre une relation existante",
+  "auth:screen:form:joinOrCreate:select:create:label": "Non, je suis le premier sur Both",
+  "auth:screen:form:joinOrCreate:select:create:subtitle": "Créer une nouvelle relation",
+  "auth:screen:form:joinOrCreate:info:title": "💡 Une clé te permet de rejoindre une relation !",
+  "auth:screen:form:joinOrCreate:info:subtitle": "Aide : Ton acolyte doit t’inviter en t’envoyer la clé de votre relation, un code unique comportant 6 caractères.",
+
+  "app:screen:dashboard:addNewTaskButton": "Ajouter une tâche",
+  "app:screen:dashboard:userTask:subtitle": "Par %{firstName} ",
+
+  "app:screen:profil:numberOfRelationDays": {
+    "one": "✨ %{days} jour de relation",
+    "other": "✨ %{days} jours de relation"
+  },
+  "app:screen:profil:thankToUseBoth": "On est vraiment heureux et touché que tu partages une partie de ton quotidien avec Both",
+  "app:screen:profil:button:settings:title": "Paramètres",
+  "app:screen:profil:button:settings:subtitle": "Les trucs qu’on ne savait pas où ranger",
+  "app:screen:profil:button:endRelation:title": "Mettre fin à la relation",
+  "app:screen:profil:button:endRelation:subtitle": "C’est fini avec Charlotte..?",
+  "app:screen:profil:button:theTeam:title": "Le trio derrière l’app Both",
+  "app:screen:profil:button:theTeam:subtitle": "Coucou c’est nous !",
+  "app:screen:profil:button:shareIdeas:title": "Partager des idées d’amélioration",
+  "app:screen:profil:button:shareIdeas:subtitle": "Nouvelle catégorie ou fonctionnalité",
+  "app:screen:profil:button:voteTheApp:title": "Donner 5 étoiles sur le store",
+  "app:screen:profil:button:voteTheApp:subtitle": "Ça nous ferait vraiment plaisir",
+
+  "app:screen:newUserTask:chooseCategory:title": "Sélectionne...",
+  "app:screen:newUserTask:chooseCategory:subtitle": "Une catégorie 📦",
+  "app:screen:newUserTask:category:taskNumber": {
+    "one": "%{tasks} tâche",
+    "other": "%{tasks} tâches"
+  },
+  "app:screen:newUserTask:chooseTask:subtitle": "Et qu'as tu fait ?",
+
+  "modal:newTaskAdded:badgeText": "Bravo %{firstName} 🎉",
+  "modal:newTaskAdded:info:primary": "👏 On vient de les ajouter à ton compteur",
+  "modal:newTaskAdded:info:secondary": "Continue comme ça !",
+  "modal:shareRelationKey:badgeText": "Invite ton acolyte 💬",
+  "modal:shareRelationKey:info:primary": "📲 Voici la clé de te relation sur Both",
+  "modal:shareRelationKey:info:secondary": "Partage la à ton acolyte pour qu’il te rejoigne !",
+  "modal:shareRelationKey:shareBySMS:title": "Join Both relation",
+  "modal:shareRelationKey:shareBySMS:message": "Coucou, retrouve moi sur both pour partager de l’amour et un peu de notre quotidien ! Télécharge l’application et utilise la clé %{code} pour me rejoindre ❤️",
+
+  "alert:deleteUserTask:title": "Vous voulez supprimer la tâche?",
+  "alert:deleteUserTask:noButton": "Non",
+  "alert:deleteUserTask:yesButton": "Oui",
+  "alert:endRelation:title": "Êtes vous sûrs ?",
+  "alert:endRelation:noButton": "Non",
+  "alert:endRelation:yesButton": "Oui"
+}

@@ -76,12 +76,9 @@ const UserTaskContextProvider: FC = ({ children }) => {
   const userTasksByDate = useMemo(() => {
     const userTasks = state.allIds.map(getUserTaskById)
 
-    return groupBy(userTasks, ({ createdAt }: UserTask) =>
-      new Date(createdAt).toLocaleDateString('fr-FR', {
-        year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
-      })
+    return groupBy(
+      userTasks,
+      ({ createdAt }: UserTask) => createdAt.split('T')[0]
     )
   }, [state.allIds])
 

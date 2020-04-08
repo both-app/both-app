@@ -3,12 +3,14 @@ import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import { colors } from 'res/colors'
+import { useT } from 'res/i18n'
 
 import { Label } from 'library/components/Label'
 import { Logo } from '../../components/Logo'
 
 export const SelectScreen = () => {
   const navigation = useNavigation()
+  const { t } = useT()
 
   return (
     <View style={styles.container}>
@@ -17,14 +19,19 @@ export const SelectScreen = () => {
       </View>
 
       <View style={styles.bottom}>
-        <Label primary="Bienvenue sur Both 👋" secondary="Commençons..." />
+        <Label
+          primary={t('auth:screen:select:title')}
+          secondary={t('auth:screen:select:subtitle')}
+        />
 
         <TouchableOpacity
           style={styles.textContainer}
           onPress={() => navigation.navigate('Form')}
           activeOpacity={0.5}
         >
-          <Text style={styles.putYourName}>Tape ton prénom</Text>
+          <Text style={styles.putYourName}>
+            {t('auth:screen:select:tapYourFirstname')}
+          </Text>
         </TouchableOpacity>
       </View>
     </View>

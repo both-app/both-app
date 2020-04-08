@@ -1,4 +1,5 @@
 import 'react-native-gesture-handler'
+import { initI18n } from './src/res/i18n'
 import * as Sentry from 'sentry-expo'
 import Constants from 'expo-constants'
 
@@ -15,6 +16,8 @@ Sentry.init({
 })
 
 Sentry.setRelease(Constants.manifest.revisionId)
+
+initI18n()
 
 export default () => (
   <AuthContextProvider>

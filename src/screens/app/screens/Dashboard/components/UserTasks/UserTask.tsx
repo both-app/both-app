@@ -3,18 +3,20 @@ import { StyleSheet, Alert } from 'react-native'
 
 import { CardButton } from 'library/components/CardButton'
 
-import { colors } from 'res/colors'
+import { colors, lightenDarkenColor } from 'res/colors'
 
 import { TaskContext } from 'screens/app/contexts/Task.context'
 import { UsersContext } from 'screens/app/contexts/Users.context'
 import { CategoryContext } from 'screens/app/contexts/Category.context'
 import { UserTaskContext } from 'screens/app/contexts/UserTask.context'
+import { useT } from 'res/i18n'
 
 interface UserTaskProps {
   userTask: UserTask
 }
 
 export const UserTask: FC<UserTaskProps> = ({ userTask }) => {
+  const { t } = useT()
   const { getTaskById } = useContext(TaskContext)
   const { getUserById } = useContext(UsersContext)
   const { getCategoryById } = useContext(CategoryContext)
@@ -29,13 +31,13 @@ export const UserTask: FC<UserTaskProps> = ({ userTask }) => {
   }
 
   const handleOnLongPress = () => {
-    Alert.alert('Vous voulez supprimer la tâche?', '', [
+    Alert.alert(t('alert:deleteUserTask:title'), '', [
       {
-        text: 'Non',
+        text: t('alert:deleteUserTask:noButton'),
         style: 'cancel',
       },
       {
-        text: 'Oui',
+        text: t('alert:deleteUserTask:yesButton'),
         style: 'destructive',
         onPress: () => deleteUserTask(userTask.id),
       },
@@ -46,9 +48,13 @@ export const UserTask: FC<UserTaskProps> = ({ userTask }) => {
     <CardButton
       emoji={task.emoji}
       title={task.name}
-      subtitle={`Par ${user.firstName}`}
+      subtitle={t('app:screen:dashboard:userTask:subtitle', {
+        firstName: user.firstName,
+      })}
       onLongPress={handleOnLongPress}
       points={task.points}
+      activeBackgroundColor={lightenDarkenColor(category.color, 10)}
+      activeTextColor={colors.white}
       containerStyle={{
         backgroundColor: category.color,
       }}

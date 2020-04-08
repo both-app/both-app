@@ -1,6 +1,8 @@
 import React, { FC } from 'react'
 import { View, StyleSheet } from 'react-native'
 
+import { useT } from 'res/i18n'
+
 import { Counter } from './Counter'
 
 import { Badge } from 'library/components/Badge'
@@ -8,6 +10,7 @@ import { Info } from 'library/components/Info'
 import { Modal } from 'library/components/Modal'
 
 interface TaskAddedModalProps {
+  userFirstName: string
   visible: boolean
   onClose: VoidFunction
   onAction: VoidFunction
@@ -15,31 +18,38 @@ interface TaskAddedModalProps {
 }
 
 export const TaskAddedModal: FC<TaskAddedModalProps> = ({
+  userFirstName,
   visible,
   onClose,
   onAction,
   task,
-}) => (
-  <Modal
-    visible={visible}
-    emoji={task?.emoji}
-    onClose={onClose}
-    onAction={onAction}
-    primaryActionIconName="check"
-  >
-    <Badge color="success">Bravo Mathieu 🎉</Badge>
+}) => {
+  const { t } = useT()
 
-    <Counter points={task?.points} />
+  return (
+    <Modal
+      visible={visible}
+      emoji={task?.emoji}
+      onClose={onClose}
+      onAction={onAction}
+      primaryActionIconName="check"
+    >
+      <Badge color="success">
+        {t('modal:newTaskAdded:badgeText', { firstName: userFirstName })}
+      </Badge>
 
-    <View style={styles.infoContainer}>
-      <Info
-        color="white"
-        primary="👏 On vient de les ajouter à ton compteur"
-        secondary="Continue comme ça !"
-      />
-    </View>
-  </Modal>
-)
+      <Counter points={task?.points} />
+
+      <View style={styles.infoContainer}>
+        <Info
+          color="white"
+          primary={t('modal:newTaskAdded:info:primary')}
+          secondary={t('modal:newTaskAdded:info:secondary')}
+        />
+      </View>
+    </Modal>
+  )
+}
 
 const styles = StyleSheet.create({
   infoContainer: {

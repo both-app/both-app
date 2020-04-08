@@ -1,5 +1,5 @@
 import React, { useContext, useState, useMemo } from 'react'
-import { RefreshControl, StyleSheet, SectionList } from 'react-native'
+import { RefreshControl, StyleSheet, SectionList, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import { CardButton } from 'library/components/CardButton'
@@ -8,11 +8,13 @@ import { Section } from './Section'
 
 import { colors } from 'res/colors'
 import { wait } from 'res/utils'
+import { useT } from 'res/i18n'
 
 import { UserTaskContext } from 'screens/app/contexts/UserTask.context'
 
 export const UserTasks = () => {
   const navigation = useNavigation()
+  const { t, locale } = useT()
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false)
   const { fetchUserTasks, userTasksByDate, allIds } = useContext(
     UserTaskContext
@@ -28,7 +30,7 @@ export const UserTasks = () => {
 
   const formattedList = useMemo(() => {
     return Object.entries(userTasksByDate).map(([date, userTasks]) => ({
-      title: new Date(date).toLocaleDateString('fr-FR', {
+      title: new Date(date).toLocaleDateString(locale, {
         weekday: 'long',
         month: 'long',
         day: 'numeric',
@@ -50,7 +52,7 @@ export const UserTasks = () => {
       ListHeaderComponent={
         <CardButton
           emoji="➕"
-          title="Ajouter une tâche"
+          title={t('app:screen:dashboard:addNewTaskButton')}
           withHapticFeedback
           onAction={() => navigation.navigate('AddTask')}
         />
@@ -58,6 +60,7 @@ export const UserTasks = () => {
       renderSectionHeader={({ section: { title } }) => (
         <Section title={title} />
       )}
+      ListFooterComponent={<View style={styles.listFooter} />}
       renderItem={({ item }) => <UserTask userTask={item} />}
     />
   )
@@ -73,5 +76,8 @@ const styles = StyleSheet.create({
     paddingLeft: 24,
     paddingRight: 24,
     paddingBottom: 13,
+  },
+  listFooter: {
+    marginBottom: 24 * 3,
   },
 })

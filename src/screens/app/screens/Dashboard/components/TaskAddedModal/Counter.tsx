@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native'
 
 import { fonts } from 'res/fonts'
 import { colors } from 'res/colors'
+import { useT } from 'res/i18n'
 
 import Confetti from '../../../../../../../assets/confetti.svg'
 
@@ -10,15 +11,19 @@ interface CounterProps {
   points: number
 }
 
-export const Counter: FC<CounterProps> = ({ points }) => (
-  <View style={styles.counter}>
-    <View style={{ ...styles.circle, ...styles.circleShadow }}>
-      <Text style={styles.pointNumber}>{points}</Text>
-      <Text style={styles.pointText}>points</Text>
+export const Counter: FC<CounterProps> = ({ points }) => {
+  const { t } = useT()
+
+  return (
+    <View style={styles.counter}>
+      <View style={{ ...styles.circle, ...styles.circleShadow }}>
+        <Text style={styles.pointNumber}>{points}</Text>
+        <Text style={styles.pointText}>{t('points', { count: points })}</Text>
+      </View>
+      <Confetti fill="white" style={{ position: 'absolute' }} />
     </View>
-    <Confetti fill="white" style={{ position: 'absolute' }} />
-  </View>
-)
+  )
+}
 
 const styles = StyleSheet.create({
   counter: {

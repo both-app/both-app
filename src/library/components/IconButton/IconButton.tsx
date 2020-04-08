@@ -2,8 +2,9 @@ import React, { FC } from 'react'
 import { TouchableOpacity, StyleSheet } from 'react-native'
 import * as Haptics from 'expo-haptics'
 
-import { Icon, IconProps } from '../Icon'
 import { Color, colors } from 'res/colors'
+
+import { Icon, IconProps } from '../Icon'
 
 interface IconButtonProps extends IconProps {
   onAction: () => void

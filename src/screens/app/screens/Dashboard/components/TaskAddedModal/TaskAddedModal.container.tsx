@@ -3,10 +3,12 @@ import * as Haptics from 'expo-haptics'
 
 import { TaskAddedModal } from './TaskAddedModal'
 import { TaskContext } from 'screens/app/contexts/Task.context'
+import { UsersContext } from 'screens/app/contexts/Users.context'
 
 export const TaskAddedModalContainer = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const [taskAdded, setTaskAdded] = useState<Task>()
+  const { me } = useContext(UsersContext)
   const { getTaskById, taskIdCompleted, setTaskIdCompleted } = useContext(
     TaskContext
   )
@@ -33,6 +35,7 @@ export const TaskAddedModalContainer = () => {
 
   return (
     <TaskAddedModal
+      userFirstName={me.firstName}
       task={taskAdded}
       visible={modalIsOpen}
       onAction={handleOnClose}

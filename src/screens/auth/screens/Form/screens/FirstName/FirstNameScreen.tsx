@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react'
 import { StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
+import { useT } from 'res/i18n'
+
 import { Label } from 'library/components/Label'
 import { Info } from 'library/components/Info'
 import { FormLayout } from 'library/layouts/FormLayout'
@@ -11,21 +13,22 @@ import { AuthFormContext } from '../../../../AuthForm.context'
 
 export const FirstNameScreen = () => {
   const navigation = useNavigation()
+  const { t } = useT()
   const [error, setError] = useState<[string, string] | []>([])
   const { values, setValue } = useContext(AuthFormContext)
 
   const handleOnNext = () => {
     if (!values.firstName) {
       return setError([
-        '🤔 Flemme de taper ton prénom ?',
-        'Aide : Mets au moins tes initiales pour continuer...',
+        t('auth:screen:form:firstName:error:empty:title'),
+        t('auth:screen:form:firstName:error:empty:subtitle'),
       ])
     }
 
     if (values.firstName.length < 2) {
       return setError([
-        '😰 Soit plus précis',
-        'Aide : Il faut au minimum 2 caractères, tu peux le faire...',
+        t('auth:screen:form:firstName:error:minimumCharacters:title'),
+        t('auth:screen:form:firstName:error:minimumCharacters:subtitle'),
       ])
     }
 
@@ -46,7 +49,12 @@ export const FirstNameScreen = () => {
       onBackAction={() => navigation.navigate('Select')}
       onNextAction={handleOnNext}
       containerStyle={styles.formContainer}
-      label={<Label primary="Bonjour ☀️" secondary="Comment t'appelles-tu ?" />}
+      label={
+        <Label
+          primary={t('auth:screen:form:firstName:title')}
+          secondary={t('auth:screen:form:firstName:subtitle')}
+        />
+      }
       bottomInfo={
         <Info
           hide={!error.length}
@@ -57,7 +65,10 @@ export const FirstNameScreen = () => {
         />
       }
     >
-      <Input placeholder="Ton prénom" onChangeText={handleOnChangeText} />
+      <Input
+        placeholder={t('auth:screen:form:firstName:input')}
+        onChangeText={handleOnChangeText}
+      />
     </FormLayout>
   )
 }

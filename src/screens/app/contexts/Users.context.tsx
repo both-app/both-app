@@ -14,7 +14,7 @@ import { getItem, setItem } from 'res/storage'
 type GetRelationInfoResponse = APIResponse<{
   relation: Relation
   user: User
-  partner: User
+  partner?: User
 }>
 
 interface UsersContextState {
@@ -48,6 +48,7 @@ const initialState: UsersContextState = {
 const UsersContext = createContext<UsersContextProps>({})
 
 const UsersContextProvider: FC = ({ children }) => {
+  const [isReHydrate, setIsReHydrate] = useState<boolean>(false)
   const [state, setState] = useState<UsersContextState>(initialState)
 
   useEffect(() => {
@@ -58,6 +59,7 @@ const UsersContextProvider: FC = ({ children }) => {
 
       if (users) {
         setState({ ...state, ...users })
+        setIsReHydrate(true)
       }
 
       fetchUsers()
@@ -69,9 +71,9 @@ const UsersContextProvider: FC = ({ children }) => {
   const fetchUsers = async () => {
     const {
       data: { data },
-    } = await api.get<GetRelationInfoResponse>('relation/informations')
+    } = await api.get<GetRelationInfoResponse>('relations/informations')
 
-    if (data.partner.id) {
+    if (data.partner?.id) {
       const newState = {
         me: data.user,
         partner: data.partner,
@@ -104,7 +106,7 @@ const UsersContextProvider: FC = ({ children }) => {
 
   return (
     <UsersContext.Provider value={usersContextApi}>
-      {children}
+      {isReHydrate ? children : null}
     </UsersContext.Provider>
   )
 }

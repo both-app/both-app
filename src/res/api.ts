@@ -1,4 +1,6 @@
 import axios from 'axios'
+import * as Localization from 'expo-localization'
+
 import { getItem } from 'res/storage'
 
 export interface APIResponse<T> {
@@ -16,9 +18,13 @@ export const api = axios.create({
 
 api.interceptors.request.use(async (config) => {
   const jwtToken = await getItem('jwtToken')
-
   if (jwtToken) {
     config.headers.Authorization = `Bearer ${jwtToken}`
+  }
+
+  const locale = Localization.locale
+  if (locale) {
+    config.headers['Accept-Language'] = locale
   }
 
   return config

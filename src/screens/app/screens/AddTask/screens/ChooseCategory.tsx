@@ -10,8 +10,10 @@ import { Label } from 'library/components/Label'
 import { CardButton } from 'library/components/CardButton'
 
 import { wait } from 'res/utils'
+import { useT } from 'res/i18n'
 
 export const ChooseCategoryScreen = () => {
+  const { t } = useT()
   const [selectedCategoryId, setSelectedCategoryId] = useState('')
 
   const { categories } = useContext(CategoryContext)
@@ -37,28 +39,40 @@ export const ChooseCategoryScreen = () => {
     <FormLayout
       containerStyle={styles.formContainer}
       onCloseAction={handleOnClose}
-      label={<Label primary="Sélectionne..." secondary="Une catégorie 📦" />}
+      label={
+        <Label
+          primary={t('app:screen:newUserTask:chooseCategory:title')}
+          secondary={t('app:screen:newUserTask:chooseCategory:subtitle')}
+        />
+      }
     >
       <ScrollView
         style={styles.categoriesContainer}
         showsVerticalScrollIndicator={false}
       >
-        {categories.map((category, index) => (
-          <CardButton
-            key={category.id}
-            emoji={category.emoji}
-            title={category.name}
-            subtitle={`${getTasksByCategoryId(category.id).length} tâches`}
-            onAction={() => handleOnAction(category.id)}
-            active={selectedCategoryId === category.id}
-            activeBackgroundColor={category.color}
-            activeTextColor="white"
-            containerStyle={{
-              marginTop: index === 0 ? 72 : 10,
-              marginBottom: index === categories.length - 1 ? 56 : 0,
-            }}
-          />
-        ))}
+        {categories.map((category, index) => {
+          const taskNumber = getTasksByCategoryId(category.id).length
+
+          return (
+            <CardButton
+              key={category.id}
+              emoji={category.emoji}
+              title={category.name}
+              subtitle={t('app:screen:newUserTask:category:taskNumber', {
+                count: taskNumber,
+                tasks: taskNumber,
+              })}
+              onAction={() => handleOnAction(category.id)}
+              active={selectedCategoryId === category.id}
+              activeBackgroundColor={category.color}
+              activeTextColor="white"
+              containerStyle={{
+                marginTop: index === 0 ? 72 : 10,
+                marginBottom: index === categories.length - 1 ? 56 : 0,
+              }}
+            />
+          )
+        })}
       </ScrollView>
     </FormLayout>
   )

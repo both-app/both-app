@@ -10,7 +10,7 @@ import { BirthDateScreen } from './screens/BirthDate'
 export const Stack = createStackNavigator()
 
 export const FormNavigator = () => (
-  <Stack.Navigator headerMode="none" screenOptions={{ gestureEnabled: false }}>
+  <Stack.Navigator headerMode="none">
     <Stack.Screen component={FirstNameScreen} name="FirstName" />
     <Stack.Screen component={GenderScreen} name="Gender" />
     <Stack.Screen component={JoinOrCreateScreen} name="JoinOrCreate" />

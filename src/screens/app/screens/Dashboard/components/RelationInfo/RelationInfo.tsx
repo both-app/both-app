@@ -28,7 +28,7 @@ export const RelationInfo = () => {
   const getPoints = (userId: string) =>
     getUserTasksByUserId(userId).reduce((acc, { taskId }) => {
       const task = getTaskById(taskId)
-      return acc + task.points
+      return acc + (task?.points || 0)
     }, 0)
 
   const leftPoints = useMemo(() => getPoints(me.id), [allIds])
@@ -36,8 +36,8 @@ export const RelationInfo = () => {
 
   return (
     <Body
-      leftFirstName="Mathieu"
-      rightFirstName="Charlotte"
+      leftFirstName={me.firstName}
+      rightFirstName={partner.firstName || '⌛️'}
       leftPoints={leftPoints}
       rightPoints={rightPoints}
       onLeftAction={goToTheProfilPage}

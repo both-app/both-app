@@ -1,21 +1,20 @@
 import React, { useContext } from 'react'
+import { AppLoading } from 'expo'
+import { useFonts } from '@use-expo/font'
 
 import { AuthNavigator, AuthContext } from './screens/auth'
 import { App } from 'screens/app'
-import { useFonts } from 'library/hooks/useFonts'
 
 export const Main = () => {
   const { isConnected } = useContext(AuthContext)
-  const { fontsLoaded } = useFonts({
+  const [fontsLoaded] = useFonts({
     'DMSerifDisplay-Regular': require('../assets/fonts/DMSerifDisplay-Regular.ttf'),
   })
 
   if (!fontsLoaded) {
-    return null
+    return <AppLoading />
   }
 
-  // TODO To replace by isConnected
-  // eslint-disable-next-line no-constant-condition
   if (isConnected) {
     return <App />
   }

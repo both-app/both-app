@@ -8,9 +8,11 @@ import { FormLayout } from 'library/layouts/FormLayout'
 
 import { Select } from 'screens/auth/components/Select'
 import { AuthFormContext } from '../../../../AuthForm.context'
+import { useT } from 'res/i18n'
 
 export const JoinOrCreateScreen = () => {
   const navigation = useNavigation()
+  const { t } = useT()
   const { values, setValue } = useContext(AuthFormContext)
 
   const handleOnChange = (value: 'JOIN' | 'CREATE') => {
@@ -27,13 +29,18 @@ export const JoinOrCreateScreen = () => {
     <FormLayout
       onBackAction={() => navigation.goBack()}
       containerStyle={styles.formContainer}
-      label={<Label primary="Enchanté 🙂" secondary="As tu une clé ?" />}
+      label={
+        <Label
+          primary={t('auth:screen:form:joinOrCreate:title')}
+          secondary={t('auth:screen:form:joinOrCreate:subtitle')}
+        />
+      }
       bottomInfo={
         <Info
           hide={false}
           color="dark100"
-          primary="💡Une clé te permet de rejoindre une relation !"
-          secondary="Aide : Ton acolyte doit t’inviter en t’envoyer la clé de votre relation, un code unique comportant 6 caractères."
+          primary={t('auth:screen:form:joinOrCreate:info:title')}
+          secondary={t('auth:screen:form:joinOrCreate:info:subtitle')}
         />
       }
     >
@@ -43,14 +50,16 @@ export const JoinOrCreateScreen = () => {
         options={[
           {
             emoji: '🔑',
-            label: 'Oui, je suis invité par un acolyte',
-            extraInfo: 'Rejoindre une relation existante',
+            label: t('auth:screen:form:joinOrCreate:select:join:label'),
+            extraInfo: t('auth:screen:form:joinOrCreate:select:join:subtitle'),
             value: 'JOIN',
           },
           {
             emoji: '🥇',
-            label: 'Non, je suis le premier sur Both',
-            extraInfo: 'Créer une nouvelle relation',
+            label: t('auth:screen:form:joinOrCreate:select:create:label'),
+            extraInfo: t(
+              'auth:screen:form:joinOrCreate:select:create:subtitle'
+            ),
             value: 'CREATE',
           },
         ]}

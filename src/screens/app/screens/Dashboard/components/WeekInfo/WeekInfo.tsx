@@ -2,6 +2,7 @@ import React from 'react'
 import { Text, StyleSheet } from 'react-native'
 
 import { colors } from 'res/colors'
+import { useT } from 'res/i18n'
 
 const getNumberOfWeek = (now: Date) => {
   const firstDayOfYear = new Date(now.getFullYear(), 0, 1)
@@ -11,9 +12,10 @@ const getNumberOfWeek = (now: Date) => {
 }
 
 export const WeekInfo = () => {
+  const { t, locale } = useT()
   const now = new Date()
 
-  const todayDate = now.toLocaleDateString('fr-FR', {
+  const todayDate = now.toLocaleDateString(locale, {
     weekday: 'long',
     day: 'numeric',
     month: 'long',
@@ -21,7 +23,7 @@ export const WeekInfo = () => {
 
   return (
     <Text style={styles.week}>
-      Semaine {getNumberOfWeek(now)} • {todayDate}
+      {t('week')} {getNumberOfWeek(now)} • {todayDate}
     </Text>
   )
 }

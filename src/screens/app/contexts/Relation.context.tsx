@@ -14,13 +14,18 @@ const RelationContext = createContext<RelationContextProps>({
   relation: {
     id: '',
     code: '',
+    createdAt: '',
   },
   setShareKeyModal: () => {},
 })
 
 const RelationContextProvider: FC = ({ children }) => {
   const [shareKeyModalOpen, setShareKeyModal] = useState<boolean>(false)
-  const [relation, setRelation] = useState<Relation>({ id: '', code: '' })
+  const [relation, setRelation] = useState<Relation>({
+    id: '',
+    code: '',
+    createdAt: '',
+  })
 
   useEffect(() => {
     const reHydrateData = async () => {

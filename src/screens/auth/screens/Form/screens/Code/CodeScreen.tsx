@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react'
 import { StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
+import { useT } from 'res/i18n'
+
 import { Info } from 'library/components/Info'
 import { Label } from 'library/components/Label'
 import { InputCode } from 'screens/auth/components/InputCode'
@@ -12,14 +14,15 @@ const CODE_LENGTH = 6
 
 export const CodeScreen = () => {
   const navigation = useNavigation()
+  const { t } = useT()
   const [error, setError] = useState<[string, string] | []>([])
   const { values, setValue } = useContext(AuthFormContext)
 
   const handleOnNext = () => {
     if (!values.code || values.code.length < CODE_LENGTH) {
       return setError([
-        '😥 Code invalide !',
-        "Aide : Vérifie bien le code que ton acolyte t'a donné...",
+        t('auth:screen:form:code:error:wrongCode:title'),
+        t('auth:screen:form:code:error:wrongCode:subtitle'),
       ])
     }
 
@@ -48,7 +51,10 @@ export const CodeScreen = () => {
       onNextAction={handleOnNext}
       containerStyle={styles.formContainer}
       label={
-        <Label primary="Ton acolyte t’attend 🥰" secondary="Tape ta clé…" />
+        <Label
+          primary={t('auth:screen:form:code:title')}
+          secondary={t('auth:screen:form:code:subtitle')}
+        />
       }
       bottomInfo={
         <Info

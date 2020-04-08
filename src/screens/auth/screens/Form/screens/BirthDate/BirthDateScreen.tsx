@@ -10,9 +10,11 @@ import { AuthContext } from 'screens/auth/Auth.context'
 import { AuthFormContext } from '../../../../AuthForm.context'
 import { isValidDate } from 'res/date'
 import { AuthApiContext } from 'screens/auth/AuthApi.context'
+import { useT } from 'res/i18n'
 
 export const BirthDateScreen = () => {
   const navigation = useNavigation()
+  const { t } = useT()
   const [error, setError] = useState<[string, string] | []>([])
 
   const { values, setValue } = useContext(AuthFormContext)
@@ -27,8 +29,8 @@ export const BirthDateScreen = () => {
       !isValidDate(dateParsed[0], dateParsed[1], dateParsed[2])
     ) {
       return setError([
-        '🙄 Es-tu certain de ta date d’anniversaire ?',
-        'Aide : Fais un effort ou bien demande à ta maman...',
+        t('auth:screen:form:birthDate:error:wrongDate:title'),
+        t('auth:screen:form:birthDate:error:wrongDate:subtitle'),
       ])
     }
 
@@ -61,8 +63,8 @@ export const BirthDateScreen = () => {
       login(result.data.data)
     } catch (e) {
       setError([
-        '😥 Code invalide !',
-        "Aide : Vérifie bien le code que ton acolyte t'a donné...",
+        t('auth:screen:form:birthDate:error:wrongCode:title'),
+        t('auth:screen:form:birthDate:error:wrongCode:subtitle'),
       ])
     }
   }
@@ -86,7 +88,12 @@ export const BirthDateScreen = () => {
       onBackAction={handleOnBack}
       onFinishAction={handleOnFinish}
       containerStyle={styles.formContainer}
-      label={<Label primary="Et enfin 🎁" secondary="Ton anniversaire..." />}
+      label={
+        <Label
+          primary={t('auth:screen:form:birthDate:title')}
+          secondary={t('auth:screen:form:birthDate:subtitle')}
+        />
+      }
       bottomInfo={
         <Info
           hide={!error.length}
