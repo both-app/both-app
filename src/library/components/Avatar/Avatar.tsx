@@ -1,5 +1,11 @@
 import React, { useEffect, FC } from 'react'
-import { Text, StyleSheet, Animated, TouchableOpacity } from 'react-native'
+import {
+  Text,
+  StyleSheet,
+  Animated,
+  TouchableOpacity,
+  ViewStyle,
+} from 'react-native'
 
 import { colors, Color } from 'res/colors'
 import { fonts } from 'res/fonts'
@@ -10,6 +16,7 @@ interface AvatarProps {
   isLoading?: boolean
   firstname?: string
   size: 'large' | 'medium' | 'small'
+  containerStyle?: ViewStyle
   borderColor?: Color
   backgroundColor?: Color
   avatarColor?: Color
@@ -24,6 +31,7 @@ export const Avatar: FC<AvatarProps> = ({
   backgroundColor,
   avatarColor,
   onAction,
+  containerStyle,
 }) => {
   const { rotateData, startRotate, stopRotate } = useRotationAnimation({
     iteration: -1,
@@ -56,6 +64,7 @@ export const Avatar: FC<AvatarProps> = ({
     width: sizeNumber,
     height: sizeNumber,
     borderRadius: sizeNumber / 2,
+    ...(containerStyle ? containerStyle : {}),
     ...(backgroundColor ? { backgroundColor: colors[backgroundColor] } : {}),
     ...(borderColor
       ? {

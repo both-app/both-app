@@ -4,6 +4,9 @@
     "one": "point",
     "other": "points"
   },
+  "male": "Homme",
+  "female": "Femme",
+  "other": "Autre",
   "auth:screen:select:title": "Bienvenue sur Both 👋",
   "auth:screen:select:subtitle": "Commençons...",
   "auth:screen:select:tapYourFirstname": "Tape ton prénom",
@@ -59,6 +62,22 @@
   "app:screen:profil:button:shareIdeas:subtitle": "Nouvelle catégorie ou fonctionnalité",
   "app:screen:profil:button:voteTheApp:title": "Donner 5 étoiles sur le store",
   "app:screen:profil:button:voteTheApp:subtitle": "Ça nous ferait vraiment plaisir",
+
+  "app:screen:profil:settings:title": "Paramètres",
+  "app:screen:profil:settings:infoPerso:title": "😎 Infos Personnelles",
+  "app:screen:profil:settings:firstName": "Prénom",
+  "app:screen:profil:settings:birthDate": "Date de naissance",
+  "app:screen:profil:settings:gender": "Genre",
+  "app:screen:profil:settings:nightRead:title": "😴 Lecture du soir",
+  "app:screen:profil:settings:protectData:title": "Protection des données",
+  "app:screen:profil:settings:protectData:subtitle": "Là, déconne pas.",
+  "app:screen:profil:settings:cgu:title": "Conditions générales d'utilisation",
+  "app:screen:profil:settings:cgu:subtitle": "Bonne lecture...",
+  "app:screen:profil:settings:onBothSince": {
+    "one": "Both depuis %{daysOfRelation} jour",
+    "other": "Both depuis %{daysOfRelation} jours"
+  },
+  "app:screen:profil:settings:keyOfTheRelation": "Clé de la relation",
 
   "app:screen:newUserTask:chooseCategory:title": "Sélectionne...",
   "app:screen:newUserTask:chooseCategory:subtitle": "Une catégorie 📦",
