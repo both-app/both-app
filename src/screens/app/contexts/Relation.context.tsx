@@ -7,17 +7,11 @@ interface RelationContextProps {
   shareKeyModalOpen: boolean
   relation: Relation
   setShareKeyModal: (value: boolean) => void
+  daysOfRelation: number
 }
 
-const RelationContext = createContext<RelationContextProps>({
-  shareKeyModalOpen: false,
-  relation: {
-    id: '',
-    code: '',
-    createdAt: '',
-  },
-  setShareKeyModal: () => {},
-})
+// @ts-ignore
+const RelationContext = createContext<RelationContextProps>({})
 
 const RelationContextProvider: FC = ({ children }) => {
   const [shareKeyModalOpen, setShareKeyModal] = useState<boolean>(false)
@@ -47,13 +41,23 @@ const RelationContextProvider: FC = ({ children }) => {
     reHydrateData()
   }, [])
 
+  const daysOfRelation = useMemo(() => {
+    const now = new Date()
+    const dateOfCreation = new Date(relation.createdAt)
+    const differenceInTime = now.getTime() - dateOfCreation.getTime()
+    const differenceInDay = Math.round(differenceInTime / (1000 * 3600 * 24))
+
+    return differenceInDay + 1
+  }, [])
+
   const relationContextApi = useMemo(
     () => ({
       shareKeyModalOpen,
       setShareKeyModal,
       relation,
+      daysOfRelation,
     }),
-    [relation, shareKeyModalOpen, setShareKeyModal]
+    [relation, shareKeyModalOpen, setShareKeyModal, daysOfRelation]
   )
 
   return (

@@ -6,13 +6,13 @@ import { colors } from 'res/colors'
 
 interface LabelProps {
   primary: string
-  secondary: string
+  secondary?: string
 }
 
 export const Label: FC<LabelProps> = ({ primary, secondary }) => (
   <View style={styles.container}>
     <Text style={styles.text}>{primary}</Text>
-    <Text style={styles.text}>{secondary}</Text>
+    {secondary && <Text style={styles.text}>{secondary}</Text>}
   </View>
 )
 

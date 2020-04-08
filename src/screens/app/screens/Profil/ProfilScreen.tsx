@@ -20,7 +20,7 @@ export const ProfilScreen = () => {
   const navigation = useNavigation()
   const { logout } = useContext(AuthContext)
   const { me } = useContext(UsersContext)
-  const { relation } = useContext(RelationContext)
+  const { relation, daysOfRelation } = useContext(RelationContext)
 
   const handleFeedback = async () => {
     await WebBrowser.openBrowserAsync('https://payfit.com')
@@ -42,15 +42,6 @@ export const ProfilScreen = () => {
         onPress: logout,
       },
     ])
-  }
-
-  const daysOfRelation = () => {
-    const now = new Date()
-    const dateOfCreation = new Date(relation.createdAt)
-    const differenceInTime = now.getTime() - dateOfCreation.getTime()
-    const differenceInDay = Math.round(differenceInTime / (1000 * 3600 * 24))
-
-    return differenceInDay + 1
   }
 
   return (
@@ -76,8 +67,8 @@ export const ProfilScreen = () => {
       <Info
         color="dark200"
         primary={t('app:screen:profil:numberOfRelationDays', {
-          count: daysOfRelation(),
-          days: daysOfRelation(),
+          count: daysOfRelation,
+          days: daysOfRelation,
         })}
         secondary={t('app:screen:profil:thankToUseBoth')}
       />
@@ -87,6 +78,7 @@ export const ProfilScreen = () => {
           emoji="⚙️"
           title={t('app:screen:profil:button:settings:title')}
           subtitle={t('app:screen:profil:button:settings:subtitle')}
+          onAction={() => navigation.navigate('Settings')}
           withHapticFeedback
         />
         <CardButton
@@ -100,6 +92,7 @@ export const ProfilScreen = () => {
           emoji="👪"
           title={t('app:screen:profil:button:theTeam:title')}
           subtitle={t('app:screen:profil:button:theTeam:subtitle')}
+          onAction={() => navigation.navigate('TheTeam')}
           withHapticFeedback
         />
         <CardButton
