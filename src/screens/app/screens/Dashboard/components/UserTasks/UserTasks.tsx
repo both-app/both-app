@@ -6,7 +6,6 @@ import { CardButton } from 'library/components/CardButton'
 import { UserTask } from './UserTask'
 import { Section } from './Section'
 
-import { colors } from 'res/colors'
 import { wait } from 'res/utils'
 import { useT } from 'res/i18n'
 
@@ -69,13 +68,6 @@ export const UserTasks = () => {
 const styles = StyleSheet.create({
   listContainer: {
     flex: 1,
-    backgroundColor: colors.skin100,
-    borderTopRightRadius: 10,
-    borderTopLeftRadius: 10,
-    paddingTop: 24,
-    paddingLeft: 24,
-    paddingRight: 24,
-    paddingBottom: 13,
   },
   listFooter: {
     marginBottom: 24 * 3,

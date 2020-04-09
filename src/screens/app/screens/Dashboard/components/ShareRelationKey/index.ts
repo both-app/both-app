@@ -1,0 +1,1 @@
+export { ShareRelationKey } from './ShareRelationKey'
