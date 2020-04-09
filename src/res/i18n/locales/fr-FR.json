@@ -79,6 +79,13 @@
   },
   "app:screen:profil:settings:keyOfTheRelation": "Clé de la relation",
 
+  "app:screen:profil:theTeam:title": "😎 Hello you...",
+  "app:screen:profil:theTeam:subtitle": "Voilà c’est nous. On a décidé de lancer cette app. ludique pour sensibiliser et améliorer la répartition des tâches dans une relation de couple !",
+  "app:screen:profil:theTeam:developer": "Développeur",
+  "app:screen:profil:theTeam:designer": "Designer",
+  "app:screen:profil:theTeam:search": "À la recherche d'une acolythe",
+  "app:screen:profil:theTeam:inRelationSince": "En relation depuis 6 ans",
+
   "app:screen:newUserTask:chooseCategory:title": "Sélectionne...",
   "app:screen:newUserTask:chooseCategory:subtitle": "Une catégorie 📦",
   "app:screen:newUserTask:category:taskNumber": {

@@ -6,6 +6,7 @@ import fr from './locales/fr-FR.json'
 export const initI18n = () => {
   i18n.translations = {
     fr,
+    en: fr,
   }
 
   i18n.locale = Localization.locale

@@ -5,6 +5,7 @@ import {
   Animated,
   TouchableOpacity,
   ViewStyle,
+  Image,
 } from 'react-native'
 
 import { colors, Color } from 'res/colors'
@@ -15,6 +16,7 @@ import { useRotationAnimation } from './useRotationEffect'
 interface AvatarProps {
   isLoading?: boolean
   firstname?: string
+  avatarUrl?: any
   size: 'large' | 'medium' | 'small'
   containerStyle?: ViewStyle
   borderColor?: Color
@@ -32,6 +34,7 @@ export const Avatar: FC<AvatarProps> = ({
   avatarColor,
   onAction,
   containerStyle,
+  avatarUrl,
 }) => {
   const { rotateData, startRotate, stopRotate } = useRotationAnimation({
     iteration: -1,
@@ -87,6 +90,16 @@ export const Avatar: FC<AvatarProps> = ({
     <TouchableOpacity activeOpacity={1} onPress={handleOnPress}>
       <Animated.View style={avatarStyle}>
         {firstname && <Text style={avatarText}>{firstname[0]}</Text>}
+        {avatarUrl && (
+          <Image
+            source={avatarUrl}
+            style={{
+              width: sizeNumber,
+              height: sizeNumber,
+              borderRadius: sizeNumber / 2,
+            }}
+          />
+        )}
       </Animated.View>
     </TouchableOpacity>
   )
