@@ -6,22 +6,17 @@ import { Label } from 'library/components/Label'
 import { Info } from 'library/components/Info'
 import { FormLayout } from 'library/layouts/FormLayout'
 import { InputDate } from 'screens/auth/components/InputDate'
-import { AuthContext } from 'screens/auth/Auth.context'
 import { AuthFormContext } from '../../../../AuthForm.context'
 import { isValidDate } from 'res/date'
-import { AuthApiContext } from 'screens/auth/AuthApi.context'
 import { useT } from 'res/i18n'
 
 export const BirthDateScreen = () => {
   const navigation = useNavigation()
   const { t } = useT()
   const [error, setError] = useState<[string, string] | []>([])
-
   const { values, setValue } = useContext(AuthFormContext)
-  const { createRelation, joinRelation } = useContext(AuthApiContext)
-  const { login } = useContext(AuthContext)
 
-  const handleOnFinish = async () => {
+  const handleOnNext = async () => {
     const dateParsed = values.birthDate.split('/').map(Number)
 
     if (
@@ -34,39 +29,7 @@ export const BirthDateScreen = () => {
       ])
     }
 
-    if (values.type === 'CREATE') {
-      return createRelationAndLogin()
-    }
-
-    return joinRelationAndLogin()
-  }
-
-  const createRelationAndLogin = async () => {
-    const result = await createRelation({
-      firstName: values.firstName,
-      birthDate: new Date(values.birthDate).getTime(),
-      gender: values.gender,
-    })
-
-    login(result.data.data)
-  }
-
-  const joinRelationAndLogin = async () => {
-    try {
-      const result = await joinRelation({
-        firstName: values.firstName,
-        birthDate: new Date(values.birthDate).getTime(),
-        gender: values.gender,
-        code: values.code,
-      })
-
-      login(result.data.data)
-    } catch (e) {
-      setError([
-        t('auth:screen:form:birthDate:error:wrongCode:title'),
-        t('auth:screen:form:birthDate:error:wrongCode:subtitle'),
-      ])
-    }
+    return navigation.navigate('PushNotification')
   }
 
   const handleOnChangeText = (date: string) => {
@@ -86,7 +49,7 @@ export const BirthDateScreen = () => {
   return (
     <FormLayout
       onBackAction={handleOnBack}
-      onFinishAction={handleOnFinish}
+      onNextAction={handleOnNext}
       containerStyle={styles.formContainer}
       label={
         <Label

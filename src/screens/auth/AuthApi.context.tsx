@@ -13,12 +13,14 @@ interface AuthApiContextProps {
     firstName: string
     birthDate: number
     gender: string
+    expoPushToken: string
   }) => Promise<AxiosResponse<AuthResponse>>
   joinRelation: (params: {
     firstName: string
     birthDate: number
     gender: string
     code: string
+    expoPushToken: string
   }) => Promise<AxiosResponse<AuthResponse>>
 }
 

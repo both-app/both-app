@@ -7,6 +7,7 @@ interface AuthFormContextProps {
     code: string
     type: string
     birthDate: string
+    expoPushToken: string
   }
   setValue: (
     fieldName: keyof AuthFormContextProps['values'],
@@ -21,6 +22,7 @@ const AuthFormContext = createContext<AuthFormContextProps>({
     type: '',
     code: '',
     birthDate: '',
+    expoPushToken: '',
   },
   // @ts-ignore
   setValue: () => {},
@@ -33,6 +35,7 @@ const AuthFormContextProvider: FC = ({ children }) => {
     type: '',
     code: '',
     birthDate: '',
+    expoPushToken: '',
   })
 
   const setValue = (fieldName: string, value: string) =>

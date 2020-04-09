@@ -15,8 +15,9 @@
   "auth:screen:form:birthDate:subtitle": "Ton anniversaire...",
   "auth:screen:form:birthDate:error:wrongDate:title": "🙄 Es-tu certain de ta date d’anniversaire ?",
   "auth:screen:form:birthDate:error:wrongDate:subtitle": "Aide : Fais un effort ou bien demande à ta maman...",
-  "auth:screen:form:birthDate:error:wrongCode:title": "😥 Code invalide !",
-  "auth:screen:form:birthDate:error:wrongCode:subtitle": "Aide : Vérifie bien le code que ton acolyte t'a donné...",
+
+  "auth:screen:form:pushNotification:error:wrongCode:title": "😥 Code invalide !",
+  "auth:screen:form:pushNotification:error:wrongCode:subtitle": "Aide : Vérifie bien le code que ton acolyte t'a donné...",
 
   "auth:screen:form:code:title": "Ton acolyte t’attend 🥰",
   "auth:screen:form:code:subtitle": "Tape ta clé...",

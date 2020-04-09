@@ -6,6 +6,7 @@ import { GenderScreen } from './screens/Gender'
 import { JoinOrCreateScreen } from './screens/JoinOrCreate'
 import { CodeScreen } from './screens/Code'
 import { BirthDateScreen } from './screens/BirthDate'
+import { PushNotificationScreen } from './screens/PushNotification'
 
 export const Stack = createStackNavigator()
 
@@ -16,5 +17,6 @@ export const FormNavigator = () => (
     <Stack.Screen component={JoinOrCreateScreen} name="JoinOrCreate" />
     <Stack.Screen component={CodeScreen} name="Code" />
     <Stack.Screen component={BirthDateScreen} name="BirthDate" />
+    <Stack.Screen component={PushNotificationScreen} name="PushNotification" />
   </Stack.Navigator>
 )
