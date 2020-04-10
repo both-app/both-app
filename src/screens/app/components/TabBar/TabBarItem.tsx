@@ -3,6 +3,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   TouchableOpacityProps,
+  View,
 } from 'react-native'
 
 import { colors } from 'res/colors'
@@ -17,14 +18,20 @@ export const TabBarItem: FC<TabBarItemProps> = ({
   ...props
 }) => {
   const buttonStyle = {
-    ...styles.navButton,
+    ...styles.buttonContainer,
     ...styles.shadowButton,
-    ...(isFocused ? styles.navButtonSelected : {}),
   }
 
   return (
     <TouchableOpacity style={buttonStyle} {...props}>
-      {children}
+      <View
+        style={{
+          ...styles.buttonBase,
+          ...(isFocused ? styles.buttonSelected : styles.buttonNotSelected),
+        }}
+      >
+        {children}
+      </View>
     </TouchableOpacity>
   )
 }
@@ -40,7 +47,16 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     elevation: 10,
   },
-  navButton: {
+  buttonContainer: {
+    width: 64,
+    height: 64,
+    marginBottom: 32,
+    marginRight: 16,
+    marginLeft: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonBase: {
     width: 40,
     height: 40,
     alignItems: 'center',
@@ -50,12 +66,13 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     paddingBottom: 10,
     paddingLeft: 10,
-    borderRadius: 12,
-    marginBottom: 32,
-    marginRight: 16,
-    marginLeft: 16,
   },
-  navButtonSelected: {
+  buttonNotSelected: {
+    width: 40,
+    height: 40,
+    borderRadius: 12,
+  },
+  buttonSelected: {
     width: 64,
     height: 64,
     borderRadius: 19.2,

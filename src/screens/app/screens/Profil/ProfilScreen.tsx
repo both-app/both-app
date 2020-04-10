@@ -8,7 +8,6 @@ import { fonts } from 'res/fonts'
 
 import { Info } from 'library/components/Info'
 import { CardButton } from 'library/components/CardButton'
-import { MinimalButton } from 'library/components/MinimalButton'
 import { AuthContext } from 'screens/auth'
 import { Avatar } from 'library/components/Avatar'
 import { UsersContext } from 'screens/app/contexts/Users.context'
@@ -20,7 +19,7 @@ export const ProfilScreen = () => {
   const navigation = useNavigation()
   const { logout } = useContext(AuthContext)
   const { me } = useContext(UsersContext)
-  const { relation, daysOfRelation } = useContext(RelationContext)
+  const { daysOfRelation } = useContext(RelationContext)
 
   const handleFeedback = async () => {
     await WebBrowser.openBrowserAsync('https://payfit.com')
@@ -47,13 +46,6 @@ export const ProfilScreen = () => {
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" />
-      <View style={styles.close}>
-        <MinimalButton
-          iconName="close"
-          iconColor="dark200"
-          onAction={() => navigation.navigate('Dashboard')}
-        />
-      </View>
 
       <Avatar
         size="medium"
@@ -122,9 +114,6 @@ export const styles = StyleSheet.create({
     paddingLeft: 24,
     paddingRight: 24,
     backgroundColor: colors.skin100,
-  },
-  close: {
-    marginRight: 'auto',
   },
   firstname: {
     fontFamily: fonts['DMSerifDisplay-Regular'],

@@ -40,7 +40,7 @@ export const PushNotificationScreen = () => {
       firstName: values.firstName,
       birthDate: new Date(values.birthDate).getTime(),
       gender: values.gender,
-      expoPushToken: values.expoPushToken,
+      // expoPushToken: values.expoPushToken,
     })
 
     login(result.data.data)
@@ -53,7 +53,7 @@ export const PushNotificationScreen = () => {
         birthDate: new Date(values.birthDate).getTime(),
         gender: values.gender,
         code: values.code,
-        expoPushToken: values.expoPushToken,
+        // expoPushToken: values.expoPushToken,
       })
 
       login(result.data.data)
