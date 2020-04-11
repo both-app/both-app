@@ -1,5 +1,6 @@
-import React, { useContext } from 'react'
+import React, { useContext, useCallback } from 'react'
 import { View, StyleSheet, StatusBar } from 'react-native'
+import { useFocusEffect } from '@react-navigation/native'
 
 import { colors } from 'res/colors'
 
@@ -16,9 +17,14 @@ import { UsersContext } from 'screens/app/contexts/Users.context'
 export const DashboardScreen = () => {
   const { partner } = useContext(UsersContext)
 
+  useFocusEffect(
+    useCallback(() => {
+      StatusBar.setBarStyle('light-content')
+    }, [])
+  )
+
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" />
       <Header>
         <WeekInfo />
         <RelationInfo />
@@ -53,7 +59,6 @@ const styles = StyleSheet.create({
     paddingTop: 24,
     paddingLeft: 24,
     paddingRight: 24,
-    paddingBottom: 13,
     position: 'relative',
   },
   badgeContainer: {

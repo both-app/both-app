@@ -5,6 +5,7 @@ import {
   TouchableOpacityProps,
   View,
 } from 'react-native'
+import * as Haptics from 'expo-haptics'
 
 import { colors } from 'res/colors'
 
@@ -15,6 +16,7 @@ interface TabBarItemProps extends TouchableOpacityProps {
 export const TabBarItem: FC<TabBarItemProps> = ({
   isFocused = false,
   children,
+  onPress,
   ...props
 }) => {
   const buttonStyle = {
@@ -22,8 +24,19 @@ export const TabBarItem: FC<TabBarItemProps> = ({
     ...styles.shadowButton,
   }
 
+  const handleOnPress = async (e) => {
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+
+    onPress && onPress(e)
+  }
+
   return (
-    <TouchableOpacity style={buttonStyle} {...props}>
+    <TouchableOpacity
+      {...props}
+      style={buttonStyle}
+      activeOpacity={1}
+      onPress={handleOnPress}
+    >
       <View
         style={{
           ...styles.buttonBase,
@@ -51,8 +64,8 @@ const styles = StyleSheet.create({
     width: 64,
     height: 64,
     marginBottom: 32,
-    marginRight: 16,
-    marginLeft: 16,
+    marginRight: 8,
+    marginLeft: 8,
     alignItems: 'center',
     justifyContent: 'center',
   },

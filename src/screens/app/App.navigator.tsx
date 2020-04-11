@@ -19,6 +19,7 @@ export const AppNavigator = () => (
       name={ROUTES.PROFIL}
       component={ProfilNavigator}
       options={{
+        tabBarVisible: true,
         tabBarIcon: ({ size, color }) => (
           <Icon iconName="heart" width={size} height={size} style={{ color }} />
         ),
@@ -28,6 +29,7 @@ export const AppNavigator = () => (
       name={ROUTES.DASHBOARD}
       component={DashboardNavigator}
       options={{
+        tabBarVisible: true,
         tabBarIcon: ({ size, color }) => (
           <Icon iconName="list" width={size} height={size} style={{ color }} />
         ),
@@ -37,6 +39,7 @@ export const AppNavigator = () => (
       name={'TEST'}
       component={DashboardNavigator}
       options={{
+        tabBarVisible: true,
         tabBarIcon: ({ size, color }) => (
           <Icon iconName="award" width={size} height={size} style={{ color }} />
         ),
