@@ -9,9 +9,9 @@ import {
 } from 'react-native'
 import * as Haptics from 'expo-haptics'
 
-import { fonts } from 'res/fonts'
 import { lightenDarkenColor, colors } from 'res/colors'
-import { useT } from 'res/i18n'
+
+import { Point } from 'library/components/Point'
 
 export interface CardButtonProps {
   emoji: string
@@ -43,7 +43,6 @@ export const CardButton: FC<CardButtonProps> = ({
   onLongPress,
   ...props
 }) => {
-  const { t } = useT()
   const [isActive, setIsActive] = useState(false)
 
   const containerStyle = {
@@ -66,11 +65,6 @@ export const CardButton: FC<CardButtonProps> = ({
     ...props.textStyle,
     ...styles.subtitle,
     ...(isActive || props.active ? { color: activeTextColor } : {}),
-  }
-
-  const rightInnerStyle = {
-    ...styles.rightInner,
-    backgroundColor: lightenDarkenColor(containerStyle.backgroundColor, -15),
   }
 
   const handleOnPressInOrOut = () => setIsActive(!isActive)
@@ -102,12 +96,10 @@ export const CardButton: FC<CardButtonProps> = ({
       </View>
 
       {points > 0 && (
-        <View style={rightInnerStyle}>
-          <Text style={styles.pointsNumber}>{points}</Text>
-          <Text style={styles.pointsText}>
-            {t('points', { count: points })}
-          </Text>
-        </View>
+        <Point
+          points={points}
+          backgroundColor={containerStyle.backgroundColor}
+        />
       )}
     </TouchableOpacity>
   )
@@ -147,25 +139,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   medium: {
-    fontWeight: '500',
-  },
-  rightInner: {
-    width: 40,
-    height: 40,
-    borderRadius: 40,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  pointsNumber: {
-    fontFamily: fonts['DMSerifDisplay-Regular'],
-    fontSize: 26,
-    color: colors.white,
-  },
-  pointsText: {
-    color: colors.white,
-    fontSize: 8,
-    position: 'relative',
-    top: -6,
     fontWeight: '500',
   },
 })

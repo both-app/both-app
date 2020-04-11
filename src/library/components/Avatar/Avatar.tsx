@@ -20,6 +20,7 @@ interface AvatarProps {
   size: 'large' | 'medium' | 'small'
   containerStyle?: ViewStyle
   borderColor?: Color
+  borderWidth?: number
   backgroundColor?: Color
   avatarColor?: Color
   onAction?: VoidFunction
@@ -29,6 +30,7 @@ export const Avatar: FC<AvatarProps> = ({
   firstname,
   isLoading,
   size = 48,
+  borderWidth = 4,
   borderColor,
   backgroundColor,
   avatarColor,
@@ -71,7 +73,7 @@ export const Avatar: FC<AvatarProps> = ({
     ...(backgroundColor ? { backgroundColor: colors[backgroundColor] } : {}),
     ...(borderColor
       ? {
-          borderWidth: 4,
+          borderWidth,
           borderColor: colors[borderColor],
         }
       : {}),

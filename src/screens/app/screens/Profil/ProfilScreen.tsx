@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { View, Text, StyleSheet, Alert, StatusBar } from 'react-native'
+import { View, Text, StyleSheet, Alert } from 'react-native'
 import * as WebBrowser from 'expo-web-browser'
 import { useNavigation } from '@react-navigation/native'
 
@@ -45,8 +45,6 @@ export const ProfilScreen = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="dark-content" />
-
       <Avatar
         size="medium"
         backgroundColor="dark200"

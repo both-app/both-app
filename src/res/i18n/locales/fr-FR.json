@@ -95,6 +95,12 @@
   },
   "app:screen:newUserTask:chooseTask:subtitle": "Et qu'as tu fait ?",
 
+  "app:screen:leaderboard:winnerOfTheWeek:male": "Champion de la semaine",
+  "app:screen:leaderboard:winnerOfTheWeek:female": "Championne de la semaine",
+  "app:screen:leaderboard:winnerOfTheWeek:other": "Champion de la semaine",
+  "app:screen:leaderboard:speciality": "Spécialité: %{taskName}",
+  "app:screen:leaderBoard:counterEndOfWeek": "Fin dans %{time}",
+
   "modal:newTaskAdded:badgeText": "Bravo %{firstName} 🎉",
   "modal:newTaskAdded:info:primary": "👏 On vient de les ajouter à ton compteur",
   "modal:newTaskAdded:info:secondary": "Continue comme ça !",
