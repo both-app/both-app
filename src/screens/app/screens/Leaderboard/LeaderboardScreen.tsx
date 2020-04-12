@@ -22,7 +22,13 @@ export const LeaderboardScreen = () => {
         <>
           <Confetti containerStyle={styles.confettiContainer}>
             <>
-              <Avatar firstname="Mathieu" size="large" />
+              <Avatar
+                firstname="Mathieu"
+                size="large"
+                backgroundColor="dark200"
+                avatarColor="white"
+                borderColor="dark200"
+              />
               <Text style={styles.medal}>🏆</Text>
             </>
           </Confetti>

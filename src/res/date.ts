@@ -25,3 +25,10 @@ const daysInMonth = (month: number, year: number) => {
       return 31
   }
 }
+
+export const getWeekNumber = (date: Date) => {
+  const firstDayOfYear = new Date(date.getFullYear(), 0, 1)
+  // @ts-ignore
+  const pastDaysOfYear = (date - firstDayOfYear) / 86400000
+  return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7)
+}

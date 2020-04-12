@@ -3,13 +3,7 @@ import { Text, StyleSheet } from 'react-native'
 
 import { colors } from 'res/colors'
 import { useT } from 'res/i18n'
-
-const getNumberOfWeek = (now: Date) => {
-  const firstDayOfYear = new Date(now.getFullYear(), 0, 1)
-  // @ts-ignore
-  const pastDaysOfYear = (now - firstDayOfYear) / 86400000
-  return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7)
-}
+import { getWeekNumber } from 'res/date'
 
 export const WeekInfo = () => {
   const { t, locale } = useT()
@@ -23,7 +17,7 @@ export const WeekInfo = () => {
 
   return (
     <Text style={styles.week}>
-      {t('week')} {getNumberOfWeek(now)} • {todayDate}
+      {t('week')} {getWeekNumber(now)} • {todayDate}
     </Text>
   )
 }
