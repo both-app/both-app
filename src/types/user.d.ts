@@ -4,4 +4,5 @@ interface User {
   gender: 'male' | 'female' | 'other'
   relationId: string
   birthDate: string
+  expoPushToken: string
 }

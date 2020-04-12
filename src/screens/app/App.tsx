@@ -11,11 +11,11 @@ export const App = () => (
   <UsersContextProvider>
     <CategoryContextProvider>
       <TaskContextProvider>
-        <UserTaskContextProvider>
-          <RelationContextProvider>
+        <RelationContextProvider>
+          <UserTaskContextProvider>
             <AppNavigator />
-          </RelationContextProvider>
-        </UserTaskContextProvider>
+          </UserTaskContextProvider>
+        </RelationContextProvider>
       </TaskContextProvider>
     </CategoryContextProvider>
   </UsersContextProvider>

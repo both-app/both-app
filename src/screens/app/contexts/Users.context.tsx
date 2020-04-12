@@ -34,6 +34,7 @@ const initialState: UsersContextState = {
     gender: 'other',
     relationId: '',
     birthDate: '',
+    expoPushToken: '',
   },
   partner: {
     id: '',
@@ -41,6 +42,7 @@ const initialState: UsersContextState = {
     gender: 'other',
     relationId: '',
     birthDate: '',
+    expoPushToken: '',
   },
 }
 
