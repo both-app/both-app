@@ -1,9 +1,9 @@
 import React from 'react'
 import { Text, StyleSheet } from 'react-native'
+import getWeek from 'date-fns/getWeek'
 
 import { colors } from 'res/colors'
 import { useT } from 'res/i18n'
-import { getWeekNumber } from 'res/date'
 
 export const WeekInfo = () => {
   const { t, locale } = useT()
@@ -17,7 +17,7 @@ export const WeekInfo = () => {
 
   return (
     <Text style={styles.week}>
-      {t('week')} {getWeekNumber(now)} • {todayDate}
+      {t('week')} {getWeek(now)} • {todayDate}
     </Text>
   )
 }

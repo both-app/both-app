@@ -7,11 +7,11 @@ import { useT } from 'res/i18n'
 
 import { Avatar } from 'library/components/Avatar'
 import { Layout } from 'library/layouts/Layout'
-import { Badge } from 'library/components/Badge'
 
 import { RelationStatus } from 'screens/app/components/RelationStatus'
 import { Confetti } from 'screens/app/components/Confetti'
 import { User } from './components/User'
+import { CountdownBadge } from './components/CountdownBadge'
 
 export const LeaderboardScreen = () => {
   const { t } = useT()
@@ -39,11 +39,7 @@ export const LeaderboardScreen = () => {
           <RelationStatus />
         </>
       }
-      badge={
-        <Badge color="warning">
-          {t('app:screen:leaderBoard:counterEndOfWeek', { time: '18:52:01' })}
-        </Badge>
-      }
+      badge={<CountdownBadge />}
     >
       <ScrollView>
         <User
