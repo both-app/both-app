@@ -42,7 +42,7 @@ export const ProfilScreen = () => {
   }
 
   const handleFeedback = async () => {
-    await WebBrowser.openBrowserAsync('https://payfit.com')
+    await WebBrowser.openBrowserAsync('https://forms.gle/vFxTrrKXZNstFsz17')
   }
 
   const handleRateApp = async () => {
