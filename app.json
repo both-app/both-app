@@ -49,6 +49,13 @@
             "authToken": "d639bbc54bed494db9425fddad35b83ca2fb55ba1f6e4525b834f66ec5475fb4",
             "url": ""
           }
+        },
+        {
+          "file": "expo-postpublish-slack-notify",
+          "config": {
+            "webhookUrl": "https://hooks.slack.com/services/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",
+            "channel": "#new-release"
+          }
         }
       ]
     }
