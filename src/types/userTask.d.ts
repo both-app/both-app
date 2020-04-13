@@ -1,7 +1,7 @@
 interface UserTask {
   id: string
   taskId: string
-  difficulty: number
+  points: number
   userId: string
   relationId: string
   createdAt: string

@@ -9,7 +9,6 @@ import React, {
 
 import { api, APIResponse } from 'res/api'
 import { setItem, getItem } from 'res/storage'
-import { getNativeEmoji } from 'res/emoji'
 
 type CategoriesResponse = APIResponse<{ categories: Category[] }>
 
@@ -26,12 +25,11 @@ const CategoryContextProvider: FC = ({ children }) => {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const result = await api.get<CategoriesResponse>('/categories')
-
-      const newCategories = result.data.data.categories.map((category) => ({
-        ...category,
-        emoji: getNativeEmoji(category.emoji),
-      }))
+      const {
+        data: {
+          data: { categories: newCategories },
+        },
+      } = await api.get<CategoriesResponse>('/categories')
 
       setItem('categories', newCategories)
       setCategories(newCategories)

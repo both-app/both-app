@@ -19,7 +19,7 @@ interface UserTaskProps {
 
 export const UserTask: FC<UserTaskProps> = ({ userTask }) => {
   const { t } = useT()
-  const { getTaskById, getPoints } = useContext(TaskContext)
+  const { getTaskById } = useContext(TaskContext)
   const { getUserById } = useContext(UsersContext)
   const { getCategoryById } = useContext(CategoryContext)
   const { deleteUserTask } = useContext(UserTaskContext)
@@ -56,7 +56,7 @@ export const UserTask: FC<UserTaskProps> = ({ userTask }) => {
         backgroundColor: category.color,
       }}
       textStyle={styles.cardText}
-      rightContent={<Point points={getPoints(task.id)} />}
+      rightContent={<Point points={userTask.points} />}
     />
   )
 }

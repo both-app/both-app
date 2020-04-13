@@ -9,6 +9,7 @@ const initialState: State = {
       taskId: 'taskIdA',
       createdAt: '2020-04-06T18:52:08.085Z',
       relationId: 'relationIdA',
+      points: 1,
     },
   },
 }
@@ -24,6 +25,7 @@ describe('UserTaskReducer', () => {
           createdAt: '2020-04-06',
           taskId: 'taskId1',
           relationId: 'relationIdA',
+          points: 2,
         },
         {
           id: 'C',
@@ -31,6 +33,7 @@ describe('UserTaskReducer', () => {
           createdAt: '2020-04-06',
           taskId: 'taskId1',
           relationId: 'relationIdA',
+          points: 1,
         },
       ],
     })
@@ -47,6 +50,7 @@ describe('UserTaskReducer', () => {
         createdAt: '2020-04-06',
         taskId: 'taskId1',
         relationId: 'relationIdA',
+        points: 1,
       },
     })
 

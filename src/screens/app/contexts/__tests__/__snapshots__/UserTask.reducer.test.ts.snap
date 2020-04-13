@@ -7,6 +7,7 @@ Object {
     "A": Object {
       "createdAt": "2020-04-06T18:52:08.085Z",
       "id": "A",
+      "points": 1,
       "relationId": "relationIdA",
       "taskId": "taskIdA",
       "userId": "userIdA",
@@ -25,6 +26,7 @@ Object {
     "B": Object {
       "createdAt": "2020-04-06",
       "id": "B",
+      "points": 2,
       "relationId": "relationIdA",
       "taskId": "taskId1",
       "userId": "userIdA",
@@ -32,6 +34,7 @@ Object {
     "C": Object {
       "createdAt": "2020-04-06",
       "id": "C",
+      "points": 1,
       "relationId": "relationIdA",
       "taskId": "taskId1",
       "userId": "userIdB",
@@ -50,6 +53,7 @@ Object {
     "A": Object {
       "createdAt": "2020-04-06T18:52:08.085Z",
       "id": "A",
+      "points": 1,
       "relationId": "relationIdA",
       "taskId": "taskIdA",
       "userId": "userIdA",
@@ -57,6 +61,7 @@ Object {
     "B": Object {
       "createdAt": "2020-04-06",
       "id": "B",
+      "points": 1,
       "relationId": "relationIdA",
       "taskId": "taskId1",
       "userId": "userIdA",

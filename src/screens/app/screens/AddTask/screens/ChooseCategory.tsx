@@ -1,6 +1,6 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useCallback } from 'react'
 import { StyleSheet, ScrollView } from 'react-native'
-import { useNavigation } from '@react-navigation/core'
+import { useNavigation, useFocusEffect } from '@react-navigation/core'
 
 import { CategoryContext } from 'screens/app/contexts/Category.context'
 import { TaskContext } from 'screens/app/contexts/Task.context'
@@ -9,29 +9,29 @@ import { FormLayout } from 'library/layouts/FormLayout'
 import { Label } from 'library/components/Label'
 import { CardButton } from 'library/components/CardButton'
 
-import { wait } from 'res/utils'
 import { useT } from 'res/i18n'
 
 export const ChooseCategoryScreen = () => {
   const { t } = useT()
-  const [selectedCategoryId, setSelectedCategoryId] = useState('')
+  const navigation = useNavigation()
+  const [selectedId, setSelectedId] = useState('')
 
   const { categories } = useContext(CategoryContext)
   const { getTasksByCategoryId } = useContext(TaskContext)
 
-  const navigation = useNavigation()
+  useFocusEffect(
+    useCallback(() => {
+      setSelectedId('')
+    }, [])
+  )
 
-  const handleOnAction = async (categoryId: string) => {
-    setSelectedCategoryId(categoryId)
+  const handleOnAction = async (category: Category) => {
+    setSelectedId(category.id)
 
-    await wait(50)
-
-    navigation.navigate('ChooseTask', { categoryId })
-    setSelectedCategoryId('')
+    navigation.navigate('ChooseTask', { category })
   }
 
   const handleOnClose = () => {
-    setSelectedCategoryId('')
     navigation.navigate('Dashboard')
   }
 
@@ -62,8 +62,8 @@ export const ChooseCategoryScreen = () => {
                 count: taskNumber,
                 tasks: taskNumber,
               })}
-              onAction={() => handleOnAction(category.id)}
-              active={selectedCategoryId === category.id}
+              onAction={() => handleOnAction(category)}
+              active={selectedId === category.id}
               activeBackgroundColor={category.color}
               activeTextColor="white"
               containerStyle={{

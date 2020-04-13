@@ -1,61 +1,58 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState, useCallback } from 'react'
 import { StyleSheet, ScrollView } from 'react-native'
-import { useNavigation, useRoute } from '@react-navigation/core'
+import { useNavigation, useRoute, useFocusEffect } from '@react-navigation/core'
 
-import { CategoryContext } from 'screens/app/contexts/Category.context'
 import { TaskContext } from 'screens/app/contexts/Task.context'
+import { UserTaskContext } from 'screens/app/contexts/UserTask.context'
 
-import { wait } from 'res/utils'
 import { useT } from 'res/i18n'
 
 import { FormLayout } from 'library/layouts/FormLayout'
 import { Label } from 'library/components/Label'
-import { UserTaskContext } from 'screens/app/contexts/UserTask.context'
+
 import { Task } from './components/Task'
 
 export const ChooseTaskScreen = () => {
   const { t } = useT()
-  const [selectedCategory, setCategory] = useState<Category>()
-  const [selectedTaskId, setSelectedTaskId] = useState('')
-
-  const { getCategoryById } = useContext(CategoryContext)
-  const { getTasksByCategoryId, setTaskIdCompleted } = useContext(TaskContext)
-  const { addNewUserTask } = useContext(UserTaskContext)
-
   const route = useRoute()
   const navigation = useNavigation()
+  const [selectedId, setSelectedId] = useState('')
+
+  const { getTasksByCategoryId } = useContext(TaskContext)
+  const { addNewUserTask } = useContext(UserTaskContext)
 
   // @ts-ignore
-  const categoryId = route.params?.categoryId || ''
+  const category = route.params.category as Category
 
-  useEffect(() => {
-    const category = getCategoryById(categoryId)
+  useFocusEffect(
+    useCallback(() => {
+      setSelectedId('')
+    }, [])
+  )
 
-    setCategory(category)
-  }, [])
+  const handleOnAction = async (task: Task, difficulty?: number) => {
+    setSelectedId(task.id)
 
-  const handleOnAction = async (taskId: string, difficulty?: number) => {
-    setSelectedTaskId(taskId)
+    if (difficulty === 0) {
+      addNewUserTask(task.id, 0)
 
-    if (!difficulty) {
-      addNewUserTask(taskId, 0)
-
-      await wait(200)
-
-      setTaskIdCompleted(taskId)
       navigation.navigate('Dashboard')
     }
+
+    return navigation.navigate('ChooseTaskDifficulty', { category, task })
   }
 
-  const tasks = getTasksByCategoryId(categoryId)
+  const handleOnBack = () => navigation.goBack()
+
+  const tasks = getTasksByCategoryId(category.id)
 
   return (
     <FormLayout
       containerStyle={styles.formContainer}
-      onBackAction={() => navigation.goBack()}
+      onBackAction={handleOnBack}
       label={
         <Label
-          primary={`${selectedCategory?.name} ${selectedCategory?.emoji}`}
+          primary={`${category.name} ${category.emoji}`}
           secondary={t('app:screen:newUserTask:chooseTask:subtitle')}
         />
       }
@@ -68,10 +65,11 @@ export const ChooseTaskScreen = () => {
           <Task
             key={task.id}
             task={task}
-            index={index}
-            selectedCategory={selectedCategory}
-            selectedTaskId={selectedTaskId}
+            category={category}
+            selectedId={selectedId}
             onAction={handleOnAction}
+            isFirstItem={index === 0}
+            isLastItem={index === tasks.length - 1}
           />
         ))}
       </ScrollView>
