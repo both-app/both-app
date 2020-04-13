@@ -2,6 +2,7 @@ import React, { FC, createContext, useMemo, useEffect, useState } from 'react'
 import * as Sentry from 'sentry-expo'
 
 import { getItem, setItem, clear } from 'res/storage'
+import { wait } from 'res/utils'
 
 interface AuthContextProps {
   isConnected: boolean
@@ -45,8 +46,11 @@ const AuthContextProvider: FC = ({ children }) => {
   }
 
   const logout = async () => {
-    await clear()
     setIsConnected(false)
+
+    await wait(1000)
+
+    await clear()
   }
 
   const authContextApi = useMemo(

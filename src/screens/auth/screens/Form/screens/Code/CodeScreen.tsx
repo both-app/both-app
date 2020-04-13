@@ -8,7 +8,7 @@ import { Info } from 'library/components/Info'
 import { Label } from 'library/components/Label'
 import { InputCode } from 'screens/auth/components/InputCode'
 import { FormLayout } from 'library/layouts/FormLayout'
-import { AuthFormContext } from '../../../../AuthForm.context'
+import { FormContext } from '../../Form.context'
 
 const CODE_LENGTH = 6
 
@@ -16,7 +16,7 @@ export const CodeScreen = () => {
   const navigation = useNavigation()
   const { t } = useT()
   const [error, setError] = useState<[string, string] | []>([])
-  const { values, setValue } = useContext(AuthFormContext)
+  const { values, setValue } = useContext(FormContext)
 
   const handleOnNext = () => {
     if (!values.code || values.code.length < CODE_LENGTH) {

@@ -9,13 +9,13 @@ import { Info } from 'library/components/Info'
 import { FormLayout } from 'library/layouts/FormLayout'
 
 import { Input } from 'screens/auth/components/Input'
-import { AuthFormContext } from '../../../../AuthForm.context'
+import { FormContext } from '../../Form.context'
 
 export const FirstNameScreen = () => {
   const navigation = useNavigation()
   const { t } = useT()
   const [error, setError] = useState<[string, string] | []>([])
-  const { values, setValue } = useContext(AuthFormContext)
+  const { values, setValue } = useContext(FormContext)
 
   const handleOnNext = () => {
     if (!values.firstName) {

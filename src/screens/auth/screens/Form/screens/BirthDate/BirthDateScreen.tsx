@@ -6,7 +6,7 @@ import { Label } from 'library/components/Label'
 import { Info } from 'library/components/Info'
 import { FormLayout } from 'library/layouts/FormLayout'
 import { InputDate } from 'screens/auth/components/InputDate'
-import { AuthFormContext } from '../../../../AuthForm.context'
+import { FormContext } from '../../Form.context'
 import { isValidDate } from 'res/date'
 import { useT } from 'res/i18n'
 
@@ -14,7 +14,7 @@ export const BirthDateScreen = () => {
   const navigation = useNavigation()
   const { t } = useT()
   const [error, setError] = useState<[string, string] | []>([])
-  const { values, setValue } = useContext(AuthFormContext)
+  const { values, setValue } = useContext(FormContext)
 
   const handleOnNext = async () => {
     const dateParsed = values.birthDate.split('/')

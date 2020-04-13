@@ -2,18 +2,19 @@ import React, { useContext } from 'react'
 import { StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
+import { useT } from 'res/i18n'
+
 import { Label } from 'library/components/Label'
 import { Info } from 'library/components/Info'
 import { FormLayout } from 'library/layouts/FormLayout'
 
 import { Select } from 'screens/auth/components/Select'
-import { AuthFormContext } from '../../../../AuthForm.context'
-import { useT } from 'res/i18n'
+import { FormContext } from '../../Form.context'
 
 export const JoinOrCreateScreen = () => {
   const navigation = useNavigation()
   const { t } = useT()
-  const { values, setValue } = useContext(AuthFormContext)
+  const { values, setValue } = useContext(FormContext)
 
   const handleOnChange = (value: 'JOIN' | 'CREATE') => {
     setValue('type', value)

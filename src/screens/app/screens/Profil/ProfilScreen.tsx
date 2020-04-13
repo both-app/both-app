@@ -10,7 +10,7 @@ import { useT } from 'res/i18n'
 
 import { Info } from 'library/components/Info'
 import { CardButton } from 'library/components/CardButton'
-import { AuthContext } from 'screens/auth'
+import { AuthContext, AuthApiContext } from 'screens/auth/contexts'
 import { Avatar } from 'library/components/Avatar'
 import { UsersContext } from 'screens/app/contexts/Users.context'
 import { RelationContext } from 'screens/app/contexts/Relation.context'
@@ -19,6 +19,7 @@ export const ProfilScreen = () => {
   const { t } = useT()
   const navigation = useNavigation()
   const { logout } = useContext(AuthContext)
+  const { deleteRelation } = useContext(AuthApiContext)
   const { me } = useContext(UsersContext)
   const { daysOfRelation } = useContext(RelationContext)
 
@@ -57,7 +58,10 @@ export const ProfilScreen = () => {
       {
         text: t('alert:endRelation:yesButton'),
         style: 'destructive',
-        onPress: logout,
+        onPress: () => {
+          deleteRelation()
+          logout()
+        },
       },
     ])
   }
