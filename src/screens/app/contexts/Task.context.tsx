@@ -17,6 +17,7 @@ interface TaskContextProps {
   getTaskById: (id: string) => Task
   taskIdCompeted: string
   setTaskIdCompleted: (id: string) => void
+  getPoints: (id: string, difficulty?: number) => string
 }
 
 type TasksResponse = APIResponse<{ tasks: Task[] }>
@@ -36,8 +37,6 @@ const TaskContextProvider: FC = ({ children }) => {
         ...task,
         emoji: getNativeEmoji(task.emoji),
       }))
-
-      console.log(tasks)
 
       setItem('tasks', tasks)
       setTasks(tasks)
@@ -68,11 +67,34 @@ const TaskContextProvider: FC = ({ children }) => {
     [tasks]
   )
 
+  const getPoints = useCallback(
+    (taskId: string, difficulty?: number) => {
+      const task = tasks.find((task) => task.id === taskId)
+      const difficultiesSorted = task.difficulties.sort(
+        (a, b) => a.points - b.points
+      )
+
+      if (difficulty) {
+        return task.difficulties[difficulty].points
+      }
+
+      if (difficultiesSorted.length > 1) {
+        return `${difficultiesSorted[0].points}-${
+          difficultiesSorted[difficultiesSorted.length - 1].points
+        }`
+      }
+
+      return difficultiesSorted[0].points
+    },
+    [tasks]
+  )
+
   const taskContextApi = useMemo(
     () => ({
       tasks,
       getTasksByCategoryId,
       getTaskById,
+      getPoints,
       taskIdCompleted,
       setTaskIdCompleted,
     }),
@@ -80,6 +102,7 @@ const TaskContextProvider: FC = ({ children }) => {
       tasks,
       getTasksByCategoryId,
       getTaskById,
+      getPoints,
       taskIdCompleted,
       setTaskIdCompleted,
     ]

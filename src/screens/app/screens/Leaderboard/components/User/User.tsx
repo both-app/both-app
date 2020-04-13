@@ -58,11 +58,7 @@ export const User: FC<UserProps> = ({
       </View>
 
       <View style={styles.pointsContainer}>
-        <Point
-          points={points}
-          shape="rectangle"
-          backgroundColor={isWinner ? 'highlight200' : 'skin200'}
-        />
+        <Point points={points} />
       </View>
     </View>
   )

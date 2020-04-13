@@ -10,8 +10,8 @@ import { useT } from 'res/i18n'
 
 import { FormLayout } from 'library/layouts/FormLayout'
 import { Label } from 'library/components/Label'
-import { CardButton } from 'library/components/CardButton'
 import { UserTaskContext } from 'screens/app/contexts/UserTask.context'
+import { Task } from './components/Task'
 
 export const ChooseTaskScreen = () => {
   const { t } = useT()
@@ -34,15 +34,17 @@ export const ChooseTaskScreen = () => {
     setCategory(category)
   }, [])
 
-  const handleOnAction = async (taskId: string) => {
+  const handleOnAction = async (taskId: string, difficulty?: number) => {
     setSelectedTaskId(taskId)
 
-    addNewUserTask(taskId)
+    if (!difficulty) {
+      addNewUserTask(taskId, 0)
 
-    await wait(200)
+      await wait(200)
 
-    setTaskIdCompleted(taskId)
-    navigation.navigate('Dashboard')
+      setTaskIdCompleted(taskId)
+      navigation.navigate('Dashboard')
+    }
   }
 
   const tasks = getTasksByCategoryId(categoryId)
@@ -63,19 +65,13 @@ export const ChooseTaskScreen = () => {
         showsVerticalScrollIndicator={false}
       >
         {tasks.map((task, index) => (
-          <CardButton
+          <Task
             key={task.id}
-            emoji={task.emoji}
-            title={task.name}
-            onAction={() => handleOnAction(task.id)}
-            activeBackgroundColor={selectedCategory?.color}
-            activeTextColor="white"
-            points={task.points}
-            active={selectedTaskId === task.id}
-            containerStyle={{
-              marginTop: index === 0 ? 72 : 10,
-              marginBottom: index === tasks.length - 1 ? 56 : 0,
-            }}
+            task={task}
+            index={index}
+            selectedCategory={selectedCategory}
+            selectedTaskId={selectedTaskId}
+            onAction={handleOnAction}
           />
         ))}
       </ScrollView>
