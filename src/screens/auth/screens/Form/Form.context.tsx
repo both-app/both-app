@@ -1,6 +1,6 @@
 import React, { FC, createContext, useState, useMemo } from 'react'
 
-interface AuthFormContextProps {
+interface FormContextProps {
   values: {
     firstName: string
     gender: string
@@ -9,16 +9,13 @@ interface AuthFormContextProps {
     birthDate: string
     expoPushToken: string
   }
-  setValue: (
-    fieldName: keyof AuthFormContextProps['values'],
-    value: string
-  ) => void
+  setValue: (fieldName: keyof FormContextProps['values'], value: string) => void
 }
 
 // @ts-ignore
-const AuthFormContext = createContext<AuthFormContextProps>({})
+const FormContext = createContext<FormContextProps>({})
 
-const AuthFormContextProvider: FC = ({ children }) => {
+const FormContextProvider: FC = ({ children }) => {
   const [state, setState] = useState({
     firstName: '',
     gender: '',
@@ -31,7 +28,7 @@ const AuthFormContextProvider: FC = ({ children }) => {
   const setValue = (fieldName: string, value: string) =>
     setState({ ...state, [fieldName]: value })
 
-  const authContextApi = useMemo(
+  const formContextApi = useMemo(
     () => ({
       values: state,
       setValue,
@@ -40,10 +37,10 @@ const AuthFormContextProvider: FC = ({ children }) => {
   )
 
   return (
-    <AuthFormContext.Provider value={authContextApi}>
+    <FormContext.Provider value={formContextApi}>
       {children}
-    </AuthFormContext.Provider>
+    </FormContext.Provider>
   )
 }
 
-export { AuthFormContext, AuthFormContextProvider }
+export { FormContext, FormContextProvider }

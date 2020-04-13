@@ -10,7 +10,7 @@ import { Select } from 'screens/auth/components/Select'
 import { FormLayout } from 'library/layouts/FormLayout'
 import { Info } from 'library/components/Info'
 
-import { AuthFormContext } from '../../../../AuthForm.context'
+import { FormContext } from '../../Form.context'
 import { AuthApiContext } from 'screens/auth/AuthApi.context'
 import { AuthContext } from 'screens/auth/Auth.context'
 
@@ -18,7 +18,7 @@ export const PushNotificationScreen = () => {
   const navigation = useNavigation()
   const { t } = useT()
   const [error, setError] = useState<[string, string] | []>([])
-  const { values, setValue } = useContext(AuthFormContext)
+  const { values, setValue } = useContext(FormContext)
   const { createRelation, joinRelation } = useContext(AuthApiContext)
   const { login } = useContext(AuthContext)
 

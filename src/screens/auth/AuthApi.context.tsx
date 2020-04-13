@@ -23,6 +23,7 @@ interface AuthApiContextProps {
     code: string
     expoPushToken: string
   }) => Promise<AxiosResponse<AuthResponse>>
+  deleteRelation: () => Promise<AxiosResponse<APIResponse<{}>>>
 }
 
 // @ts-ignore
@@ -33,13 +34,16 @@ const AuthApiContextProvider: FC = ({ children }) => {
     api.post('relations', params)
   const joinRelation: AuthApiContextProps['joinRelation'] = (params) =>
     api.post('relations/join', params)
+  const deleteRelation: AuthApiContextProps['deleteRelation'] = () =>
+    api.delete('relations')
 
   const authApiContextApi = useMemo(
     () => ({
       createRelation,
       joinRelation,
+      deleteRelation,
     }),
-    [createRelation, joinRelation]
+    [createRelation, joinRelation, deleteRelation]
   )
 
   return (

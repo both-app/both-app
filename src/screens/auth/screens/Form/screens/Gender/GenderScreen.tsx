@@ -8,12 +8,12 @@ import { Label } from 'library/components/Label'
 import { Select } from 'screens/auth/components/Select'
 import { FormLayout } from 'library/layouts/FormLayout'
 
-import { AuthFormContext } from '../../../../AuthForm.context'
+import { FormContext } from '../../Form.context'
 
 export const GenderScreen = () => {
   const navigation = useNavigation()
   const { t } = useT()
-  const { values, setValue } = useContext(AuthFormContext)
+  const { values, setValue } = useContext(FormContext)
 
   const handleOnChange = (value: 'female' | 'male' | 'other') => {
     setValue('gender', value)
