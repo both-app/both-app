@@ -73,7 +73,10 @@ export const PushNotificationScreen = () => {
       onBackAction={handleOnBack}
       containerStyle={styles.formContainer}
       label={
-        <Label primary="Et pour finir" secondary="Parlons notifications" />
+        <Label
+          primary={t('auth:screen:form:pushNotification:title')}
+          secondary={t('auth:screen:form:pushNotification:subtitle')}
+        />
       }
       bottomInfo={
         <Info
@@ -89,15 +92,19 @@ export const PushNotificationScreen = () => {
         onChange={handleOnFinish}
         options={[
           {
-            emoji: '🔥',
-            label: 'Oui, je suis chaud',
-            extraInfo: 'Promis on ne flood pas',
+            emoji: '✅',
+            label: t('auth:screen:form:pushNotification:select:yes:label'),
+            extraInfo: t(
+              'auth:screen:form:pushNotification:select:yes:subtitle'
+            ),
             value: 'yes',
           },
           {
-            emoji: '⛔️',
-            label: 'Non, pas besoin',
-            extraInfo: 'blabla',
+            emoji: '✖️',
+            label: t('auth:screen:form:pushNotification:select:no:label'),
+            extraInfo: t(
+              'auth:screen:form:pushNotification:select:no:subtitle'
+            ),
             value: 'no',
           },
         ]}
