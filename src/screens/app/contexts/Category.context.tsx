@@ -18,11 +18,8 @@ interface CategoryContextProps {
   getCategoryById: (id: string) => Category | null
 }
 
-const CategoryContext = createContext<CategoryContextProps>({
-  categories: [],
-  // @ts-ignore
-  getCategoryById: () => {},
-})
+// @ts-ignore
+const CategoryContext = createContext<CategoryContextProps>({})
 
 const CategoryContextProvider: FC = ({ children }) => {
   const [categories, setCategories] = useState<Category[]>([])

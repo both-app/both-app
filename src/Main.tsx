@@ -1,6 +1,6 @@
-import React, { useContext } from 'react'
-import { AppLoading } from 'expo'
+import React, { useContext, useEffect } from 'react'
 import { useFonts } from '@use-expo/font'
+import { SplashScreen } from 'expo'
 
 import { AuthNavigator, AuthContext } from './screens/auth'
 import { App } from 'screens/app'
@@ -11,8 +11,12 @@ export const Main = () => {
     'DMSerifDisplay-Regular': require('../assets/fonts/DMSerifDisplay-Regular.ttf'),
   })
 
+  useEffect(() => {
+    SplashScreen.preventAutoHide()
+  })
+
   if (!fontsLoaded) {
-    return <AppLoading />
+    return null
   }
 
   if (isConnected) {

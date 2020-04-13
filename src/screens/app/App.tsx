@@ -6,6 +6,7 @@ import { TaskContextProvider } from './contexts/Task.context'
 import { RelationContextProvider } from './contexts/Relation.context'
 import { UsersContextProvider } from './contexts/Users.context'
 import { UserTaskContextProvider } from './contexts/UserTask.context'
+import { AppLoader } from './AppLoader'
 
 export const App = () => (
   <UsersContextProvider>
@@ -13,7 +14,9 @@ export const App = () => (
       <TaskContextProvider>
         <RelationContextProvider>
           <UserTaskContextProvider>
-            <AppNavigator />
+            <AppLoader>
+              <AppNavigator />
+            </AppLoader>
           </UserTaskContextProvider>
         </RelationContextProvider>
       </TaskContextProvider>

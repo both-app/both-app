@@ -50,7 +50,6 @@ const initialState: UsersContextState = {
 const UsersContext = createContext<UsersContextProps>({})
 
 const UsersContextProvider: FC = ({ children }) => {
-  const [isReHydrate, setIsReHydrate] = useState<boolean>(false)
   const [state, setState] = useState<UsersContextState>(initialState)
 
   useEffect(() => {
@@ -61,7 +60,6 @@ const UsersContextProvider: FC = ({ children }) => {
 
       if (users) {
         setState({ ...state, ...users })
-        setIsReHydrate(true)
       }
 
       fetchUsers()
@@ -108,7 +106,7 @@ const UsersContextProvider: FC = ({ children }) => {
 
   return (
     <UsersContext.Provider value={usersContextApi}>
-      {isReHydrate ? children : null}
+      {children}
     </UsersContext.Provider>
   )
 }

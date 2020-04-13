@@ -12,6 +12,7 @@ import { setItem, getItem } from 'res/storage'
 import { getNativeEmoji } from 'res/emoji'
 
 interface TaskContextProps {
+  tasks: Task[]
   getTasksByCategoryId: (id: string) => Task[]
   getTaskById: (id: string) => Task
   taskIdCompeted: string
@@ -20,15 +21,8 @@ interface TaskContextProps {
 
 type TasksResponse = APIResponse<{ tasks: Task[] }>
 
-const TaskContext = createContext<TaskContextProps>({
-  // @ts-ignore
-  getTasksByCategoryId: () => [],
-  // @ts-ignore
-  getTaskById: () => {},
-  taskIdCompeted: '',
-  // @ts-ignore
-  setTaskIdCompleted: () => {},
-})
+// @ts-ignore
+const TaskContext = createContext<TaskContextProps>({})
 
 const TaskContextProvider: FC = ({ children }) => {
   const [tasks, setTasks] = useState<Task[]>([])
@@ -74,6 +68,7 @@ const TaskContextProvider: FC = ({ children }) => {
 
   const taskContextApi = useMemo(
     () => ({
+      tasks,
       getTasksByCategoryId,
       getTaskById,
       taskIdCompleted,
