@@ -14,8 +14,6 @@ interface TaskContextProps {
   tasks: Task[]
   getTasksByCategoryId: (id: string) => Task[]
   getTaskById: (id: string) => Task
-  taskIdCompeted: string
-  setTaskIdCompleted: (id: string) => void
   getPoints: (id: string) => string
 }
 
@@ -26,7 +24,6 @@ const TaskContext = createContext<TaskContextProps>({})
 
 const TaskContextProvider: FC = ({ children }) => {
   const [tasks, setTasks] = useState<Task[]>([])
-  const [taskIdCompleted, setTaskIdCompleted] = useState<string>()
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -89,17 +86,8 @@ const TaskContextProvider: FC = ({ children }) => {
       getTasksByCategoryId,
       getTaskById,
       getPoints,
-      taskIdCompleted,
-      setTaskIdCompleted,
     }),
-    [
-      tasks,
-      getTasksByCategoryId,
-      getTaskById,
-      getPoints,
-      taskIdCompleted,
-      setTaskIdCompleted,
-    ]
+    [tasks, getTasksByCategoryId, getTaskById, getPoints]
   )
 
   return (

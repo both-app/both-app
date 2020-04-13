@@ -14,14 +14,14 @@ import { useT } from 'res/i18n'
 export const ChooseCategoryScreen = () => {
   const { t } = useT()
   const navigation = useNavigation()
-  const [selectedId, setSelectedId] = useState('')
+  const [selectedId, setSelectedId] = useState<string | null>(null)
 
   const { categories } = useContext(CategoryContext)
   const { getTasksByCategoryId } = useContext(TaskContext)
 
   useFocusEffect(
     useCallback(() => {
-      setSelectedId('')
+      setSelectedId(null)
     }, [])
   )
 

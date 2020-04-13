@@ -58,7 +58,7 @@ export const User: FC<UserProps> = ({
       </View>
 
       <View style={styles.pointsContainer}>
-        <Point points={points} />
+        <Point points={points} shape="rectangle" />
       </View>
     </View>
   )

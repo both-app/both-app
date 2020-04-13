@@ -1,6 +1,11 @@
 import React, { useContext, useState, useCallback } from 'react'
 import { StyleSheet, ScrollView } from 'react-native'
-import { useNavigation, useRoute, useFocusEffect } from '@react-navigation/core'
+import {
+  useNavigation,
+  useRoute,
+  useFocusEffect,
+  RouteProp,
+} from '@react-navigation/core'
 
 import { useT } from 'res/i18n'
 
@@ -8,14 +13,24 @@ import { FormLayout } from 'library/layouts/FormLayout'
 import { Label } from 'library/components/Label'
 import { UserTaskContext } from 'screens/app/contexts/UserTask.context'
 import { TaskDifficulty } from './components/TaskDifficulty'
+import { TaskAddedModalContext } from '../../Dashboard/components/TaskAddedModal'
+import { AddTaskStackParamList } from '../AddTask.navigator'
+
+type ChooseTaskDifficultyRouteProps = RouteProp<
+  AddTaskStackParamList,
+  'ChooseTaskDifficulty'
+>
 
 export const ChooseTaskDifficultyScreen = () => {
   const { t } = useT()
-  const route = useRoute()
+  const route = useRoute<ChooseTaskDifficultyRouteProps>()
   const navigation = useNavigation()
   const [selectedIndex, setSelectedIndex] = useState<number | null>()
 
   const { addNewUserTask } = useContext(UserTaskContext)
+  const { openTaskAddedModal } = useContext(TaskAddedModalContext)
+
+  const { category, task } = route.params
 
   useFocusEffect(
     useCallback(() => {
@@ -23,14 +38,10 @@ export const ChooseTaskDifficultyScreen = () => {
     }, [])
   )
 
-  // @ts-ignore
-  const category = route.params.category as Category
-  // @ts-ignore
-  const { difficulties, ...task } = route.params.task as Task
-
   const handleOnAction = async (difficultyIndex: number) => {
     setSelectedIndex(difficultyIndex)
 
+    openTaskAddedModal(task, difficultyIndex)
     addNewUserTask(task.id, difficultyIndex)
 
     navigation.navigate('Dashboard')
@@ -43,14 +54,17 @@ export const ChooseTaskDifficultyScreen = () => {
       containerStyle={styles.formContainer}
       onBackAction={handleOnBack}
       label={
-        <Label primary={`${task.name} ${task.emoji}`} secondary="C'était..." />
+        <Label
+          primary={`${task.name} ${task.emoji}`}
+          secondary={t('app:screen:newUserTask:chooseTaskDifficulty:subtitle')}
+        />
       }
     >
       <ScrollView
         style={styles.tasksContainer}
         showsVerticalScrollIndicator={false}
       >
-        {difficulties.map((taskDifficulty, index) => (
+        {task.difficulties.map((taskDifficulty, index) => (
           <TaskDifficulty
             key={index}
             taskDifficulty={taskDifficulty}
@@ -59,7 +73,7 @@ export const ChooseTaskDifficultyScreen = () => {
             selectedIndex={selectedIndex}
             color={category.color}
             isFirstItem={index === 0}
-            isLastItem={index === difficulties.length - 1}
+            isLastItem={index === task.difficulties.length - 1}
           />
         ))}
       </ScrollView>

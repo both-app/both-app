@@ -1,6 +1,9 @@
 import React, { FC } from 'react'
 
+import { useT } from 'res/i18n'
+
 import { CardButton } from 'library/components/CardButton'
+import { Point } from 'library/components/Point'
 
 interface TaskDifficultyProps {
   taskDifficulty: TaskDifficulty
@@ -21,20 +24,18 @@ export const TaskDifficulty: FC<TaskDifficultyProps> = ({
   isFirstItem,
   isLastItem,
 }) => {
-  const DIFFICULTY_NAME_MAPPING = {
-    1: 'Les doigts dans le nez',
-    2: 'Ca va...',
-    3: 'Contraignant',
-    4: 'Difficile',
-    5: 'Épuisant',
-  }
+  const { t } = useT()
+
+  const difficultyTitle = t(`app:difficulty:${taskDifficulty.points || 1}`)
+
+  const handleOnAction = () => onAction(taskDifficultyIndex)
 
   return (
     <CardButton
       emoji={taskDifficulty.emoji}
-      title={DIFFICULTY_NAME_MAPPING[taskDifficulty.points]}
+      title={difficultyTitle}
       subtitle={taskDifficulty.name}
-      onAction={() => onAction(taskDifficultyIndex)}
+      onAction={handleOnAction}
       active={selectedIndex === taskDifficultyIndex}
       activeBackgroundColor={color}
       activeTextColor="white"
@@ -42,6 +43,7 @@ export const TaskDifficulty: FC<TaskDifficultyProps> = ({
         marginTop: isFirstItem ? 72 : 10,
         marginBottom: isLastItem ? 56 : 0,
       }}
+      rightContent={<Point points={taskDifficulty.points} />}
     />
   )
 }

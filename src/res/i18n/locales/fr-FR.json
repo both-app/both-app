@@ -7,6 +7,13 @@
   "male": "Homme",
   "female": "Femme",
   "other": "Autre",
+
+  "app:difficulty:1": "Les doigts dans le nez",
+  "app:difficulty:2": "Ca va...",
+  "app:difficulty:3": "Contraignant",
+  "app:difficulty:4": "Difficile",
+  "app:difficulty:5": "Épuisant",
+
   "auth:screen:select:title": "Bienvenue sur Both 👋",
   "auth:screen:select:subtitle": "Commençons...",
   "auth:screen:select:tapYourFirstname": "Tape ton prénom",
@@ -100,6 +107,7 @@
     "other": "%{tasks} tâches"
   },
   "app:screen:newUserTask:chooseTask:subtitle": "Et qu'as tu fait ?",
+  "app:screen:newUserTask:chooseTaskDifficulty:subtitle": "C'était...",
 
   "app:screen:leaderboard:winnerOfTheWeek:male": "Champion de la semaine",
   "app:screen:leaderboard:winnerOfTheWeek:female": "Championne de la semaine",

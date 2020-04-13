@@ -22,10 +22,11 @@ export const Task: FC<TaskProps> = ({
   isFirstItem,
   isLastItem,
 }) => {
+  const isTaskWithDifficulties = task.difficulties.length > 1
   const { getPoints } = useContext(TaskContext)
 
   const handleOnAction = () => {
-    if (task.difficulties.length > 0) {
+    if (isTaskWithDifficulties) {
       return onAction(task)
     }
 
@@ -41,7 +42,12 @@ export const Task: FC<TaskProps> = ({
       activeBackgroundColor={category?.color}
       activeTextColor="white"
       active={selectedId === task.id}
-      rightContent={<Point points={getPoints(task.id)} />}
+      rightContent={
+        <Point
+          points={getPoints(task.id)}
+          shape={isTaskWithDifficulties ? 'rectangle' : 'circle'}
+        />
+      }
       containerStyle={{
         marginTop: isFirstItem ? 72 : 10,
         marginBottom: isLastItem ? 56 : 0,

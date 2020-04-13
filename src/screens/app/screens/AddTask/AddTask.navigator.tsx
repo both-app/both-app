@@ -5,15 +5,27 @@ import { ChooseCategoryScreen } from './screens/ChooseCategory'
 import { ChooseTaskScreen } from './screens/ChooseTask'
 import { ChooseTaskDifficultyScreen } from './screens/ChooseTaskDifficulty'
 
-export const Stack = createStackNavigator()
+export type AddTaskStackParamList = {
+  ChooseCategory: undefined
+  ChooseTask: { category: Category }
+  ChooseTaskDifficulty: {
+    category: Category
+    task: Task
+  }
+}
+
+export const AddTaskStack = createStackNavigator()
 
 export const AddTaskNavigator = () => (
-  <Stack.Navigator headerMode="none">
-    <Stack.Screen component={ChooseCategoryScreen} name="ChooseCategory" />
-    <Stack.Screen component={ChooseTaskScreen} name="ChooseTask" />
-    <Stack.Screen
+  <AddTaskStack.Navigator headerMode="none">
+    <AddTaskStack.Screen
+      component={ChooseCategoryScreen}
+      name="ChooseCategory"
+    />
+    <AddTaskStack.Screen component={ChooseTaskScreen} name="ChooseTask" />
+    <AddTaskStack.Screen
       component={ChooseTaskDifficultyScreen}
       name="ChooseTaskDifficulty"
     />
-  </Stack.Navigator>
+  </AddTaskStack.Navigator>
 )

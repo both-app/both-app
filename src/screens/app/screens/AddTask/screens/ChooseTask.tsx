@@ -1,32 +1,41 @@
 import React, { useContext, useState, useCallback } from 'react'
 import { StyleSheet, ScrollView } from 'react-native'
-import { useNavigation, useRoute, useFocusEffect } from '@react-navigation/core'
+import {
+  useNavigation,
+  useRoute,
+  useFocusEffect,
+  RouteProp,
+} from '@react-navigation/core'
+
+import { useT } from 'res/i18n'
 
 import { TaskContext } from 'screens/app/contexts/Task.context'
 import { UserTaskContext } from 'screens/app/contexts/UserTask.context'
-
-import { useT } from 'res/i18n'
 
 import { FormLayout } from 'library/layouts/FormLayout'
 import { Label } from 'library/components/Label'
 
 import { Task } from './components/Task'
+import { TaskAddedModalContext } from '../../Dashboard/components/TaskAddedModal'
+import { AddTaskStackParamList } from '../AddTask.navigator'
+
+type ChooseTaskRouteProps = RouteProp<AddTaskStackParamList, 'ChooseTask'>
 
 export const ChooseTaskScreen = () => {
   const { t } = useT()
-  const route = useRoute()
+  const route = useRoute<ChooseTaskRouteProps>()
   const navigation = useNavigation()
-  const [selectedId, setSelectedId] = useState('')
+  const [selectedId, setSelectedId] = useState<string | null>(null)
 
   const { getTasksByCategoryId } = useContext(TaskContext)
   const { addNewUserTask } = useContext(UserTaskContext)
+  const { openTaskAddedModal } = useContext(TaskAddedModalContext)
 
-  // @ts-ignore
-  const category = route.params.category as Category
+  const { category } = route.params
 
   useFocusEffect(
     useCallback(() => {
-      setSelectedId('')
+      setSelectedId(null)
     }, [])
   )
 
@@ -34,9 +43,10 @@ export const ChooseTaskScreen = () => {
     setSelectedId(task.id)
 
     if (difficulty === 0) {
+      openTaskAddedModal(task, 0)
       addNewUserTask(task.id, 0)
 
-      navigation.navigate('Dashboard')
+      return navigation.navigate('Dashboard')
     }
 
     return navigation.navigate('ChooseTaskDifficulty', { category, task })

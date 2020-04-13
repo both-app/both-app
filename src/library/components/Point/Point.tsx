@@ -6,26 +6,23 @@ import { colors } from 'res/colors'
 import { useT } from 'res/i18n'
 
 export interface PointProps {
-  points: number | string
+  points: number
+  shape?: 'circle' | 'rectangle'
 }
 
-export const Point: FC<PointProps> = ({ points }) => {
+export const Point: FC<PointProps> = ({ points, shape = 'circle' }) => {
   const { t } = useT()
-
-  const pointsNumber = Number(points)
 
   const containerStyle = {
     ...styles.container,
-    width: points.toString().length > 1 ? 52 : 40,
+    width: shape === 'circle' ? 40 : 52,
     height: 40,
   }
 
   return (
     <View style={containerStyle}>
       <Text style={styles.pointsNumber}>{points}</Text>
-      <Text style={styles.pointsText}>
-        {t('points', { count: pointsNumber || 2 })}
-      </Text>
+      <Text style={styles.pointsText}>{t('points', { count: points })}</Text>
     </View>
   )
 }
