@@ -8,6 +8,7 @@ import { FormLayout } from 'library/layouts/FormLayout'
 import { Label } from 'library/components/Label'
 import { UserTaskContext } from 'screens/app/contexts/UserTask.context'
 import { TaskDifficulty } from './components/TaskDifficulty'
+import { TaskAddedModalContext } from '../../Dashboard/components/TaskAddedModal'
 
 export const ChooseTaskDifficultyScreen = () => {
   const { t } = useT()
@@ -16,6 +17,7 @@ export const ChooseTaskDifficultyScreen = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>()
 
   const { addNewUserTask } = useContext(UserTaskContext)
+  const { openTaskAddedModal } = useContext(TaskAddedModalContext)
 
   useFocusEffect(
     useCallback(() => {
@@ -26,11 +28,12 @@ export const ChooseTaskDifficultyScreen = () => {
   // @ts-ignore
   const category = route.params.category as Category
   // @ts-ignore
-  const { difficulties, ...task } = route.params.task as Task
+  const task = route.params.task as Task
 
   const handleOnAction = async (difficultyIndex: number) => {
     setSelectedIndex(difficultyIndex)
 
+    openTaskAddedModal(task, difficultyIndex)
     addNewUserTask(task.id, difficultyIndex)
 
     navigation.navigate('Dashboard')
@@ -50,7 +53,7 @@ export const ChooseTaskDifficultyScreen = () => {
         style={styles.tasksContainer}
         showsVerticalScrollIndicator={false}
       >
-        {difficulties.map((taskDifficulty, index) => (
+        {task.difficulties.map((taskDifficulty, index) => (
           <TaskDifficulty
             key={index}
             taskDifficulty={taskDifficulty}
@@ -59,7 +62,7 @@ export const ChooseTaskDifficultyScreen = () => {
             selectedIndex={selectedIndex}
             color={category.color}
             isFirstItem={index === 0}
-            isLastItem={index === difficulties.length - 1}
+            isLastItem={index === task.difficulties.length - 1}
           />
         ))}
       </ScrollView>

@@ -8,6 +8,7 @@ import { useNavigation, useRoute } from '@react-navigation/native'
 import { DashboardScreen } from './DashboardScreen'
 import { AddTaskNavigator } from 'screens/app/screens/AddTask'
 import { getCurrentRouteName } from 'res/stackNavigation'
+import { TaskAddedModalContextProvider } from './components/TaskAddedModal'
 
 const Stack = createStackNavigator()
 
@@ -31,15 +32,17 @@ export const DashboardNavigator = () => {
   }, [navigation, route])
 
   return (
-    <Stack.Navigator initialRouteName={ROUTES.DASHBOARD} headerMode="none">
-      <Stack.Screen name={ROUTES.DASHBOARD} component={DashboardScreen} />
-      <Stack.Screen
-        name={ROUTES.ADD_TASK}
-        component={AddTaskNavigator}
-        options={{
-          cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
-        }}
-      />
-    </Stack.Navigator>
+    <TaskAddedModalContextProvider>
+      <Stack.Navigator initialRouteName={ROUTES.DASHBOARD} headerMode="none">
+        <Stack.Screen name={ROUTES.DASHBOARD} component={DashboardScreen} />
+        <Stack.Screen
+          name={ROUTES.ADD_TASK}
+          component={AddTaskNavigator}
+          options={{
+            cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
+          }}
+        />
+      </Stack.Navigator>
+    </TaskAddedModalContextProvider>
   )
 }

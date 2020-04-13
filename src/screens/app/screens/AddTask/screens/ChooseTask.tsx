@@ -11,6 +11,7 @@ import { FormLayout } from 'library/layouts/FormLayout'
 import { Label } from 'library/components/Label'
 
 import { Task } from './components/Task'
+import { TaskAddedModalContext } from '../../Dashboard/components/TaskAddedModal'
 
 export const ChooseTaskScreen = () => {
   const { t } = useT()
@@ -20,6 +21,7 @@ export const ChooseTaskScreen = () => {
 
   const { getTasksByCategoryId } = useContext(TaskContext)
   const { addNewUserTask } = useContext(UserTaskContext)
+  const { openTaskAddedModal } = useContext(TaskAddedModalContext)
 
   // @ts-ignore
   const category = route.params.category as Category
@@ -34,9 +36,10 @@ export const ChooseTaskScreen = () => {
     setSelectedId(task.id)
 
     if (difficulty === 0) {
+      openTaskAddedModal(task, 0)
       addNewUserTask(task.id, 0)
 
-      navigation.navigate('Dashboard')
+      return navigation.navigate('Dashboard')
     }
 
     return navigation.navigate('ChooseTaskDifficulty', { category, task })

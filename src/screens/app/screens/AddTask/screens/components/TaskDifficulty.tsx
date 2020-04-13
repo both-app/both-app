@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 
 import { CardButton } from 'library/components/CardButton'
+import { Point } from 'library/components/Point'
 
 interface TaskDifficultyProps {
   taskDifficulty: TaskDifficulty
@@ -42,6 +43,7 @@ export const TaskDifficulty: FC<TaskDifficultyProps> = ({
         marginTop: isFirstItem ? 72 : 10,
         marginBottom: isLastItem ? 56 : 0,
       }}
+      rightContent={<Point points={taskDifficulty.points} />}
     />
   )
 }

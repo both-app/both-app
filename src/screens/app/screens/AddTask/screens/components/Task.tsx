@@ -25,7 +25,7 @@ export const Task: FC<TaskProps> = ({
   const { getPoints } = useContext(TaskContext)
 
   const handleOnAction = () => {
-    if (task.difficulties.length > 0) {
+    if (task.difficulties.length > 1) {
       return onAction(task)
     }
 

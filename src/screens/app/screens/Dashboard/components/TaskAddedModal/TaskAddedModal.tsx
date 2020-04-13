@@ -14,7 +14,8 @@ interface TaskAddedModalProps {
   visible: boolean
   onClose: VoidFunction
   onAction: VoidFunction
-  task?: Task
+  emoji: string
+  points: number
 }
 
 export const TaskAddedModal: FC<TaskAddedModalProps> = ({
@@ -22,14 +23,15 @@ export const TaskAddedModal: FC<TaskAddedModalProps> = ({
   visible,
   onClose,
   onAction,
-  task,
+  emoji,
+  points,
 }) => {
   const { t } = useT()
 
   return (
     <Modal
       visible={visible}
-      emoji={task?.emoji}
+      emoji={emoji}
       onClose={onClose}
       onAction={onAction}
       primaryActionIconName="check"
@@ -38,7 +40,7 @@ export const TaskAddedModal: FC<TaskAddedModalProps> = ({
         {t('modal:newTaskAdded:badgeText', { firstName: userFirstName })}
       </Badge>
 
-      <Counter points={task?.points} />
+      <Counter points={points} />
 
       <View style={styles.infoContainer}>
         <Info

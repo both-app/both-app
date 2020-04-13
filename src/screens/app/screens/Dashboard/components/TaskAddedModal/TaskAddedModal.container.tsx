@@ -1,45 +1,28 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import * as Haptics from 'expo-haptics'
 
 import { TaskAddedModal } from './TaskAddedModal'
-import { TaskContext } from 'screens/app/contexts/Task.context'
 import { UsersContext } from 'screens/app/contexts/Users.context'
+import { TaskAddedModalContext } from './TaskAddedModal.context'
 
 export const TaskAddedModalContainer = () => {
-  const [modalIsOpen, setModalIsOpen] = useState(false)
-  const [taskAdded, setTaskAdded] = useState<Task>()
   const { me } = useContext(UsersContext)
-  const { getTaskById, taskIdCompleted, setTaskIdCompleted } = useContext(
-    TaskContext
-  )
+  const { taskAdded, closeTaskAddedModal } = useContext(TaskAddedModalContext)
 
   useEffect(() => {
-    if (taskIdCompleted) {
-      const taskAdded = getTaskById(taskIdCompleted)
-      setTaskAdded(taskAdded)
-
-      setTimeout(async () => {
-        await Haptics.notificationAsync(
-          Haptics.NotificationFeedbackType.Success
-        )
-
-        setModalIsOpen(true)
-      }, 100)
+    if (taskAdded) {
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success)
     }
-  }, [taskIdCompleted])
-
-  const handleOnClose = () => {
-    setModalIsOpen(false)
-    setTaskIdCompleted('')
-  }
+  }, [taskAdded])
 
   return (
     <TaskAddedModal
+      visible={!!taskAdded}
       userFirstName={me.firstName}
-      task={taskAdded}
-      visible={modalIsOpen}
-      onAction={handleOnClose}
-      onClose={handleOnClose}
+      points={taskAdded?.points}
+      emoji={taskAdded?.emoji}
+      onAction={closeTaskAddedModal}
+      onClose={closeTaskAddedModal}
     />
   )
 }
