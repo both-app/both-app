@@ -13,13 +13,8 @@ interface AuthContextProps {
   logout: () => Promise<void>
 }
 
-const AuthContext = createContext<AuthContextProps>({
-  isConnected: false,
-  // @ts-ignore
-  login: () => {},
-  // @ts-ignore
-  logout: () => {},
-})
+// @ts-ignore
+const AuthContext = createContext<AuthContextProps>({})
 
 const AuthContextProvider: FC = ({ children }) => {
   const [isConnected, setIsConnected] = useState(false)

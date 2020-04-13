@@ -1,23 +1,37 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
+import * as Font from 'expo-font'
 import { AppLoading } from 'expo'
-import { useFonts } from '@use-expo/font'
+import { Asset } from 'expo-asset'
 
-import { AuthNavigator, AuthContext } from './screens/auth'
+import { Auth, AuthContext } from './screens/auth'
 import { App } from 'screens/app'
 
 export const Main = () => {
+  const [isSplashReady, setIsSplashReady] = useState<boolean>(false)
   const { isConnected } = useContext(AuthContext)
-  const [fontsLoaded] = useFonts({
-    'DMSerifDisplay-Regular': require('../assets/fonts/DMSerifDisplay-Regular.ttf'),
-  })
 
-  if (!fontsLoaded) {
-    return <AppLoading />
+  const loadRessources = async () => {
+    // Load the Font
+    await Font.loadAsync({
+      'DMSerifDisplay-Regular': require('../assets/fonts/DMSerifDisplay-Regular.ttf'),
+    })
+
+    // Load the SplashScreen image
+    return Asset.fromModule(require('../assets/splash.png')).downloadAsync()
+  }
+
+  if (!isSplashReady) {
+    return (
+      <AppLoading
+        startAsync={loadRessources}
+        onFinish={() => setIsSplashReady(true)}
+      />
+    )
   }
 
   if (isConnected) {
     return <App />
   }
 
-  return <AuthNavigator />
+  return <Auth />
 }

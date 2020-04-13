@@ -1,6 +1,6 @@
 import isValid from 'date-fns/isValid'
 
-export const isValidDate = (year: number, month: number, day: number) => {
+export const isValidDate = (year: string, month: string, day: string) => {
   return isValid(new Date(`${year}-${month}-${day}`))
 }
 

@@ -3054,11 +3054,6 @@
     lodash "^4.5.0"
     prop-types "^15.6.1"
 
-"@use-expo/font@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@use-expo/font/-/font-2.0.0.tgz#09b56d626e5b0c83cd0116f5bb69ad6d612d677f"
-  integrity sha512-oOJ2uaRyZNQg7PnQviz7nBcdrRL38zxScab4ktgtI4asa6G0dHW9wg307uJJmn0sHS04Yqtw+m0EOjDcGw3iWg==
-
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.8.5.tgz#51b1c5fe6576a34953bf4b253df9f0d490d9e359"
@@ -6733,7 +6728,7 @@ expo-permissions@~8.0.0:
   resolved "https://registry.yarnpkg.com/expo-permissions/-/expo-permissions-8.0.0.tgz#5a45e8451dd7ff37c9e6ce5e2447818372547813"
   integrity sha512-GHTRmwh1rd1b0FcibluPFu93NNQyl9b1anBBDVPmomoo9Prz7kDcO5p2hFqM99r896yvAUSe0fPloPKUq4g/1A==
 
-expo-postpublish-slack-notify@^1.2.0:
+expo-postpublish-slack-notify@1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/expo-postpublish-slack-notify/-/expo-postpublish-slack-notify-1.2.0.tgz#8614aca36bb8617e74cfd61aa362a36bb969615d"
   integrity sha512-mRKEF71o4KwMQfNRFgFNBnO0O5TIL1HkCn5K720AVxU/ySQbvREEYdt1EhZmksYxaS/gXe27Ve+woP5C2R+KeQ==
