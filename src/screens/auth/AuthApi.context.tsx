@@ -1,6 +1,7 @@
 import React, { FC, createContext, useMemo } from 'react'
-import { api, APIResponse } from 'res/api'
 import { AxiosResponse } from 'axios'
+
+import { api, APIResponse } from 'res/api'
 
 type AuthResponse = APIResponse<{
   jwtToken: string
@@ -24,16 +25,14 @@ interface AuthApiContextProps {
   }) => Promise<AxiosResponse<AuthResponse>>
 }
 
-const AuthApiContext = createContext<AuthApiContextProps>({
-  // @ts-ignore
-  createRelation: () => {},
-  // @ts-ignore
-  joinRelation: () => {},
-})
+// @ts-ignore
+const AuthApiContext = createContext<AuthApiContextProps>({})
 
 const AuthApiContextProvider: FC = ({ children }) => {
-  const createRelation = (params) => api.post('relations', params)
-  const joinRelation = (params) => api.post('relations/join', params)
+  const createRelation: AuthApiContextProps['createRelation'] = (params) =>
+    api.post('relations', params)
+  const joinRelation: AuthApiContextProps['joinRelation'] = (params) =>
+    api.post('relations/join', params)
 
   const authApiContextApi = useMemo(
     () => ({

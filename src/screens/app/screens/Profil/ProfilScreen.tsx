@@ -1,10 +1,12 @@
-import React, { useContext } from 'react'
+import React, { useContext, useCallback } from 'react'
 import { View, Text, StyleSheet, Alert } from 'react-native'
 import * as WebBrowser from 'expo-web-browser'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useFocusEffect } from '@react-navigation/native'
+import { Asset } from 'expo-asset'
 
 import { colors } from 'res/colors'
 import { fonts } from 'res/fonts'
+import { useT } from 'res/i18n'
 
 import { Info } from 'library/components/Info'
 import { CardButton } from 'library/components/CardButton'
@@ -12,7 +14,6 @@ import { AuthContext } from 'screens/auth'
 import { Avatar } from 'library/components/Avatar'
 import { UsersContext } from 'screens/app/contexts/Users.context'
 import { RelationContext } from 'screens/app/contexts/Relation.context'
-import { useT } from 'res/i18n'
 
 export const ProfilScreen = () => {
   const { t } = useT()
@@ -20,6 +21,24 @@ export const ProfilScreen = () => {
   const { logout } = useContext(AuthContext)
   const { me } = useContext(UsersContext)
   const { daysOfRelation } = useContext(RelationContext)
+
+  useFocusEffect(
+    useCallback(() => {
+      loadTeamAvatars()
+    }, [])
+  )
+
+  const loadTeamAvatars = async () => {
+    const images = [
+      require('../../../../../assets/team/mathieu.png'),
+      require('../../../../../assets/team/gauthier.png'),
+      require('../../../../../assets/team/vincent.png'),
+    ]
+
+    await Promise.all(
+      images.map((image) => Asset.fromModule(image).downloadAsync())
+    )
+  }
 
   const handleFeedback = async () => {
     await WebBrowser.openBrowserAsync('https://payfit.com')

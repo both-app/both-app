@@ -17,7 +17,7 @@ export const BirthDateScreen = () => {
   const { values, setValue } = useContext(AuthFormContext)
 
   const handleOnNext = async () => {
-    const dateParsed = values.birthDate.split('/').map(Number)
+    const dateParsed = values.birthDate.split('/')
 
     if (
       !values.birthDate ||

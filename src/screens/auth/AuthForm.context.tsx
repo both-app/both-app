@@ -15,18 +15,8 @@ interface AuthFormContextProps {
   ) => void
 }
 
-const AuthFormContext = createContext<AuthFormContextProps>({
-  values: {
-    firstName: '',
-    gender: '',
-    type: '',
-    code: '',
-    birthDate: '',
-    expoPushToken: '',
-  },
-  // @ts-ignore
-  setValue: () => {},
-})
+// @ts-ignore
+const AuthFormContext = createContext<AuthFormContextProps>({})
 
 const AuthFormContextProvider: FC = ({ children }) => {
   const [state, setState] = useState({

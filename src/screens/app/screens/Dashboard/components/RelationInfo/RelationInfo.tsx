@@ -14,7 +14,7 @@ export const RelationInfo = () => {
   const getPoints = (userId: string) =>
     getUserTasksByUserId(userId).reduce((acc, { taskId }) => {
       const task = getTaskById(taskId)
-      return acc + (task?.points || 0)
+      return acc + task.points
     }, 0)
 
   const leftPoints = useMemo(() => getPoints(me.id), [allIds])
