@@ -37,6 +37,8 @@ const TaskContextProvider: FC = ({ children }) => {
         emoji: getNativeEmoji(task.emoji),
       }))
 
+      console.log(tasks)
+
       setItem('tasks', tasks)
       setTasks(tasks)
     }

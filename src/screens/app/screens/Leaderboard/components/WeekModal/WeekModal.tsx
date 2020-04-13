@@ -7,7 +7,7 @@ import { Badge } from 'library/components/Badge'
 import { Info } from 'library/components/Info'
 import { Modal } from 'library/components/Modal'
 import { Avatar } from 'library/components/Avatar'
-import { Medal } from './Medal'
+import { Medal } from '../Medal'
 import { Counter } from './Counter'
 
 interface WeekModalProps {

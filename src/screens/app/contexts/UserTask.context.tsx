@@ -45,6 +45,8 @@ const UserTaskContextProvider: FC = ({ children }) => {
       (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
     )
 
+    console.log(userTasksSorted)
+
     dispatch({ type: 'pushAllUserTasks', userTasks: userTasksSorted })
   }
 
