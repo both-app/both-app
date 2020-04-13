@@ -50,20 +50,24 @@ export const ProfilScreen = () => {
   }
 
   const handleEndRelation = () => {
-    Alert.alert(t('alert:endRelation:title'), '', [
-      {
-        text: t('alert:endRelation:noButton'),
-        style: 'cancel',
-      },
-      {
-        text: t('alert:endRelation:yesButton'),
-        style: 'destructive',
-        onPress: () => {
-          deleteRelation()
-          logout()
+    Alert.alert(
+      t('alert:endRelation:title'),
+      t('alert:endRelation:description'),
+      [
+        {
+          text: t('alert:endRelation:noButton'),
+          style: 'cancel',
         },
-      },
-    ])
+        {
+          text: t('alert:endRelation:yesButton'),
+          style: 'destructive',
+          onPress: () => {
+            deleteRelation()
+            logout()
+          },
+        },
+      ]
+    )
   }
 
   return (

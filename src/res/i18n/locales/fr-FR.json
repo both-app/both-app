@@ -113,7 +113,9 @@
   "alert:deleteUserTask:title": "Vous voulez supprimer la tâche?",
   "alert:deleteUserTask:noButton": "Non",
   "alert:deleteUserTask:yesButton": "Oui",
-  "alert:endRelation:title": "Êtes vous sûrs ?",
+
+  "alert:endRelation:title": "Mettre fin à la relation",
+  "alert:endRelation:description": "Oh non, vous étiez si mignons tous les deux... De notre coté cela signifie que nous allons supprimer l'intégralité de vos données et que votre compte ne sera plus accessible. On se quitte vraiment ?",
   "alert:endRelation:noButton": "Non",
-  "alert:endRelation:yesButton": "Oui"
+  "alert:endRelation:yesButton": "Oui, c'est fini"
 }
