@@ -7,7 +7,6 @@ interface FormContextProps {
     code: string
     type: string
     birthDate: string
-    expoPushToken: string
   }
   setValue: (fieldName: keyof FormContextProps['values'], value: string) => void
 }
@@ -22,7 +21,6 @@ const FormContextProvider: FC = ({ children }) => {
     type: '',
     code: '',
     birthDate: '',
-    expoPushToken: '',
   })
 
   const setValue = (fieldName: string, value: string) =>

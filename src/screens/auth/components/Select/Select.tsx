@@ -5,7 +5,7 @@ import { Option } from './Option'
 
 interface SelectProps {
   onChange: (value: string) => void
-  value: string
+  value?: string
   options: Array<{
     emoji: string
     label: string
