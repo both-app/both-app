@@ -17,42 +17,42 @@ export const PushNotificationScreen = () => {
   const navigation = useNavigation()
   const { t } = useT()
   const [error, setError] = useState<[string, string] | []>([])
-  const { values, setValue } = useContext(FormContext)
+  const { values } = useContext(FormContext)
   const { createRelation, joinRelation } = useContext(AuthApiContext)
   const { login } = useContext(AuthContext)
 
   const handleOnFinish = async (value: 'yes' | 'no') => {
+    let pushToken = ''
     if (value === 'yes') {
-      const token = await getExpoPushToken()
-      setValue('expoPushToken', token)
+      pushToken = await getExpoPushToken()
     }
 
     if (values.type === 'CREATE') {
-      return createRelationAndLogin()
+      return createRelationAndLogin(pushToken)
     }
 
-    return joinRelationAndLogin()
+    return joinRelationAndLogin(pushToken)
   }
 
-  const createRelationAndLogin = async () => {
+  const createRelationAndLogin = async (pushToken: string) => {
     const result = await createRelation({
       firstName: values.firstName,
       birthDate: new Date(values.birthDate).getTime(),
       gender: values.gender,
-      // expoPushToken: values.expoPushToken,
+      pushToken,
     })
 
     login(result.data.data)
   }
 
-  const joinRelationAndLogin = async () => {
+  const joinRelationAndLogin = async (pushToken: string) => {
     try {
       const result = await joinRelation({
         firstName: values.firstName,
         birthDate: new Date(values.birthDate).getTime(),
         gender: values.gender,
         code: values.code,
-        // expoPushToken: values.expoPushToken,
+        pushToken,
       })
 
       login(result.data.data)
@@ -65,8 +65,6 @@ export const PushNotificationScreen = () => {
   }
 
   const handleOnBack = () => {
-    setValue('expoPushToken', '')
-
     navigation.goBack()
   }
 
@@ -88,7 +86,6 @@ export const PushNotificationScreen = () => {
       }
     >
       <Select
-        value={values.expoPushToken}
         onChange={handleOnFinish}
         options={[
           {
