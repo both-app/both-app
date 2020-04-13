@@ -3,11 +3,13 @@ import 'react-native-gesture-handler'
 import { initI18n } from './src/res/i18n'
 import * as Sentry from 'sentry-expo'
 import Constants from 'expo-constants'
-
 import { NavigationContainer } from '@react-navigation/native'
 
-import { AuthContextProvider } from './src/screens/auth'
-import { AuthApiContextProvider } from 'screens/auth/AuthApi.context'
+import {
+  AuthContextProvider,
+  AuthApiContextProvider,
+} from 'screens/auth/contexts'
+
 import { Main } from './src/Main'
 
 Sentry.init({

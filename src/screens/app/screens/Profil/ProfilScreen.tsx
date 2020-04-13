@@ -10,7 +10,7 @@ import { useT } from 'res/i18n'
 
 import { Info } from 'library/components/Info'
 import { CardButton } from 'library/components/CardButton'
-import { AuthContext, AuthApiContext } from 'screens/auth'
+import { AuthContext, AuthApiContext } from 'screens/auth/contexts'
 import { Avatar } from 'library/components/Avatar'
 import { UsersContext } from 'screens/app/contexts/Users.context'
 import { RelationContext } from 'screens/app/contexts/Relation.context'

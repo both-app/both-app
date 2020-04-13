@@ -11,8 +11,7 @@ import { FormLayout } from 'library/layouts/FormLayout'
 import { Info } from 'library/components/Info'
 
 import { FormContext } from '../../Form.context'
-import { AuthApiContext } from 'screens/auth/AuthApi.context'
-import { AuthContext } from 'screens/auth/Auth.context'
+import { AuthContext, AuthApiContext } from 'screens/auth/contexts'
 
 export const PushNotificationScreen = () => {
   const navigation = useNavigation()

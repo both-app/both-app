@@ -3,7 +3,9 @@ import * as Font from 'expo-font'
 import { AppLoading } from 'expo'
 import { Asset } from 'expo-asset'
 
-import { Auth, AuthContext } from './screens/auth'
+import { AuthContext } from 'screens/auth/contexts'
+
+import { Auth } from 'screens/auth'
 import { App } from 'screens/app'
 
 export const Main = () => {
