@@ -8,12 +8,15 @@ import React, {
 } from 'react'
 
 import { api, APIResponse } from 'res/api'
+import { groupBy } from 'res/utils'
+
+import { useAppState } from 'hooks/useAppState'
+
 import {
   userTaskReducer,
   userTaskInitialState,
   State,
 } from './UserTask.reducer'
-import { groupBy } from 'res/utils'
 
 type GetUserTasksResponse = APIResponse<{ userTasks: UserTask[] }>
 type PostUserTaskResponse = APIResponse<UserTask>
@@ -31,11 +34,18 @@ interface UserTaskContextProps extends State {
 const UserTaskContext = createContext<UserTaskContextProps>({})
 
 const UserTaskContextProvider: FC = ({ children }) => {
+  const { appState } = useAppState()
   const [state, dispatch] = useReducer(userTaskReducer, userTaskInitialState)
 
   useEffect(() => {
     fetchUserTasks()
   }, [])
+
+  useEffect(() => {
+    if (appState === 'active') {
+      fetchUserTasks()
+    }
+  }, [appState])
 
   const fetchUserTasks = async () => {
     const result = await api.get<GetUserTasksResponse>('user_tasks')
