@@ -7,20 +7,14 @@ import { Body } from './Body'
 
 export const RelationInfo = () => {
   const { me, partner } = useContext(UsersContext)
-  const { getUserTasksByUserId, allIds } = useContext(UserTaskContext)
-
-  const getUserPoints = (userId: string) =>
-    getUserTasksByUserId(userId).reduce((acc, { points }) => acc + points, 0)
-
-  const leftPoints = useMemo(() => getUserPoints(me.id), [allIds])
-  const rightPoints = useMemo(() => getUserPoints(partner.id), [allIds])
+  const { score } = useContext(UserTaskContext)
 
   return (
     <Body
       leftFirstName={me.firstName}
       rightFirstName={partner.firstName || '⌛️'}
-      leftPoints={leftPoints}
-      rightPoints={rightPoints}
+      leftPoints={score.userTotalPoints}
+      rightPoints={score.partnerTotalPoints}
     />
   )
 }

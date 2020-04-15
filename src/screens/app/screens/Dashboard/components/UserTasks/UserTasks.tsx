@@ -16,15 +16,19 @@ export const UserTasks = () => {
   const { t, locale } = useT()
   const { fetchUsers } = useContext(UsersContext)
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false)
-  const { fetchUserTasks, userTasksByDate, allIds } = useContext(
-    UserTaskContext
-  )
+  const {
+    fetchUserTasks,
+    userTasksByDate,
+    allIds,
+    fetchUserScore,
+  } = useContext(UserTaskContext)
 
   const handleOnRefresh = async () => {
     setIsRefreshing(true)
 
     await fetchUsers()
     await fetchUserTasks()
+    await fetchUserScore()
 
     setIsRefreshing(false)
   }
