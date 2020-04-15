@@ -8,13 +8,13 @@ import { CategoryContext } from './contexts/Category.context'
 import { RelationContext } from './contexts/Relation.context'
 
 export const AppLoader = ({ children }) => {
-  const { allIds } = useContext(UserTaskContext)
+  const { userTasks } = useContext(UserTaskContext)
   const { me } = useContext(UsersContext)
   const { tasks } = useContext(TaskContext)
   const { categories } = useContext(CategoryContext)
   const { relation } = useContext(RelationContext)
 
-  const userTasksAreFetched = allIds.length > 0
+  const userTasksAreFetched = userTasks.size > 0
   const usersAreReady = !!me.id
   const tasksAreFetched = tasks.length > 0
   const categoriesAreFetched = categories.length > 0

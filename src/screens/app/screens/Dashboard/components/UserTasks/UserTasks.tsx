@@ -15,7 +15,7 @@ export const UserTasks = () => {
   const navigation = useNavigation()
   const { t, locale } = useT()
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false)
-  const { fetchUserTasks, userTasksByDate, allIds } = useContext(
+  const { fetchUserTasks, userTasksByDate, userTasks } = useContext(
     UserTaskContext
   )
 
@@ -28,15 +28,15 @@ export const UserTasks = () => {
   }
 
   const formattedList = useMemo(() => {
-    return Object.entries(userTasksByDate).map(([date, userTasks]) => ({
+    return Object.entries(userTasksByDate).map(([date, tasks]) => ({
       title: new Date(date).toLocaleDateString(locale, {
         weekday: 'long',
         month: 'long',
         day: 'numeric',
       }),
-      data: userTasks,
+      data: tasks,
     }))
-  }, [allIds])
+  }, [userTasks])
 
   return (
     <SectionList

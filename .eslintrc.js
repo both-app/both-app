@@ -20,4 +20,9 @@ module.exports = {
     '@typescript-eslint/ban-ts-ignore': 'off',
     '@typescript-eslint/camelcase': 'off',
   },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
 }

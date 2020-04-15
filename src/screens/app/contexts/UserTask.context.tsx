@@ -14,6 +14,7 @@ import {
   State,
 } from './UserTask.reducer'
 import { groupBy } from 'res/utils'
+import { getYear, getWeek } from 'date-fns'
 
 type GetUserTasksResponse = APIResponse<{ userTasks: UserTask[] }>
 type PostUserTaskResponse = APIResponse<UserTask>
@@ -22,7 +23,7 @@ interface UserTaskContextProps extends State {
   fetchUserTasks: () => Promise<void>
   addNewUserTask: (taskId: string, difficulty: number) => Promise<void>
   deleteUserTask: (userTaskId: string) => Promise<void>
-  getUserTaskById: (userTaskId: string) => UserTask
+  getUserWeekTasksByUserId: (userId: string) => UserTask[]
   getUserTasksByUserId: (userId: string) => UserTask[]
   userTasksByDate: { [date: string]: UserTask[] }
 }
@@ -66,27 +67,31 @@ const UserTaskContextProvider: FC = ({ children }) => {
     dispatch({ type: 'deleteUserTask', userTaskId })
   }
 
-  const getUserTaskById = useCallback(
-    (userTaskId: string) => state.byId[userTaskId],
-    [state.allIds]
-  )
-
   const getUserTasksByUserId = useCallback(
     (userId: string) =>
-      state.allIds
-        .map(getUserTaskById)
-        .filter((userTask) => userTask.userId === userId),
-    [state.allIds]
+      state.userTasks.filter((userTask) => userTask.userId === userId),
+    [state.userTasks]
+  )
+
+  const getUserWeekTasksByUserId = useCallback(
+    (userId: string) => {
+      const now = new Date()
+      const year = getYear(now)
+      const week = getWeek(now)
+      return getUserTasksByUserId(userId).filter((userTask) => {
+        const taskDate = new Date(userTask.createdAt)
+        return getYear(taskDate) === year && getWeek(taskDate) === week
+      })
+    },
+    [state.userTasks]
   )
 
   const userTasksByDate = useMemo(() => {
-    const userTasks = state.allIds.map(getUserTaskById)
-
     return groupBy(
-      userTasks,
+      Array.from(state.userTasks.values()),
       ({ createdAt }: UserTask) => createdAt.split('T')[0]
     )
-  }, [state.allIds])
+  }, [state.userTasks])
 
   const userTaskContextApi = useMemo(
     () => ({
@@ -94,11 +99,11 @@ const UserTaskContextProvider: FC = ({ children }) => {
       fetchUserTasks,
       addNewUserTask,
       deleteUserTask,
-      getUserTaskById,
+      getUserWeekTasksByUserId,
       getUserTasksByUserId,
       userTasksByDate,
     }),
-    [state.allIds]
+    [state.userTasks]
   )
 
   return (

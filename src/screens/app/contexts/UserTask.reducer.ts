@@ -1,8 +1,7 @@
+import { Map } from 'immutable'
+
 export interface State {
-  byId: {
-    [id: string]: UserTask
-  }
-  allIds: string[]
+  userTasks: Map<string, UserTask>
 }
 
 type UserTaskAction =
@@ -14,8 +13,7 @@ type UserTaskAction =
   | { type: 'deleteUserTask'; userTaskId: string }
 
 export const userTaskInitialState: State = {
-  allIds: [],
-  byId: {},
+  userTasks: Map(),
 }
 
 export const userTaskReducer = (
@@ -25,13 +23,11 @@ export const userTaskReducer = (
   if (action.type === 'pushAllUserTasks') {
     return {
       ...state,
-      allIds: action.userTasks.map(({ id }) => id),
-      byId: action.userTasks.reduce(
-        (acc, userTask) => ({
-          ...acc,
-          [userTask.id]: userTask,
-        }),
-        {}
+      userTasks: action.userTasks.reduce(
+        (acc: Map<string, UserTask>, task: UserTask) => {
+          return acc.set(task.id, task)
+        },
+        Map()
       ),
     }
   }
@@ -39,18 +35,14 @@ export const userTaskReducer = (
   if (action.type === 'pushUserTask') {
     return {
       ...state,
-      allIds: [action.userTask.id, ...state.allIds],
-      byId: {
-        ...state.byId,
-        [action.userTask.id]: action.userTask,
-      },
+      userTasks: state.userTasks.set(action.userTask.id, action.userTask),
     }
   }
 
   if (action.type === 'deleteUserTask') {
     return {
       ...state,
-      allIds: state.allIds.filter((id) => id !== action.userTaskId),
+      userTasks: state.userTasks.delete(action.userTaskId),
     }
   }
 
