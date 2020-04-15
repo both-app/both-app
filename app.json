@@ -2,10 +2,10 @@
   "expo": {
     "name": "Both",
     "slug": "Both",
+    "description": "Share love & daily tasks",
+    "githubUrl": "https://github.com/both-app/both-app",
     "privacy": "public",
-    "platforms": [
-      "ios"
-    ],
+    "platforms": ["ios"],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -16,28 +16,24 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": false
+      "bundleIdentifier": "com.both.bothapp",
+      "supportsTablet": false,
+      "backgroundColor": "F9F0EB",
+      "icon": "",
+      "isTabletOnly": false,
+      "requireFullScreen": true
     },
     "notification": {
-      "iosDisplayInForeground": true,
-      "color": "#0A1D2B"
+      "icon": "",
+      "color": "#0A1D2B",
+      "iosDisplayInForeground": true
     },
     "packagerOpts": {
       "config": "metro.config.js",
-      "sourceExts": [
-        "js",
-        "jsx",
-        "svg",
-        "ts",
-        "tsx"
-      ]
+      "sourceExts": ["js", "jsx", "svg", "ts", "tsx"]
     },
-    "description": "Share love & daily tasks",
-    "githubUrl": "https://github.com/mathieuletyrant/both-app",
     "hooks": {
       "postPublish": [
         {
@@ -52,7 +48,7 @@
         {
           "file": "expo-postpublish-slack-notify",
           "config": {
-            "webhookUrl": "https://hooks.slack.com/services/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",
+            "webhookUrl": "https://hooks.slack.com/services/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",
             "channel": "#new-release"
           }
         }
