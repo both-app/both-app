@@ -10,6 +10,7 @@ import * as Sentry from 'sentry-expo'
 
 import { api, APIResponse } from 'res/api'
 import { getItem, setItem } from 'res/storage'
+import { useAppState } from 'hooks/useAppState'
 
 type GetRelationInfoResponse = APIResponse<{
   relation: Relation
@@ -50,6 +51,7 @@ const initialState: UsersContextState = {
 const UsersContext = createContext<UsersContextProps>({})
 
 const UsersContextProvider: FC = ({ children }) => {
+  const { appState } = useAppState()
   const [state, setState] = useState<UsersContextState>(initialState)
 
   useEffect(() => {
@@ -68,12 +70,18 @@ const UsersContextProvider: FC = ({ children }) => {
     reHydrateData()
   }, [])
 
+  useEffect(() => {
+    if (appState === 'active' && !state.partner.id) {
+      fetchUsers()
+    }
+  }, [appState])
+
   const fetchUsers = async () => {
     const {
       data: { data },
     } = await api.get<GetRelationInfoResponse>('relations/informations')
 
-    if (data.partner?.id) {
+    if (data.partner?.id && !state.partner.id) {
       const newState = {
         me: data.user,
         partner: data.partner,

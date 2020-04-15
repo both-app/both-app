@@ -11,7 +11,8 @@
     "paths": {
       "screens": ["./screens"],
       "library": ["./library"],
-      "res": ["./res"]
+      "res": ["./res"],
+      "hooks": ["./hooks"]
     }
   }
 }

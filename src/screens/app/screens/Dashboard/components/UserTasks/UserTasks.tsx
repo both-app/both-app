@@ -6,14 +6,15 @@ import { CardButton } from 'library/components/CardButton'
 import { UserTask } from './UserTask'
 import { Section } from './Section'
 
-import { wait } from 'res/utils'
 import { useT } from 'res/i18n'
 
 import { UserTaskContext } from 'screens/app/contexts/UserTask.context'
+import { UsersContext } from 'screens/app/contexts/Users.context'
 
 export const UserTasks = () => {
   const navigation = useNavigation()
   const { t, locale } = useT()
+  const { fetchUsers } = useContext(UsersContext)
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false)
   const { fetchUserTasks, userTasksByDate, allIds } = useContext(
     UserTaskContext
@@ -22,7 +23,8 @@ export const UserTasks = () => {
   const handleOnRefresh = async () => {
     setIsRefreshing(true)
 
-    await Promise.all([wait(1000), fetchUserTasks()])
+    await fetchUsers()
+    await fetchUserTasks()
 
     setIsRefreshing(false)
   }
