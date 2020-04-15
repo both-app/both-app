@@ -20,8 +20,8 @@
     "ios": {
       "bundleIdentifier": "com.both.bothapp",
       "supportsTablet": false,
-      "backgroundColor": "F9F0EB",
-      "icon": "",
+      "backgroundColor": "#F9F0EB",
+      "icon": "./assets/appIcons/appstore.png",
       "isTabletOnly": false,
       "requireFullScreen": true
     },
