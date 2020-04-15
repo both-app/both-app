@@ -31,6 +31,11 @@ api.interceptors.request.use(async (config) => {
     config.headers['Accept-Language'] = locale
   }
 
+  const timezone = Localization.timezone
+  if (timezone) {
+    config.headers['Timezone'] = timezone
+  }
+
   return config
 })
 
