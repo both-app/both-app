@@ -9,52 +9,45 @@ import {
 
 import { useT } from 'res/i18n'
 
-import { TaskContext } from 'screens/app/contexts/Task.context'
-import { UserTaskContext } from 'screens/app/contexts/UserTask.context'
-
 import { FormLayout } from 'library/layouts/FormLayout'
 import { Label } from 'library/components/Label'
-
-import { Task } from './components/Task'
+import { UserTaskContext } from 'screens/app/contexts/UserTask.context'
+import { TaskDifficulty } from './components/TaskDifficulty'
 import { TaskAddedModalContext } from '../../Dashboard/components/TaskAddedModal'
 import { AddTaskStackParamList } from '../AddTask.navigator'
 
-type ChooseTaskRouteProps = RouteProp<AddTaskStackParamList, 'ChooseTask'>
+type ChooseTaskDifficultyRouteProps = RouteProp<
+  AddTaskStackParamList,
+  'ChooseTaskDifficulty'
+>
 
-export const ChooseTaskScreen = () => {
+export const ChooseTaskDifficultyScreen = () => {
   const { t } = useT()
-  const route = useRoute<ChooseTaskRouteProps>()
+  const route = useRoute<ChooseTaskDifficultyRouteProps>()
   const navigation = useNavigation()
-  const [selectedId, setSelectedId] = useState<string | null>(null)
+  const [selectedIndex, setSelectedIndex] = useState<number | null>()
 
-  const { getTasksByCategoryId } = useContext(TaskContext)
   const { addNewUserTask } = useContext(UserTaskContext)
   const { openTaskAddedModal } = useContext(TaskAddedModalContext)
 
-  const { category } = route.params
+  const { category, task } = route.params
 
   useFocusEffect(
     useCallback(() => {
-      setSelectedId(null)
+      setSelectedIndex(null)
     }, [])
   )
 
-  const handleOnAction = async (task: Task, difficulty?: number) => {
-    setSelectedId(task.id)
+  const handleOnAction = async (difficultyIndex: number) => {
+    setSelectedIndex(difficultyIndex)
 
-    if (difficulty === 0) {
-      openTaskAddedModal(task, 0)
-      addNewUserTask(task.id, 0)
+    openTaskAddedModal(task, difficultyIndex)
+    addNewUserTask(task.id, difficultyIndex)
 
-      return navigation.navigate('Dashboard')
-    }
-
-    return navigation.navigate('ChooseTaskDifficulty', { category, task })
+    navigation.navigate('Dashboard')
   }
 
   const handleOnBack = () => navigation.goBack()
-
-  const tasks = getTasksByCategoryId(category.id)
 
   return (
     <FormLayout
@@ -62,8 +55,8 @@ export const ChooseTaskScreen = () => {
       onBackAction={handleOnBack}
       label={
         <Label
-          primary={`${category.name} ${category.emoji}`}
-          secondary={t('app:screen:newUserTask:chooseTask:subtitle')}
+          primary={`${task.name} ${task.emoji}`}
+          secondary={t('app:screen:newUserTask:chooseTaskDifficulty:subtitle')}
         />
       }
     >
@@ -71,15 +64,16 @@ export const ChooseTaskScreen = () => {
         style={styles.tasksContainer}
         showsVerticalScrollIndicator={false}
       >
-        {tasks.map((task, index) => (
-          <Task
-            key={task.id}
-            task={task}
-            category={category}
-            selectedId={selectedId}
+        {task.difficulties.map((taskDifficulty, index) => (
+          <TaskDifficulty
+            key={index}
+            taskDifficulty={taskDifficulty}
+            taskDifficultyIndex={index}
             onAction={handleOnAction}
+            selectedIndex={selectedIndex}
+            color={category.color}
             isFirstItem={index === 0}
-            isLastItem={index === tasks.length - 1}
+            isLastItem={index === task.difficulties.length - 1}
           />
         ))}
       </ScrollView>

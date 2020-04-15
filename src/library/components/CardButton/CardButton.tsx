@@ -24,7 +24,6 @@ export interface CardButtonProps {
   rightContent?: ReactNode
   active?: boolean
   onAction?: VoidFunction
-  points?: number
   disabled?: boolean
   withHapticFeedback?: boolean
   onLongPress?: VoidFunction
@@ -35,7 +34,7 @@ export const CardButton: FC<CardButtonProps> = ({
   title,
   subtitle,
   onAction,
-  points,
+  rightContent,
   activeBackgroundColor = lightenDarkenColor(colors.skin200, -20),
   activeTextColor = colors.dark100,
   disabled,
@@ -95,12 +94,7 @@ export const CardButton: FC<CardButtonProps> = ({
         </View>
       </View>
 
-      {points > 0 && (
-        <Point
-          points={points}
-          backgroundColor={containerStyle.backgroundColor}
-        />
-      )}
+      {rightContent}
     </TouchableOpacity>
   )
 }

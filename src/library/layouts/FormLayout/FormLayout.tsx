@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react'
+import React, { FC, ReactNode, useCallback } from 'react'
 import {
   StyleSheet,
   View,
@@ -7,6 +7,7 @@ import {
   Platform,
   StatusBar,
 } from 'react-native'
+import { useFocusEffect } from '@react-navigation/native'
 
 import { MinimalButton } from 'library/components/MinimalButton'
 import { IconButton } from 'library/components/IconButton'
@@ -32,65 +33,72 @@ export const FormLayout: FC<FormLayoutProps> = ({
   onFinishAction,
   onNextAction,
   children,
-}) => (
-  <KeyboardAvoidingView
-    style={styles.container}
-    behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
-  >
-    <StatusBar barStyle="dark-content" />
-    <TouchableWithoutFeedback>
-      <>
-        {onBackAction && (
-          <MinimalButton
-            iconName="chevron_left"
-            onAction={onBackAction}
-            iconColor="dark100"
-          />
-        )}
+}) => {
+  useFocusEffect(
+    useCallback(() => {
+      StatusBar.setBarStyle('dark-content')
+    }, [])
+  )
 
-        {onCloseAction && (
-          <MinimalButton
-            iconName="close"
-            onAction={onCloseAction}
-            iconColor="dark100"
-          />
-        )}
-
-        <View style={{ marginTop: 24, ...containerStyle }}>
-          {label}
-          {children}
-
-          {(onNextAction || onFinishAction || bottomInfo) && (
-            <View style={styles.bottomContainer}>
-              {bottomInfo}
-              <View style={styles.buttonContainer}>
-                {onNextAction && (
-                  <IconButton
-                    iconName="arrow_right"
-                    onAction={onNextAction}
-                    size={64}
-                    buttonColor="dark100"
-                    iconColor="white"
-                  />
-                )}
-
-                {onFinishAction && (
-                  <IconButton
-                    iconName="check"
-                    onAction={onFinishAction}
-                    size={64}
-                    buttonColor="dark100"
-                    iconColor="white"
-                  />
-                )}
-              </View>
-            </View>
+  return (
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+    >
+      <TouchableWithoutFeedback>
+        <>
+          {onBackAction && (
+            <MinimalButton
+              iconName="chevron_left"
+              onAction={onBackAction}
+              iconColor="dark100"
+            />
           )}
-        </View>
-      </>
-    </TouchableWithoutFeedback>
-  </KeyboardAvoidingView>
-)
+
+          {onCloseAction && (
+            <MinimalButton
+              iconName="close"
+              onAction={onCloseAction}
+              iconColor="dark100"
+            />
+          )}
+
+          <View style={{ marginTop: 24, ...containerStyle }}>
+            {label}
+            {children}
+
+            {(onNextAction || onFinishAction || bottomInfo) && (
+              <View style={styles.bottomContainer}>
+                {bottomInfo}
+                <View style={styles.buttonContainer}>
+                  {onNextAction && (
+                    <IconButton
+                      iconName="arrow_right"
+                      onAction={onNextAction}
+                      size={64}
+                      buttonColor="dark100"
+                      iconColor="white"
+                    />
+                  )}
+
+                  {onFinishAction && (
+                    <IconButton
+                      iconName="check"
+                      onAction={onFinishAction}
+                      size={64}
+                      buttonColor="dark100"
+                      iconColor="white"
+                    />
+                  )}
+                </View>
+              </View>
+            )}
+          </View>
+        </>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
+  )
+}
 
 const styles = StyleSheet.create({
   container: {

@@ -9,14 +9,12 @@ import React, {
 
 import { api, APIResponse } from 'res/api'
 import { setItem, getItem } from 'res/storage'
-import { getNativeEmoji } from 'res/emoji'
 
 interface TaskContextProps {
   tasks: Task[]
   getTasksByCategoryId: (id: string) => Task[]
   getTaskById: (id: string) => Task
-  taskIdCompeted: string
-  setTaskIdCompleted: (id: string) => void
+  getPoints: (id: string) => string
 }
 
 type TasksResponse = APIResponse<{ tasks: Task[] }>
@@ -26,16 +24,14 @@ const TaskContext = createContext<TaskContextProps>({})
 
 const TaskContextProvider: FC = ({ children }) => {
   const [tasks, setTasks] = useState<Task[]>([])
-  const [taskIdCompleted, setTaskIdCompleted] = useState<string>()
 
   useEffect(() => {
     const fetchTasks = async () => {
-      const result = await api.get<TasksResponse>('/tasks')
-
-      const tasks = result.data.data.tasks.map((task) => ({
-        ...task,
-        emoji: getNativeEmoji(task.emoji),
-      }))
+      const {
+        data: {
+          data: { tasks },
+        },
+      } = await api.get<TasksResponse>('/tasks')
 
       setItem('tasks', tasks)
       setTasks(tasks)
@@ -66,21 +62,32 @@ const TaskContextProvider: FC = ({ children }) => {
     [tasks]
   )
 
+  const getPoints = useCallback(
+    (taskId: string) => {
+      const task = tasks.find((task) => task.id === taskId)
+      const difficultiesSorted = task.difficulties.sort(
+        (a, b) => a.points - b.points
+      )
+
+      if (difficultiesSorted.length > 1) {
+        return `${difficultiesSorted[0].points}-${
+          difficultiesSorted[difficultiesSorted.length - 1].points
+        }`
+      }
+
+      return difficultiesSorted[0].points
+    },
+    [tasks]
+  )
+
   const taskContextApi = useMemo(
     () => ({
       tasks,
       getTasksByCategoryId,
       getTaskById,
-      taskIdCompleted,
-      setTaskIdCompleted,
+      getPoints,
     }),
-    [
-      tasks,
-      getTasksByCategoryId,
-      getTaskById,
-      taskIdCompleted,
-      setTaskIdCompleted,
-    ]
+    [tasks, getTasksByCategoryId, getTaskById, getPoints]
   )
 
   return (

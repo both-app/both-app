@@ -2,30 +2,21 @@ import React, { FC } from 'react'
 import { Text, StyleSheet, View } from 'react-native'
 
 import { fonts } from 'res/fonts'
-import { lightenDarkenColor, colors, Color } from 'res/colors'
+import { colors } from 'res/colors'
 import { useT } from 'res/i18n'
 
 export interface PointProps {
   points: number
   shape?: 'circle' | 'rectangle'
-  backgroundColor: Color | string
 }
 
-export const Point: FC<PointProps> = ({
-  points,
-  backgroundColor,
-  shape = 'circle',
-}) => {
+export const Point: FC<PointProps> = ({ points, shape = 'circle' }) => {
   const { t } = useT()
 
   const containerStyle = {
     ...styles.container,
     width: shape === 'circle' ? 40 : 52,
     height: 40,
-    backgroundColor: lightenDarkenColor(
-      colors[backgroundColor] || backgroundColor,
-      -15
-    ),
   }
 
   return (
@@ -41,6 +32,7 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
   },
   pointsNumber: {
     fontFamily: fonts['DMSerifDisplay-Regular'],

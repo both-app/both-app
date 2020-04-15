@@ -20,7 +20,7 @@ type PostUserTaskResponse = APIResponse<UserTask>
 
 interface UserTaskContextProps extends State {
   fetchUserTasks: () => Promise<void>
-  addNewUserTask: (taskId: string) => Promise<void>
+  addNewUserTask: (taskId: string, difficulty: number) => Promise<void>
   deleteUserTask: (userTaskId: string) => Promise<void>
   getUserTaskById: (userTaskId: string) => UserTask
   getUserTasksByUserId: (userId: string) => UserTask[]
@@ -48,8 +48,14 @@ const UserTaskContextProvider: FC = ({ children }) => {
     dispatch({ type: 'pushAllUserTasks', userTasks: userTasksSorted })
   }
 
-  const addNewUserTask = async (taskId: string) => {
-    const result = await api.post<PostUserTaskResponse>(`user_tasks/${taskId}`)
+  const addNewUserTask: UserTaskContextProps['addNewUserTask'] = async (
+    taskId: string,
+    difficulty: number
+  ) => {
+    const result = await api.post<PostUserTaskResponse>(
+      `user_tasks/${taskId}`,
+      { difficulty }
+    )
 
     dispatch({ type: 'pushUserTask', userTask: result.data.data })
   }
