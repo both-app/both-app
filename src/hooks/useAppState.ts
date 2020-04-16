@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { AppState } from 'react-native'
+import { AppState, AppStateStatus } from 'react-native'
 
 export const useAppState = () => {
   const [appState, setAppState] = useState(AppState.currentState)
@@ -12,7 +12,8 @@ export const useAppState = () => {
     }
   }, [])
 
-  const handleAppStateChange = (nextAppState) => setAppState(nextAppState)
+  const handleAppStateChange = (nextAppState: AppStateStatus) =>
+    setAppState(nextAppState)
 
   return {
     appState,
