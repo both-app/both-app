@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
 import { CardButton } from 'library/components/CardButton'
-import React, { useContext, useMemo, useState } from 'react'
+import React, { useContext, useMemo, useState, useEffect } from 'react'
 import { RefreshControl, SectionList, StyleSheet, View } from 'react-native'
 import { useT } from 'res/i18n'
 
@@ -21,10 +21,16 @@ export const UserTasks = () => {
   )
   const { fetchUserScore } = useContext(UserScoreContext)
 
+  useEffect(() => {
+    fetchUserScore()
+  }, [allIds])
+
   const handleOnRefresh = async () => {
     setIsRefreshing(true)
+
     await fetchUsers()
-    await Promise.all[(fetchUserTasks(), fetchUserScore())]
+    await fetchUserTasks()
+
     setIsRefreshing(false)
   }
 
