@@ -19,6 +19,7 @@ interface UserTaskProps {
 
 export const UserTask: FC<UserTaskProps> = ({ userTask }) => {
   const { t } = useT()
+  const { me } = useContext(UsersContext)
   const { getTaskById } = useContext(TaskContext)
   const { getUserById } = useContext(UsersContext)
   const { getCategoryById } = useContext(CategoryContext)
@@ -29,7 +30,9 @@ export const UserTask: FC<UserTaskProps> = ({ userTask }) => {
   const user = getUserById(userTask.userId)
 
   const isDeletable =
-    userTask.taskId !== 'create_both' && userTask.taskId !== 'join_both'
+    userTask.taskId !== 'create_both' &&
+    userTask.taskId !== 'join_both' &&
+    userTask.userId === me.id
 
   const handleOnLongPress = () => {
     Alert.alert(t('alert:deleteUserTask:title'), '', [
