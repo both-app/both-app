@@ -28,6 +28,9 @@ export const UserTask: FC<UserTaskProps> = ({ userTask }) => {
   const category = getCategoryById(task.categoryId)
   const user = getUserById(userTask.userId)
 
+  const isDeletable =
+    userTask.taskId !== 'create_both' && userTask.taskId !== 'join_both'
+
   const handleOnLongPress = () => {
     Alert.alert(t('alert:deleteUserTask:title'), '', [
       {
@@ -57,6 +60,7 @@ export const UserTask: FC<UserTaskProps> = ({ userTask }) => {
       }}
       textStyle={styles.cardText}
       rightContent={<Point points={userTask.points} />}
+      disabled={!isDeletable}
     />
   )
 }
