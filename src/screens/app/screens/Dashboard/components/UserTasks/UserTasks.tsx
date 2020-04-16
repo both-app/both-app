@@ -23,11 +23,8 @@ export const UserTasks = () => {
 
   const handleOnRefresh = async () => {
     setIsRefreshing(true)
-
     await fetchUsers()
-    await fetchUserTasks()
-    await fetchUserScore()
-
+    await Promise.all[(fetchUserTasks(), fetchUserScore())]
     setIsRefreshing(false)
   }
 

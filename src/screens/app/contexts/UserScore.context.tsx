@@ -24,7 +24,6 @@ const UserScoreContext = createContext<UserScoreContextProps>({})
 
 const UserScoreContextProvider: FC = ({ children }) => {
   const { appState } = useAppState()
-  // const [state, dispatch] = useReducer(userScoreReducer, userScoreInitialState)
   const [state, setState] = useState<UserScoreState>(initialState)
 
   useEffect(() => {
