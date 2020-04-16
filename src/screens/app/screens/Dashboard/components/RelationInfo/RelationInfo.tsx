@@ -1,20 +1,17 @@
-import React, { useContext, useMemo } from 'react'
-
+import React, { useContext } from 'react'
 import { UsersContext } from 'screens/app/contexts/Users.context'
-import { UserTaskContext } from 'screens/app/contexts/UserTask.context'
-
+import { UserScoreContext } from 'screens/app/contexts/UserScore.context'
 import { Body } from './Body'
 
 export const RelationInfo = () => {
   const { me, partner } = useContext(UsersContext)
-  const { score } = useContext(UserTaskContext)
-
+  const { userTotalPoints, partnerTotalPoints } = useContext(UserScoreContext)
   return (
     <Body
       leftFirstName={me.firstName}
       rightFirstName={partner.firstName || '⌛️'}
-      leftPoints={score.userTotalPoints}
-      rightPoints={score.partnerTotalPoints}
+      leftPoints={userTotalPoints}
+      rightPoints={partnerTotalPoints}
     />
   )
 }

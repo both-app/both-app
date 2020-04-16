@@ -3,7 +3,6 @@ export interface State {
     [id: string]: UserTask
   }
   allIds: string[]
-  score: UserScore
 }
 
 type UserTaskAction =
@@ -12,17 +11,11 @@ type UserTaskAction =
       userTasks: UserTask[]
     }
   | { type: 'pushUserTask'; userTask: UserTask }
-  | { type: 'pushUserScore'; userScore: UserScore }
   | { type: 'deleteUserTask'; userTaskId: string }
 
 export const userTaskInitialState: State = {
   allIds: [],
   byId: {},
-  score: {
-    partnerTotalPoints: 0,
-    userTotalPoints: 0,
-    total: 0,
-  },
 }
 
 export const userTaskReducer = (
@@ -58,13 +51,6 @@ export const userTaskReducer = (
     return {
       ...state,
       allIds: state.allIds.filter((id) => id !== action.userTaskId),
-    }
-  }
-
-  if (action.type === 'pushUserScore') {
-    return {
-      ...state,
-      score: action.userScore,
     }
   }
 

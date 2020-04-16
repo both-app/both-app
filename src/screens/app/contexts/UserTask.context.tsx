@@ -19,12 +19,10 @@ import {
 } from './UserTask.reducer'
 
 type GetUserTasksResponse = APIResponse<{ userTasks: UserTask[] }>
-type GetUserScoreResponse = APIResponse<UserScore>
 type PostUserTaskResponse = APIResponse<UserTask>
 
 interface UserTaskContextProps extends State {
   fetchUserTasks: () => Promise<void>
-  fetchUserScore: () => Promise<void>
   addNewUserTask: (taskId: string, difficulty: number) => Promise<void>
   deleteUserTask: (userTaskId: string) => Promise<void>
   getUserTaskById: (userTaskId: string) => UserTask
@@ -40,12 +38,12 @@ const UserTaskContextProvider: FC = ({ children }) => {
   const [state, dispatch] = useReducer(userTaskReducer, userTaskInitialState)
 
   useEffect(() => {
-    fetchUserTasks(), fetchUserScore()
+    fetchUserTasks()
   }, [])
 
   useEffect(() => {
     if (appState === 'active') {
-      fetchUserTasks(), fetchUserScore()
+      fetchUserTasks()
     }
   }, [appState])
 
@@ -58,11 +56,6 @@ const UserTaskContextProvider: FC = ({ children }) => {
     )
 
     dispatch({ type: 'pushAllUserTasks', userTasks: userTasksSorted })
-  }
-
-  const fetchUserScore = async () => {
-    const result = await api.get<GetUserScoreResponse>('user_tasks/recap')
-    dispatch({ type: 'pushUserScore', userScore: result.data.data })
   }
 
   const addNewUserTask: UserTaskContextProps['addNewUserTask'] = async (
@@ -79,7 +72,6 @@ const UserTaskContextProvider: FC = ({ children }) => {
 
   const deleteUserTask = async (userTaskId: string) => {
     await api.delete('user_tasks', { data: { userTaskId } })
-
     dispatch({ type: 'deleteUserTask', userTaskId })
   }
 
@@ -109,7 +101,6 @@ const UserTaskContextProvider: FC = ({ children }) => {
     () => ({
       ...state,
       fetchUserTasks,
-      fetchUserScore,
       addNewUserTask,
       deleteUserTask,
       getUserTaskById,
