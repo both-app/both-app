@@ -8,6 +8,7 @@ export type StorageKey =
   | 'users'
   | 'categories'
   | 'tasks'
+  | 'userScore'
 
 export const setItem = (key: StorageKey, value: any) => {
   try {
