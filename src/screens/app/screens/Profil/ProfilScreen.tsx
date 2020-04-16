@@ -20,7 +20,7 @@ export const ProfilScreen = () => {
   const navigation = useNavigation()
   const { logout } = useContext(AuthContext)
   const { deleteRelation } = useContext(AuthApiContext)
-  const { me } = useContext(UsersContext)
+  const { me, partner } = useContext(UsersContext)
   const { daysOfRelation } = useContext(RelationContext)
 
   useFocusEffect(
@@ -101,7 +101,15 @@ export const ProfilScreen = () => {
         <CardButton
           emoji="💔"
           title={t('app:screen:profil:button:endRelation:title')}
-          subtitle={t('app:screen:profil:button:endRelation:subtitle')}
+          subtitle={
+            partner.id
+              ? t('app:screen:profil:button:endRelation:subtitle:withPartner', {
+                  firstName: partner.firstName,
+                })
+              : t(
+                  'app:screen:profil:button:endRelation:subtitle:withoutPartner'
+                )
+          }
           onAction={handleEndRelation}
           withHapticFeedback
         />
