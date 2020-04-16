@@ -1,5 +1,11 @@
 import React, { FC } from 'react'
-import { Modal as RModal, View, Text, StyleSheet } from 'react-native'
+import {
+  Modal as RModal,
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native'
 
 import { colors, lightenDarkenColor } from 'res/colors'
 
@@ -25,7 +31,11 @@ export const Modal: FC<ModalProps> = ({
   onAction,
 }) => (
   <RModal animationType="fade" transparent visible={visible}>
-    <View style={styles.modalOverlay}>
+    <TouchableOpacity
+      style={styles.modalOverlay}
+      activeOpacity={1}
+      onPress={onClose}
+    >
       <View style={{ ...styles.modal, ...styles.modalShadow }}>
         {emoji && <Text style={styles.emoji}>{emoji}</Text>}
 
@@ -47,7 +57,7 @@ export const Modal: FC<ModalProps> = ({
           size={64}
         />
       </View>
-    </View>
+    </TouchableOpacity>
   </RModal>
 )
 
