@@ -72,7 +72,6 @@ const UserTaskContextProvider: FC = ({ children }) => {
 
   const deleteUserTask = async (userTaskId: string) => {
     await api.delete('user_tasks', { data: { userTaskId } })
-
     dispatch({ type: 'deleteUserTask', userTaskId })
   }
 

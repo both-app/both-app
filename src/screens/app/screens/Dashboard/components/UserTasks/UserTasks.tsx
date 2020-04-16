@@ -1,15 +1,15 @@
-import React, { useContext, useState, useMemo } from 'react'
-import { RefreshControl, StyleSheet, SectionList, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-
 import { CardButton } from 'library/components/CardButton'
-import { UserTask } from './UserTask'
-import { Section } from './Section'
-
+import React, { useContext, useMemo, useState } from 'react'
+import { RefreshControl, SectionList, StyleSheet, View } from 'react-native'
 import { useT } from 'res/i18n'
 
-import { UserTaskContext } from 'screens/app/contexts/UserTask.context'
 import { UsersContext } from 'screens/app/contexts/Users.context'
+import { UserScoreContext } from 'screens/app/contexts/UserScore.context'
+import { UserTaskContext } from 'screens/app/contexts/UserTask.context'
+
+import { Section } from './Section'
+import { UserTask } from './UserTask'
 
 export const UserTasks = () => {
   const navigation = useNavigation()
@@ -19,13 +19,12 @@ export const UserTasks = () => {
   const { fetchUserTasks, userTasksByDate, allIds } = useContext(
     UserTaskContext
   )
+  const { fetchUserScore } = useContext(UserScoreContext)
 
   const handleOnRefresh = async () => {
     setIsRefreshing(true)
-
     await fetchUsers()
-    await fetchUserTasks()
-
+    await Promise.all[(fetchUserTasks(), fetchUserScore())]
     setIsRefreshing(false)
   }
 
