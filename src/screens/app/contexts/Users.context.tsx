@@ -21,6 +21,7 @@ type GetRelationInfoResponse = APIResponse<{
 interface UsersContextState {
   me: User
   partner: User
+  relation: Relation
 }
 
 interface UsersContextProps extends UsersContextState {
@@ -45,6 +46,7 @@ const initialState: UsersContextState = {
     birthDate: '',
     pushToken: '',
   },
+  relation: null,
 }
 
 // @ts-ignore
@@ -52,7 +54,7 @@ const UsersContext = createContext<UsersContextProps>({})
 
 const UsersContextProvider: FC = ({ children }) => {
   const { appState } = useAppState()
-  const [state, setState] = useState<UsersContextState>(initialState)
+  const [userState, setUserState] = useState<UsersContextState>(initialState)
 
   useEffect(() => {
     const reHydrateData = async () => {
@@ -61,7 +63,7 @@ const UsersContextProvider: FC = ({ children }) => {
       Sentry.setUser(users.me)
 
       if (users) {
-        setState({ ...state, ...users })
+        setUserState({ ...userState, ...users })
       }
 
       fetchUsers()
@@ -71,7 +73,7 @@ const UsersContextProvider: FC = ({ children }) => {
   }, [])
 
   useEffect(() => {
-    if (appState === 'active' && !state.partner.id) {
+    if (appState === 'active' && !userState.partner.id) {
       fetchUsers()
     }
   }, [appState])
@@ -81,35 +83,36 @@ const UsersContextProvider: FC = ({ children }) => {
       data: { data },
     } = await api.get<GetRelationInfoResponse>('relations/informations')
 
-    if (data.partner?.id && !state.partner.id) {
+    if (data.partner?.id && !userState.partner.id) {
       const newState = {
         me: data.user,
         partner: data.partner,
+        relation: data.relation,
       }
 
       await setItem('users', newState)
-      return setState(newState)
+      return setUserState(newState)
     }
   }
 
   const getUserById = useCallback(
     (userId: string) => {
-      if (state.me.id === userId) {
-        return state.me
+      if (userState.me.id === userId) {
+        return userState.me
       }
 
-      if (state.partner.id === userId) {
-        return state.partner
+      if (userState.partner.id === userId) {
+        return userState.partner
       }
 
       return null
     },
-    [state]
+    [userState]
   )
 
   const usersContextApi = useMemo(
-    () => ({ ...state, getUserById, fetchUsers }),
-    [state, getUserById, fetchUsers]
+    () => ({ ...userState, getUserById, fetchUsers }),
+    [userState, getUserById, fetchUsers]
   )
 
   return (

@@ -81,14 +81,16 @@ export const ProfilScreen = () => {
 
       <Text style={styles.firstname}>{me.firstName}</Text>
 
-      <Info
-        color="dark200"
-        primary={t('app:screen:profil:numberOfRelationDays', {
-          count: daysOfRelation,
-          days: daysOfRelation,
-        })}
-        secondary={t('app:screen:profil:thankToUseBoth')}
-      />
+      {daysOfRelation && (
+        <Info
+          color="dark200"
+          primary={t('app:screen:profil:numberOfRelationDays', {
+            count: daysOfRelation,
+            days: daysOfRelation,
+          })}
+          secondary={t('app:screen:profil:thankToUseBoth')}
+        />
+      )}
 
       <View style={styles.links}>
         <CardButton

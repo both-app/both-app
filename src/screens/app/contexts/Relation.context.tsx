@@ -1,7 +1,14 @@
-import React, { FC, createContext, useMemo, useEffect, useState } from 'react'
+import React, {
+  FC,
+  createContext,
+  useMemo,
+  useEffect,
+  useState,
+  useContext,
+} from 'react'
 import * as Sentry from 'sentry-expo'
-
 import { getItem } from 'res/storage'
+import { UsersContext } from './Users.context'
 
 interface RelationContextProps {
   shareKeyModalOpen: boolean
@@ -15,22 +22,23 @@ const RelationContext = createContext<RelationContextProps>({})
 
 const RelationContextProvider: FC = ({ children }) => {
   const [shareKeyModalOpen, setShareKeyModal] = useState<boolean>(false)
-  const [relation, setRelation] = useState<Relation>({
-    id: '',
-    code: '',
-    createdAt: '',
+  const [relationSTate, setRelation] = useState<Relation>({
+    id: null,
+    code: null,
+    createdAt: null,
   })
+  const { relation } = useContext(UsersContext)
 
   useEffect(() => {
     const reHydrateData = async () => {
-      const [relation, shareKeyModalInited] = await Promise.all([
+      const [storedRelation, shareKeyModalInited] = await Promise.all([
         getItem('relation'),
         getItem('shareKeyModalInited'),
       ])
 
-      if (relation) {
-        Sentry.setContext('relation', relation)
-        setRelation(relation)
+      if (storedRelation) {
+        Sentry.setContext('relation', storedRelation)
+        setRelation(storedRelation)
       }
 
       if (!shareKeyModalInited) {
@@ -41,23 +49,32 @@ const RelationContextProvider: FC = ({ children }) => {
     reHydrateData()
   }, [])
 
-  const daysOfRelation = useMemo(() => {
-    const now = new Date()
-    const dateOfCreation = new Date(relation.createdAt)
-    const differenceInTime = now.getTime() - dateOfCreation.getTime()
-    const differenceInDay = Math.round(differenceInTime / (1000 * 3600 * 24))
+  useEffect(() => {
+    if (relation) {
+      Sentry.setContext('relation', relation)
+      setRelation(relation)
+    }
+  }, [relation])
 
-    return differenceInDay + 1
-  }, [])
+  const daysOfRelation = useMemo(() => {
+    if (relationSTate.createdAt) {
+      const now = new Date()
+      const dateOfCreation = new Date(relationSTate.createdAt)
+      const differenceInTime = now.getTime() - dateOfCreation.getTime()
+      const differenceInDay = Math.round(differenceInTime / (1000 * 3600 * 24))
+      return differenceInDay + 1
+    }
+    return 0
+  }, [relationSTate])
 
   const relationContextApi = useMemo(
     () => ({
       shareKeyModalOpen,
       setShareKeyModal,
-      relation,
+      relation: relationSTate,
       daysOfRelation,
     }),
-    [relation, shareKeyModalOpen, setShareKeyModal, daysOfRelation]
+    [relationSTate, shareKeyModalOpen, setShareKeyModal, daysOfRelation]
   )
 
   return (
