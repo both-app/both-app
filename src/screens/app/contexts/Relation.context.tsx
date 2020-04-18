@@ -23,18 +23,11 @@ const RelationContextProvider: FC = ({ children }) => {
 
   useEffect(() => {
     const reHydrateData = async () => {
-      const [relation, shareKeyModalInited] = await Promise.all([
-        getItem('relation'),
-        getItem('shareKeyModalInited'),
-      ])
+      const relation = await getItem('relation')
 
       if (relation) {
         Sentry.setContext('relation', relation)
         setRelation(relation)
-      }
-
-      if (!shareKeyModalInited) {
-        setShareKeyModal(true)
       }
     }
 
