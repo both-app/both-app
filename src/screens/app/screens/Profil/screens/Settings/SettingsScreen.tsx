@@ -1,13 +1,7 @@
 import React, { useContext } from 'react'
-import {
-  View,
-  StyleSheet,
-  StatusBar,
-  SafeAreaView,
-  ScrollView,
-  Text,
-} from 'react-native'
+import { View, StyleSheet, SafeAreaView, ScrollView, Text } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
+import * as WebBrowser from 'expo-web-browser'
 
 import { colors } from 'res/colors'
 import { useT } from 'res/i18n'
@@ -35,9 +29,18 @@ export const SettingsScreen = () => {
     other: t('other'),
   }[me.gender]
 
+  const goToPrivacyPolicy = async () => {
+    await WebBrowser.openBrowserAsync('https://appboth.com/privacy-policy')
+  }
+
+  const goToTermsAndConditions = async () => {
+    await WebBrowser.openBrowserAsync(
+      'https://appboth.com/terms-and-conditions'
+    )
+  }
+
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="dark-content" />
       <View style={styles.close}>
         <MinimalButton
           iconName="chevron_left"
@@ -79,11 +82,13 @@ export const SettingsScreen = () => {
             emoji="🔐"
             title={t('app:screen:profil:settings:protectData:title')}
             subtitle={t('app:screen:profil:settings:protectData:subtitle')}
+            onAction={goToPrivacyPolicy}
           />
           <CardButton
             emoji="📑"
             title={t('app:screen:profil:settings:cgu:title')}
             subtitle={t('app:screen:profil:settings:cgu:subtitle')}
+            onAction={goToTermsAndConditions}
           />
         </ScrollView>
       </SafeAreaView>
