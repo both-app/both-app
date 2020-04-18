@@ -29,6 +29,10 @@ export const UserTask: FC<UserTaskProps> = ({ userTask }) => {
   const category = getCategoryById(task.categoryId)
   const user = getUserById(userTask.userId)
 
+  if (!user || !category || !task) {
+    return null
+  }
+
   const isDeletable =
     userTask.taskId !== 'create_both' &&
     userTask.taskId !== 'join_both' &&
