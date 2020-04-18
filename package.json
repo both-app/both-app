@@ -4,6 +4,8 @@
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
+    "build:ios": "expo build:ios",
+    "build:android": "expo build:android",
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
