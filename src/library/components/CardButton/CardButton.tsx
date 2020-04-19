@@ -11,8 +11,6 @@ import * as Haptics from 'expo-haptics'
 
 import { lightenDarkenColor, colors } from 'res/colors'
 
-import { Point } from 'library/components/Point'
-
 export interface CardButtonProps {
   emoji: string
   title: string

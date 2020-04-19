@@ -1,5 +1,6 @@
 import React, { FC, useContext } from 'react'
 import { StyleSheet, Alert } from 'react-native'
+import * as Haptics from 'expo-haptics'
 
 import { CardButton } from 'library/components/CardButton'
 
@@ -38,18 +39,28 @@ export const UserTask: FC<UserTaskProps> = ({ userTask }) => {
     userTask.taskId !== 'join_both' &&
     userTask.userId === me.id
 
-  const handleOnLongPress = () => {
-    Alert.alert(t('alert:deleteUserTask:title'), '', [
-      {
-        text: t('alert:deleteUserTask:noButton'),
-        style: 'cancel',
-      },
-      {
-        text: t('alert:deleteUserTask:yesButton'),
-        style: 'destructive',
-        onPress: () => deleteUserTask(userTask.id),
-      },
-    ])
+  const handleOnLongPress = async () => {
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+
+    Alert.alert(
+      t('alert:deleteUserTask:title'),
+      t('alert:deleteUserTask:description', {
+        count: userTask.points,
+        points: userTask.points,
+        firstName: me.firstName,
+      }),
+      [
+        {
+          text: t('alert:deleteUserTask:noButton'),
+          style: 'cancel',
+        },
+        {
+          text: t('alert:deleteUserTask:yesButton'),
+          style: 'destructive',
+          onPress: () => deleteUserTask(userTask.id),
+        },
+      ]
+    )
   }
 
   return (

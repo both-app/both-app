@@ -125,7 +125,11 @@
   "modal:shareRelationKey:shareBySMS:title": "Join Both relation",
   "modal:shareRelationKey:shareBySMS:message": "Coucou, retrouve moi sur both pour partager de l’amour et un peu de notre quotidien ! Télécharge l’application et utilise la clé %{code} pour me rejoindre ❤️",
 
-  "alert:deleteUserTask:title": "Vous voulez supprimer la tâche?",
+  "alert:deleteUserTask:title": "Supprimer cette tâche",
+  "alert:deleteUserTask:description": {
+    "one": "%{firstName}, en supprimant cette tâche, tu perdras %{points} point. Es-tu sûr de toi ?",
+    "other": "%{firstName}, en supprimant cette tâche, tu perdras %{points} points. Es-tu sûr de toi ?"
+  },
   "alert:deleteUserTask:noButton": "Non",
   "alert:deleteUserTask:yesButton": "Oui",
 
