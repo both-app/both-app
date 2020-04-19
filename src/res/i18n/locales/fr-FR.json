@@ -14,6 +14,15 @@
   "app:difficulty:4": "Difficile",
   "app:difficulty:5": "Épuisant",
 
+  "app:relationStatus:noPartner:title": "🏆 T’es premier au classement",
+  "app:relationStatus:noPartner:description": "Normal t’es seul... Relance ton acolyte !",
+  "app:relationStatus:winner:title": "🏆 T’es premier au classement",
+  "app:relationStatus:winner:description": "Demande un peu d'aide à %{partnerName} !",
+  "app:relationStatus:looser:title": "💩 T'es pas au top",
+  "app:relationStatus:looser:description": "Donne un petit coup de main à %{partnerName} !",
+  "app:relationStatus:equality:title": "💝 Égalité ! Quel travail d'équipe",
+  "app:relationStatus:equality:description": "Belle répartition des tâches",
+
   "auth:screen:select:title": "Bienvenue sur Both 👋",
   "auth:screen:select:subtitle": "Commençons...",
   "auth:screen:select:tapYourFirstname": "Tape ton prénom",
