@@ -1,3 +1,5 @@
+import { Platform, Linking } from 'react-native'
+
 export const wait = (ms: number) =>
   new Promise((resolve) => setTimeout(resolve, ms))
 
@@ -13,4 +15,21 @@ export const groupBy = <T>(
       [valueCheck]: [...(acc[valueCheck] || []), v],
     }
   }, {})
+}
+
+export const openInStore = async ({
+  appName,
+  appStoreId,
+  appStoreLocale = 'us',
+  playStoreId,
+}) => {
+  if (Platform.OS === 'ios') {
+    Linking.openURL(
+      `https://itunes.apple.com/${appStoreLocale}/app/${appName}/id${appStoreId}`
+    )
+  } else {
+    Linking.openURL(
+      `https://play.google.com/store/apps/details?id=${playStoreId}`
+    )
+  }
 }

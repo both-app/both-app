@@ -14,6 +14,7 @@ import { AuthContext, AuthApiContext } from 'screens/auth/contexts'
 import { Avatar } from 'library/components/Avatar'
 import { UsersContext } from 'screens/app/contexts/Users.context'
 import { RelationContext } from 'screens/app/contexts/Relation.context'
+import { openInStore } from 'res/utils'
 
 export const ProfilScreen = () => {
   const { t } = useT()
@@ -45,8 +46,13 @@ export const ProfilScreen = () => {
     await WebBrowser.openBrowserAsync('https://forms.gle/vFxTrrKXZNstFsz17')
   }
 
-  const handleRateApp = async () => {
-    await WebBrowser.openBrowserAsync('https://payfit.com')
+  const handleRateApp = () => {
+    openInStore({
+      appName: 'Both',
+      appStoreId: '1508146811',
+      appStoreLocale: 'fr',
+      playStoreId: '',
+    })
   }
 
   const handleEndRelation = () => {
