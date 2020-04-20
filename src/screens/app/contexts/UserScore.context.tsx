@@ -20,6 +20,7 @@ const initialState: UserScoreState = {
 
 interface UserScoreContextProps extends UserScoreState {
   fetchUserScore: () => Promise<void>
+  incrementUserPoints: (points: number) => void
 }
 
 // @ts-ignore
@@ -56,12 +57,16 @@ const UserScoreContextProvider: FC = ({ children }) => {
     setState(result.data.data)
   }
 
+  const incrementUserPoints = (points: number) =>
+    setState({ ...state, userTotalPoints: state.userTotalPoints + points })
+
   const userScoreContextApi = useMemo(
     () => ({
       ...state,
       fetchUserScore,
+      incrementUserPoints,
     }),
-    [state, fetchUserScore]
+    [state, fetchUserScore, incrementUserPoints]
   )
 
   return (

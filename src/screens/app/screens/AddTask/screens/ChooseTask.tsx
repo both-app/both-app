@@ -18,6 +18,7 @@ import { Label } from 'library/components/Label'
 import { Task } from './components/Task'
 import { TaskAddedModalContext } from '../../Dashboard/components/TaskAddedModal'
 import { AddTaskStackParamList } from '../AddTask.navigator'
+import { UserScoreContext } from 'screens/app/contexts/UserScore.context'
 
 type ChooseTaskRouteProps = RouteProp<AddTaskStackParamList, 'ChooseTask'>
 
@@ -30,6 +31,7 @@ export const ChooseTaskScreen = () => {
   const { getTasksByCategoryId } = useContext(TaskContext)
   const { addNewUserTask } = useContext(UserTaskContext)
   const { openTaskAddedModal } = useContext(TaskAddedModalContext)
+  const { incrementUserPoints } = useContext(UserScoreContext)
 
   const { category } = route.params
 
@@ -43,8 +45,11 @@ export const ChooseTaskScreen = () => {
     setSelectedId(task.id)
 
     if (difficulty === 0) {
-      openTaskAddedModal(task, 0)
-      addNewUserTask(task.id, 0)
+      const { points } = task.difficulties[difficulty]
+
+      openTaskAddedModal(task.emoji, points)
+      addNewUserTask(task.id, difficulty)
+      incrementUserPoints(points)
 
       return navigation.navigate('Dashboard')
     }
