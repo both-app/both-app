@@ -88,7 +88,7 @@ export const CardButton: FC<CardButtonProps> = ({
         <Text style={styles.emoji}>{emoji}</Text>
         <View style={styles.texts}>
           <Text style={titleStyle}>{title}</Text>
-          {subtitle && <Text style={subTitleStyle}>{subtitle}</Text>}
+          {!!subtitle && <Text style={subTitleStyle}>{subtitle}</Text>}
         </View>
       </View>
 
