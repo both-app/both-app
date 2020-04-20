@@ -40,7 +40,7 @@ export const Option: FC<OptionProps> = memo(
         <Text style={styles.emoji}>{emoji}</Text>
         <View style={styles.texts}>
           <Text style={labelStyle}>{label}</Text>
-          {extraInfo && <Text style={extraInfoStyle}>{extraInfo}</Text>}
+          {!!extraInfo && <Text style={extraInfoStyle}>{extraInfo}</Text>}
         </View>
       </TouchableOpacity>
     )

@@ -91,8 +91,8 @@ export const Avatar: FC<AvatarProps> = ({
   return (
     <TouchableOpacity activeOpacity={1} onPress={handleOnPress}>
       <Animated.View style={avatarStyle}>
-        {firstname && <Text style={avatarText}>{firstname[0]}</Text>}
-        {avatarUrl && (
+        {!!firstname && <Text style={avatarText}>{firstname[0]}</Text>}
+        {!!avatarUrl && (
           <Image
             source={avatarUrl}
             style={{
