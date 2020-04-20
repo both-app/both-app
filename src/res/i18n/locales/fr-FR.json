@@ -14,6 +14,13 @@
   "app:difficulty:4": "Difficile",
   "app:difficulty:5": "Épuisant",
 
+  "input:date:day": "Jour",
+  "input:date:day:placeholder": "JJ",
+  "input:date:month": "Mois",
+  "input:date:month:placeholder": "MM",
+  "input:date:year": "Année",
+  "input:date:year:placeholder": "AAAA",
+
   "app:relationStatus:noPartner:title": "🏆 T’es premier au classement",
   "app:relationStatus:noPartner:description": "Normal t’es seul... Relance ton acolyte !",
   "app:relationStatus:winner:title": "🏆 T’es premier au classement",
