@@ -13,8 +13,10 @@ import {
 import { Main } from './src/Main'
 
 Sentry.init({
-  dsn: 'https://3247720673cf460bb7979a5e0554d98f@sentry.io/5175612',
+  dsn:
+    'https://4a2650410f1a4db499d777c1abf78ebf@o381103.ingest.sentry.io/5207931',
   enableInExpoDevelopment: true,
+  environment: __DEV__ ? 'development' : 'production',
   debug: true,
 })
 
