@@ -5,9 +5,10 @@
     "description": "Share love & daily tasks",
     "githubUrl": "https://github.com/both-app/both-app",
     "privacy": "public",
-    "platforms": ["ios"],
+    "platforms": ["ios", "android"],
     "version": "1.0.0",
     "orientation": "portrait",
+    "primaryColor": "#0A1D2B",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
@@ -19,14 +20,21 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "bundleIdentifier": "com.both.bothapp",
+      "buildNumber": "1.0.0",
       "supportsTablet": false,
       "backgroundColor": "#F9F0EB",
       "icon": "./assets/appIcons/appstore.png",
       "isTabletOnly": false,
       "requireFullScreen": true
     },
+    "android": {
+      "package": "com.both.bothapp",
+      "versionCode": 1,
+      "icon": "./assets/appIcons/playstore.png",
+      "googleServicesFile": "./google-services.json"
+    },
     "notification": {
-      "icon": "",
+      "icon": "./assets/notif-icon.png",
       "color": "#0A1D2B",
       "iosDisplayInForeground": true
     },
@@ -39,7 +47,7 @@
         {
           "file": "sentry-expo/upload-sourcemaps",
           "config": {
-            "organization": "both",
+            "organization": "both-app",
             "project": "both-app",
             "authToken": "d639bbc54bed494db9425fddad35b83ca2fb55ba1f6e4525b834f66ec5475fb4",
             "url": ""

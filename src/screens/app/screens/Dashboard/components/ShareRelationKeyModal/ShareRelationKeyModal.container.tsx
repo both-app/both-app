@@ -1,20 +1,26 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Share } from 'react-native'
 
-import { setItem } from 'res/storage'
 import { useT } from 'res/i18n'
 
 import { ShareRelationKeyModal } from './ShareRelationKeyModal'
 import { RelationContext } from 'screens/app/contexts/Relation.context'
+import { UsersContext } from 'screens/app/contexts/Users.context'
 
 export const ShareRelationKeyModalContainer = () => {
   const { t } = useT()
+  const { me, partner } = useContext(UsersContext)
   const { shareKeyModalOpen, relation, setShareKeyModal } = useContext(
     RelationContext
   )
 
+  useEffect(() => {
+    if (me.id && !partner.id && !shareKeyModalOpen) {
+      setShareKeyModal(true)
+    }
+  }, [me, partner])
+
   const handleOnClose = async () => {
-    await setItem('shareKeyModalInited', true)
     setShareKeyModal(false)
   }
 

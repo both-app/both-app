@@ -4,7 +4,6 @@ import * as Sentry from 'sentry-expo'
 export type StorageKey =
   | 'jwtToken'
   | 'relation'
-  | 'shareKeyModalInited'
   | 'users'
   | 'categories'
   | 'tasks'

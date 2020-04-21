@@ -37,7 +37,7 @@ export const Modal: FC<ModalProps> = ({
       onPress={onClose}
     >
       <View style={{ ...styles.modal, ...styles.modalShadow }}>
-        {emoji && <Text style={styles.emoji}>{emoji}</Text>}
+        {!!emoji && <Text style={styles.emoji}>{emoji}</Text>}
 
         <View style={styles.closeButtonContainer}>
           <MinimalButton

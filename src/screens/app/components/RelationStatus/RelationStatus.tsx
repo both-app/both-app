@@ -4,8 +4,10 @@ import { Info } from 'library/components/Info'
 
 import { UserScoreContext } from 'screens/app/contexts/UserScore.context'
 import { UsersContext } from 'screens/app/contexts/Users.context'
+import { useT } from 'res/i18n'
 
 export const RelationStatus = () => {
+  const { t } = useT()
   const { partner } = useContext(UsersContext)
   const { userTotalPoints, partnerTotalPoints } = useContext(UserScoreContext)
 
@@ -13,8 +15,8 @@ export const RelationStatus = () => {
     return (
       <Info
         color="white"
-        primary="🏆 T’es premier au classement"
-        secondary="Normal t’es seul… Relance ton acolyte !"
+        primary={t('app:relationStatus:noPartner:title')}
+        secondary={t('app:relationStatus:noPartner:description')}
       />
     )
   }
@@ -23,8 +25,10 @@ export const RelationStatus = () => {
     return (
       <Info
         color="white"
-        primary="🏆 T’es premier au classement"
-        secondary="Normal t’es seul… Relance ton acolyte !"
+        primary={t('app:relationStatus:winner:title')}
+        secondary={t('app:relationStatus:winner:description', {
+          partnerName: partner.firstName,
+        })}
       />
     )
   }
@@ -33,8 +37,10 @@ export const RelationStatus = () => {
     return (
       <Info
         color="white"
-        primary="🏆 T’es premier au classement"
-        secondary="Normal t’es seul… Relance ton acolyte !"
+        primary={t('app:relationStatus:looser:title')}
+        secondary={t('app:relationStatus:looser:description', {
+          partnerName: partner.firstName,
+        })}
       />
     )
   }
@@ -42,8 +48,8 @@ export const RelationStatus = () => {
   return (
     <Info
       color="white"
-      primary="🏆 T’es premier au classement"
-      secondary="Normal t’es seul… Relance ton acolyte !"
+      primary={t('app:relationStatus:equality:title')}
+      secondary={t('app:relationStatus:equality:description')}
     />
   )
 }

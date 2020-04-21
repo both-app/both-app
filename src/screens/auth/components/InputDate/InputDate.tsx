@@ -8,6 +8,7 @@ import {
 } from 'react-native'
 
 import { colors } from 'res/colors'
+import { useT } from 'res/i18n'
 
 type InputDateProps = {
   onChange?: (date: string) => void
@@ -15,6 +16,7 @@ type InputDateProps = {
 
 export const InputDate: FC<InputDateProps> = ({ onChange }) => {
   const textInput = useRef()
+  const { t } = useT()
 
   const [year, setYear] = useState('')
   const [month, setMonth] = useState('')
@@ -77,18 +79,24 @@ export const InputDate: FC<InputDateProps> = ({ onChange }) => {
           style={styles.dateContainer}
         >
           <View style={{ ...styles.container, width: 55 }}>
-            <Text style={styles.label}>Jour</Text>
-            <Text style={dayValuesStyle}>{day || 'JJ'}</Text>
+            <Text style={styles.label}>{t('input:date:day')}</Text>
+            <Text style={dayValuesStyle}>
+              {day || t('input:date:day:placeholder')}
+            </Text>
           </View>
 
           <View style={{ ...styles.container, width: 55 }}>
-            <Text style={styles.label}>Mois</Text>
-            <Text style={monthValuesStyle}>{month || 'MM'}</Text>
+            <Text style={styles.label}>{t('input:date:month')}</Text>
+            <Text style={monthValuesStyle}>
+              {month || t('input:date:month:placeholder')}
+            </Text>
           </View>
 
           <View style={{ ...styles.container, width: 80 }}>
-            <Text style={styles.label}>Année</Text>
-            <Text style={yearValuesStyle}>{year || 'YYYY'}</Text>
+            <Text style={styles.label}>{t('input:date:year')}</Text>
+            <Text style={yearValuesStyle}>
+              {year || t('input:date:year:placeholder')}
+            </Text>
           </View>
         </TouchableOpacity>
       </View>
