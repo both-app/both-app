@@ -6,7 +6,7 @@ interface TaskAdded {
 }
 
 interface TaskAddedContextProps {
-  openTaskAddedModal: (task: Task, taskDifficultyIndex: number) => void
+  openTaskAddedModal: (emoji: string, points: number) => void
   closeTaskAddedModal: () => void
   taskAdded: TaskAdded
 }
@@ -18,12 +18,10 @@ const TaskAddedModalContextProvider: FC = ({ children }) => {
   const [taskAdded, setTaskAdded] = useState<TaskAdded | null>(null)
 
   const openTaskAddedModal: TaskAddedContextProps['openTaskAddedModal'] = (
-    task: Task,
-    taskDifficultyIndex: number
+    emoji: string,
+    points: number
   ) => {
-    const points = task.difficulties[taskDifficultyIndex].points
-
-    setTaskAdded({ emoji: task.emoji, points })
+    setTaskAdded({ emoji, points })
   }
 
   const closeTaskAddedModal = () => setTaskAdded(null)
