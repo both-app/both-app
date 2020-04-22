@@ -128,8 +128,8 @@
   "app:screen:newUserTask:chooseTask:subtitle": "Et qu'as tu fait ?",
   "app:screen:newUserTask:chooseTaskDifficulty:subtitle": "C'était...",
   "app:screen:newUserTask:chooseTask:levelOfDifficulity": {
-    "one": "%{count} niveau de difficulé",
-    "other": "%{count} niveaux de difficulé"
+    "one": "%{count} niveau de difficulté",
+    "other": "%{count} niveaux de difficulté"
   },
 
   "app:screen:leaderboard:winnersOfTheWeek": "Champions de la semaine",

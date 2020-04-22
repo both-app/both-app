@@ -11,8 +11,8 @@
   "app:difficulty:1": "Very easy",
   "app:difficulty:2": "Easy",
   "app:difficulty:3": "Medium",
-  "app:difficulty:4": "Difficult",
-  "app:difficulty:5": "Hard",
+  "app:difficulty:4": "Hard",
+  "app:difficulty:5": "Very hard",
 
   "input:date:day": "Day",
   "input:date:day:placeholder": "DD",
@@ -22,12 +22,12 @@
   "input:date:year:placeholder": "YYYY",
 
   "app:relationStatus:noPartner:title": "🏆 You're first!",
-  "app:relationStatus:noPartner:description": "Yes, you're alone, reach out to your partner!",
+  "app:relationStatus:noPartner:description": "That's normal, you're alone, reach out to your partner!",
   "app:relationStatus:winner:title": "🏆 You're first!",
   "app:relationStatus:winner:description": "Ask for a little help to %{partnerName}!",
-  "app:relationStatus:looser:title": "💩 You're behind",
+  "app:relationStatus:looser:title": "💩 You could do better",
   "app:relationStatus:looser:description": "Give a hand to %{partnerName}!",
-  "app:relationStatus:equality:title": "💝 Equality! What an awesome team work",
+  "app:relationStatus:equality:title": "💝 It's a tie! What an awesome teamwork",
   "app:relationStatus:equality:description": "Good tasks distribution",
 
   "auth:screen:select:title": "Welcome to Both 👋",
@@ -44,7 +44,7 @@
   "auth:screen:form:pushNotification:select:yes:label": "I allow notifications",
   "auth:screen:form:pushNotification:select:yes:subtitle": "Perfect to follow your progression",
   "auth:screen:form:pushNotification:select:no:label": "No, I don't like it",
-  "auth:screen:form:pushNotification:select:no:subtitle": "Deal. We'll handle without it",
+  "auth:screen:form:pushNotification:select:no:subtitle": "Deal. We'll manage without it",
   "auth:screen:form:pushNotification:error:wrongCode:title": "😥 Invalid code!",
   "auth:screen:form:pushNotification:error:wrongCode:subtitle": "Tips: Check the code your partner gave you",
 
@@ -89,7 +89,7 @@
   "app:screen:profil:button:endRelation:subtitle:withPartner": "Is it over with %{firstName}?",
   "app:screen:profil:button:endRelation:subtitle:withoutPartner": "Is it over with your partner?",
   "app:screen:profil:button:theTeam:title": "The team behind Both",
-  "app:screen:profil:button:theTeam:subtitle": "Hello, here we are!",
+  "app:screen:profil:button:theTeam:subtitle": "Hello, that's us!",
   "app:screen:profil:button:shareIdeas:title": "Share ideas for improvement (FR)",
   "app:screen:profil:button:shareIdeas:subtitle": "New category or new feature",
   "app:screen:profil:button:voteTheApp:title": "Give a 5-Star rating on the store",
@@ -116,7 +116,7 @@
   "app:screen:profil:theTeam:subtitle": "Here, that's us. We decided to launch this fun app to raise awareness and improve the division of tasks in a relationship!",
   "app:screen:profil:theTeam:developer": "Developer",
   "app:screen:profil:theTeam:designer": "Designer",
-  "app:screen:profil:theTeam:search": "Is looking for a partner",
+  "app:screen:profil:theTeam:search": "Looking for a partner",
   "app:screen:profil:theTeam:inRelationSince": "In a relationship since 6 years",
 
   "app:screen:newUserTask:chooseCategory:title": "Choose...",
@@ -140,7 +140,7 @@
   "app:screen:leaderBoard:counterEndOfWeek": "End in %{time}",
 
   "modal:newTaskAdded:badgeText": "Well done %{firstName} 🎉",
-  "modal:newTaskAdded:info:primary": "👏 We just added it to your score",
+  "modal:newTaskAdded:info:primary": "👏 We just added them to your score",
   "modal:newTaskAdded:info:secondary": "Continue like that!",
   "modal:shareRelationKey:badgeText": "Invite your partner 💬",
   "modal:shareRelationKey:info:primary": "📲 Here is the key for your Both relationship",
