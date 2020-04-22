@@ -1,77 +1,91 @@
-import React from 'react'
-import { Text, StyleSheet, ScrollView } from 'react-native'
+import React, { useContext } from 'react'
+import { ScrollView } from 'react-native'
 
-import { colors } from 'res/colors'
-import { fonts } from 'res/fonts'
-import { useT } from 'res/i18n'
-
-import { Avatar } from 'library/components/Avatar'
 import { Layout } from 'library/layouts/Layout'
 
-import { RelationStatus } from 'screens/app/components/RelationStatus'
-import { Confetti } from 'screens/app/components/Confetti'
-import { User } from './components/User'
+import { UserRecap } from './components/UserRecap'
 import { CountdownBadge } from './components/CountdownBadge'
+import {
+  UserScoreContext,
+  ScoreSatus,
+} from 'screens/app/contexts/UserScore.context'
+import { UsersContext } from 'screens/app/contexts/Users.context'
+import { DrawHeader, WinnerHeader } from './components/Header'
+import { TaskContext } from 'screens/app/contexts/Task.context'
+
+interface RankedUser extends User {
+  points: number
+  favoriteTask: Task
+  isWinner: boolean
+}
 
 export const LeaderboardScreen = () => {
-  const { t } = useT()
+  const {
+    userTotalPoints,
+    partnerTotalPoints,
+    userFavoriteTask,
+    partnerFavoriteTask,
+    scoreStatus,
+  } = useContext(UserScoreContext)
+  const { me, partner } = useContext(UsersContext)
+  const { getTaskById } = useContext(TaskContext)
+
+  const rankedUser = {
+    ...me,
+    points: userTotalPoints,
+    favoriteTask: getTaskById(userFavoriteTask),
+    isWinner:
+      scoreStatus === ScoreSatus.UserWins || scoreStatus === ScoreSatus.Draw,
+  }
+
+  let ranking: RankedUser[]
+
+  if (!partner.id) {
+    ranking = [rankedUser]
+  } else {
+    const rankedPartner = {
+      ...partner,
+      points: partnerTotalPoints,
+      favoriteTask: getTaskById(partnerFavoriteTask),
+      isWinner:
+        scoreStatus === ScoreSatus.PartnerWins ||
+        scoreStatus === ScoreSatus.Draw,
+    }
+
+    if (scoreStatus === ScoreSatus.Draw) {
+      ranking = [rankedUser, rankedPartner]
+    } else if (scoreStatus === ScoreSatus.UserWins) {
+      ranking = [rankedUser, rankedPartner]
+    } else {
+      ranking = [rankedPartner, rankedUser]
+    }
+  }
 
   return (
     <Layout
       header={
-        <>
-          <Confetti containerStyle={styles.confettiContainer}>
-            <>
-              <Avatar
-                firstname="Mathieu"
-                size="large"
-                backgroundColor="dark200"
-                avatarColor="white"
-                borderColor="dark200"
-              />
-              <Text style={styles.medal}>🏆</Text>
-            </>
-          </Confetti>
-
-          <Text style={styles.winnerOfTheWeek}>
-            {t('app:screen:leaderboard:winnerOfTheWeek:male')}
-          </Text>
-          <RelationStatus />
-        </>
+        scoreStatus === ScoreSatus.Draw ? (
+          <DrawHeader />
+        ) : (
+          <WinnerHeader
+            firstName={ranking[0].firstName}
+            gender={ranking[0].gender}
+          />
+        )
       }
       badge={<CountdownBadge />}
     >
       <ScrollView>
-        <User
-          firstName="Mathieu (moi)"
-          isWinner
-          points={32}
-          taskName="Faire le lit"
-        />
-        <User
-          firstName="Charlotte"
-          isWinner={false}
-          points={16}
-          taskName="Faire la vaiselle"
-        />
+        {ranking.map((user: RankedUser) => (
+          <UserRecap
+            key={user.id}
+            firstName={user.firstName}
+            isWinner={user.isWinner}
+            points={user.points}
+            taskName={user.favoriteTask.name}
+          />
+        ))}
       </ScrollView>
     </Layout>
   )
 }
-
-export const styles = StyleSheet.create({
-  winnerOfTheWeek: {
-    fontFamily: fonts['DMSerifDisplay-Regular'],
-    fontSize: 26,
-    color: colors.white,
-    marginBottom: 8,
-  },
-  confettiContainer: {
-    marginBottom: 8,
-  },
-  medal: {
-    position: 'absolute',
-    bottom: -44,
-    fontSize: 60,
-  },
-})

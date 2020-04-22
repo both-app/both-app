@@ -1,8 +1,6 @@
 import React, { FC } from 'react'
 import { View, StyleSheet, ViewStyle } from 'react-native'
 
-import { colors } from 'res/colors'
-
 import ConfettiSVG from '../../../../../assets/confetti.svg'
 
 interface ConfettiProps {
@@ -15,15 +13,10 @@ export const Confetti: FC<ConfettiProps> = ({ children, ...props }) => {
     ...(props.containerStyle ? props.containerStyle : {}),
   }
 
-  const circleStyle = {
-    ...styles.circle,
-    ...styles.circleShadow,
-  }
-
   return (
     <View style={containerStyle}>
-      <View style={circleStyle}>{children}</View>
-      <ConfettiSVG fill="white" style={{ position: 'absolute' }} />
+      <View style={styles.childrenContainer}>{children}</View>
+      <ConfettiSVG fill="white" style={styles.svg} />
     </View>
   )
 }
@@ -35,23 +28,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  circle: {
-    width: 120,
-    height: 120,
-    borderRadius: 120 / 2,
-    backgroundColor: colors.dark200,
+  childrenContainer: {
     alignItems: 'center',
     justifyContent: 'center',
     zIndex: 100,
   },
-  circleShadow: {
-    shadowColor: 'rgba(0,0,0,0.5)',
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 10,
-    elevation: 10,
+  svg: {
+    position: 'absolute',
   },
 })

@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { ChooseCategoryScreen } from './screens/ChooseCategory'
 import { ChooseTaskScreen } from './screens/ChooseTask'
 import { ChooseTaskDifficultyScreen } from './screens/ChooseTaskDifficulty'
+import { AddTaskContextProvider } from './AddTask.context'
 
 export type AddTaskStackParamList = {
   ChooseCategory: undefined
@@ -17,15 +18,17 @@ export type AddTaskStackParamList = {
 export const AddTaskStack = createStackNavigator()
 
 export const AddTaskNavigator = () => (
-  <AddTaskStack.Navigator headerMode="none">
-    <AddTaskStack.Screen
-      component={ChooseCategoryScreen}
-      name="ChooseCategory"
-    />
-    <AddTaskStack.Screen component={ChooseTaskScreen} name="ChooseTask" />
-    <AddTaskStack.Screen
-      component={ChooseTaskDifficultyScreen}
-      name="ChooseTaskDifficulty"
-    />
-  </AddTaskStack.Navigator>
+  <AddTaskContextProvider>
+    <AddTaskStack.Navigator headerMode="none">
+      <AddTaskStack.Screen
+        component={ChooseCategoryScreen}
+        name="ChooseCategory"
+      />
+      <AddTaskStack.Screen component={ChooseTaskScreen} name="ChooseTask" />
+      <AddTaskStack.Screen
+        component={ChooseTaskDifficultyScreen}
+        name="ChooseTaskDifficulty"
+      />
+    </AddTaskStack.Navigator>
+  </AddTaskContextProvider>
 )

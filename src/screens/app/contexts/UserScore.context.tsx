@@ -4,23 +4,34 @@ import { useAppState } from 'hooks/useAppState'
 import { api, APIResponse } from 'res/api'
 import { getItem, setItem } from 'res/storage'
 
+export enum ScoreSatus {
+  Draw,
+  UserWins,
+  PartnerWins,
+}
+
 type GetUserScoreResponse = APIResponse<UserScore>
 
 interface UserScoreState {
   partnerTotalPoints: number
   userTotalPoints: number
+  userFavoriteTask: string | null
+  partnerFavoriteTask: string | null
   total: number
 }
 
 const initialState: UserScoreState = {
   partnerTotalPoints: 0,
   userTotalPoints: 0,
+  userFavoriteTask: null,
+  partnerFavoriteTask: null,
   total: 0,
 }
 
 interface UserScoreContextProps extends UserScoreState {
   fetchUserScore: () => Promise<void>
   incrementUserPoints: (points: number) => void
+  scoreStatus: ScoreSatus
 }
 
 // @ts-ignore
@@ -60,11 +71,24 @@ const UserScoreContextProvider: FC = ({ children }) => {
   const incrementUserPoints = (points: number) =>
     setState({ ...state, userTotalPoints: state.userTotalPoints + points })
 
+  const scoreStatus = useMemo((): ScoreSatus => {
+    if (state.userTotalPoints === state.partnerTotalPoints) {
+      return ScoreSatus.Draw
+    }
+    if (state.userTotalPoints > state.partnerTotalPoints) {
+      return ScoreSatus.UserWins
+    }
+    if (state.userTotalPoints < state.partnerTotalPoints) {
+      return ScoreSatus.PartnerWins
+    }
+  }, [state])
+
   const userScoreContextApi = useMemo(
     () => ({
       ...state,
       fetchUserScore,
       incrementUserPoints,
+      scoreStatus,
     }),
     [state, fetchUserScore, incrementUserPoints]
   )
