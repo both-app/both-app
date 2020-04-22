@@ -33,20 +33,8 @@ export const TabBar: FC<BottomTabBarProps> = ({
           }
         }
 
-        const onLongPress = () => {
-          navigation.emit({
-            type: 'tabLongPress',
-            target: route.key,
-          })
-        }
-
         return (
-          <TabBarItem
-            key={index}
-            onPress={onPress}
-            onLongPress={onLongPress}
-            isFocused={isFocused}
-          >
+          <TabBarItem key={index} onPress={onPress} isFocused={isFocused}>
             {options.tabBarIcon &&
               options.tabBarIcon({
                 focused: isFocused,
