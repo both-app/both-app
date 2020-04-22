@@ -22,7 +22,7 @@ const RelationContext = createContext<RelationContextProps>({})
 
 const RelationContextProvider: FC = ({ children }) => {
   const [shareKeyModalOpen, setShareKeyModal] = useState<boolean>(false)
-  const [relationSTate, setRelation] = useState<Relation>({
+  const [relationState, setRelation] = useState<Relation>({
     id: null,
     code: null,
     createdAt: null,
@@ -49,24 +49,25 @@ const RelationContextProvider: FC = ({ children }) => {
   }, [relation])
 
   const daysOfRelation = useMemo(() => {
-    if (relationSTate.createdAt) {
+    if (relationState.createdAt) {
       const now = new Date()
-      const dateOfCreation = new Date(relationSTate.createdAt)
+      const dateOfCreation = new Date(relationState.createdAt)
       const differenceInTime = now.getTime() - dateOfCreation.getTime()
       const differenceInDay = Math.round(differenceInTime / (1000 * 3600 * 24))
       return differenceInDay + 1
     }
+
     return 0
-  }, [relationSTate])
+  }, [relationState])
 
   const relationContextApi = useMemo(
     () => ({
       shareKeyModalOpen,
       setShareKeyModal,
-      relation: relationSTate,
+      relation: relationState,
       daysOfRelation,
     }),
-    [relationSTate, shareKeyModalOpen, setShareKeyModal, daysOfRelation]
+    [relationState, shareKeyModalOpen, setShareKeyModal, daysOfRelation]
   )
 
   return (
