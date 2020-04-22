@@ -13,6 +13,7 @@ import { TaskContext } from 'screens/app/contexts/Task.context'
 import { UsersContext } from 'screens/app/contexts/Users.context'
 import { CategoryContext } from 'screens/app/contexts/Category.context'
 import { UserTaskContext } from 'screens/app/contexts/UserTask.context'
+import { UserScoreContext } from 'screens/app/contexts/UserScore.context'
 
 interface UserTaskProps {
   userTask: UserTask
@@ -25,6 +26,7 @@ export const UserTask: FC<UserTaskProps> = ({ userTask }) => {
   const { getUserById } = useContext(UsersContext)
   const { getCategoryById } = useContext(CategoryContext)
   const { deleteUserTask } = useContext(UserTaskContext)
+  const { fetchUserScore } = useContext(UserScoreContext)
 
   const task = getTaskById(userTask.taskId)
   const category = getCategoryById(task.categoryId)
@@ -57,7 +59,10 @@ export const UserTask: FC<UserTaskProps> = ({ userTask }) => {
         {
           text: t('alert:deleteUserTask:yesButton'),
           style: 'destructive',
-          onPress: () => deleteUserTask(userTask.id),
+          onPress: async () => {
+            await deleteUserTask(userTask.id)
+            await fetchUserScore()
+          },
         },
       ]
     )
