@@ -33,7 +33,7 @@ export const TheTeamScreen = () => {
         />
       </View>
 
-      <Label primary="Le trio derrière Both" />
+      <Label primary={t('app:screen:profil:theTeam:pageTitle')} />
 
       <View style={styles.teamInfo}>
         <Info

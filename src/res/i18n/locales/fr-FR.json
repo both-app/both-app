@@ -76,6 +76,7 @@
 
   "app:screen:dashboard:addNewTaskButton": "Ajouter une tâche",
   "app:screen:dashboard:userTask:subtitle": "Par %{firstName} ",
+  "app:screen:dashboard:shareRelationKey": "Partager la clé Both",
 
   "app:screen:profil:numberOfRelationDays": {
     "one": "✨ %{days} jour de relation",
@@ -110,6 +111,7 @@
   },
   "app:screen:profil:settings:keyOfTheRelation": "Clé de la relation",
 
+  "app:screen:profil:theTeam:pageTitle": "Le trio derrière Both",
   "app:screen:profil:theTeam:title": "😎 Hello you...",
   "app:screen:profil:theTeam:subtitle": "Voilà c’est nous. On a décidé de lancer cette app. ludique pour sensibiliser et améliorer la répartition des tâches dans une relation de couple !",
   "app:screen:profil:theTeam:developer": "Développeur",
@@ -125,6 +127,10 @@
   },
   "app:screen:newUserTask:chooseTask:subtitle": "Et qu'as tu fait ?",
   "app:screen:newUserTask:chooseTaskDifficulty:subtitle": "C'était...",
+  "app:screen:newUserTask:chooseTask:levelOfDifficulity": {
+    "one": "%{count} niveau de difficulé",
+    "other": "%{count} niveaux de difficulé"
+  },
 
   "app:screen:leaderboard:winnersOfTheWeek": "Champions de la semaine",
   "app:screen:leaderboard:winnerOfTheWeek:male": "Champion de la semaine",
