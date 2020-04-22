@@ -13,9 +13,14 @@ export const Confetti: FC<ConfettiProps> = ({ children, ...props }) => {
     ...(props.containerStyle ? props.containerStyle : {}),
   }
 
+  const childrenContainerStyle = {
+    ...styles.childrenContainer,
+    ...styles.shadow,
+  }
+
   return (
     <View style={containerStyle}>
-      <View style={styles.childrenContainer}>{children}</View>
+      <View style={childrenContainerStyle}>{children}</View>
       <ConfettiSVG fill="white" style={styles.svg} />
     </View>
   )
@@ -35,5 +40,15 @@ const styles = StyleSheet.create({
   },
   svg: {
     position: 'absolute',
+  },
+  shadow: {
+    shadowColor: 'rgba(0,0,0,0.5)',
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 10,
+    elevation: 10,
   },
 })
