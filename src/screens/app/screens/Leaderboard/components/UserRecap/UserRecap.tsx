@@ -8,14 +8,14 @@ import { Avatar } from 'library/components/Avatar'
 import { Point } from 'library/components/Point'
 import { Medal } from '../Medal'
 
-interface UserProps {
+interface UserRecapProps {
   firstName: string
   isWinner: boolean
   taskName: string
   points: number
 }
 
-export const User: FC<UserProps> = ({
+export const UserRecap: FC<UserRecapProps> = ({
   firstName,
   isWinner,
   points,

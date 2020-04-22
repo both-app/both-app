@@ -2,14 +2,17 @@ import React, { useContext } from 'react'
 
 import { Info } from 'library/components/Info'
 
-import { UserScoreContext } from 'screens/app/contexts/UserScore.context'
+import {
+  UserScoreContext,
+  ScoreSatus,
+} from 'screens/app/contexts/UserScore.context'
 import { UsersContext } from 'screens/app/contexts/Users.context'
 import { useT } from 'res/i18n'
 
 export const RelationStatus = () => {
   const { t } = useT()
   const { partner } = useContext(UsersContext)
-  const { userTotalPoints, partnerTotalPoints } = useContext(UserScoreContext)
+  const { scoreStatus } = useContext(UserScoreContext)
 
   if (!partner.id) {
     return (
@@ -21,7 +24,17 @@ export const RelationStatus = () => {
     )
   }
 
-  if (userTotalPoints > partnerTotalPoints) {
+  if (scoreStatus === ScoreSatus.Draw) {
+    return (
+      <Info
+        color="white"
+        primary={t('app:relationStatus:equality:title')}
+        secondary={t('app:relationStatus:equality:description')}
+      />
+    )
+  }
+
+  if (scoreStatus === ScoreSatus.UserWins) {
     return (
       <Info
         color="white"
@@ -33,7 +46,7 @@ export const RelationStatus = () => {
     )
   }
 
-  if (partnerTotalPoints > userTotalPoints) {
+  if (scoreStatus === ScoreSatus.PartnerWins) {
     return (
       <Info
         color="white"
@@ -45,11 +58,5 @@ export const RelationStatus = () => {
     )
   }
 
-  return (
-    <Info
-      color="white"
-      primary={t('app:relationStatus:equality:title')}
-      secondary={t('app:relationStatus:equality:description')}
-    />
-  )
+  return null
 }

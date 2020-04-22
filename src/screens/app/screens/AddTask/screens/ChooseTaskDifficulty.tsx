@@ -11,11 +11,9 @@ import { useT } from 'res/i18n'
 
 import { FormLayout } from 'library/layouts/FormLayout'
 import { Label } from 'library/components/Label'
-import { UserTaskContext } from 'screens/app/contexts/UserTask.context'
 import { TaskDifficulty } from './components/TaskDifficulty'
-import { TaskAddedModalContext } from '../../Dashboard/components/TaskAddedModal'
 import { AddTaskStackParamList } from '../AddTask.navigator'
-import { UserScoreContext } from 'screens/app/contexts/UserScore.context'
+import { AddTaskContext } from '../AddTask.context'
 
 type ChooseTaskDifficultyRouteProps = RouteProp<
   AddTaskStackParamList,
@@ -27,10 +25,7 @@ export const ChooseTaskDifficultyScreen = () => {
   const route = useRoute<ChooseTaskDifficultyRouteProps>()
   const navigation = useNavigation()
   const [selectedIndex, setSelectedIndex] = useState<number | null>()
-
-  const { addNewUserTask } = useContext(UserTaskContext)
-  const { openTaskAddedModal } = useContext(TaskAddedModalContext)
-  const { incrementUserPoints } = useContext(UserScoreContext)
+  const { addTask } = useContext(AddTaskContext)
 
   const { category, task } = route.params
 
@@ -41,12 +36,8 @@ export const ChooseTaskDifficultyScreen = () => {
   )
 
   const handleOnAction = async (difficultyIndex: number) => {
-    const { points } = task.difficulties[difficultyIndex]
     setSelectedIndex(difficultyIndex)
-
-    openTaskAddedModal(task.emoji, points)
-    incrementUserPoints(points)
-    addNewUserTask(task.id, difficultyIndex)
+    addTask(task, difficultyIndex)
 
     navigation.navigate('Dashboard')
   }

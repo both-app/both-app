@@ -1,4 +1,4 @@
-import React, { FC, memo, useState } from 'react'
+import React, { FC, memo } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 import { colors } from 'res/colors'
