@@ -4,6 +4,7 @@ import { CardButton } from 'library/components/CardButton'
 import { Point } from 'library/components/Point'
 
 import { TaskContext } from 'screens/app/contexts/Task.context'
+import { useT } from 'res/i18n'
 
 interface TaskProps {
   task: Task
@@ -22,6 +23,7 @@ export const Task: FC<TaskProps> = ({
   isFirstItem,
   isLastItem,
 }) => {
+  const { t } = useT()
   const isTaskWithDifficulties = task.difficulties.length > 1
   const { getPoints } = useContext(TaskContext)
 
@@ -37,7 +39,9 @@ export const Task: FC<TaskProps> = ({
     <CardButton
       emoji={task.emoji}
       title={task.name}
-      subtitle={`${task.difficulties.length} niveau de difficulé`}
+      subtitle={t('app:screen:newUserTask:chooseTask:levelOfDifficulity', {
+        count: task.difficulties.length,
+      })}
       onAction={handleOnAction}
       activeBackgroundColor={category?.color}
       activeTextColor="white"

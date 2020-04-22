@@ -1,0 +1,163 @@
+{
+  "week": "Week",
+  "points": {
+    "one": "point",
+    "other": "points"
+  },
+  "male": "Male",
+  "female": "Female",
+  "other": "Other",
+
+  "app:difficulty:1": "Very easy",
+  "app:difficulty:2": "Easy",
+  "app:difficulty:3": "Medium",
+  "app:difficulty:4": "Difficult",
+  "app:difficulty:5": "Hard",
+
+  "input:date:day": "Day",
+  "input:date:day:placeholder": "DD",
+  "input:date:month": "Month",
+  "input:date:month:placeholder": "MM",
+  "input:date:year": "Year",
+  "input:date:year:placeholder": "YYYY",
+
+  "app:relationStatus:noPartner:title": "🏆 You're first!",
+  "app:relationStatus:noPartner:description": "Yes, you're alone, reach out to your partner!",
+  "app:relationStatus:winner:title": "🏆 You're first!",
+  "app:relationStatus:winner:description": "Ask for a little help to %{partnerName}!",
+  "app:relationStatus:looser:title": "💩 You're behind",
+  "app:relationStatus:looser:description": "Give a hand to %{partnerName}!",
+  "app:relationStatus:equality:title": "💝 Equality! What an awesome team work",
+  "app:relationStatus:equality:description": "Good tasks distribution",
+
+  "auth:screen:select:title": "Welcome to Both 👋",
+  "auth:screen:select:subtitle": "Let's begin...",
+  "auth:screen:select:tapYourFirstname": "Type your name",
+
+  "auth:screen:form:birthDate:title": "And lastly 🎁",
+  "auth:screen:form:birthDate:subtitle": "Your date of birth...",
+  "auth:screen:form:birthDate:error:wrongDate:title": "🙄 Are you sure about your date of birth?",
+  "auth:screen:form:birthDate:error:wrongDate:subtitle": "Tips: Make an effort or ask your mom...",
+
+  "auth:screen:form:pushNotification:title": "Ding 🔔",
+  "auth:screen:form:pushNotification:subtitle": "About notifications...",
+  "auth:screen:form:pushNotification:select:yes:label": "I allow notifications",
+  "auth:screen:form:pushNotification:select:yes:subtitle": "Perfect to follow your progression",
+  "auth:screen:form:pushNotification:select:no:label": "No, I don't like it",
+  "auth:screen:form:pushNotification:select:no:subtitle": "Deal. We'll handle without it",
+  "auth:screen:form:pushNotification:error:wrongCode:title": "😥 Invalid code!",
+  "auth:screen:form:pushNotification:error:wrongCode:subtitle": "Tips: Check the code your partner gave you",
+
+  "auth:screen:form:code:title": "Your partner is waiting for you 🥰",
+  "auth:screen:form:code:subtitle": "Type your key...",
+  "auth:screen:form:code:error:wrongCode:title": "😥 Invalid code!",
+  "auth:screen:form:code:error:wrongCode:subtitle": "Tips: Check the code your partner gave you",
+
+  "auth:screen:form:firstName:title": "Hello ☀️",
+  "auth:screen:form:firstName:subtitle": "What's your name?",
+  "auth:screen:form:firstName:input": "Your first name",
+  "auth:screen:form:firstName:error:empty:title": "🤔 Too lazy to type your first name?",
+  "auth:screen:form:firstName:error:empty:subtitle": "Tips: Add at least your initials...",
+  "auth:screen:form:firstName:error:minimumCharacters:title": "😥Be more specific",
+  "auth:screen:form:firstName:error:minimumCharacters:subtitle": "Tips: at least two characters please, you can do it...",
+
+  "auth:screen:form:gender:subtitle": "You are...",
+  "auth:screen:form:gender:select:woman:label": "I'm a woman",
+  "auth:screen:form:gender:select:male:label": "I'm a man",
+  "auth:screen:form:gender:select:other:label": "I define myself otherwise",
+  "auth:screen:form:joinOrCreate:title": "Nice to meet you 🙂",
+  "auth:screen:form:joinOrCreate:subtitle": "Do you have a key?",
+  "auth:screen:form:joinOrCreate:select:join:label": "Yes, I've been invited by my partner",
+  "auth:screen:form:joinOrCreate:select:join:subtitle": "Join an existing relationship",
+  "auth:screen:form:joinOrCreate:select:create:label": "No, I'm the first one on Both",
+  "auth:screen:form:joinOrCreate:select:create:subtitle": "Create a new relationship",
+  "auth:screen:form:joinOrCreate:info:title": "💡 A key allows you to join a relationship!",
+  "auth:screen:form:joinOrCreate:info:subtitle": "Tips: Your partner has to send you your relationship's key. A unique 6 characters code.",
+
+  "app:screen:dashboard:addNewTaskButton": "Add a task",
+  "app:screen:dashboard:userTask:subtitle": "By %{firstName} ",
+  "app:screen:dashboard:shareRelationKey": "Share the Both key",
+
+  "app:screen:profil:numberOfRelationDays": {
+    "one": "✨ %{days} day of relationship",
+    "other": "✨ %{days} days of relationship"
+  },
+  "app:screen:profil:thankToUseBoth": "We're really happy that you share a part of your daily life with Both",
+  "app:screen:profil:button:settings:title": "Settings",
+  "app:screen:profil:button:settings:subtitle": "Things we didn't know where to put",
+  "app:screen:profil:button:endRelation:title": "End the relationship",
+  "app:screen:profil:button:endRelation:subtitle:withPartner": "Is it over with %{firstName}?",
+  "app:screen:profil:button:endRelation:subtitle:withoutPartner": "Is it over with your partner?",
+  "app:screen:profil:button:theTeam:title": "The team behind Both",
+  "app:screen:profil:button:theTeam:subtitle": "Hello, here we are!",
+  "app:screen:profil:button:shareIdeas:title": "Share ideas for improvement",
+  "app:screen:profil:button:shareIdeas:subtitle": "New category or new feature",
+  "app:screen:profil:button:voteTheApp:title": "Give a 5-Star rating on the store",
+  "app:screen:profil:button:voteTheApp:subtitle": "It would make us really happy",
+
+  "app:screen:profil:settings:title": "Settings",
+  "app:screen:profil:settings:infoPerso:title": "😎 Personal informations",
+  "app:screen:profil:settings:firstName": "First name",
+  "app:screen:profil:settings:birthDate": "Date of birth",
+  "app:screen:profil:settings:gender": "Gender",
+  "app:screen:profil:settings:nightRead:title": "😴 Night reading",
+  "app:screen:profil:settings:protectData:title": "Privacy policy",
+  "app:screen:profil:settings:protectData:subtitle": "We're not joking here.",
+  "app:screen:profil:settings:cgu:title": "Terms of service",
+  "app:screen:profil:settings:cgu:subtitle": "Happy reading...",
+  "app:screen:profil:settings:onBothSince": {
+    "one": "Both since %{daysOfRelation} day",
+    "other": "Both since %{daysOfRelation} days"
+  },
+  "app:screen:profil:settings:keyOfTheRelation": "Relationship's key",
+
+  "app:screen:profil:theTeam:pageTitle": "The team behind Both",
+  "app:screen:profil:theTeam:title": "😎 Hello you...",
+  "app:screen:profil:theTeam:subtitle": "Here, that's us. We decided to launch this fun app to raise awareness and improve the division of tasks in a relationship!",
+  "app:screen:profil:theTeam:developer": "Developer",
+  "app:screen:profil:theTeam:designer": "Designer",
+  "app:screen:profil:theTeam:search": "Is looking for a partner",
+  "app:screen:profil:theTeam:inRelationSince": "In a relationship since 6 years",
+
+  "app:screen:newUserTask:chooseCategory:title": "Choose...",
+  "app:screen:newUserTask:chooseCategory:subtitle": "A category 📦",
+  "app:screen:newUserTask:category:taskNumber": {
+    "one": "%{tasks} task",
+    "other": "%{tasks} tasks"
+  },
+  "app:screen:newUserTask:chooseTask:subtitle": "What did you do?",
+  "app:screen:newUserTask:chooseTaskDifficulty:subtitle": "It was...",
+  "app:screen:newUserTask:chooseTask:levelOfDifficulity": {
+    "one": "%{count} level of difficulty",
+    "other": "%{count} levels of difficulty"
+  },
+
+  "app:screen:leaderboard:winnersOfTheWeek": "Leaders of the week",
+  "app:screen:leaderboard:winnerOfTheWeek:male": "Leader of the week",
+  "app:screen:leaderboard:winnerOfTheWeek:female": "Leader of the week",
+  "app:screen:leaderboard:winnerOfTheWeek:other": "Leader of the week",
+  "app:screen:leaderboard:speciality": "Speciality: %{taskName}",
+  "app:screen:leaderBoard:counterEndOfWeek": "End in %{time}",
+
+  "modal:newTaskAdded:badgeText": "Well done %{firstName} 🎉",
+  "modal:newTaskAdded:info:primary": "👏 We just added it to your score",
+  "modal:newTaskAdded:info:secondary": "Continue like that!",
+  "modal:shareRelationKey:badgeText": "Invite your partner 💬",
+  "modal:shareRelationKey:info:primary": "📲 Here is the key for your Both relationship",
+  "modal:shareRelationKey:info:secondary": "Share it to your partner, he/she will join you!",
+  "modal:shareRelationKey:shareBySMS:title": "Join Both relation",
+  "modal:shareRelationKey:shareBySMS:message": "Hi there, meet me on Both to share love and some of our daily life! Download the app and use the key %{code} to join me! ❤️",
+
+  "alert:deleteUserTask:title": "Delete this task",
+  "alert:deleteUserTask:description": {
+    "one": "%{firstName}, by deleting this task you'll lose %{points} point. Are you sure ?",
+    "other": "%{firstName}, by deleting this task you'll lose %{points} points. Are you sure ?"
+  },
+  "alert:deleteUserTask:noButton": "No",
+  "alert:deleteUserTask:yesButton": "Yes",
+
+  "alert:endRelation:title": "End the relationship",
+  "alert:endRelation:description": "Oh no... you were both so cute. On our side, this means that we'll delete all your data and your account won't be accessible anymore. Are you really sure you want to leave us?",
+  "alert:endRelation:noButton": "No",
+  "alert:endRelation:yesButton": "Yes, it's over"
+}
