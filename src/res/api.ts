@@ -11,7 +11,7 @@ export interface APIResponse<T> {
 
 const API_URL = __DEV__
   ? 'https://both-app-staging.herokuapp.com/'
-  : 'https://both-app-staging.herokuapp.com/' // https://both-app.herokuapp.com/
+  : 'https://both-app.herokuapp.com/'
 
 export const api = axios.create({
   baseURL: API_URL,
