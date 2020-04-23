@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Badge should display a badge with a color 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#0A1D2B",
+      "borderRadius": 8,
+      "paddingBottom": 2,
+      "paddingLeft": 8,
+      "paddingRight": 8,
+      "paddingTop": 2,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#FFFFFF",
+        "fontSize": 14,
+        "fontWeight": "bold",
+      }
+    }
+  >
+    basic text
+  </Text>
+</View>
+`;

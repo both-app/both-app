@@ -1,9 +1,9 @@
 import React from 'react'
-import { render } from 'react-native-testing-library'
+import { render, fireEvent } from 'react-native-testing-library'
+import { NavigationContainer } from '@react-navigation/native'
 
 import { AuthNavigator } from '../Auth.navigator'
 import { AuthContextProvider, AuthApiContextProvider } from '../contexts'
-import { NavigationContainer } from '@react-navigation/native'
 
 const renderWithMainProviders = ({ children }) => (
   <AuthContextProvider>
@@ -15,10 +15,16 @@ const renderWithMainProviders = ({ children }) => (
 
 describe('SelectScreen', () => {
   test('should display the select screen', () => {
-    const { debug } = render(<AuthNavigator />, {
+    const { getByTestId } = render(<AuthNavigator />, {
       wrapper: renderWithMainProviders,
     })
 
-    debug()
+    // Should display the logo
+    const logo = getByTestId('logo')
+    expect(logo).toBeTruthy()
+
+    // When click on firstName we are redirect to the first page of the form
+    fireEvent.press(getByTestId('tapYourFirstnameButton'))
+    expect(getByTestId('firstNameForm')).toBeTruthy()
   })
 })

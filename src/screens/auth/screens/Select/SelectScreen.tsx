@@ -39,6 +39,7 @@ export const SelectScreen = () => {
         <TouchableOpacity
           style={styles.textContainer}
           onPress={() => navigation.navigate('Form')}
+          testID="tapYourFirstnameButton"
           activeOpacity={0.5}
         >
           <Text style={styles.putYourName}>

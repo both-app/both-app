@@ -6,7 +6,7 @@ import { colors } from 'res/colors'
 import Both from '../../../../../assets/both.svg'
 
 export const Logo = () => (
-  <View style={styles.container}>
+  <View style={styles.container} testID="logo">
     <Both />
     <Text style={styles.text}>Share love & daily tasks</Text>
   </View>
