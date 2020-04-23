@@ -47,8 +47,12 @@ export const Info: FC<InfoProps> = ({
 
   return (
     <View style={containerStyle}>
-      <Text style={primaryStyle}>{primary}</Text>
-      <Text style={secondaryStyle}>{secondary}</Text>
+      <Text testID="infoPrimaryText" style={primaryStyle}>
+        {primary}
+      </Text>
+      <Text testID="infoSecondaryText" style={secondaryStyle}>
+        {secondary}
+      </Text>
     </View>
   )
 }
