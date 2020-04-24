@@ -7,7 +7,7 @@ import { Color, colors } from 'res/colors'
 import { Icon, IconProps } from '../Icon'
 
 interface MinimalButtonProps extends IconProps {
-  onAction?: () => void
+  onAction: () => void
   iconColor?: Color
   buttonStyle?: any
 }
@@ -19,12 +19,15 @@ export const MinimalButton: FC<MinimalButtonProps> = ({
 }) => {
   const handleOnPress = async () => {
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-
-    onAction && onAction()
+    onAction()
   }
 
   return (
-    <TouchableOpacity onPress={handleOnPress} style={buttonStyle}>
+    <TouchableOpacity
+      onPress={handleOnPress}
+      style={buttonStyle}
+      testID="minimalButton"
+    >
       <Icon style={{ color: colors[props.iconColor] }} {...props} />
     </TouchableOpacity>
   )

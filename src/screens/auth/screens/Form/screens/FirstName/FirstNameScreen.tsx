@@ -49,6 +49,7 @@ export const FirstNameScreen = () => {
       onBackAction={() => navigation.navigate('Select')}
       onNextAction={handleOnNext}
       containerStyle={styles.formContainer}
+      testID="firstNameForm"
       label={
         <Label
           primary={t('auth:screen:form:firstName:title')}

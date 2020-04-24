@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Label should display the label 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#0C2333",
+        "fontFamily": "DMSerifDisplay-Regular",
+        "fontSize": 26,
+      }
+    }
+  >
+    primary text
+  </Text>
+  <Text
+    style={
+      Object {
+        "color": "#0C2333",
+        "fontFamily": "DMSerifDisplay-Regular",
+        "fontSize": 26,
+      }
+    }
+  >
+    secondary text
+  </Text>
+</View>
+`;
+
+exports[`Label should not display the secondary text 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#0C2333",
+        "fontFamily": "DMSerifDisplay-Regular",
+        "fontSize": 26,
+      }
+    }
+  >
+    primary text
+  </Text>
+</View>
+`;

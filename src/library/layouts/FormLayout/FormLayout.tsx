@@ -22,6 +22,7 @@ interface FormLayoutProps {
   onCloseAction?: VoidFunction
   onNextAction?: VoidFunction
   onFinishAction?: VoidFunction
+  testID?: string
 }
 
 export const FormLayout: FC<FormLayoutProps> = ({
@@ -33,6 +34,7 @@ export const FormLayout: FC<FormLayoutProps> = ({
   onFinishAction,
   onNextAction,
   children,
+  testID,
 }) => {
   useFocusEffect(
     useCallback(() => {
@@ -43,6 +45,7 @@ export const FormLayout: FC<FormLayoutProps> = ({
   return (
     <KeyboardAvoidingView
       style={styles.container}
+      testID={testID}
       behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
     >
       <TouchableWithoutFeedback>

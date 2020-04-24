@@ -16,7 +16,7 @@ import Loader from '../../../../assets/icons/loader.svg'
 import Linkedin from '../../../../assets/icons/linkedin.svg'
 import User from '../../../../assets/icons/user.svg'
 
-type IconName =
+export type IconName =
   | 'arrow_right'
   | 'chevron_left'
   | 'check'

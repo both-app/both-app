@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Info should display the component with the texts and the right color 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "opacity": 1,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#FFFFFF",
+        "fontSize": 14,
+        "fontWeight": "bold",
+        "textAlign": "center",
+      }
+    }
+    testID="infoPrimaryText"
+  >
+    title
+  </Text>
+  <Text
+    style={
+      Object {
+        "color": "#FFFFFF",
+        "fontSize": 14,
+        "textAlign": "center",
+      }
+    }
+    testID="infoSecondaryText"
+  >
+    subtitle
+  </Text>
+</View>
+`;
