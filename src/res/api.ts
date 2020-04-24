@@ -1,7 +1,8 @@
 import axios from 'axios'
 import * as Localization from 'expo-localization'
+import Constants from 'expo-constants'
 
-import { getItem, clear, removeItem } from 'res/storage'
+import { getItem, removeItem } from 'res/storage'
 
 export interface APIResponse<T> {
   status: number
@@ -9,9 +10,12 @@ export interface APIResponse<T> {
   data: T
 }
 
-const API_URL = __DEV__
-  ? 'https://both-app-staging.herokuapp.com/'
-  : 'https://both-app.herokuapp.com/'
+const { manifest } = Constants
+
+const API_URL =
+  __DEV__ || manifest.releaseChannel === 'staging'
+    ? 'https://both-app-staging.herokuapp.com/'
+    : 'https://both-app.herokuapp.com/'
 
 export const api = axios.create({
   baseURL: API_URL,
