@@ -24,7 +24,9 @@ jobs:
         expo-username: ${{ secrets.EXPO_CLI_USERNAME }}
         expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
     - run: npm install
-    - run: expo publish --release-channel=production
-      if: ${GITHUB_REF##*/} == master
-    - run: expo publish --release-channel=staging
-      if: ${GITHUB_REF##*/} == development
+    - run: |
+        if [[ "$GITHUB_REF" == "refs/heads/master" ]]; then
+          expo publish --release-channel=production
+        else
+          expo publish --release-channel=staging
+        fi
