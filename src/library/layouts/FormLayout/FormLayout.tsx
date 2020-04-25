@@ -42,28 +42,43 @@ export const FormLayout: FC<FormLayoutProps> = ({
     }, [])
   )
 
+  const formContainerStyle = Platform.select({
+    ios: {
+      paddingTop: 55,
+      ...styles.container,
+    },
+    android: {
+      paddingTop: 40,
+      ...styles.container,
+    },
+  })
+
   return (
     <KeyboardAvoidingView
-      style={styles.container}
+      style={formContainerStyle}
       testID={testID}
       behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
     >
       <TouchableWithoutFeedback>
         <>
-          {onBackAction && (
-            <MinimalButton
-              iconName="chevron_left"
-              onAction={onBackAction}
-              iconColor="dark100"
-            />
-          )}
+          {Platform.OS == 'ios' && (
+            <>
+              {onBackAction && (
+                <MinimalButton
+                  iconName="chevron_left"
+                  onAction={onBackAction}
+                  iconColor="dark100"
+                />
+              )}
 
-          {onCloseAction && (
-            <MinimalButton
-              iconName="close"
-              onAction={onCloseAction}
-              iconColor="dark100"
-            />
+              {onCloseAction && (
+                <MinimalButton
+                  iconName="close"
+                  onAction={onCloseAction}
+                  iconColor="dark100"
+                />
+              )}
+            </>
           )}
 
           <View style={{ marginTop: 24, ...containerStyle }}>
@@ -106,7 +121,6 @@ export const FormLayout: FC<FormLayoutProps> = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 55,
     paddingLeft: 24,
     paddingRight: 24,
     backgroundColor: colors.skin100,

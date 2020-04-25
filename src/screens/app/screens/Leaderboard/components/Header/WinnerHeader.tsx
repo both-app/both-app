@@ -14,6 +14,7 @@ type WinnerHeaderProps = {
 
 export const WinnerHeader: FC<WinnerHeaderProps> = ({ firstName, gender }) => {
   const { t } = useT()
+
   return (
     <>
       <Confetti containerStyle={styles.confettiContainer}>

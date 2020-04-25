@@ -1,5 +1,5 @@
 import React, { useContext, useState, useCallback } from 'react'
-import { StyleSheet, ScrollView } from 'react-native'
+import { StyleSheet } from 'react-native'
 import { useNavigation, useFocusEffect } from '@react-navigation/core'
 
 import { CategoryContext } from 'screens/app/contexts/Category.context'
@@ -8,6 +8,7 @@ import { TaskContext } from 'screens/app/contexts/Task.context'
 import { FormLayout } from 'library/layouts/FormLayout'
 import { Label } from 'library/components/Label'
 import { CardButton } from 'library/components/CardButton'
+import { Scroll } from 'library/layouts/Scroll'
 
 import { useT } from 'res/i18n'
 
@@ -46,11 +47,8 @@ export const ChooseCategoryScreen = () => {
         />
       }
     >
-      <ScrollView
-        style={styles.categoriesContainer}
-        showsVerticalScrollIndicator={false}
-      >
-        {categories.map((category, index) => {
+      <Scroll style={styles.categoriesContainer}>
+        {categories.map((category) => {
           const taskNumber = getTasksByCategoryId(category.id).length
 
           return (
@@ -67,13 +65,12 @@ export const ChooseCategoryScreen = () => {
               activeBackgroundColor={category.color}
               activeTextColor="white"
               containerStyle={{
-                marginTop: index === 0 ? 72 : 10,
-                marginBottom: index === categories.length - 1 ? 56 : 0,
+                marginBottom: 10,
               }}
             />
           )
         })}
-      </ScrollView>
+      </Scroll>
     </FormLayout>
   )
 }
@@ -83,6 +80,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   categoriesContainer: {
-    marginTop: 8,
+    paddingTop: 72,
   },
 })

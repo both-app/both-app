@@ -1,5 +1,5 @@
 import React, { useContext, useState, useCallback } from 'react'
-import { StyleSheet, ScrollView } from 'react-native'
+import { StyleSheet } from 'react-native'
 import {
   useNavigation,
   useRoute,
@@ -13,6 +13,7 @@ import { TaskContext } from 'screens/app/contexts/Task.context'
 
 import { FormLayout } from 'library/layouts/FormLayout'
 import { Label } from 'library/components/Label'
+import { Scroll } from 'library/layouts/Scroll'
 
 import { Task } from './components/Task'
 import { AddTaskStackParamList } from '../AddTask.navigator'
@@ -65,22 +66,17 @@ export const ChooseTaskScreen = () => {
         />
       }
     >
-      <ScrollView
-        style={styles.tasksContainer}
-        showsVerticalScrollIndicator={false}
-      >
-        {tasks.map((task, index: number) => (
+      <Scroll style={styles.tasksContainer}>
+        {tasks.map((task) => (
           <Task
             key={task.id}
             task={task}
             category={category}
             selectedId={selectedId}
             onAction={handleOnAction}
-            isFirstItem={index === 0}
-            isLastItem={index === tasks.length - 1}
           />
         ))}
-      </ScrollView>
+      </Scroll>
     </FormLayout>
   )
 }
@@ -90,6 +86,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   tasksContainer: {
-    marginTop: 8,
+    paddingTop: 72,
   },
 })

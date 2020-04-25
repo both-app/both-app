@@ -10,11 +10,12 @@ import { useT } from 'res/i18n'
 
 import { Info } from 'library/components/Info'
 import { CardButton } from 'library/components/CardButton'
-import { AuthContext, AuthApiContext } from 'screens/auth/contexts'
+import { Scroll } from 'library/layouts/Scroll'
 import { Avatar } from 'library/components/Avatar'
+
+import { AuthContext, AuthApiContext } from 'screens/auth/contexts'
 import { UsersContext } from 'screens/app/contexts/Users.context'
 import { RelationContext } from 'screens/app/contexts/Relation.context'
-import { openInStore } from 'res/utils'
 
 export const ProfilScreen = () => {
   const { t } = useT()
@@ -98,7 +99,7 @@ export const ProfilScreen = () => {
         />
       )}
 
-      <View style={styles.links}>
+      <Scroll style={styles.links}>
         <CardButton
           emoji="⚙️"
           title={t('app:screen:profil:button:settings:title')}
@@ -142,7 +143,7 @@ export const ProfilScreen = () => {
           onAction={handleRateApp}
           withHapticFeedback
         />
-      </View>
+      </Scroll>
     </View>
   )
 }
@@ -160,11 +161,13 @@ export const styles = StyleSheet.create({
     fontFamily: fonts['DMSerifDisplay-Regular'],
     fontSize: 26,
     color: colors.dark200,
+    textTransform: 'capitalize',
     marginTop: 16,
     marginBottom: 24,
   },
   links: {
+    flex: 1,
     width: '100%',
-    marginTop: 72,
+    marginTop: 45,
   },
 })

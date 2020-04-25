@@ -21,6 +21,7 @@ export const Input: FC<InputProps> = ({ placeholder, onChangeText }) => (
 const styles = StyleSheet.create({
   input: {
     fontSize: 28,
+    textAlign: 'center',
     color: colors.dark100,
   },
 })
