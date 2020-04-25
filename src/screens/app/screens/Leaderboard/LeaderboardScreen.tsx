@@ -1,17 +1,17 @@
 import React, { useContext } from 'react'
-import { ScrollView } from 'react-native'
 
 import { Layout } from 'library/layouts/Layout'
-
-import { UserRecap } from './components/UserRecap'
-import { CountdownBadge } from './components/CountdownBadge'
+import { Scroll } from 'library/layouts/Scroll'
 import {
   UserScoreContext,
   ScoreSatus,
 } from 'screens/app/contexts/UserScore.context'
 import { UsersContext } from 'screens/app/contexts/Users.context'
-import { DrawHeader, WinnerHeader } from './components/Header'
 import { TaskContext } from 'screens/app/contexts/Task.context'
+
+import { UserRecap } from './components/UserRecap'
+import { CountdownBadge } from './components/CountdownBadge'
+import { DrawHeader, WinnerHeader } from './components/Header'
 
 interface RankedUser extends User {
   points: number
@@ -75,7 +75,7 @@ export const LeaderboardScreen = () => {
       }
       badge={<CountdownBadge />}
     >
-      <ScrollView>
+      <Scroll>
         {ranking.map((user: RankedUser) => (
           <UserRecap
             key={user.id}
@@ -85,7 +85,7 @@ export const LeaderboardScreen = () => {
             taskName={user.favoriteTask.name}
           />
         ))}
-      </ScrollView>
+      </Scroll>
     </Layout>
   )
 }

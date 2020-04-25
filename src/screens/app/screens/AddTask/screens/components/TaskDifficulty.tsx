@@ -11,8 +11,6 @@ interface TaskDifficultyProps {
   color: string
   selectedIndex: number
   onAction: (taskDifficultyIndex: number) => void
-  isFirstItem: boolean
-  isLastItem: boolean
 }
 
 export const TaskDifficulty: FC<TaskDifficultyProps> = ({
@@ -21,8 +19,6 @@ export const TaskDifficulty: FC<TaskDifficultyProps> = ({
   color,
   selectedIndex,
   onAction,
-  isFirstItem,
-  isLastItem,
 }) => {
   const { t } = useT()
 
@@ -40,8 +36,7 @@ export const TaskDifficulty: FC<TaskDifficultyProps> = ({
       activeBackgroundColor={color}
       activeTextColor="white"
       containerStyle={{
-        marginTop: isFirstItem ? 72 : 10,
-        marginBottom: isLastItem ? 56 : 0,
+        marginBottom: 10,
       }}
       rightContent={<Point points={taskDifficulty.points} />}
     />

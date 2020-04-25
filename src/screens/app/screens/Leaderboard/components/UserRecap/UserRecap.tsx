@@ -92,6 +92,7 @@ export const styles = StyleSheet.create({
   },
   firstName: {
     fontWeight: '500',
+    textTransform: 'capitalize',
     marginBottom: 2,
   },
   pointsContainer: {

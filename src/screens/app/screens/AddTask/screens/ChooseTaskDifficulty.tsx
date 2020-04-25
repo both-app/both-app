@@ -1,5 +1,5 @@
 import React, { useContext, useState, useCallback } from 'react'
-import { StyleSheet, ScrollView } from 'react-native'
+import { StyleSheet } from 'react-native'
 import {
   useNavigation,
   useRoute,
@@ -14,6 +14,7 @@ import { Label } from 'library/components/Label'
 import { TaskDifficulty } from './components/TaskDifficulty'
 import { AddTaskStackParamList } from '../AddTask.navigator'
 import { AddTaskContext } from '../AddTask.context'
+import { Scroll } from 'library/layouts/Scroll'
 
 type ChooseTaskDifficultyRouteProps = RouteProp<
   AddTaskStackParamList,
@@ -55,10 +56,7 @@ export const ChooseTaskDifficultyScreen = () => {
         />
       }
     >
-      <ScrollView
-        style={styles.tasksContainer}
-        showsVerticalScrollIndicator={false}
-      >
+      <Scroll style={styles.tasksContainer}>
         {task.difficulties.map((taskDifficulty, index) => (
           <TaskDifficulty
             key={index}
@@ -67,11 +65,9 @@ export const ChooseTaskDifficultyScreen = () => {
             onAction={handleOnAction}
             selectedIndex={selectedIndex}
             color={category.color}
-            isFirstItem={index === 0}
-            isLastItem={index === task.difficulties.length - 1}
           />
         ))}
-      </ScrollView>
+      </Scroll>
     </FormLayout>
   )
 }
@@ -81,6 +77,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   tasksContainer: {
-    marginTop: 8,
+    paddingTop: 72,
   },
 })
