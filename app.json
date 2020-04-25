@@ -36,7 +36,7 @@
     "notification": {
       "icon": "./assets/notif-icon.png",
       "color": "#0A1D2B",
-      "iosDisplayInForeground": true
+      "iosDisplayInForeground": false
     },
     "packagerOpts": {
       "config": "metro.config.js",

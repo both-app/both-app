@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import { useT } from 'res/i18n'

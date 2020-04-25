@@ -2,6 +2,9 @@ import { useNavigation } from '@react-navigation/native'
 import { CardButton } from 'library/components/CardButton'
 import React, { useContext, useMemo, useState } from 'react'
 import { RefreshControl, SectionList, StyleSheet, View } from 'react-native'
+import format from 'date-fns/format'
+
+import { getLongDateFormat, getDateFnsLocale } from 'res/date'
 import { useT } from 'res/i18n'
 
 import { UsersContext } from 'screens/app/contexts/Users.context'
@@ -32,10 +35,8 @@ export const UserTasks = () => {
 
   const formattedList = useMemo(() => {
     return Object.entries(userTasksByDate).map(([date, userTasks]) => ({
-      title: new Date(date).toLocaleDateString(locale, {
-        weekday: 'long',
-        month: 'long',
-        day: 'numeric',
+      title: format(new Date(date), getLongDateFormat(locale), {
+        locale: getDateFnsLocale(locale),
       }),
       data: userTasks,
     }))
@@ -73,6 +74,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   listFooter: {
-    marginBottom: 24 * 3,
+    marginBottom: 110,
   },
 })

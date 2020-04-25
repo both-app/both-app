@@ -1,4 +1,5 @@
 import isValid from 'date-fns/isValid'
+import * as dateFnsLocale from 'date-fns/locale'
 
 export const isValidDate = (year: string, month: string, day: string) => {
   return isValid(new Date(`${year}-${month}-${day}`))
@@ -20,4 +21,20 @@ export const getDifferenceWithNow = (date: Date) => {
     minutes: ('0' + minutes).slice(-2),
     seconds: ('0' + seconds).slice(-2),
   }
+}
+
+export const getLongDateFormat = (locale: string) => {
+  if (locale === 'fr-FR') {
+    return 'cccc dd LLLL'
+  }
+
+  return 'cccc, LLLL do'
+}
+
+export const getDateFnsLocale = (locale: string) => {
+  if (locale === 'fr-FR') {
+    return dateFnsLocale.fr
+  }
+
+  return dateFnsLocale.enGB
 }

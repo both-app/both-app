@@ -11,8 +11,6 @@ interface TaskProps {
   category: Category
   selectedId: string
   onAction: (taskId: Task, difficulty?: number) => void
-  isFirstItem: boolean
-  isLastItem: boolean
 }
 
 export const Task: FC<TaskProps> = ({
@@ -20,8 +18,6 @@ export const Task: FC<TaskProps> = ({
   category,
   selectedId,
   onAction,
-  isFirstItem,
-  isLastItem,
 }) => {
   const { t } = useT()
   const isTaskWithDifficulties = task.difficulties.length > 1
@@ -53,8 +49,7 @@ export const Task: FC<TaskProps> = ({
         />
       }
       containerStyle={{
-        marginTop: isFirstItem ? 72 : 10,
-        marginBottom: isLastItem ? 56 : 0,
+        marginBottom: 10,
       }}
     />
   )

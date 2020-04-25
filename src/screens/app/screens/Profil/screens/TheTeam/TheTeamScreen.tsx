@@ -1,18 +1,17 @@
 import React from 'react'
-import { View, StyleSheet, StatusBar } from 'react-native'
+import { View, StyleSheet, Platform } from 'react-native'
 import * as WebBrowser from 'expo-web-browser'
-
 import { useNavigation } from '@react-navigation/native'
 
 import { colors } from 'res/colors'
+import { useT } from 'res/i18n'
 
 import { MinimalButton } from 'library/components/MinimalButton'
 import { Label } from 'library/components/Label'
 import { Info } from 'library/components/Info'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { ScrollView } from 'react-native-gesture-handler'
+import { Scroll } from 'library/layouts/Scroll'
+
 import { Member } from './components/Member'
-import { useT } from 'res/i18n'
 
 export const TheTeamScreen = () => {
   const { t } = useT()
@@ -24,14 +23,15 @@ export const TheTeamScreen = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="dark-content" />
-      <View style={styles.close}>
-        <MinimalButton
-          iconName="chevron_left"
-          iconColor="dark200"
-          onAction={() => navigation.goBack()}
-        />
-      </View>
+      {Platform.OS === 'ios' && (
+        <View style={styles.close}>
+          <MinimalButton
+            iconName="chevron_left"
+            iconColor="dark200"
+            onAction={() => navigation.goBack()}
+          />
+        </View>
+      )}
 
       <Label primary={t('app:screen:profil:theTeam:pageTitle')} />
 
@@ -43,44 +43,42 @@ export const TheTeamScreen = () => {
         />
       </View>
 
-      <SafeAreaView style={styles.scrollContainer}>
-        <ScrollView style={styles.scrollContainer}>
-          <Member
-            firsName="Mathieu"
-            emoji="🐸"
-            post={t('app:screen:profil:theTeam:developer')}
-            avatarUrl={require('../../../../../../../assets/team/mathieu.png')}
-            relationStatus={t('app:screen:profil:theTeam:search')}
-            onAction={() =>
-              handleOnAction(
-                'https://www.linkedin.com/in/mathieu-le-tyrant-a2438880'
-              )
-            }
-          />
-          <Member
-            firsName="Vincent"
-            emoji="🤖"
-            post={t('app:screen:profil:theTeam:developer')}
-            avatarUrl={require('../../../../../../../assets/team/vincent.png')}
-            relationStatus={t('app:screen:profil:theTeam:search')}
-            onAction={() =>
-              handleOnAction('https://www.linkedin.com/in/vincentdufrasnes')
-            }
-          />
-          <Member
-            firsName="Gauthier"
-            emoji="🛠"
-            post={t('app:screen:profil:theTeam:designer')}
-            avatarUrl={require('../../../../../../../assets/team/gauthier.png')}
-            relationStatus={t('app:screen:profil:theTeam:inRelationSince')}
-            onAction={() =>
-              handleOnAction(
-                'https://www.linkedin.com/in/gauthier-casanova-a979085a/'
-              )
-            }
-          />
-        </ScrollView>
-      </SafeAreaView>
+      <Scroll style={styles.scrollContainer}>
+        <Member
+          firsName="Mathieu"
+          emoji="🐸"
+          post={t('app:screen:profil:theTeam:developer')}
+          avatarUrl={require('../../../../../../../assets/team/mathieu.png')}
+          relationStatus={t('app:screen:profil:theTeam:search')}
+          onAction={() =>
+            handleOnAction(
+              'https://www.linkedin.com/in/mathieu-le-tyrant-a2438880'
+            )
+          }
+        />
+        <Member
+          firsName="Vincent"
+          emoji="🤖"
+          post={t('app:screen:profil:theTeam:developer')}
+          avatarUrl={require('../../../../../../../assets/team/vincent.png')}
+          relationStatus={t('app:screen:profil:theTeam:search')}
+          onAction={() =>
+            handleOnAction('https://www.linkedin.com/in/vincentdufrasnes')
+          }
+        />
+        <Member
+          firsName="Gauthier"
+          emoji="🛠"
+          post={t('app:screen:profil:theTeam:designer')}
+          avatarUrl={require('../../../../../../../assets/team/gauthier.png')}
+          relationStatus={t('app:screen:profil:theTeam:inRelationSince')}
+          onAction={() =>
+            handleOnAction(
+              'https://www.linkedin.com/in/gauthier-casanova-a979085a/'
+            )
+          }
+        />
+      </Scroll>
     </View>
   )
 }
@@ -100,6 +98,7 @@ export const styles = StyleSheet.create({
   scrollContainer: {
     flex: 1,
     width: '100%',
+    marginTop: 45,
   },
   teamInfo: {
     marginTop: 64,
