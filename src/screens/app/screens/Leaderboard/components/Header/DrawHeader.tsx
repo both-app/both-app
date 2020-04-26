@@ -17,7 +17,7 @@ export const DrawHeader = () => {
       <Confetti containerStyle={styles.confettiContainer}>
         <View style={styles.avatarsContainer}>
           <Avatar
-            containerStyle={styles.avatar}
+            containerStyle={{ ...styles.avatar, marginRight: -12 }}
             firstname={me.firstName}
             size="large"
             backgroundColor="dark200"
@@ -25,7 +25,7 @@ export const DrawHeader = () => {
             borderColor="dark200"
           />
           <Avatar
-            containerStyle={styles.avatar}
+            containerStyle={{ ...styles.avatar, marginLeft: -12 }}
             firstname={partner.firstName}
             size="large"
             backgroundColor="dark200"
@@ -59,7 +59,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   avatar: {
-    marginRight: -15,
     shadowColor: 'rgba(0,0,0,0.5)',
     shadowOffset: {
       width: 0,

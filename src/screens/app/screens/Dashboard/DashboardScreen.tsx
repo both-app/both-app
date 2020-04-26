@@ -9,6 +9,7 @@ import { WeekInfo } from './components/WeekInfo'
 import { ShareRelationKey } from './components/ShareRelationKey'
 import { UsersContext } from 'screens/app/contexts/Users.context'
 import { Layout } from 'library/layouts/Layout'
+import { CountdownBadge } from '../Leaderboard/components/CountdownBadge'
 
 export const DashboardScreen = () => {
   const { partner } = useContext(UsersContext)
@@ -22,7 +23,7 @@ export const DashboardScreen = () => {
           <RelationStatus />
         </>
       }
-      badge={!partner.id && <ShareRelationKey />}
+      badge={!partner.id ? <ShareRelationKey /> : <CountdownBadge />}
     >
       <UserTasks />
 

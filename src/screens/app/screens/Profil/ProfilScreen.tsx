@@ -106,6 +106,7 @@ export const ProfilScreen = () => {
           subtitle={t('app:screen:profil:button:settings:subtitle')}
           onAction={() => navigation.navigate('Settings')}
           withHapticFeedback
+          containerStyle={styles.button}
         />
         <CardButton
           emoji="💔"
@@ -121,6 +122,7 @@ export const ProfilScreen = () => {
           }
           onAction={handleEndRelation}
           withHapticFeedback
+          containerStyle={styles.button}
         />
         <CardButton
           emoji="👪"
@@ -128,6 +130,7 @@ export const ProfilScreen = () => {
           subtitle={t('app:screen:profil:button:theTeam:subtitle')}
           onAction={() => navigation.navigate('TheTeam')}
           withHapticFeedback
+          containerStyle={styles.button}
         />
         <CardButton
           emoji="💡"
@@ -135,6 +138,7 @@ export const ProfilScreen = () => {
           subtitle={t('app:screen:profil:button:shareIdeas:subtitle')}
           onAction={handleFeedback}
           withHapticFeedback
+          containerStyle={styles.button}
         />
         <CardButton
           emoji="⭐️"
@@ -142,6 +146,7 @@ export const ProfilScreen = () => {
           subtitle={t('app:screen:profil:button:voteTheApp:subtitle')}
           onAction={handleRateApp}
           withHapticFeedback
+          containerStyle={styles.button}
         />
       </Scroll>
     </View>
@@ -169,5 +174,8 @@ export const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     marginTop: 45,
+  },
+  button: {
+    marginTop: 8,
   },
 })
