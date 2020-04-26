@@ -2,7 +2,7 @@ import axios from 'axios'
 import * as Localization from 'expo-localization'
 import Constants from 'expo-constants'
 
-import { getItem, removeItem } from 'res/storage'
+import { getItem, clear } from 'res/storage'
 
 export interface APIResponse<T> {
   status: number
@@ -46,7 +46,7 @@ api.interceptors.request.use(async (config) => {
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
-    await removeItem('jwtToken')
+    await clear()
     return Promise.reject(error)
   }
 )

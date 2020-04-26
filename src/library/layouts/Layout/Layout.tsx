@@ -65,7 +65,6 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.skin100,
     borderTopRightRadius: 10,
     borderTopLeftRadius: 10,
-    paddingTop: PADDINGY,
     paddingLeft: PADDINGX,
     paddingRight: PADDINGX,
     position: 'relative',
@@ -76,5 +75,6 @@ export const styles = StyleSheet.create({
     left: 0,
     right: 0,
     alignItems: 'center',
+    zIndex: 1000,
   },
 })

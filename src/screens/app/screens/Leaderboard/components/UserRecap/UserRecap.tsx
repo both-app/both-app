@@ -13,6 +13,7 @@ interface UserRecapProps {
   isWinner: boolean
   taskName: string
   points: number
+  isMe: boolean
 }
 
 export const UserRecap: FC<UserRecapProps> = ({
@@ -20,22 +21,23 @@ export const UserRecap: FC<UserRecapProps> = ({
   isWinner,
   points,
   taskName,
+  isMe,
 }) => {
   const { t } = useT()
 
   const userStyle = {
     ...styles.user,
-    ...(isWinner ? styles.winnerUser : {}),
+    ...(isMe ? styles.me : {}),
   }
 
   const firstNameStyle = {
     ...styles.firstName,
-    color: isWinner ? colors.white : colors.dark200,
+    color: isMe ? colors.white : colors.dark200,
   }
 
   const specialityStyle = {
-    opacity: isWinner ? 1 : 0.75,
-    color: isWinner ? colors.white : colors.dark200,
+    opacity: isMe ? 1 : 0.75,
+    color: isMe ? colors.white : colors.dark200,
   }
 
   return (
@@ -46,19 +48,21 @@ export const UserRecap: FC<UserRecapProps> = ({
           firstname={firstName}
           size="small"
           borderWidth={1}
-          borderColor={isWinner ? 'highlight100' : 'white'}
+          borderColor={isMe ? 'highlight100' : 'white'}
         />
       </View>
 
       <View style={styles.userInfoContainer}>
-        <Text style={firstNameStyle}>{firstName}</Text>
+        <Text style={firstNameStyle}>
+          {firstName} {isMe ? `(${t('me')})` : ''}
+        </Text>
         <Text style={specialityStyle}>
           {t('app:screen:leaderboard:speciality', { taskName })}
         </Text>
       </View>
 
       <View style={styles.pointsContainer}>
-        <Point points={points} shape="rectangle" />
+        <Point points={points} shape={points > 9 ? 'rectangle' : 'circle'} />
       </View>
     </View>
   )
@@ -77,7 +81,7 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: 16,
   },
-  winnerUser: {
+  me: {
     backgroundColor: colors.highlight200,
     borderWidth: 2,
     borderColor: colors.highlight100,
@@ -92,10 +96,10 @@ export const styles = StyleSheet.create({
   },
   firstName: {
     fontWeight: '500',
-    textTransform: 'capitalize',
     marginBottom: 2,
   },
   pointsContainer: {
     justifyContent: 'center',
+    marginLeft: 16,
   },
 })

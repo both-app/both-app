@@ -7,6 +7,7 @@
   "male": "Homme",
   "female": "Femme",
   "other": "Autre",
+  "me": "moi",
 
   "app:difficulty:1": "Très facile",
   "app:difficulty:2": "Facile",
@@ -64,7 +65,7 @@
   "auth:screen:form:gender:subtitle": "Tu es...",
   "auth:screen:form:gender:select:woman:label": "Je suis une femme",
   "auth:screen:form:gender:select:male:label": "Je suis un homme",
-  "auth:screen:form:gender:select:other:label": "Je me définis autrement",
+  "auth:screen:form:gender:select:other:label": "Je suis non-binaire",
   "auth:screen:form:joinOrCreate:title": "Enchanté 🙂",
   "auth:screen:form:joinOrCreate:subtitle": "As tu une clé ?",
   "auth:screen:form:joinOrCreate:select:join:label": "Oui, je suis invité par un partenaire",

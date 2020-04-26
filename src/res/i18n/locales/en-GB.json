@@ -7,6 +7,7 @@
   "male": "Male",
   "female": "Female",
   "other": "Other",
+  "me": "me",
 
   "app:difficulty:1": "Very easy",
   "app:difficulty:2": "Easy",
@@ -64,7 +65,7 @@
   "auth:screen:form:gender:subtitle": "You are...",
   "auth:screen:form:gender:select:woman:label": "I'm a woman",
   "auth:screen:form:gender:select:male:label": "I'm a man",
-  "auth:screen:form:gender:select:other:label": "I define myself otherwise",
+  "auth:screen:form:gender:select:other:label": "I'm non-binary",
   "auth:screen:form:joinOrCreate:title": "Nice to meet you 🙂",
   "auth:screen:form:joinOrCreate:subtitle": "Do you have a key?",
   "auth:screen:form:joinOrCreate:select:join:label": "Yes, I've been invited by my partner",

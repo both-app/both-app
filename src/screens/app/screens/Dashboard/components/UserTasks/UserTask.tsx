@@ -80,6 +80,7 @@ export const UserTask: FC<UserTaskProps> = ({ userTask }) => {
       activeTextColor={colors.white}
       containerStyle={{
         backgroundColor: category.color,
+        marginTop: 8,
       }}
       textStyle={styles.cardText}
       rightContent={<Point points={userTask.points} />}

@@ -52,12 +52,14 @@ export const UserTasks = () => {
       refreshControl={
         <RefreshControl refreshing={isRefreshing} onRefresh={handleOnRefresh} />
       }
+      stickySectionHeadersEnabled={false}
       ListHeaderComponent={
         <CardButton
           emoji="➕"
           title={t('app:screen:dashboard:addNewTaskButton')}
           withHapticFeedback
           onAction={() => navigation.navigate('AddTask')}
+          containerStyle={styles.addNewTaskButton}
         />
       }
       renderSectionHeader={({ section: { title } }) => (
@@ -75,5 +77,8 @@ const styles = StyleSheet.create({
   },
   listFooter: {
     marginBottom: 110,
+  },
+  addNewTaskButton: {
+    marginTop: 24,
   },
 })

@@ -26,7 +26,12 @@ export const Member: FC<MemberProps> = ({
   <View style={styles.teamMember}>
     <View style={styles.avatarContainer}>
       <Text style={styles.emoji}>{emoji}</Text>
-      <Avatar size="small" avatarUrl={avatarUrl} />
+      <Avatar
+        size="small"
+        avatarUrl={avatarUrl}
+        borderWidth={2}
+        borderColor="skin200"
+      />
     </View>
 
     <View style={styles.memberInfo}>
@@ -64,6 +69,7 @@ export const styles = StyleSheet.create({
   memberInfo: {
     flex: 1,
     paddingLeft: 16,
+    marginRight: 16,
   },
   avatarContainer: {
     position: 'relative',
@@ -71,7 +77,7 @@ export const styles = StyleSheet.create({
   emoji: {
     position: 'absolute',
     left: -17,
-    top: 8,
+    top: 10,
     fontSize: 26,
     zIndex: 100,
   },

@@ -62,7 +62,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingTop: 24,
     paddingBottom: 48,
-    marginTop: 64,
     position: 'relative',
   },
   avatars: {

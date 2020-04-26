@@ -68,7 +68,7 @@ export const TheTeamScreen = () => {
         />
         <Member
           firsName="Gauthier"
-          emoji="🛠"
+          emoji="🦊"
           post={t('app:screen:profil:theTeam:designer')}
           avatarUrl={require('../../../../../../../assets/team/gauthier.png')}
           relationStatus={t('app:screen:profil:theTeam:inRelationSince')}
@@ -98,9 +98,9 @@ export const styles = StyleSheet.create({
   scrollContainer: {
     flex: 1,
     width: '100%',
-    marginTop: 45,
+    paddingTop: 45,
   },
   teamInfo: {
-    marginTop: 64,
+    marginTop: 40,
   },
 })
