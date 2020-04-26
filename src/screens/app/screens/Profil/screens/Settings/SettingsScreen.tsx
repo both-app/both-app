@@ -89,12 +89,14 @@ export const SettingsScreen = () => {
           title={t('app:screen:profil:settings:protectData:title')}
           subtitle={t('app:screen:profil:settings:protectData:subtitle')}
           onAction={goToPrivacyPolicy}
+          containerStyle={styles.button}
         />
         <CardButton
           emoji="📑"
           title={t('app:screen:profil:settings:cgu:title')}
           subtitle={t('app:screen:profil:settings:cgu:subtitle')}
           onAction={goToTermsAndConditions}
+          containerStyle={styles.button}
         />
       </Scroll>
     </View>
@@ -114,11 +116,13 @@ export const styles = StyleSheet.create({
   },
   relationcontainer: {
     width: '100%',
+    marginTop: 40,
+    paddingBottom: 30,
   },
   scrollContainer: {
     width: '100%',
     flex: 1,
-    marginTop: 56,
+    paddingTop: 24,
     paddingLeft: 24,
     paddingRight: 24,
   },
@@ -127,5 +131,8 @@ export const styles = StyleSheet.create({
     textTransform: 'uppercase',
     fontWeight: '500',
     paddingBottom: 8,
+  },
+  button: {
+    marginTop: 8,
   },
 })

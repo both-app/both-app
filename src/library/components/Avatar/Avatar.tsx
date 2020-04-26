@@ -1,8 +1,8 @@
-import React, { useEffect, FC } from 'react'
+import React, { FC } from 'react'
 import {
   Text,
   StyleSheet,
-  Animated,
+  View,
   TouchableOpacity,
   ViewStyle,
   Image,
@@ -11,10 +11,7 @@ import {
 import { colors, Color } from 'res/colors'
 import { fonts } from 'res/fonts'
 
-import { useRotationAnimation } from './useRotationEffect'
-
 interface AvatarProps {
-  isLoading?: boolean
   firstname?: string
   avatarUrl?: any
   size: 'large' | 'medium' | 'small'
@@ -28,7 +25,6 @@ interface AvatarProps {
 
 export const Avatar: FC<AvatarProps> = ({
   firstname,
-  isLoading,
   size = 48,
   borderWidth = 4,
   borderColor,
@@ -38,12 +34,6 @@ export const Avatar: FC<AvatarProps> = ({
   containerStyle,
   avatarUrl,
 }) => {
-  const { rotateData, startRotate, stopRotate } = useRotationAnimation({
-    iteration: -1,
-    rotationDuration: 2000,
-    delayBetweenRotations: 3000,
-  })
-
   const sizeNumber = {
     large: 120,
     medium: 88,
@@ -55,14 +45,6 @@ export const Avatar: FC<AvatarProps> = ({
     medium: 47,
     small: 26,
   }[size]
-
-  useEffect(() => {
-    if (isLoading) {
-      startRotate()
-    } else {
-      stopRotate()
-    }
-  }, [isLoading])
 
   const avatarStyle = {
     ...styles.avatar,
@@ -77,7 +59,6 @@ export const Avatar: FC<AvatarProps> = ({
           borderColor: colors[borderColor],
         }
       : {}),
-    transform: [{ rotate: rotateData }],
   }
 
   const avatarText = {
@@ -90,7 +71,7 @@ export const Avatar: FC<AvatarProps> = ({
 
   return (
     <TouchableOpacity activeOpacity={1} onPress={handleOnPress}>
-      <Animated.View style={avatarStyle}>
+      <View style={avatarStyle}>
         {!!firstname && (
           <Text style={avatarText}>{firstname[0].toUpperCase()}</Text>
         )}
@@ -104,7 +85,7 @@ export const Avatar: FC<AvatarProps> = ({
             }}
           />
         )}
-      </Animated.View>
+      </View>
     </TouchableOpacity>
   )
 }

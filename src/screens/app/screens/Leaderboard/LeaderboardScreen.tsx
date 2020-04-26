@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { StyleSheet } from 'react-native'
 
 import { Layout } from 'library/layouts/Layout'
 import { Scroll } from 'library/layouts/Scroll'
@@ -17,6 +18,7 @@ interface RankedUser extends User {
   points: number
   favoriteTask: Task
   isWinner: boolean
+  isMe: boolean
 }
 
 export const LeaderboardScreen = () => {
@@ -32,6 +34,7 @@ export const LeaderboardScreen = () => {
 
   const rankedUser = {
     ...me,
+    isMe: true,
     points: userTotalPoints,
     favoriteTask: getTaskById(userFavoriteTask),
     isWinner:
@@ -45,6 +48,7 @@ export const LeaderboardScreen = () => {
   } else {
     const rankedPartner = {
       ...partner,
+      isMe: false,
       points: partnerTotalPoints,
       favoriteTask: getTaskById(partnerFavoriteTask),
       isWinner:
@@ -75,10 +79,11 @@ export const LeaderboardScreen = () => {
       }
       badge={<CountdownBadge />}
     >
-      <Scroll>
+      <Scroll style={styles.scrollContainer}>
         {ranking.map((user: RankedUser) => (
           <UserRecap
             key={user.id}
+            isMe={user.isMe}
             firstName={user.firstName}
             isWinner={user.isWinner}
             points={user.points}
@@ -89,3 +94,9 @@ export const LeaderboardScreen = () => {
     </Layout>
   )
 }
+
+const styles = StyleSheet.create({
+  scrollContainer: {
+    paddingTop: 24,
+  },
+})
