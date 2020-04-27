@@ -31,8 +31,7 @@
       "package": "com.both.bothapp",
       "versionCode": 1,
       "icon": "./assets/appIcons/playstore.png",
-      "googleServicesFile": "./google-services.json",
-      "permissions": []
+      "googleServicesFile": "./google-services.json"
     },
     "notification": {
       "icon": "./assets/notif-icon.png",
