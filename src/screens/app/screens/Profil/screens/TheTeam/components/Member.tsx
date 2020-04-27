@@ -68,7 +68,7 @@ export const styles = StyleSheet.create({
   },
   memberInfo: {
     flex: 1,
-    paddingLeft: 16,
+    marginLeft: 16,
     marginRight: 16,
   },
   avatarContainer: {

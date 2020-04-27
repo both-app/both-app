@@ -37,6 +37,7 @@ export const UserTasks = () => {
     return Object.entries(userTasksByDate).map(([date, userTasks]) => ({
       title: format(new Date(date), getLongDateFormat(locale), {
         locale: getDateFnsLocale(locale),
+        weekStartsOn: 1,
       }),
       data: userTasks,
     }))

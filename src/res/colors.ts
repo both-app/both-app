@@ -19,6 +19,7 @@ export type CategoryColor =
   | 'housework'
   | 'children'
   | 'specialCouple'
+  | 'administrative'
 
 export type Color = AppColor | CategoryColor
 
@@ -44,6 +45,7 @@ export const colors = {
     housework: '#69CE7F',
     children: '#FFA171',
     specialCouple: '#7489E1',
+    administrative: '#698FBF',
   },
 }
 

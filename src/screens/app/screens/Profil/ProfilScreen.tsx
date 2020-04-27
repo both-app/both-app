@@ -7,6 +7,7 @@ import { Asset } from 'expo-asset'
 import { colors } from 'res/colors'
 import { fonts } from 'res/fonts'
 import { useT } from 'res/i18n'
+import { openInStore } from 'res/utils'
 
 import { Info } from 'library/components/Info'
 import { CardButton } from 'library/components/CardButton'
@@ -52,7 +53,7 @@ export const ProfilScreen = () => {
       appName: 'Both',
       appStoreId: '1508146811',
       appStoreLocale: 'fr',
-      playStoreId: '',
+      playStoreId: '4972926572966793290',
     })
   }
 
