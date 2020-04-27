@@ -65,7 +65,7 @@ export const ChooseCategoryScreen = () => {
               activeBackgroundColor={category.color}
               activeTextColor="white"
               containerStyle={{
-                marginBottom: 9,
+                marginBottom: 8,
               }}
             />
           )

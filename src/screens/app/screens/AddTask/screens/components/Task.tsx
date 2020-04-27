@@ -49,7 +49,7 @@ export const Task: FC<TaskProps> = ({
         />
       }
       containerStyle={{
-        marginBottom: 9,
+        marginBottom: 8,
       }}
     />
   )

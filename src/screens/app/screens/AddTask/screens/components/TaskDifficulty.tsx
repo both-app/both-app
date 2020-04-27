@@ -36,7 +36,7 @@ export const TaskDifficulty: FC<TaskDifficultyProps> = ({
       activeBackgroundColor={color}
       activeTextColor="white"
       containerStyle={{
-        marginBottom: 9,
+        marginBottom: 8,
       }}
       rightContent={<Point points={taskDifficulty.points} />}
     />
