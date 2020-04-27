@@ -24,6 +24,7 @@ export const SettingsScreen = () => {
 
   const formattedBirthDate = format(new Date(me.birthDate), 'P', {
     locale: getDateFnsLocale(locale),
+    weekStartsOn: 1,
   })
 
   const formattedGender = {

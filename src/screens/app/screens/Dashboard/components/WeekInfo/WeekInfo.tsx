@@ -13,11 +13,12 @@ export const WeekInfo = () => {
 
   const todayDate = format(now, getLongDateFormat(locale), {
     locale: getDateFnsLocale(locale),
+    weekStartsOn: 1,
   })
 
   return (
     <Text style={styles.week}>
-      {t('week')} {getWeek(now)} • {todayDate}
+      {t('week')} {getWeek(now, { weekStartsOn: 1 })} • {todayDate}
     </Text>
   )
 }
