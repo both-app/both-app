@@ -104,23 +104,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     backgroundColor: colors.skin200,
-    paddingTop: 17,
-    paddingBottom: 17,
     paddingLeft: 16,
     paddingRight: 16,
     borderRadius: 8,
-    maxHeight: 64,
+    minHeight: 64,
   },
   leftInner: {
     display: 'flex',
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
+    paddingRight: 16,
   },
   emoji: {
     fontSize: 26,
   },
   texts: {
-    marginLeft: 15,
+    flex: 1,
+    marginLeft: 16,
   },
   subtitle: {
     opacity: 0.75,
