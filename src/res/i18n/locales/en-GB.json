@@ -147,7 +147,7 @@
   "modal:shareRelationKey:info:primary": "📲 Here is the key for your Both relationship",
   "modal:shareRelationKey:info:secondary": "Share it to your partner, he/she will join you!",
   "modal:shareRelationKey:shareBySMS:title": "Join Both relation",
-  "modal:shareRelationKey:shareBySMS:message": "Hi there, meet me on Both to share love and some of our daily life! Download the app and use the key %{code} to join me! ❤️",
+  "modal:shareRelationKey:shareBySMS:message": "Hi there, meet me on Both to share love and some of our daily life! Download the app links.appboth.com and use the key %{code} to join me! ❤️",
 
   "alert:deleteUserTask:title": "Delete this task",
   "alert:deleteUserTask:description": {
