@@ -50,7 +50,7 @@ export const ProfilScreen = () => {
 
   const handleRateApp = () => {
     openInStore({
-      appName: 'Both',
+      appName: 'both',
       appStoreId: '1508146811',
       appStoreLocale: 'fr',
       playStoreId: '4972926572966793290',
