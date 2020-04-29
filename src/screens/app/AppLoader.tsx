@@ -6,13 +6,15 @@ import { UsersContext } from './contexts/Users.context'
 import { TaskContext } from './contexts/Task.context'
 import { CategoryContext } from './contexts/Category.context'
 import { RelationContext } from './contexts/Relation.context'
+import { AuthContext } from 'screens/auth/contexts'
 
 export const AppLoader = ({ children }) => {
   const { allIds } = useContext(UserTaskContext)
-  const { me } = useContext(UsersContext)
+  const { me, hasError } = useContext(UsersContext)
   const { tasks } = useContext(TaskContext)
   const { categories } = useContext(CategoryContext)
   const { relation } = useContext(RelationContext)
+  const { logout } = useContext(AuthContext)
 
   const userTasksAreFetched = allIds.length > 0
   const usersAreReady = !!me.id
@@ -36,7 +38,11 @@ export const AppLoader = ({ children }) => {
     ]
   )
 
-  if (dataIsFetched) {
+  if (hasError) {
+    logout()
+  }
+
+  if (dataIsFetched && !hasError) {
     return children
   }
 
