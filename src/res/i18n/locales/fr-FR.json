@@ -144,7 +144,7 @@
   "modal:newTaskAdded:info:primary": "👏 On vient de les ajouter à ton compteur",
   "modal:newTaskAdded:info:secondary": "Continue comme ça !",
   "modal:shareRelationKey:badgeText": "Invite ton partenaire 💬",
-  "modal:shareRelationKey:info:primary": "📲 Voici la clé de te relation sur Both",
+  "modal:shareRelationKey:info:primary": "📲 Voici la clé de ta relation sur Both",
   "modal:shareRelationKey:info:secondary": "Partage la à ton partenaire pour qu’il te rejoigne !",
   "modal:shareRelationKey:shareBySMS:title": "Join Both relation",
   "modal:shareRelationKey:shareBySMS:message": "Coucou, retrouve moi sur both pour partager de l’amour et un peu de notre quotidien ! Télécharge l’application links.appboth.com et utilise la clé %{code} pour me rejoindre ❤️",
