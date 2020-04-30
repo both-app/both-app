@@ -11,15 +11,15 @@ import { useT } from 'res/i18n'
 
 export const RelationStatus = () => {
   const { t } = useT()
-  const { partner } = useContext(UsersContext)
+  const { me, partner } = useContext(UsersContext)
   const { scoreStatus } = useContext(UserScoreContext)
 
   if (!partner.id) {
     return (
       <Info
         color="white"
-        primary={t('app:relationStatus:noPartner:title')}
-        secondary={t('app:relationStatus:noPartner:description')}
+        primary={t(`app:relationStatus:noPartner:title:${me.gender}`)}
+        secondary={t(`app:relationStatus:noPartner:description:${me.gender}`)}
       />
     )
   }
@@ -38,7 +38,7 @@ export const RelationStatus = () => {
     return (
       <Info
         color="white"
-        primary={t('app:relationStatus:winner:title')}
+        primary={t(`app:relationStatus:winner:title:${me.gender}`)}
         secondary={t('app:relationStatus:winner:description', {
           partnerName: partner.firstName,
         })}
