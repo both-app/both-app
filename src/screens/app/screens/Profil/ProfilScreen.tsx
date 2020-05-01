@@ -53,7 +53,7 @@ export const ProfilScreen = () => {
       appName: 'both',
       appStoreId: '1508146811',
       appStoreLocale: 'fr',
-      playStoreId: '4972926572966793290',
+      playStoreId: 'com.both.bothapp',
     })
   }
 
