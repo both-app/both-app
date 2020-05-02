@@ -10,7 +10,7 @@ export interface PointProps {
   shape?: 'circle' | 'rectangle'
 }
 
-export const Point: FC<PointProps> = ({ points, shape = 'circle' }) => {
+export const Point: FC<PointProps> = ({ points = 0, shape = 'circle' }) => {
   const { t } = useT()
 
   const containerStyle = {

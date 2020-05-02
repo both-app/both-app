@@ -4,13 +4,14 @@ import { Text, StyleSheet, View } from 'react-native'
 import { fonts } from 'res/fonts'
 import { colors } from 'res/colors'
 import { useT } from 'res/i18n'
+
 import { Confetti } from 'screens/app/components/Confetti'
 
 interface CounterProps {
   points: number
 }
 
-export const Counter: FC<CounterProps> = ({ points }) => {
+export const Counter: FC<CounterProps> = ({ points = 0 }) => {
   const { t } = useT()
 
   return (
