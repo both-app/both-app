@@ -4,7 +4,6 @@ name: Release
 on:
   push:
     branches:
-      - master
       - development
 
 jobs:
@@ -25,8 +24,6 @@ jobs:
         expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
     - run: npm install
     - run: |
-        if [[ "$GITHUB_REF" == "refs/heads/master" ]]; then
-          expo publish --release-channel=production
-        else
+        if [[ "$GITHUB_REF" == "refs/heads/development" ]]; then
           expo publish --release-channel=staging
         fi
