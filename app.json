@@ -21,6 +21,7 @@
     "ios": {
       "bundleIdentifier": "com.both.bothapp",
       "buildNumber": "1.0.11",
+      "googleServicesFile": "./GoogleService-Info.plist",
       "supportsTablet": false,
       "backgroundColor": "#F9F0EB",
       "icon": "./assets/appIcons/appstore.png",
@@ -30,8 +31,8 @@
     "android": {
       "package": "com.both.bothapp",
       "versionCode": 3,
-      "icon": "./assets/appIcons/playstore.png",
-      "googleServicesFile": "./google-services.json"
+      "googleServicesFile": "./google-services.json",
+      "icon": "./assets/appIcons/playstore.png"
     },
     "notification": {
       "icon": "./assets/notif-icon.png",
