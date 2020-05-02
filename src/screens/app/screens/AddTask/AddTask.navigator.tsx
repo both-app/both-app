@@ -6,6 +6,14 @@ import { ChooseTaskScreen } from './screens/ChooseTask'
 import { ChooseTaskDifficultyScreen } from './screens/ChooseTaskDifficulty'
 import { AddTaskContextProvider } from './AddTask.context'
 
+const ROUTES = {
+  CHOOSE_CATEGORY: 'ChooseCategory',
+  CHOOSE_TASK: 'ChooseTask',
+  CHOOSE_TASK_DIFFICULTY: 'ChooseTaskDifficulty',
+}
+
+export const InitialRoute = ROUTES.CHOOSE_CATEGORY
+
 export type AddTaskStackParamList = {
   ChooseCategory: undefined
   ChooseTask: { category: Category }
@@ -19,15 +27,21 @@ export const AddTaskStack = createStackNavigator()
 
 export const AddTaskNavigator = () => (
   <AddTaskContextProvider>
-    <AddTaskStack.Navigator headerMode="none">
+    <AddTaskStack.Navigator
+      headerMode="none"
+      initialRouteName={ROUTES.CHOOSE_CATEGORY}
+    >
       <AddTaskStack.Screen
         component={ChooseCategoryScreen}
-        name="ChooseCategory"
+        name={ROUTES.CHOOSE_CATEGORY}
       />
-      <AddTaskStack.Screen component={ChooseTaskScreen} name="ChooseTask" />
+      <AddTaskStack.Screen
+        component={ChooseTaskScreen}
+        name={ROUTES.CHOOSE_TASK}
+      />
       <AddTaskStack.Screen
         component={ChooseTaskDifficultyScreen}
-        name="ChooseTaskDifficulty"
+        name={ROUTES.CHOOSE_TASK_DIFFICULTY}
       />
     </AddTaskStack.Navigator>
   </AddTaskContextProvider>

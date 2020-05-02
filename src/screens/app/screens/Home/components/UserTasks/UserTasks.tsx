@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   listFooter: {
-    marginBottom: 110,
+    marginBottom: 24,
   },
   listHeader: {
     marginTop: 12,

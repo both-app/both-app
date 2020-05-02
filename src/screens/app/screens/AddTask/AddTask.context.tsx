@@ -1,7 +1,7 @@
 import React, { FC, createContext, useMemo, useContext } from 'react'
 import * as Analytics from 'expo-firebase-analytics'
 
-import { TaskAddedModalContext } from '../Home/components/TaskAddedModal'
+import { TaskAddedModalContext } from 'screens/app/contexts/TaskAddedModal.context'
 import { UserScoreContext } from 'screens/app/contexts/UserScore.context'
 import { UserTaskContext } from 'screens/app/contexts/UserTask.context'
 

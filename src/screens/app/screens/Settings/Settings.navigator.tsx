@@ -5,23 +5,23 @@ import {
   useNavigation,
   useFocusEffect,
 } from '@react-navigation/native'
+import { StatusBar } from 'react-native'
 
 import { getCurrentRouteName } from 'res/stackNavigation'
 
-import { ProfilScreen } from './ProfilScreen'
-import { SettingsScreen } from './screens/Settings'
+import { SettingsScreen } from './SettingsScreen'
 import { TheTeamScreen } from './screens/TheTeam'
-import { StatusBar } from 'react-native'
+import { ProfilScreen } from './screens/Profil'
 
 export const Stack = createStackNavigator()
 
 const ROUTES = {
-  PROFIL: 'Profil',
   SETTINGS: 'Settings',
   THE_TEAM: 'TheTeam',
+  PROFIL: 'Profil',
 }
 
-export const ProfilNavigator = () => {
+export const SettingsNavigator = () => {
   const navigation = useNavigation()
   const route = useRoute()
 
@@ -34,7 +34,7 @@ export const ProfilNavigator = () => {
   useLayoutEffect(() => {
     const routeName = getCurrentRouteName(route)
 
-    if (routeName === ROUTES.PROFIL || !routeName) {
+    if (routeName === ROUTES.SETTINGS || !routeName) {
       navigation.setOptions({ tabBarVisible: true })
     } else {
       navigation.setOptions({ tabBarVisible: false })
@@ -43,9 +43,9 @@ export const ProfilNavigator = () => {
 
   return (
     <Stack.Navigator headerMode="none">
-      <Stack.Screen component={ProfilScreen} name={ROUTES.PROFIL} />
       <Stack.Screen component={SettingsScreen} name={ROUTES.SETTINGS} />
       <Stack.Screen component={TheTeamScreen} name={ROUTES.THE_TEAM} />
+      <Stack.Screen component={ProfilScreen} name={ROUTES.PROFIL} />
     </Stack.Navigator>
   )
 }

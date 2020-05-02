@@ -33,13 +33,13 @@ export const TheTeamScreen = () => {
         </View>
       )}
 
-      <Label primary={t('app:screen:profil:theTeam:pageTitle')} />
+      <Label primary={t('app:screen:theTeam:pageTitle')} />
 
       <View style={styles.teamInfo}>
         <Info
           color="dark200"
-          primary={t('app:screen:profil:theTeam:title')}
-          secondary={t('app:screen:profil:theTeam:subtitle')}
+          primary={t('app:screen:theTeam:title')}
+          secondary={t('app:screen:theTeam:subtitle')}
         />
       </View>
 
@@ -47,9 +47,9 @@ export const TheTeamScreen = () => {
         <Member
           firsName="Mathieu"
           emoji="🐸"
-          post={t('app:screen:profil:theTeam:developer')}
+          post={t('app:screen:theTeam:developer')}
           avatarUrl={require('../../../../../../../assets/team/mathieu.png')}
-          relationStatus={t('app:screen:profil:theTeam:search')}
+          relationStatus={t('app:screen:theTeam:search')}
           onAction={() =>
             handleOnAction(
               'https://www.linkedin.com/in/mathieu-le-tyrant-a2438880'
@@ -59,9 +59,9 @@ export const TheTeamScreen = () => {
         <Member
           firsName="Vincent"
           emoji="🤖"
-          post={t('app:screen:profil:theTeam:developer')}
+          post={t('app:screen:theTeam:developer')}
           avatarUrl={require('../../../../../../../assets/team/vincent.png')}
-          relationStatus={t('app:screen:profil:theTeam:search')}
+          relationStatus={t('app:screen:theTeam:search')}
           onAction={() =>
             handleOnAction('https://www.linkedin.com/in/vincentdufrasnes')
           }
@@ -69,9 +69,9 @@ export const TheTeamScreen = () => {
         <Member
           firsName="Gauthier"
           emoji="🦊"
-          post={t('app:screen:profil:theTeam:designer')}
+          post={t('app:screen:theTeam:designer')}
           avatarUrl={require('../../../../../../../assets/team/gauthier.png')}
-          relationStatus={t('app:screen:profil:theTeam:inRelationSince')}
+          relationStatus={t('app:screen:theTeam:inRelationSince')}
           onAction={() =>
             handleOnAction(
               'https://www.linkedin.com/in/gauthier-casanova-a979085a/'

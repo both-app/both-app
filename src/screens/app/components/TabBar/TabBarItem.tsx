@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   TouchableOpacityProps,
   View,
+  Platform,
 } from 'react-native'
 import * as Haptics from 'expo-haptics'
 
@@ -11,21 +12,27 @@ import { colors } from 'res/colors'
 
 interface TabBarItemProps extends TouchableOpacityProps {
   isFocused?: boolean
+  isPrimary?: boolean
 }
 
 export const TabBarItem: FC<TabBarItemProps> = ({
   isFocused = false,
+  isPrimary = false,
   children,
   onPress,
   ...props
 }) => {
   const buttonStyle = {
     ...styles.buttonContainer,
-    ...styles.shadowButton,
+    ...(isPrimary
+      ? { ...styles.primaryButton, ...styles.primaryButtonShadow }
+      : {}),
   }
 
-  const handleOnPress = async (e) => {
-    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+  const handleOnPress = async (e: any) => {
+    if (Platform.OS === 'ios' && isPrimary) {
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+    }
 
     onPress && onPress(e)
   }
@@ -40,7 +47,7 @@ export const TabBarItem: FC<TabBarItemProps> = ({
       <View
         style={{
           ...styles.buttonBase,
-          ...(isFocused ? styles.buttonSelected : styles.buttonNotSelected),
+          ...styles.buttonNotSelected,
         }}
       >
         {children}
@@ -50,31 +57,34 @@ export const TabBarItem: FC<TabBarItemProps> = ({
 }
 
 const styles = StyleSheet.create({
-  shadowButton: {
-    shadowColor: colors.dark100,
-    shadowOffset: {
-      width: 0,
-      height: 6,
-    },
-    shadowOpacity: 0.35,
-    shadowRadius: 5,
-    elevation: 10,
-  },
   buttonContainer: {
-    width: 64,
-    height: 64,
+    width: 40,
+    height: 40,
     marginBottom: 32,
     marginRight: 8,
     marginLeft: 8,
     alignItems: 'center',
     justifyContent: 'center',
   },
+  primaryButton: {
+    backgroundColor: colors.dark100,
+    borderRadius: 12,
+  },
+  primaryButtonShadow: {
+    shadowColor: colors.dark100,
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    elevation: 10,
+  },
   buttonBase: {
     width: 40,
     height: 40,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.dark100,
     paddingTop: 11,
     paddingRight: 10,
     paddingBottom: 10,
@@ -84,10 +94,5 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 12,
-  },
-  buttonSelected: {
-    width: 64,
-    height: 64,
-    borderRadius: 19.2,
   },
 })
