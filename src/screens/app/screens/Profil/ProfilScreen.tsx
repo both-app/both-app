@@ -3,11 +3,11 @@ import { View, Text, StyleSheet, Alert } from 'react-native'
 import * as WebBrowser from 'expo-web-browser'
 import { useNavigation, useFocusEffect } from '@react-navigation/native'
 import { Asset } from 'expo-asset'
+import * as StoreReview from 'expo-store-review'
 
 import { colors } from 'res/colors'
 import { fonts } from 'res/fonts'
 import { useT } from 'res/i18n'
-import { openInStore } from 'res/utils'
 
 import { Info } from 'library/components/Info'
 import { CardButton } from 'library/components/CardButton'
@@ -48,14 +48,7 @@ export const ProfilScreen = () => {
     await WebBrowser.openBrowserAsync('https://forms.gle/vFxTrrKXZNstFsz17')
   }
 
-  const handleRateApp = () => {
-    openInStore({
-      appName: 'both',
-      appStoreId: '1508146811',
-      appStoreLocale: 'fr',
-      playStoreId: 'com.both.bothapp',
-    })
-  }
+  const handleRateApp = () => StoreReview.requestReview()
 
   const handleEndRelation = () => {
     Alert.alert(

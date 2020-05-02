@@ -20,6 +20,7 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "bundleIdentifier": "com.both.bothapp",
+      "appStoreUrl": "https://itunes.apple.com/fr/app/both/id1508146811",
       "buildNumber": "1.0.11",
       "googleServicesFile": "./GoogleService-Info.plist",
       "supportsTablet": false,
@@ -30,6 +31,7 @@
     },
     "android": {
       "package": "com.both.bothapp",
+      "playStoreUrl": "https://play.google.com/store/apps/details?id=com.both.bothapp",
       "versionCode": 3,
       "googleServicesFile": "./google-services.json",
       "icon": "./assets/appIcons/playstore.png"
