@@ -1,6 +1,7 @@
 {
   "week": "Semaine",
   "points": {
+    "zero": "point",
     "one": "point",
     "other": "points"
   },
