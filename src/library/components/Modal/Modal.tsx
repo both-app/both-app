@@ -60,8 +60,8 @@ const styles = StyleSheet.create({
   modal: {
     backgroundColor: colors.dark100,
     borderRadius: 19.2,
-    paddingLeft: 50,
-    paddingRight: 50,
+    paddingLeft: 32,
+    paddingRight: 32,
     paddingTop: 32,
     paddingBottom: 32,
     alignItems: 'center',
