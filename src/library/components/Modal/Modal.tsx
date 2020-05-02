@@ -29,6 +29,8 @@ export const Modal: FC<ModalProps> = ({
     animationIn="fadeIn"
     animationOut="fadeOut"
     backdropOpacity={0.6}
+    backdropTransitionInTiming={0}
+    backdropTransitionOutTiming={0}
     isVisible={visible}
     onBackdropPress={onClose}
   >
