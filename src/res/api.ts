@@ -2,7 +2,7 @@ import axios from 'axios'
 import * as Localization from 'expo-localization'
 import Constants from 'expo-constants'
 
-import { getItem, clear } from 'res/storage'
+import { getItem } from 'res/storage'
 
 export interface APIResponse<T> {
   status: number
@@ -42,11 +42,3 @@ api.interceptors.request.use(async (config) => {
 
   return config
 })
-
-api.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    await clear()
-    return Promise.reject(error)
-  }
-)
