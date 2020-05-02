@@ -57,7 +57,7 @@ export const UserTasks = () => {
       ListHeaderComponent={
         <CardButton
           emoji="➕"
-          title={t('app:screen:dashboard:addNewTaskButton')}
+          title={t('app:screen:home:addNewTaskButton')}
           withHapticFeedback
           onAction={() => navigation.navigate('AddTask')}
           containerStyle={styles.addNewTaskButton}

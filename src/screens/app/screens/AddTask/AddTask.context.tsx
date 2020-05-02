@@ -1,6 +1,6 @@
 import React, { FC, createContext, useMemo, useContext } from 'react'
 
-import { TaskAddedModalContext } from '../Dashboard/components/TaskAddedModal'
+import { TaskAddedModalContext } from '../Home/components/TaskAddedModal'
 import { UserScoreContext } from 'screens/app/contexts/UserScore.context'
 import { UserTaskContext } from 'screens/app/contexts/UserTask.context'
 

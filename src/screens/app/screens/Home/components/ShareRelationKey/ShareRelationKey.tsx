@@ -18,9 +18,7 @@ export const ShareRelationKey = () => {
 
   return (
     <TouchableOpacity activeOpacity={1} onPress={handleOnPress}>
-      <Badge color="warning">
-        {t('app:screen:dashboard:shareRelationKey')}
-      </Badge>
+      <Badge color="warning">{t('app:screen:home:shareRelationKey')}</Badge>
     </TouchableOpacity>
   )
 }

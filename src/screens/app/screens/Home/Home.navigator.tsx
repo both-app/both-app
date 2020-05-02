@@ -5,7 +5,7 @@ import {
 } from '@react-navigation/stack'
 import { useNavigation, useRoute } from '@react-navigation/native'
 
-import { DashboardScreen } from './DashboardScreen'
+import { HomeScreen } from './HomeScreen'
 import { AddTaskNavigator } from 'screens/app/screens/AddTask'
 import { getCurrentRouteName } from 'res/stackNavigation'
 import { TaskAddedModalContextProvider } from './components/TaskAddedModal'
@@ -13,11 +13,11 @@ import { TaskAddedModalContextProvider } from './components/TaskAddedModal'
 const Stack = createStackNavigator()
 
 const ROUTES = {
-  DASHBOARD: 'Dashboard',
+  HOME: 'Home',
   ADD_TASK: 'AddTask',
 }
 
-export const DashboardNavigator = () => {
+export const HomeNavigator = () => {
   const navigation = useNavigation()
   const route = useRoute()
 
@@ -33,8 +33,8 @@ export const DashboardNavigator = () => {
 
   return (
     <TaskAddedModalContextProvider>
-      <Stack.Navigator initialRouteName={ROUTES.DASHBOARD} headerMode="none">
-        <Stack.Screen name={ROUTES.DASHBOARD} component={DashboardScreen} />
+      <Stack.Navigator initialRouteName={ROUTES.HOME} headerMode="none">
+        <Stack.Screen name={ROUTES.HOME} component={HomeScreen} />
         <Stack.Screen
           name={ROUTES.ADD_TASK}
           component={AddTaskNavigator}

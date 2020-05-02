@@ -11,7 +11,7 @@ import { UsersContext } from 'screens/app/contexts/Users.context'
 import { Layout } from 'library/layouts/Layout'
 import { CountdownBadge } from '../Leaderboard/components/CountdownBadge'
 
-export const DashboardScreen = () => {
+export const HomeScreen = () => {
   const { partner } = useContext(UsersContext)
 
   return (

@@ -72,7 +72,7 @@ export const UserTask: FC<UserTaskProps> = ({ userTask }) => {
     <CardButton
       emoji={task.emoji}
       title={task.name}
-      subtitle={t('app:screen:dashboard:userTask:subtitle', {
+      subtitle={t('app:screen:home:userTask:subtitle', {
         firstName: user.firstName,
       })}
       onLongPress={handleOnLongPress}
