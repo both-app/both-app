@@ -24,7 +24,7 @@ export const AppNavigator = () => (
       options={{
         tabBarVisible: true,
         tabBarIcon: ({ size, color }) => (
-          <Icon iconName="user" width={size} height={size} style={{ color }} />
+          <Icon iconName="users" width={size} height={size} style={{ color }} />
         ),
       }}
     />
