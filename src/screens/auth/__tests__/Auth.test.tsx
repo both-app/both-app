@@ -13,7 +13,7 @@ const renderWithMainProviders = ({ children }) => (
   </AuthContextProvider>
 )
 
-describe('SelectScreen', () => {
+describe.skip('SelectScreen', () => {
   test('should display the select screen', () => {
     const { getByTestId } = render(<AuthNavigator />, {
       wrapper: renderWithMainProviders,
