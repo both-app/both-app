@@ -32,9 +32,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.dark200,
     zIndex: 100,
     paddingTop: 8,
-    paddingRight: 24,
+    paddingRight: 20,
     paddingBottom: 8,
-    paddingLeft: 24,
+    paddingLeft: 20,
   },
   shapeShadow: {
     shadowColor: 'rgba(0,0,0,0.5)',
