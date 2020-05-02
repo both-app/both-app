@@ -7,9 +7,9 @@ import React, {
   useCallback,
 } from 'react'
 import * as Sentry from 'sentry-expo'
+import * as Analytics from 'expo-firebase-analytics'
 
 import { api, APIResponse } from 'res/api'
-import { getItem, setItem } from 'res/storage'
 import { useAppState } from 'hooks/useAppState'
 
 type GetRelationInfoResponse = APIResponse<{
@@ -75,6 +75,11 @@ const UsersContextProvider: FC = ({ children }) => {
       } = await api.get<GetRelationInfoResponse>('relations/informations')
 
       Sentry.setUser(data.user)
+      await Analytics.setUserId(data.user.id)
+      await Analytics.setUserProperties({
+        relationId: data.user.relationId,
+        gender: data.user.gender,
+      })
 
       const newState = {
         me: data.user,

@@ -1,11 +1,6 @@
 import React, { FC } from 'react'
-import {
-  Modal as RModal,
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
+import RModal from 'react-native-modal'
 
 import { colors, lightenDarkenColor } from 'res/colors'
 
@@ -30,48 +25,40 @@ export const Modal: FC<ModalProps> = ({
   onClose,
   onAction,
 }) => (
-  <RModal animationType="fade" transparent visible={visible}>
-    <TouchableOpacity
-      style={styles.modalOverlay}
-      activeOpacity={1}
-      onPress={onClose}
-    >
-      <View style={{ ...styles.modal, ...styles.modalShadow }}>
-        {!!emoji && <Text style={styles.emoji}>{emoji}</Text>}
+  <RModal
+    animationIn="fadeIn"
+    animationOut="fadeOut"
+    animationInTiming={150}
+    animationOutTiming={150}
+    backdropOpacity={0.6}
+    isVisible={visible}
+    onBackdropPress={onClose}
+  >
+    <View style={{ ...styles.modal, ...styles.modalShadow }}>
+      {!!emoji && <Text style={styles.emoji}>{emoji}</Text>}
 
-        <View style={styles.closeButtonContainer}>
-          <MinimalButton
-            iconName="close"
-            style={styles.closeButton}
-            onAction={onClose}
-          />
-        </View>
-
-        {children}
-
-        <IconButton
-          iconName={primaryActionIconName}
-          iconColor="white"
-          buttonStyle={styles.primaryButton}
-          onAction={onAction}
-          size={64}
+      <View style={styles.closeButtonContainer}>
+        <MinimalButton
+          iconName="close"
+          style={styles.closeButton}
+          onAction={onClose}
         />
       </View>
-    </TouchableOpacity>
+
+      {children}
+
+      <IconButton
+        iconName={primaryActionIconName}
+        iconColor="white"
+        buttonStyle={styles.primaryButton}
+        onAction={onAction}
+        size={64}
+      />
+    </View>
   </RModal>
 )
 
 const styles = StyleSheet.create({
-  modalOverlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'rgba(0,0,0,0.60)',
-  },
   modal: {
     backgroundColor: colors.dark100,
     borderRadius: 19.2,

@@ -4,20 +4,20 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Icon } from 'library/components/Icon'
 import { TabBar } from './components/TabBar'
 
-import { DashboardNavigator } from './screens/Dashboard'
+import { HomeNavigator } from './screens/Home'
 import { ProfilNavigator } from './screens/Profil'
 import { LeaderboardScreen } from './screens/Leaderboard'
 
 const Tab = createBottomTabNavigator()
 
 const ROUTES = {
-  DASHBOARD: 'Dashboard',
+  HOME: 'Home',
   PROFIL: 'Profil',
   LEADERBOARD: 'Leaderboard',
 }
 
 export const AppNavigator = () => (
-  <Tab.Navigator initialRouteName={ROUTES.DASHBOARD} tabBar={TabBar}>
+  <Tab.Navigator initialRouteName={ROUTES.HOME} tabBar={TabBar}>
     <Tab.Screen
       name={ROUTES.PROFIL}
       component={ProfilNavigator}
@@ -29,8 +29,8 @@ export const AppNavigator = () => (
       }}
     />
     <Tab.Screen
-      name={ROUTES.DASHBOARD}
-      component={DashboardNavigator}
+      name={ROUTES.HOME}
+      component={HomeNavigator}
       options={{
         tabBarVisible: true,
         tabBarIcon: ({ size, color }) => (

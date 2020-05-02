@@ -45,7 +45,7 @@ export const ChooseTaskScreen = () => {
     if (difficulty === 0) {
       addTask(task, difficulty)
 
-      return navigation.navigate('Dashboard')
+      return navigation.navigate('Home')
     }
 
     return navigation.navigate('ChooseTaskDifficulty', { category, task })

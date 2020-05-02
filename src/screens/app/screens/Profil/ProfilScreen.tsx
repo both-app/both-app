@@ -106,7 +106,6 @@ export const ProfilScreen = () => {
           title={t('app:screen:profil:button:settings:title')}
           subtitle={t('app:screen:profil:button:settings:subtitle')}
           onAction={() => navigation.navigate('Settings')}
-          withHapticFeedback
           containerStyle={styles.button}
         />
         <CardButton
@@ -122,7 +121,6 @@ export const ProfilScreen = () => {
                 )
           }
           onAction={handleEndRelation}
-          withHapticFeedback
           containerStyle={styles.button}
         />
         <CardButton
@@ -130,7 +128,6 @@ export const ProfilScreen = () => {
           title={t('app:screen:profil:button:theTeam:title')}
           subtitle={t('app:screen:profil:button:theTeam:subtitle')}
           onAction={() => navigation.navigate('TheTeam')}
-          withHapticFeedback
           containerStyle={styles.button}
         />
         <CardButton
@@ -138,7 +135,6 @@ export const ProfilScreen = () => {
           title={t('app:screen:profil:button:shareIdeas:title')}
           subtitle={t('app:screen:profil:button:shareIdeas:subtitle')}
           onAction={handleFeedback}
-          withHapticFeedback
           containerStyle={styles.button}
         />
         <CardButton
@@ -146,7 +142,6 @@ export const ProfilScreen = () => {
           title={t('app:screen:profil:button:voteTheApp:title')}
           subtitle={t('app:screen:profil:button:voteTheApp:subtitle')}
           onAction={handleRateApp}
-          withHapticFeedback
           containerStyle={styles.button}
         />
       </Scroll>

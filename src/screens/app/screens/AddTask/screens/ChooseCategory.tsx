@@ -33,7 +33,7 @@ export const ChooseCategoryScreen = () => {
   }
 
   const handleOnClose = () => {
-    navigation.navigate('Dashboard')
+    navigation.navigate('Home')
   }
 
   return (

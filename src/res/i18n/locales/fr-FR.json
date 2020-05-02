@@ -1,6 +1,7 @@
 {
   "week": "Semaine",
   "points": {
+    "zero": "point",
     "one": "point",
     "other": "points"
   },
@@ -81,9 +82,9 @@
   "auth:screen:form:joinOrCreate:info:title": "💡 Une clé te permet de rejoindre une relation !",
   "auth:screen:form:joinOrCreate:info:subtitle": "Aide : Ton partenaire doit t’inviter en t’envoyer la clé de votre relation, un code unique comportant 6 caractères.",
 
-  "app:screen:dashboard:addNewTaskButton": "Ajouter une tâche",
-  "app:screen:dashboard:userTask:subtitle": "Par %{firstName} ",
-  "app:screen:dashboard:shareRelationKey": "Partager la clé Both",
+  "app:screen:home:addNewTaskButton": "Ajouter une tâche",
+  "app:screen:home:userTask:subtitle": "Par %{firstName} ",
+  "app:screen:home:shareRelationKey": "Partager la clé Both",
 
   "app:screen:profil:numberOfRelationDays": {
     "one": "✨ %{days} jour de relation",
