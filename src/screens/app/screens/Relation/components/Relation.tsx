@@ -15,35 +15,33 @@ export const Relation = () => {
   const { relation, daysOfRelation } = useContext(RelationContext)
 
   return (
-    <View style={styles.paddingContainer}>
-      <View style={styles.relationContainer}>
-        <View style={styles.avatars}>
-          <Avatar firstname={me.firstName} size="small" borderColor="skin200" />
-          <Avatar
-            firstname={partner.firstName || '⌛️'}
-            size="small"
-            borderColor="skin200"
-            containerStyle={{ marginLeft: -10 }}
-          />
-        </View>
+    <View style={styles.container}>
+      <View style={styles.avatars}>
+        <Avatar firstname={me.firstName} size="small" borderColor="skin200" />
+        <Avatar
+          firstname={partner.firstName || '⌛️'}
+          size="small"
+          borderColor="skin200"
+          containerStyle={{ marginLeft: -10 }}
+        />
+      </View>
 
-        <Text style={styles.name}>
-          {me.firstName} + {partner.firstName || '💖'}
-        </Text>
-        <Text style={styles.relationDuration}>
-          {t('app:screen:profil:settings:onBothSince', {
-            count: daysOfRelation,
-            daysOfRelation,
-          })}
-        </Text>
+      <Text style={styles.name}>
+        {me.firstName} + {partner.firstName || '💖'}
+      </Text>
+      <Text style={styles.relationDuration}>
+        {t('app:screen:profil:settings:onBothSince', {
+          count: daysOfRelation,
+          daysOfRelation,
+        })}
+      </Text>
 
-        <View style={styles.codePosition}>
-          <View style={styles.codeContainer}>
-            <Text style={styles.relationKey}>
-              {t('app:screen:profil:settings:keyOfTheRelation')}
-            </Text>
-            <Text style={styles.code}>{relation.code.split('').join(' ')}</Text>
-          </View>
+      <View style={styles.codePosition}>
+        <View style={styles.codeContainer}>
+          <Text style={styles.relationKey}>
+            {t('app:screen:profil:settings:keyOfTheRelation')}
+          </Text>
+          <Text style={styles.code}>{relation.code.split('').join(' ')}</Text>
         </View>
       </View>
     </View>
@@ -51,11 +49,7 @@ export const Relation = () => {
 }
 
 export const styles = StyleSheet.create({
-  paddingContainer: {
-    paddingLeft: 24,
-    paddingRight: 24,
-  },
-  relationContainer: {
+  container: {
     backgroundColor: colors.skin200,
     borderRadius: 8,
     alignItems: 'center',

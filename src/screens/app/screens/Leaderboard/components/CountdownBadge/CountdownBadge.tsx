@@ -2,15 +2,17 @@ import React, { useEffect, useState, FC } from 'react'
 import endOfWeek from 'date-fns/endOfWeek'
 
 import { useT } from 'res/i18n'
-import { getDifferenceWithNow } from 'res/date'
+import { getDifferenceWithNow, getDateFnsLocale } from 'res/date'
 import { wait } from 'res/utils'
 
 import { Badge } from 'library/components/Badge'
 
 export const CountdownBadge: FC = () => {
-  const { t } = useT()
+  const { t, locale } = useT()
   const [time, setTime] = useState<string>('')
-  const lastDayOfWeek = endOfWeek(new Date(), { weekStartsOn: 1 })
+  const lastDayOfWeek = endOfWeek(new Date(), {
+    locale: getDateFnsLocale(locale),
+  })
 
   useEffect(() => {
     const startCountdown = async () => {

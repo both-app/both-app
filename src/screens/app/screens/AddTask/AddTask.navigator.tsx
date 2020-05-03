@@ -12,7 +12,7 @@ const ROUTES = {
   CHOOSE_TASK_DIFFICULTY: 'ChooseTaskDifficulty',
 }
 
-export const InitialRoute = ROUTES.CHOOSE_CATEGORY
+export const initialRoute = ROUTES.CHOOSE_CATEGORY
 
 export type AddTaskStackParamList = {
   ChooseCategory: undefined
@@ -27,10 +27,7 @@ export const AddTaskStack = createStackNavigator()
 
 export const AddTaskNavigator = () => (
   <AddTaskContextProvider>
-    <AddTaskStack.Navigator
-      headerMode="none"
-      initialRouteName={ROUTES.CHOOSE_CATEGORY}
-    >
+    <AddTaskStack.Navigator headerMode="none" initialRouteName={initialRoute}>
       <AddTaskStack.Screen
         component={ChooseCategoryScreen}
         name={ROUTES.CHOOSE_CATEGORY}

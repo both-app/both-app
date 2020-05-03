@@ -15,11 +15,14 @@ import { UsersContext } from 'screens/app/contexts/Users.context'
 
 import { useNavigation, useFocusEffect } from '@react-navigation/native'
 import { AuthContext, AuthApiContext } from 'screens/auth/contexts'
+import { Value } from './components'
+import { format } from 'date-fns'
+import { getDateFnsLocale } from 'res/date'
 
 export const SettingsScreen = () => {
-  const { t } = useT()
+  const { t, locale } = useT()
   const navigation = useNavigation()
-  const { partner } = useContext(UsersContext)
+  const { me, partner } = useContext(UsersContext)
   const { logout } = useContext(AuthContext)
   const { deleteRelation } = useContext(AuthApiContext)
 
@@ -28,6 +31,16 @@ export const SettingsScreen = () => {
       loadTeamAvatars()
     }, [])
   )
+
+  const formattedBirthDate = format(new Date(me.birthDate), 'P', {
+    locale: getDateFnsLocale(locale),
+  })
+
+  const formattedGender = {
+    male: t('male'),
+    female: t('female'),
+    other: t('other'),
+  }[me.gender]
 
   const loadTeamAvatars = async () => {
     const images = [
@@ -53,10 +66,6 @@ export const SettingsScreen = () => {
 
   const goToTheTeam = () => {
     navigation.navigate('TheTeam')
-  }
-
-  const goToProfil = () => {
-    navigation.navigate('Profil')
   }
 
   const handleFeedback = async () => {
@@ -91,16 +100,22 @@ export const SettingsScreen = () => {
       <Label primary={t('app:screen:settings:title')} />
 
       <Scroll style={styles.scrollContainer}>
-        <Text style={styles.sectionTitle}>
-          {t('app:screen:settings:section:yourSettings')}
-        </Text>
-        <CardButton
-          emoji="🙈"
-          title={t('app:screen:settings:button:profil:title')}
-          subtitle={t('app:screen:settings:button:profil:subtitle')}
-          onAction={goToProfil}
-          containerStyle={styles.button}
+        <Value
+          label={t('app:screen:profil:firstName')}
+          value={me.firstName}
+          marginBottom={16}
         />
+        <Value
+          label={t('app:screen:profil:birthDate')}
+          value={formattedBirthDate}
+          marginBottom={16}
+        />
+        <Value
+          label={t('app:screen:profil:gender')}
+          value={formattedGender}
+          marginBottom={16}
+        />
+
         <CardButton
           emoji="💔"
           title={t('app:screen:settings:button:endRelation:title')}

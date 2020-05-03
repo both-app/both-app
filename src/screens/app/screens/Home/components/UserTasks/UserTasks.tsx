@@ -32,7 +32,6 @@ export const UserTasks = () => {
     ([date, userTasks]) => ({
       title: format(new Date(date), getLongDateFormat(locale), {
         locale: getDateFnsLocale(locale),
-        weekStartsOn: 1,
       }),
       data: userTasks,
     })

@@ -114,15 +114,16 @@
   "app:screen:theTeam:search": "À la recherche d'une partenaire",
   "app:screen:theTeam:inRelationSince": "En relation depuis 6 ans",
 
+  "app:screen:profil:pageTitle": "Infos. personnelles",
+  "app:screen:profil:firstName": "Prénom",
+  "app:screen:profil:birthDate": "Date de naissance",
+  "app:screen:profil:gender": "Genre",
+
   "app:screen:profil:thankToUseBoth": "On est vraiment heureux et touché que tu partages une partie de ton quotidien avec Both",
   "app:screen:profil:numberOfRelationDays": {
     "one": "✨ %{days} jour de relation",
     "other": "✨ %{days} jours de relation"
   },
-  "app:screen:profil:settings:infoPerso:title": "😎 Infos Personnelles",
-  "app:screen:profil:settings:firstName": "Prénom",
-  "app:screen:profil:settings:birthDate": "Date de naissance",
-  "app:screen:profil:settings:gender": "Genre",
 
   "app:screen:profil:settings:onBothSince": {
     "one": "Both depuis %{daysOfRelation} jour",

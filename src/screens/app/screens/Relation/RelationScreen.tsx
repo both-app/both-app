@@ -13,6 +13,7 @@ import { Avatar } from 'library/components/Avatar'
 import { UsersContext } from 'screens/app/contexts/Users.context'
 import { RelationContext } from 'screens/app/contexts/Relation.context'
 import { Relation } from './components'
+import { Label } from 'library/components/Label'
 
 export const RelationScreen = () => {
   const { t } = useT()
@@ -27,29 +28,11 @@ export const RelationScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Avatar
-        size="medium"
-        backgroundColor="dark200"
-        firstname={me.firstName}
-        avatarColor="white"
-      />
+      <Label primary="La relation" />
 
-      <Text style={styles.firstname}>{me.firstName}</Text>
-
-      {daysOfRelation && (
-        <Info
-          color="dark200"
-          primary={t('app:screen:profil:numberOfRelationDays', {
-            count: daysOfRelation,
-            days: daysOfRelation,
-          })}
-          secondary={t('app:screen:profil:thankToUseBoth')}
-        />
-      )}
-
-      <Scroll style={styles.links}>
+      <View style={styles.relationContainer}>
         <Relation />
-      </Scroll>
+      </View>
     </View>
   )
 }
@@ -57,26 +40,12 @@ export const RelationScreen = () => {
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     paddingTop: 55,
     paddingLeft: 24,
     paddingRight: 24,
     backgroundColor: colors.skin100,
   },
-  firstname: {
-    fontFamily: fonts['DMSerifDisplay-Regular'],
-    fontSize: 26,
-    color: colors.dark200,
-    textTransform: 'capitalize',
-    marginTop: 16,
-    marginBottom: 24,
-  },
-  links: {
-    flex: 1,
-    width: '100%',
-    marginTop: 45,
-  },
-  button: {
-    marginTop: 8,
+  relationContainer: {
+    marginTop: 24,
   },
 })

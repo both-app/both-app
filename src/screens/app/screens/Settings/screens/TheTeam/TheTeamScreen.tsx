@@ -94,6 +94,7 @@ export const styles = StyleSheet.create({
   },
   close: {
     marginRight: 'auto',
+    marginBottom: 24,
   },
   scrollContainer: {
     flex: 1,

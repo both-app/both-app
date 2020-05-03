@@ -1,1 +1,0 @@
-export { ProfilScreen } from './ProfilScreen'
