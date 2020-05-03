@@ -6,7 +6,7 @@
     "githubUrl": "https://github.com/both-app/both-app",
     "privacy": "public",
     "platforms": ["ios", "android"],
-    "version": "1.0.11",
+    "version": "1.0.2",
     "orientation": "portrait",
     "primaryColor": "#0A1D2B",
     "icon": "./assets/icon.png",
@@ -21,7 +21,7 @@
     "ios": {
       "bundleIdentifier": "com.both.bothapp",
       "appStoreUrl": "https://itunes.apple.com/fr/app/both/id1508146811",
-      "buildNumber": "1.0.11",
+      "buildNumber": "1.0.2",
       "googleServicesFile": "./GoogleService-Info.plist",
       "supportsTablet": false,
       "backgroundColor": "#F9F0EB",
@@ -32,7 +32,7 @@
     "android": {
       "package": "com.both.bothapp",
       "playStoreUrl": "https://play.google.com/store/apps/details?id=com.both.bothapp",
-      "versionCode": 3,
+      "versionCode": 4,
       "googleServicesFile": "./google-services.json",
       "icon": "./assets/appIcons/playstore.png"
     },
