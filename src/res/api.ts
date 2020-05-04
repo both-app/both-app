@@ -1,8 +1,10 @@
 import axios from 'axios'
 import * as Localization from 'expo-localization'
 import Constants from 'expo-constants'
+import * as Sentry from 'sentry-expo'
 
 import { getItem } from 'res/storage'
+import { setConfigurationAsync } from 'expo/build/AR'
 
 export interface APIResponse<T> {
   status: number
@@ -42,3 +44,11 @@ api.interceptors.request.use(async (config) => {
 
   return config
 })
+
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    Sentry.captureException(error)
+    return Promise.reject(error)
+  }
+)
