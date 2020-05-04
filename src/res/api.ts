@@ -4,7 +4,6 @@ import Constants from 'expo-constants'
 import * as Sentry from 'sentry-expo'
 
 import { getItem } from 'res/storage'
-import { setConfigurationAsync } from 'expo/build/AR'
 
 export interface APIResponse<T> {
   status: number

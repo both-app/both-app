@@ -11,7 +11,7 @@ interface AuthContextProps {
     relation: Relation
     user: User
   }) => Promise<void>
-  logout: () => Promise<void>
+  logout: (clearStorage: boolean) => Promise<void>
 }
 
 // @ts-ignore
@@ -45,12 +45,13 @@ const AuthContextProvider: FC = ({ children }) => {
     setIsConnected(true)
   }
 
-  const logout = async () => {
+  const logout = async (clearStorage: boolean) => {
     setIsConnected(false)
 
-    await wait(1000)
-
-    await clear()
+    if (clearStorage) {
+      await wait(1000)
+      await clear()
+    }
   }
 
   const authContextApi = useMemo(

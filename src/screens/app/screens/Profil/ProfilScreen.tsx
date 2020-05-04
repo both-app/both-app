@@ -64,7 +64,7 @@ export const ProfilScreen = () => {
           style: 'destructive',
           onPress: () => {
             deleteRelation()
-            logout()
+            logout(true)
           },
         },
       ]
