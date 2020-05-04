@@ -16,19 +16,12 @@ export const MinimalButton: FC<MinimalButtonProps> = ({
   onAction,
   buttonStyle,
   ...props
-}) => {
-  const handleOnPress = async () => {
-    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-    onAction()
-  }
-
-  return (
-    <TouchableOpacity
-      onPress={handleOnPress}
-      style={buttonStyle}
-      testID="minimalButton"
-    >
-      <Icon style={{ color: colors[props.iconColor] }} {...props} />
-    </TouchableOpacity>
-  )
-}
+}) => (
+  <TouchableOpacity
+    onPress={onAction}
+    style={buttonStyle}
+    testID="minimalButton"
+  >
+    <Icon style={{ color: colors[props.iconColor] }} {...props} />
+  </TouchableOpacity>
+)

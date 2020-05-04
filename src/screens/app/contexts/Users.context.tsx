@@ -7,9 +7,9 @@ import React, {
   useCallback,
 } from 'react'
 import * as Sentry from 'sentry-expo'
+import * as Analytics from 'expo-firebase-analytics'
 
 import { api, APIResponse } from 'res/api'
-import { getItem, setItem } from 'res/storage'
 import { useAppState } from 'hooks/useAppState'
 
 type GetRelationInfoResponse = APIResponse<{
@@ -25,6 +25,7 @@ interface UsersContextState {
 }
 
 interface UsersContextProps extends UsersContextState {
+  hasError: boolean
   getUserById: (userId: string) => User
   fetchUsers: () => Promise<void>
 }
@@ -54,44 +55,41 @@ const UsersContext = createContext<UsersContextProps>({})
 
 const UsersContextProvider: FC = ({ children }) => {
   const { appState } = useAppState()
+  const [hasError, setHasError] = useState<boolean>(false)
   const [userState, setUserState] = useState<UsersContextState>(initialState)
 
   useEffect(() => {
-    const reHydrateData = async () => {
-      const users = (await getItem('users')) as UsersContextState
-
-      Sentry.setUser(users.me)
-
-      if (users) {
-        setUserState({ ...userState, ...users })
-      }
-
-      fetchUsers()
-    }
-
-    reHydrateData()
+    fetchUsers()
   }, [])
 
   useEffect(() => {
-    if (appState === 'active' && !userState.partner.id) {
+    if (appState === 'active') {
       fetchUsers()
     }
   }, [appState])
 
   const fetchUsers = async () => {
-    const {
-      data: { data },
-    } = await api.get<GetRelationInfoResponse>('relations/informations')
+    try {
+      const {
+        data: { data },
+      } = await api.get<GetRelationInfoResponse>('relations/informations')
 
-    if (data.partner?.id && !userState.partner.id) {
+      Sentry.setUser(data.user)
+      await Analytics.setUserId(data.user.id)
+      await Analytics.setUserProperties({
+        relationId: data.user.relationId,
+        gender: data.user.gender,
+      })
+
       const newState = {
         me: data.user,
-        partner: data.partner,
+        partner: data.partner || userState.partner,
         relation: data.relation,
       }
 
-      await setItem('users', newState)
       return setUserState(newState)
+    } catch (e) {
+      setHasError(true)
     }
   }
 
@@ -111,8 +109,8 @@ const UsersContextProvider: FC = ({ children }) => {
   )
 
   const usersContextApi = useMemo(
-    () => ({ ...userState, getUserById, fetchUsers }),
-    [userState, getUserById, fetchUsers]
+    () => ({ ...userState, getUserById, fetchUsers, hasError }),
+    [userState, getUserById, fetchUsers, hasError]
   )
 
   return (

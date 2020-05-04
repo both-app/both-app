@@ -1,6 +1,5 @@
 import React from 'react'
-import { render, fireEvent, waitForElement } from 'react-native-testing-library'
-import * as Haptics from 'expo-haptics'
+import { render, fireEvent } from 'react-native-testing-library'
 
 import { MinimalButton } from '../'
 
@@ -20,16 +19,12 @@ describe('MinimalButton', () => {
   })
 
   test('should have an haptics return', async () => {
-    const impactAsyncMock = jest.spyOn(Haptics, 'impactAsync')
-
     const { getByTestId } = render(
       <MinimalButton iconName="arrow_right" onAction={handleOnActionMock} />
     )
 
     fireEvent.press(getByTestId('minimalButton'))
 
-    await waitForElement(() => expect(handleOnActionMock).toHaveBeenCalled())
-
-    expect(impactAsyncMock).toHaveBeenCalled()
+    expect(handleOnActionMock).toHaveBeenCalled()
   })
 })

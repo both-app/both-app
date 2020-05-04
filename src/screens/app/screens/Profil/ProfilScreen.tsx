@@ -3,11 +3,11 @@ import { View, Text, StyleSheet, Alert } from 'react-native'
 import * as WebBrowser from 'expo-web-browser'
 import { useNavigation, useFocusEffect } from '@react-navigation/native'
 import { Asset } from 'expo-asset'
+import * as StoreReview from 'expo-store-review'
 
 import { colors } from 'res/colors'
 import { fonts } from 'res/fonts'
 import { useT } from 'res/i18n'
-import { openInStore } from 'res/utils'
 
 import { Info } from 'library/components/Info'
 import { CardButton } from 'library/components/CardButton'
@@ -48,14 +48,7 @@ export const ProfilScreen = () => {
     await WebBrowser.openBrowserAsync('https://forms.gle/vFxTrrKXZNstFsz17')
   }
 
-  const handleRateApp = () => {
-    openInStore({
-      appName: 'both',
-      appStoreId: '1508146811',
-      appStoreLocale: 'fr',
-      playStoreId: '4972926572966793290',
-    })
-  }
+  const handleRateApp = () => StoreReview.requestReview()
 
   const handleEndRelation = () => {
     Alert.alert(
@@ -106,7 +99,6 @@ export const ProfilScreen = () => {
           title={t('app:screen:profil:button:settings:title')}
           subtitle={t('app:screen:profil:button:settings:subtitle')}
           onAction={() => navigation.navigate('Settings')}
-          withHapticFeedback
           containerStyle={styles.button}
         />
         <CardButton
@@ -122,7 +114,6 @@ export const ProfilScreen = () => {
                 )
           }
           onAction={handleEndRelation}
-          withHapticFeedback
           containerStyle={styles.button}
         />
         <CardButton
@@ -130,7 +121,6 @@ export const ProfilScreen = () => {
           title={t('app:screen:profil:button:theTeam:title')}
           subtitle={t('app:screen:profil:button:theTeam:subtitle')}
           onAction={() => navigation.navigate('TheTeam')}
-          withHapticFeedback
           containerStyle={styles.button}
         />
         <CardButton
@@ -138,7 +128,6 @@ export const ProfilScreen = () => {
           title={t('app:screen:profil:button:shareIdeas:title')}
           subtitle={t('app:screen:profil:button:shareIdeas:subtitle')}
           onAction={handleFeedback}
-          withHapticFeedback
           containerStyle={styles.button}
         />
         <CardButton
@@ -146,7 +135,6 @@ export const ProfilScreen = () => {
           title={t('app:screen:profil:button:voteTheApp:title')}
           subtitle={t('app:screen:profil:button:voteTheApp:subtitle')}
           onAction={handleRateApp}
-          withHapticFeedback
           containerStyle={styles.button}
         />
       </Scroll>

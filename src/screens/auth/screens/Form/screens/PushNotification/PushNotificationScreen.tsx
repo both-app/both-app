@@ -6,26 +6,33 @@ import { useT } from 'res/i18n'
 import { getExpoPushToken } from 'res/notification'
 
 import { Label } from 'library/components/Label'
-import { Select } from 'screens/auth/components/Select'
 import { FormLayout } from 'library/layouts/FormLayout'
 import { Info } from 'library/components/Info'
 
-import { FormContext } from '../../Form.context'
 import { AuthContext, AuthApiContext } from 'screens/auth/contexts'
+import { Select } from 'screens/auth/components/Select'
+
+import { FormContext } from '../../Form.context'
 
 export const PushNotificationScreen = () => {
   const navigation = useNavigation()
   const { t } = useT()
+
+  const [isSelected, setIsSelected] = useState<boolean>(false)
   const [error, setError] = useState<[string, string] | []>([])
+
   const { values } = useContext(FormContext)
   const { createRelation, joinRelation } = useContext(AuthApiContext)
   const { login } = useContext(AuthContext)
 
   const handleOnFinish = async (value: 'yes' | 'no') => {
-    let pushToken = ''
-    if (value === 'yes') {
-      pushToken = await getExpoPushToken()
+    if (isSelected) {
+      return
     }
+
+    setIsSelected(true)
+
+    const pushToken = value === 'yes' ? await getExpoPushToken() : ''
 
     if (values.type === 'CREATE') {
       return createRelationAndLogin(pushToken)
@@ -64,9 +71,7 @@ export const PushNotificationScreen = () => {
     }
   }
 
-  const handleOnBack = () => {
-    navigation.goBack()
-  }
+  const handleOnBack = () => navigation.goBack()
 
   return (
     <FormLayout

@@ -40,7 +40,7 @@ export const ChooseTaskDifficultyScreen = () => {
     setSelectedIndex(difficultyIndex)
     addTask(task, difficultyIndex)
 
-    navigation.navigate('Dashboard')
+    navigation.navigate('Home')
   }
 
   const handleOnBack = () => navigation.goBack()

@@ -87,7 +87,7 @@ export const LeaderboardScreen = () => {
             firstName={user.firstName}
             isWinner={user.isWinner}
             points={user.points}
-            taskName={user.favoriteTask.name}
+            taskName={user.favoriteTask?.name || ''}
           />
         ))}
       </Scroll>

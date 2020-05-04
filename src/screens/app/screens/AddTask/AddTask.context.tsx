@@ -1,6 +1,7 @@
 import React, { FC, createContext, useMemo, useContext } from 'react'
+import * as Analytics from 'expo-firebase-analytics'
 
-import { TaskAddedModalContext } from '../Dashboard/components/TaskAddedModal'
+import { TaskAddedModalContext } from '../Home/components/TaskAddedModal'
 import { UserScoreContext } from 'screens/app/contexts/UserScore.context'
 import { UserTaskContext } from 'screens/app/contexts/UserTask.context'
 
@@ -26,6 +27,11 @@ const AddTaskContextProvider: FC = ({ children }) => {
     incrementUserPoints(points)
 
     await addNewUserTask(task.id, difficultyIndex)
+    Analytics.logEvent('AddNewUserTask', {
+      taskId: task.id,
+      taskName: task.name,
+      taskDifficulty: difficultyIndex,
+    })
     await fetchUserScore()
   }
 
