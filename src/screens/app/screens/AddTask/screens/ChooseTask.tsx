@@ -18,6 +18,7 @@ import { Scroll } from 'library/layouts/Scroll'
 import { Task } from './components/Task'
 import { AddTaskStackParamList } from '../AddTask.navigator'
 import { AddTaskContext } from '../AddTask.context'
+import { ROUTES, initialRoute } from '../AddTask.navigator'
 
 type ChooseTaskRouteProps = RouteProp<AddTaskStackParamList, 'ChooseTask'>
 
@@ -45,10 +46,18 @@ export const ChooseTaskScreen = () => {
     if (difficulty === 0) {
       addTask(task, difficulty)
 
+      navigation.reset({
+        index: 0,
+        routes: [{ name: initialRoute }],
+      })
+
       return navigation.navigate('Home')
     }
 
-    return navigation.navigate('ChooseTaskDifficulty', { category, task })
+    return navigation.navigate(ROUTES.CHOOSE_TASK_DIFFICULTY, {
+      category,
+      task,
+    })
   }
 
   const handleOnBack = () => navigation.goBack()

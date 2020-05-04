@@ -6,7 +6,7 @@ import { ChooseTaskScreen } from './screens/ChooseTask'
 import { ChooseTaskDifficultyScreen } from './screens/ChooseTaskDifficulty'
 import { AddTaskContextProvider } from './AddTask.context'
 
-const ROUTES = {
+export const ROUTES = {
   CHOOSE_CATEGORY: 'ChooseCategory',
   CHOOSE_TASK: 'ChooseTask',
   CHOOSE_TASK_DIFFICULTY: 'ChooseTaskDifficulty',
