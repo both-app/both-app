@@ -15,7 +15,6 @@ import { TaskDifficulty } from './components/TaskDifficulty'
 import { AddTaskStackParamList } from '../AddTask.navigator'
 import { AddTaskContext } from '../AddTask.context'
 import { Scroll } from 'library/layouts/Scroll'
-import { initialRoute } from '../AddTask.navigator'
 
 type ChooseTaskDifficultyRouteProps = RouteProp<
   AddTaskStackParamList,
@@ -41,7 +40,6 @@ export const ChooseTaskDifficultyScreen = () => {
     setSelectedIndex(difficultyIndex)
     addTask(task, difficultyIndex)
 
-    navigation.reset({ index: 0, routes: [{ name: initialRoute }] })
     navigation.navigate('Home')
   }
 

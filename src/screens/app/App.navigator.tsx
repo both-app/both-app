@@ -9,18 +9,21 @@ import { RelationScreen } from './screens/Relation'
 import { AddTaskNavigator } from './screens/AddTask'
 import { LeaderboardScreen } from './screens/Leaderboard'
 import { SettingsNavigator } from './screens/Settings'
+import { createStackNavigator } from '@react-navigation/stack'
 
+const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator()
 
 const ROUTES = {
   HOME: 'Home',
   RELATION: 'Relation',
   ADD_TASK: 'AddTask',
+  ADD_TASK_MODAL: 'AddTaskModal',
   LEADERBOARD: 'Leaderboard',
   SETTINGS: 'Settings',
 }
 
-export const AppNavigator = () => (
+const MainNavigator = () => (
   <Tab.Navigator initialRouteName={ROUTES.HOME} tabBar={TabBar}>
     <Tab.Screen
       name={ROUTES.HOME}
@@ -45,8 +48,14 @@ export const AppNavigator = () => (
     <Tab.Screen
       name={ROUTES.ADD_TASK}
       component={AddTaskNavigator}
+      listeners={({ navigation }) => ({
+        tabPress: (e) => {
+          e.preventDefault()
+          navigation.navigate(ROUTES.ADD_TASK_MODAL)
+        },
+      })}
       options={{
-        tabBarVisible: false,
+        tabBarVisible: true,
         tabBarIcon: ({ size }) => (
           <Icon
             iconName="plus"
@@ -83,4 +92,11 @@ export const AppNavigator = () => (
       }}
     />
   </Tab.Navigator>
+)
+
+export const AppNavigator = () => (
+  <Stack.Navigator initialRouteName="Main" headerMode="none" mode="modal">
+    <Stack.Screen name="Main" component={MainNavigator} />
+    <Stack.Screen name={ROUTES.ADD_TASK_MODAL} component={AddTaskNavigator} />
+  </Stack.Navigator>
 )
