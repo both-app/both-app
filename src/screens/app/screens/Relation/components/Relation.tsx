@@ -30,7 +30,7 @@ export const Relation = () => {
         {me.firstName} + {partner.firstName || '💖'}
       </Text>
       <Text style={styles.relationDuration}>
-        {t('app:screen:profil:settings:onBothSince', {
+        {t('app:screen:relation:onBothSince', {
           count: daysOfRelation,
           daysOfRelation,
         })}
@@ -39,7 +39,7 @@ export const Relation = () => {
       <View style={styles.codePosition}>
         <View style={styles.codeContainer}>
           <Text style={styles.relationKey}>
-            {t('app:screen:profil:settings:keyOfTheRelation')}
+            {t('app:screen:relation:keyOfTheRelation')}
           </Text>
           <Text style={styles.code}>{relation.code.split('').join(' ')}</Text>
         </View>

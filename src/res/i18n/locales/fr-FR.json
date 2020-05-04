@@ -114,16 +114,16 @@
   "app:screen:theTeam:search": "À la recherche d'une partenaire",
   "app:screen:theTeam:inRelationSince": "En relation depuis 6 ans",
 
-  "app:screen:profil:pageTitle": "Infos. personnelles",
   "app:screen:profil:firstName": "Prénom",
   "app:screen:profil:birthDate": "Date de naissance",
   "app:screen:profil:gender": "Genre",
 
-  "app:screen:profil:settings:onBothSince": {
+  "app:screen:relation:pageTitle": "Relation",
+  "app:screen:relation:onBothSince": {
     "one": "Both depuis %{daysOfRelation} jour",
     "other": "Both depuis %{daysOfRelation} jours"
   },
-  "app:screen:profil:settings:keyOfTheRelation": "Clé de la relation",
+  "app:screen:relation:keyOfTheRelation": "Clé de la relation",
 
   "app:screen:newUserTask:chooseCategory:title": "Sélectionne...",
   "app:screen:newUserTask:chooseCategory:subtitle": "Une catégorie 📦",

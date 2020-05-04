@@ -110,11 +110,12 @@
   "app:screen:profil:birthDate": "Date of birth",
   "app:screen:profil:gender": "Gender",
 
-  "app:screen:profil:settings:onBothSince": {
+  "app:screen:relation:pageTitle": "Relation",
+  "app:screen:relation:onBothSince": {
     "one": "Both since %{daysOfRelation} day",
     "other": "Both since %{daysOfRelation} days"
   },
-  "app:screen:profil:settings:keyOfTheRelation": "Relationship's key",
+  "app:screen:relation:keyOfTheRelation": "Relationship's key",
 
   "app:screen:theTeam:pageTitle": "The team behind Both",
   "app:screen:theTeam:title": "😎 Hello you...",

@@ -1,24 +1,15 @@
-import React, { useContext, useCallback } from 'react'
-import { View, Text, StyleSheet, StatusBar } from 'react-native'
+import React, { useCallback } from 'react'
+import { View, StyleSheet, StatusBar } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native'
 
 import { colors } from 'res/colors'
-import { fonts } from 'res/fonts'
 import { useT } from 'res/i18n'
 
-import { Info } from 'library/components/Info'
-import { Scroll } from 'library/layouts/Scroll'
-import { Avatar } from 'library/components/Avatar'
-
-import { UsersContext } from 'screens/app/contexts/Users.context'
-import { RelationContext } from 'screens/app/contexts/Relation.context'
 import { Relation } from './components'
 import { Label } from 'library/components/Label'
 
 export const RelationScreen = () => {
   const { t } = useT()
-  const { me } = useContext(UsersContext)
-  const { daysOfRelation } = useContext(RelationContext)
 
   useFocusEffect(
     useCallback(() => {
@@ -28,7 +19,7 @@ export const RelationScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Label primary="La relation" />
+      <Label primary={t('app:screen:relation:pageTitle')} />
 
       <View style={styles.relationContainer}>
         <Relation />
