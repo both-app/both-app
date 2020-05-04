@@ -86,12 +86,6 @@
   "app:screen:home:shareRelationKey": "Share the Both key",
   "app:screen:home:delete": "Remove",
 
-  "app:screen:profil:numberOfRelationDays": {
-    "one": "✨ %{days} day of relationship",
-    "other": "✨ %{days} days of relationship"
-  },
-  "app:screen:profil:thankToUseBoth": "We're really happy that you share a part of your daily life with Both",
-
   "app:screen:settings:title": "Settings",
   "app:screen:settings:section:yourSettings": "Your settings",
   "app:screen:settings:section:together": "Together, we are stronger",
@@ -112,10 +106,9 @@
   "app:screen:settings:button:cgu:title": "Terms of service",
   "app:screen:settings:button:cgu:subtitle": "Happy reading...",
 
-  "app:screen:profil:settings:infoPerso:title": "😎 Personal informations",
-  "app:screen:profil:settings:firstName": "First name",
-  "app:screen:profil:settings:birthDate": "Date of birth",
-  "app:screen:profil:settings:gender": "Gender",
+  "app:screen:profil:firstName": "First name",
+  "app:screen:profil:birthDate": "Date of birth",
+  "app:screen:profil:gender": "Gender",
 
   "app:screen:profil:settings:onBothSince": {
     "one": "Both since %{daysOfRelation} day",
