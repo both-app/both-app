@@ -85,6 +85,8 @@
   "app:screen:home:addNewTaskButton": "Ajouter une tâche",
   "app:screen:home:userTask:subtitle": "Par %{firstName} ",
   "app:screen:home:shareRelationKey": "Partager la clé Both",
+  "app:screen:home:delete": "Supprimer",
+
 
   "app:screen:profil:numberOfRelationDays": {
     "one": "✨ %{days} jour de relation",

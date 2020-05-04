@@ -11,6 +11,10 @@ import {
 } from 'screens/auth/contexts'
 
 import { Main } from './src/Main'
+import { UIManager } from 'react-native'
+
+UIManager.setLayoutAnimationEnabledExperimental &&
+  UIManager.setLayoutAnimationEnabledExperimental(true)
 
 const { manifest } = Constants
 

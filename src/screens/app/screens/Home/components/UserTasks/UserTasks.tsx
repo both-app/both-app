@@ -66,7 +66,7 @@ export const UserTasks = () => {
         <Section title={title} />
       )}
       ListFooterComponent={<View style={styles.listFooter} />}
-      renderItem={({ item }) => <UserTask userTask={item} />}
+      renderItem={({ item }) => <UserTask userTask={item} key={item.id} />}
     />
   )
 }

@@ -1,5 +1,5 @@
 import React, { FC, useContext } from 'react'
-import { StyleSheet, Alert } from 'react-native'
+import { StyleSheet, Animated, Text, LayoutAnimation } from 'react-native'
 import * as Haptics from 'expo-haptics'
 
 import { CardButton } from 'library/components/CardButton'
@@ -14,6 +14,9 @@ import { UsersContext } from 'screens/app/contexts/Users.context'
 import { CategoryContext } from 'screens/app/contexts/Category.context'
 import { UserTaskContext } from 'screens/app/contexts/UserTask.context'
 import { UserScoreContext } from 'screens/app/contexts/UserScore.context'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import Swipeable from 'react-native-gesture-handler/Swipeable'
+import { IconName, Icon } from 'library/components/Icon'
 
 interface UserTaskProps {
   userTask: UserTask
@@ -41,56 +44,86 @@ export const UserTask: FC<UserTaskProps> = ({ userTask }) => {
     userTask.taskId !== 'join_both' &&
     userTask.userId === me.id
 
-  const handleOnLongPress = async () => {
+  const onDeletePress = async () => {
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+    await deleteUserTask(userTask.id)
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.linear)
+    await fetchUserScore()
+  }
 
-    Alert.alert(
-      t('alert:deleteUserTask:title'),
-      t('alert:deleteUserTask:description', {
-        count: userTask.points,
-        points: userTask.points,
-        firstName: me.firstName,
-      }),
-      [
-        {
-          text: t('alert:deleteUserTask:noButton'),
-          style: 'cancel',
-        },
-        {
-          text: t('alert:deleteUserTask:yesButton'),
-          style: 'destructive',
-          onPress: async () => {
-            await deleteUserTask(userTask.id)
-            await fetchUserScore()
-          },
-        },
-      ]
+  const onSwipeCard = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+  }
+
+  const renderRightActions = (progress, dragX) => {
+    const trans = dragX.interpolate({
+      inputRange: [-100, -50, 0],
+      outputRange: [42, 90, 130],
+    })
+    return (
+      <Animated.View style={{ transform: [{ translateX: trans }] }}>
+        <TouchableOpacity style={[styles.deleteCard]} onPress={onDeletePress}>
+          <Icon
+            iconName={'trash' as IconName}
+            width={24}
+            height={24}
+            style={styles.trashIcon}
+          />
+          <Text style={styles.deleteText}>{t('app:screen:home:delete')}</Text>
+        </TouchableOpacity>
+      </Animated.View>
     )
   }
 
   return (
-    <CardButton
-      emoji={task.emoji}
-      title={task.name}
-      subtitle={t('app:screen:home:userTask:subtitle', {
-        firstName: user.firstName,
-      })}
-      onLongPress={handleOnLongPress}
-      activeBackgroundColor={lightenDarkenColor(category.color, 10)}
-      activeTextColor={colors.white}
-      containerStyle={{
-        backgroundColor: category.color,
-        marginTop: 8,
-      }}
-      textStyle={styles.cardText}
-      rightContent={<Point points={userTask.points} />}
-      disabled={!isDeletable}
-    />
+    <Swipeable
+      // onSwipeableRightWillOpen={onSwipeCard} //laggy
+      renderRightActions={isDeletable && renderRightActions}
+    >
+      <CardButton
+        emoji={task.emoji}
+        title={task.name}
+        subtitle={t('app:screen:home:userTask:subtitle', {
+          firstName: user.firstName,
+        })}
+        activeBackgroundColor={lightenDarkenColor(category.color, 10)}
+        activeTextColor={colors.white}
+        containerStyle={{
+          backgroundColor: category.color,
+          marginTop: 8,
+        }}
+        textStyle={styles.cardText}
+        rightContent={<Point points={userTask.points} />}
+        disabled={!isDeletable}
+      />
+    </Swipeable>
   )
 }
 
 const styles = StyleSheet.create({
   cardText: {
     color: colors.white,
+  },
+  deleteCard: {
+    minHeight: 64,
+    width: 130,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    marginLeft: 16,
+    marginTop: 8,
+    paddingVertical: 20,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+    backgroundColor: colors.skin200,
+  },
+  trashIcon: {
+    color: colors.crtical,
+  },
+  deleteText: {
+    color: colors.crtical,
+    fontWeight: '500',
+    fontSize: 14,
   },
 })
