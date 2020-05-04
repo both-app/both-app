@@ -10,13 +10,13 @@ export type StorageKey =
   | 'userScore'
 
 export const setItem = (key: StorageKey, value: any) => {
+  Sentry.withScope((scope) => {
+    scope.setExtra(`storage.${key}`, value)
+  })
+
   try {
     return AsyncStorage.setItem(key, JSON.stringify(value))
   } catch (error) {
-    Sentry.withScope((scope) => {
-      scope.setExtra('key', key)
-      scope.setExtra('value', value)
-    })
     Sentry.captureException(error)
   }
 }
@@ -27,10 +27,6 @@ export const getItem = async (key: StorageKey) => {
   try {
     return JSON.parse(value)
   } catch (error) {
-    Sentry.withScope((scope) => {
-      scope.setExtra('key', key)
-      scope.setExtra('value', value)
-    })
     Sentry.captureException(error)
   }
 }
