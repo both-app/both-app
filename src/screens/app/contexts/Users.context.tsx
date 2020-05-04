@@ -88,8 +88,14 @@ const UsersContextProvider: FC = ({ children }) => {
       }
 
       return setUserState(newState)
-    } catch (e) {
-      setHasError(true)
+    } catch (error) {
+      if (
+        error.response?.status === 404 || // RelationNotFound
+        error.response?.status === 400 || // NotMatchUser
+        error.response?.status === 401 // InvalidToken
+      ) {
+        setHasError(true)
+      }
     }
   }
 
