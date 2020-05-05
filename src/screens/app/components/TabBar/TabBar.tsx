@@ -6,6 +6,8 @@ import { TabBarItem } from './TabBarItem'
 
 import { colors } from 'res/colors'
 
+const DEFAULT_STATE_INDEX = 2
+
 export const TabBar: FC<BottomTabBarProps> = ({
   state,
   descriptors,
@@ -15,7 +17,7 @@ export const TabBar: FC<BottomTabBarProps> = ({
     {state.routes.map((route, index) => {
       const { options } = descriptors[route.key]
       const isFocused = state.index === index
-      const isPrimary = index === 2
+      const isPrimary = index === DEFAULT_STATE_INDEX
 
       const onPress = () => {
         const event = navigation.emit({
