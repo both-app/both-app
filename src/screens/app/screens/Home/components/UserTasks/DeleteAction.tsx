@@ -29,7 +29,7 @@ export const DeleteAction: FC<DeleActionProps> = ({ progress, userTask }) => {
   }
   const trans = progress.interpolate({
     inputRange: [0, 1],
-    outputRange: [140, 0],
+    outputRange: [140, -16],
   })
   return (
     <Animated.View style={{ transform: [{ translateX: trans }] }}>
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginRight: 24,
+    marginRight: 8,
     marginTop: 8,
     paddingVertical: 20,
     paddingHorizontal: 16,
