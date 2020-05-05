@@ -8,6 +8,7 @@ export type AppColor =
   | 'skin200'
   | 'danger'
   | 'warning'
+  | 'critical'
   | 'success'
   | 'highlight100'
   | 'highlight200'
@@ -34,6 +35,7 @@ export const colors = {
   skin200: '#EEE2DC',
   danger: '#C14E7C',
   warning: '#F4A82C',
+  critical: '#F42C2C',
   success: '#69CE7F',
   highlight100: '#7489E1',
   highlight200: '#A8B9FE',

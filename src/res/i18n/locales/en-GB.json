@@ -85,6 +85,7 @@
   "app:screen:home:addNewTaskButton": "Add a task",
   "app:screen:home:userTask:subtitle": "By %{firstName} ",
   "app:screen:home:shareRelationKey": "Share the Both key",
+  "app:screen:home:delete": "Remove",
 
   "app:screen:profil:numberOfRelationDays": {
     "one": "✨ %{days} day of relationship",
@@ -155,14 +156,6 @@
   "modal:shareRelationKey:info:secondary": "Share it to your partner, he/she will join you!",
   "modal:shareRelationKey:shareBySMS:title": "Join Both relation",
   "modal:shareRelationKey:shareBySMS:message": "Hi there, meet me on Both to share love and some of our daily life! Download the app links.appboth.com and use the key %{code} to join me! ❤️",
-
-  "alert:deleteUserTask:title": "Delete this task",
-  "alert:deleteUserTask:description": {
-    "one": "%{firstName}, by deleting this task you'll lose %{points} point. Are you sure ?",
-    "other": "%{firstName}, by deleting this task you'll lose %{points} points. Are you sure ?"
-  },
-  "alert:deleteUserTask:noButton": "No",
-  "alert:deleteUserTask:yesButton": "Yes",
 
   "alert:endRelation:title": "End the relationship",
   "alert:endRelation:description": "Oh no... you were both so cute. On our side, this means that we'll delete all your data and your account won't be accessible anymore. Are you really sure you want to leave us?",

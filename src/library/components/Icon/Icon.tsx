@@ -15,6 +15,7 @@ import Rotate from '../../../../assets/icons/rotate.svg'
 import Loader from '../../../../assets/icons/loader.svg'
 import Linkedin from '../../../../assets/icons/linkedin.svg'
 import User from '../../../../assets/icons/user.svg'
+import Trash from '../../../../assets/icons/trash.svg'
 
 export type IconName =
   | 'arrow_right'
@@ -31,6 +32,7 @@ export type IconName =
   | 'loader'
   | 'linkedin'
   | 'user'
+  | 'trash'
 
 export interface IconProps extends SvgProps {
   iconName: IconName
@@ -53,6 +55,7 @@ export const Icon: FC<IconProps> = ({ iconName, ...props }) => {
     loader: Loader,
     linkedin: Linkedin,
     user: User,
+    trash: Trash,
   }
 
   const Icon = mapping[iconName]
