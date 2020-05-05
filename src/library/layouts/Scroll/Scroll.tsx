@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { ScrollView, StyleSheet } from 'react-native'
+import { ScrollView, StyleSheet, View } from 'react-native'
 
 interface ScrollProps {
   style: any
@@ -11,12 +11,16 @@ export const Scroll: FC<ScrollProps> = ({ children, style }) => (
     style={{ ...styles.container, ...style }}
   >
     {children}
+
+    <View style={styles.listBottom} />
   </ScrollView>
 )
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingBottom: 24,
+  },
+  listBottom: {
+    marginBottom: 24,
   },
 })
