@@ -1,5 +1,5 @@
 import React, { FC, useContext } from 'react'
-import { StyleSheet, Animated, Text, LayoutAnimation } from 'react-native'
+import { StyleSheet, Animated, Text } from 'react-native'
 import * as Haptics from 'expo-haptics'
 
 import { CardButton } from 'library/components/CardButton'
@@ -47,22 +47,17 @@ export const UserTask: FC<UserTaskProps> = ({ userTask }) => {
   const onDeletePress = async () => {
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
     await deleteUserTask(userTask.id)
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.linear)
     await fetchUserScore()
   }
 
-  const onSwipeCard = () => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-  }
-
-  const renderRightActions = (progress, dragX) => {
-    const trans = dragX.interpolate({
-      inputRange: [-100, -50, 0],
-      outputRange: [42, 90, 130],
+  const renderRightActions = (progress) => {
+    const trans = progress.interpolate({
+      inputRange: [0, 1],
+      outputRange: [140, 0],
     })
     return (
       <Animated.View style={{ transform: [{ translateX: trans }] }}>
-        <TouchableOpacity style={[styles.deleteCard]} onPress={onDeletePress}>
+        <TouchableOpacity style={styles.deleteCard} onPress={onDeletePress}>
           <Icon
             iconName={'trash' as IconName}
             width={24}
@@ -76,10 +71,7 @@ export const UserTask: FC<UserTaskProps> = ({ userTask }) => {
   }
 
   return (
-    <Swipeable
-      // onSwipeableRightWillOpen={onSwipeCard} //laggy
-      renderRightActions={isDeletable && renderRightActions}
-    >
+    <Swipeable renderRightActions={isDeletable && renderRightActions}>
       <CardButton
         emoji={task.emoji}
         title={task.name}
@@ -91,6 +83,7 @@ export const UserTask: FC<UserTaskProps> = ({ userTask }) => {
         containerStyle={{
           backgroundColor: category.color,
           marginTop: 8,
+          marginHorizontal: 24,
         }}
         textStyle={styles.cardText}
         rightContent={<Point points={userTask.points} />}
@@ -106,12 +99,11 @@ const styles = StyleSheet.create({
   },
   deleteCard: {
     minHeight: 64,
-    width: 130,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-around',
-    marginLeft: 16,
+    justifyContent: 'space-between',
+    marginRight: 24,
     marginTop: 8,
     paddingVertical: 20,
     paddingHorizontal: 16,
@@ -125,5 +117,6 @@ const styles = StyleSheet.create({
     color: colors.crtical,
     fontWeight: '500',
     fontSize: 14,
+    marginLeft: 8,
   },
 })

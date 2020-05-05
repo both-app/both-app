@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
     marginBottom: 110,
   },
   addNewTaskButton: {
+    marginHorizontal: 24,
     marginTop: 24,
   },
 })

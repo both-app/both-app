@@ -17,5 +17,6 @@ const styles = StyleSheet.create({
     color: colors.dark100,
     textTransform: 'capitalize',
     marginTop: 16,
+    marginHorizontal: 24,
   },
 })

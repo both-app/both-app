@@ -97,6 +97,7 @@ export const LeaderboardScreen = () => {
 
 const styles = StyleSheet.create({
   scrollContainer: {
+    marginHorizontal: 24,
     paddingTop: 24,
   },
 })
