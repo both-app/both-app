@@ -87,7 +87,6 @@
   "app:screen:home:shareRelationKey": "Partager la clé Both",
   "app:screen:home:delete": "Supprimer",
 
-
   "app:screen:profil:numberOfRelationDays": {
     "one": "✨ %{days} jour de relation",
     "other": "✨ %{days} jours de relation"
@@ -157,14 +156,6 @@
   "modal:shareRelationKey:info:secondary": "Partage la à ton partenaire pour qu’il te rejoigne !",
   "modal:shareRelationKey:shareBySMS:title": "Join Both relation",
   "modal:shareRelationKey:shareBySMS:message": "Coucou, retrouve moi sur both pour partager de l’amour et un peu de notre quotidien ! Télécharge l’application links.appboth.com et utilise la clé %{code} pour me rejoindre ❤️",
-
-  "alert:deleteUserTask:title": "Supprimer cette tâche",
-  "alert:deleteUserTask:description": {
-    "one": "%{firstName}, en supprimant cette tâche tu perdras %{points} point. Es-tu sûr de toi ?",
-    "other": "%{firstName}, en supprimant cette tâche tu perdras %{points} points. Es-tu sûr de toi ?"
-  },
-  "alert:deleteUserTask:noButton": "Non",
-  "alert:deleteUserTask:yesButton": "Oui",
 
   "alert:endRelation:title": "Mettre fin à la relation",
   "alert:endRelation:description": "Oh non, vous étiez si mignons tous les deux... De notre coté cela signifie que nous allons supprimer l'intégralité de vos données et que votre compte ne sera plus accessible. On se quitte vraiment ?",
