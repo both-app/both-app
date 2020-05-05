@@ -1,11 +1,5 @@
 import React, { useCallback, FC, ReactNode } from 'react'
-import {
-  View,
-  StyleSheet,
-  StatusBar,
-  Platform,
-  SafeAreaView,
-} from 'react-native'
+import { View, StyleSheet, StatusBar, Platform } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native'
 
 import { colors } from 'res/colors'
@@ -65,8 +59,6 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.skin100,
     borderTopRightRadius: 10,
     borderTopLeftRadius: 10,
-    paddingLeft: PADDINGX,
-    paddingRight: PADDINGX,
     position: 'relative',
   },
   badge: {

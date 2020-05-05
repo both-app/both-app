@@ -39,7 +39,7 @@ export const AppLoader = ({ children }) => {
   )
 
   if (hasError) {
-    logout()
+    logout(false)
   }
 
   if (dataIsFetched && !hasError) {

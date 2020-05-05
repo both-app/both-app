@@ -12,7 +12,7 @@ export const Scroll: FC<ScrollProps> = ({ children, style }) => (
   >
     {children}
 
-    <View style={styles.bottom} />
+    <View style={styles.listBottom} />
   </ScrollView>
 )
 
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  bottom: {
-    marginBottom: 110,
+  listBottom: {
+    marginBottom: 24,
   },
 })

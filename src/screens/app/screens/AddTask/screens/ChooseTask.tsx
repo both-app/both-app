@@ -18,6 +18,7 @@ import { Scroll } from 'library/layouts/Scroll'
 import { Task } from './components/Task'
 import { AddTaskStackParamList } from '../AddTask.navigator'
 import { AddTaskContext } from '../AddTask.context'
+import { ROUTES } from '../AddTask.navigator'
 
 type ChooseTaskRouteProps = RouteProp<AddTaskStackParamList, 'ChooseTask'>
 
@@ -48,7 +49,10 @@ export const ChooseTaskScreen = () => {
       return navigation.navigate('Home')
     }
 
-    return navigation.navigate('ChooseTaskDifficulty', { category, task })
+    return navigation.navigate(ROUTES.CHOOSE_TASK_DIFFICULTY, {
+      category,
+      task,
+    })
   }
 
   const handleOnBack = () => navigation.goBack()
