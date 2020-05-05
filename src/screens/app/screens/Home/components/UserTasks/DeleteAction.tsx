@@ -4,8 +4,8 @@ import { Animated, Text, StyleSheet } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import * as Haptics from 'expo-haptics'
 
-import { t } from 'i18n-js'
 import { colors } from 'res/colors'
+import { useT } from 'res/i18n'
 
 import { UserTaskContext } from 'screens/app/contexts/UserTask.context'
 import { UserScoreContext } from 'screens/app/contexts/UserScore.context'
@@ -18,6 +18,7 @@ interface DeleActionProps {
 }
 
 export const DeleteAction: FC<DeleActionProps> = ({ progress, userTask }) => {
+  const { t } = useT()
   const { deleteUserTask } = useContext(UserTaskContext)
   const { fetchUserScore } = useContext(UserScoreContext)
 
