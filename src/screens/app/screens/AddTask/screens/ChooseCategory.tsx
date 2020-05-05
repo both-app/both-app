@@ -2,6 +2,8 @@ import React, { useContext, useState, useCallback } from 'react'
 import { StyleSheet } from 'react-native'
 import { useNavigation, useFocusEffect } from '@react-navigation/core'
 
+import { useT } from 'res/i18n'
+
 import { CategoryContext } from 'screens/app/contexts/Category.context'
 import { TaskContext } from 'screens/app/contexts/Task.context'
 
@@ -10,7 +12,7 @@ import { Label } from 'library/components/Label'
 import { CardButton } from 'library/components/CardButton'
 import { Scroll } from 'library/layouts/Scroll'
 
-import { useT } from 'res/i18n'
+import { ROUTES } from '../AddTask.navigator'
 
 export const ChooseCategoryScreen = () => {
   const { t } = useT()
@@ -29,7 +31,7 @@ export const ChooseCategoryScreen = () => {
   const handleOnAction = async (category: Category) => {
     setSelectedId(category.id)
 
-    navigation.navigate('ChooseTask', { category })
+    navigation.navigate(ROUTES.CHOOSE_TASK, { category })
   }
 
   const handleOnClose = () => {

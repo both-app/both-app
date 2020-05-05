@@ -18,7 +18,7 @@ describe('Icon', () => {
     ['rotate'],
     ['loader'],
     ['linkedin'],
-    ['user'],
+    ['users'],
   ] as Array<[IconName]>
 
   test.each(ICONS)('should display the icon', (iconName) => {

@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { TouchableOpacity, StyleSheet } from 'react-native'
+import { TouchableOpacity, StyleSheet, Platform } from 'react-native'
 import * as Haptics from 'expo-haptics'
 
 import { Color, colors } from 'res/colors'
@@ -17,7 +17,9 @@ interface IconButtonProps extends IconProps {
 
 export const IconButton: FC<IconButtonProps> = ({ onAction, ...props }) => {
   const handleOnPress = async () => {
-    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+    if (Platform.OS === 'ios') {
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+    }
 
     return onAction()
   }

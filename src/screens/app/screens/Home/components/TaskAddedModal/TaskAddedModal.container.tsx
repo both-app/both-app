@@ -3,7 +3,7 @@ import * as Haptics from 'expo-haptics'
 
 import { TaskAddedModal } from './TaskAddedModal'
 import { UsersContext } from 'screens/app/contexts/Users.context'
-import { TaskAddedModalContext } from './TaskAddedModal.context'
+import { TaskAddedModalContext } from 'screens/app/contexts/TaskAddedModal.context'
 
 export const TaskAddedModalContainer = () => {
   const { me } = useContext(UsersContext)
