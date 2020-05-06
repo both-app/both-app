@@ -16,11 +16,9 @@ import { UsersContext } from 'screens/app/contexts/Users.context'
 import { useNavigation, useFocusEffect } from '@react-navigation/native'
 import { AuthContext, AuthApiContext } from 'screens/auth/contexts'
 import { Value } from './components'
-import { format } from 'date-fns'
-import { getDateFnsLocale } from 'res/date'
 
 export const SettingsScreen = () => {
-  const { t, locale } = useT()
+  const { t } = useT()
   const navigation = useNavigation()
   const { me, partner } = useContext(UsersContext)
   const { logout } = useContext(AuthContext)
@@ -31,10 +29,6 @@ export const SettingsScreen = () => {
       loadTeamAvatars()
     }, [])
   )
-
-  const formattedBirthDate = format(new Date(me.birthDate), 'P', {
-    locale: getDateFnsLocale(locale),
-  })
 
   const formattedGender = {
     male: t('male'),
@@ -103,11 +97,6 @@ export const SettingsScreen = () => {
         <Value
           label={t('app:screen:profil:firstName')}
           value={me.firstName}
-          marginBottom={16}
-        />
-        <Value
-          label={t('app:screen:profil:birthDate')}
-          value={formattedBirthDate}
           marginBottom={16}
         />
         <Value

@@ -44,7 +44,6 @@ export const PushNotificationScreen = () => {
   const createRelationAndLogin = async (pushToken: string) => {
     const result = await createRelation({
       firstName: values.firstName,
-      birthDate: new Date(values.birthDate).getTime(),
       gender: values.gender,
       ...(pushToken ? { pushToken } : {}),
     })
@@ -56,7 +55,6 @@ export const PushNotificationScreen = () => {
     try {
       const result = await joinRelation({
         firstName: values.firstName,
-        birthDate: new Date(values.birthDate).getTime(),
         gender: values.gender,
         code: values.code,
         ...(pushToken ? { pushToken } : {}),

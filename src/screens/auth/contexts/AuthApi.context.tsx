@@ -12,13 +12,11 @@ type AuthResponse = APIResponse<{
 interface AuthApiContextProps {
   createRelation: (params: {
     firstName: string
-    birthDate: number
     gender: string
     pushToken: string
   }) => Promise<AxiosResponse<AuthResponse>>
   joinRelation: (params: {
     firstName: string
-    birthDate: number
     gender: string
     code: string
     pushToken: string
