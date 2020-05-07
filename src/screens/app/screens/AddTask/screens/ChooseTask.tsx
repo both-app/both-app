@@ -29,7 +29,6 @@ export const ChooseTaskScreen = () => {
   const [selectedId, setSelectedId] = useState<string | null>(null)
 
   const { getTasksByCategoryId } = useContext(TaskContext)
-
   const { addTask } = useContext(AddTaskContext)
 
   const { category } = route.params
@@ -70,8 +69,8 @@ export const ChooseTaskScreen = () => {
         />
       }
     >
-      <Scroll style={styles.tasksContainer}>
-        {tasks.map((task) => (
+      <Scroll marginTop={72} marginBottom={24}>
+        {tasks.map((task: Task) => (
           <Task
             key={task.id}
             task={task}
@@ -88,8 +87,5 @@ export const ChooseTaskScreen = () => {
 const styles = StyleSheet.create({
   formContainer: {
     flex: 1,
-  },
-  tasksContainer: {
-    paddingTop: 72,
   },
 })

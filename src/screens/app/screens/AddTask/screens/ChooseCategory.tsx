@@ -49,8 +49,8 @@ export const ChooseCategoryScreen = () => {
         />
       }
     >
-      <Scroll style={styles.categoriesContainer}>
-        {categories.map((category) => {
+      <Scroll marginTop={72} marginBottom={24}>
+        {categories.map((category: Category) => {
           const taskNumber = getTasksByCategoryId(category.id).length
 
           return (
@@ -80,8 +80,5 @@ export const ChooseCategoryScreen = () => {
 const styles = StyleSheet.create({
   formContainer: {
     flex: 1,
-  },
-  categoriesContainer: {
-    paddingTop: 72,
   },
 })

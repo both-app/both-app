@@ -6,7 +6,6 @@ interface FormContextProps {
     gender: string
     code: string
     type: string
-    birthDate: string
   }
   setValue: (fieldName: keyof FormContextProps['values'], value: string) => void
 }
@@ -20,7 +19,6 @@ const FormContextProvider: FC = ({ children }) => {
     gender: '',
     type: '',
     code: '',
-    birthDate: '',
   })
 
   const setValue = (fieldName: string, value: string) =>

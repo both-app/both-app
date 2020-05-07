@@ -18,7 +18,7 @@ export const GenderScreen = () => {
   const handleOnChange = (value: 'female' | 'male' | 'other') => {
     setValue('gender', value)
 
-    return navigation.navigate('BirthDate')
+    return navigation.navigate('PushNotification')
   }
 
   const handleOnBack = () => {

@@ -56,7 +56,7 @@ export const ChooseTaskDifficultyScreen = () => {
         />
       }
     >
-      <Scroll style={styles.tasksContainer}>
+      <Scroll marginTop={72} marginBottom={24}>
         {task.difficulties.map((taskDifficulty, index) => (
           <TaskDifficulty
             key={index}
@@ -75,8 +75,5 @@ export const ChooseTaskDifficultyScreen = () => {
 const styles = StyleSheet.create({
   formContainer: {
     flex: 1,
-  },
-  tasksContainer: {
-    paddingTop: 72,
   },
 })
