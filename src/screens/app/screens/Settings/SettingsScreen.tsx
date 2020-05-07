@@ -93,7 +93,7 @@ export const SettingsScreen = () => {
     <View style={styles.container}>
       <Label primary={t('app:screen:settings:title')} />
 
-      <Scroll style={styles.scrollContainer}>
+      <Scroll style={styles.scrollContainer} marginTop={24} marginBottom={24}>
         <Value
           label={t('app:screen:profil:firstName')}
           value={me.firstName}
@@ -174,7 +174,6 @@ export const SettingsScreen = () => {
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     paddingTop: 55,
     backgroundColor: colors.skin100,
   },
@@ -183,9 +182,7 @@ export const styles = StyleSheet.create({
     paddingLeft: 24,
   },
   scrollContainer: {
-    width: '100%',
     flex: 1,
-    paddingTop: 24,
     paddingLeft: 24,
     paddingRight: 24,
   },
