@@ -36,7 +36,6 @@ const initialState: UsersContextState = {
     firstName: '',
     gender: 'other',
     relationId: '',
-    birthDate: '',
     pushToken: '',
   },
   partner: {
@@ -44,7 +43,6 @@ const initialState: UsersContextState = {
     firstName: '',
     gender: 'other',
     relationId: '',
-    birthDate: '',
     pushToken: '',
   },
   relation: null,

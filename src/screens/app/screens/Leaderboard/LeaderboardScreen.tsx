@@ -79,7 +79,7 @@ export const LeaderboardScreen = () => {
       }
       badge={<CountdownBadge />}
     >
-      <Scroll style={styles.scrollContainer}>
+      <Scroll style={styles.scrollContainer} marginTop={24} marginBottom={24}>
         {ranking.map((user: RankedUser) => (
           <UserRecap
             key={user.id}
@@ -98,6 +98,5 @@ export const LeaderboardScreen = () => {
 const styles = StyleSheet.create({
   scrollContainer: {
     marginHorizontal: 24,
-    paddingTop: 24,
   },
 })

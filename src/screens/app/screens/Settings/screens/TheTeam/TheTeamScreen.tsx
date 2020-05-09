@@ -43,7 +43,7 @@ export const TheTeamScreen = () => {
         />
       </View>
 
-      <Scroll style={styles.scrollContainer}>
+      <Scroll style={styles.scrollContainer} marginTop={45} marginBottom={24}>
         <Member
           firsName="Mathieu"
           emoji="🐸"
@@ -86,7 +86,6 @@ export const TheTeamScreen = () => {
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     paddingTop: 55,
     paddingLeft: 24,
     paddingRight: 24,
@@ -98,8 +97,6 @@ export const styles = StyleSheet.create({
   },
   scrollContainer: {
     flex: 1,
-    width: '100%',
-    paddingTop: 45,
   },
   teamInfo: {
     marginTop: 40,

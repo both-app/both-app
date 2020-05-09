@@ -1,5 +1,5 @@
 import React, { useCallback, FC, ReactNode } from 'react'
-import { View, StyleSheet, StatusBar, Platform } from 'react-native'
+import { View, StyleSheet, StatusBar, SafeAreaView } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native'
 
 import { colors } from 'res/colors'
@@ -19,33 +19,29 @@ export const Layout: FC<LayoutProps> = ({ children, header, badge }) => {
     }, [])
   )
 
-  const containerStyle = Platform.select({
-    ios: {
-      ...styles.container,
-      paddingTop: 65,
-    },
-    android: {
-      ...styles.container,
-      paddingTop: 45,
-    },
-  })
-
   return (
-    <View style={containerStyle}>
-      <View style={styles.header}>{header}</View>
+    <SafeAreaView style={styles.safeView}>
+      <View style={styles.container}>
+        <View style={styles.header}>{header}</View>
 
-      <View style={styles.body}>
-        <View style={styles.badge}>{badge}</View>
-        {children}
+        <View style={styles.body}>
+          <View style={styles.badge}>{badge}</View>
+          {children}
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   )
 }
 
 export const styles = StyleSheet.create({
+  safeView: {
+    flex: 1,
+    backgroundColor: colors.dark100,
+  },
   container: {
     flex: 1,
     backgroundColor: colors.dark100,
+    paddingTop: PADDINGY,
   },
   header: {
     paddingLeft: PADDINGX,

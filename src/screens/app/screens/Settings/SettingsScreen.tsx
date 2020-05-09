@@ -16,11 +16,9 @@ import { UsersContext } from 'screens/app/contexts/Users.context'
 import { useNavigation, useFocusEffect } from '@react-navigation/native'
 import { AuthContext, AuthApiContext } from 'screens/auth/contexts'
 import { Value } from './components'
-import { format } from 'date-fns'
-import { getDateFnsLocale } from 'res/date'
 
 export const SettingsScreen = () => {
-  const { t, locale } = useT()
+  const { t } = useT()
   const navigation = useNavigation()
   const { me, partner } = useContext(UsersContext)
   const { logout } = useContext(AuthContext)
@@ -31,10 +29,6 @@ export const SettingsScreen = () => {
       loadTeamAvatars()
     }, [])
   )
-
-  const formattedBirthDate = format(new Date(me.birthDate), 'P', {
-    locale: getDateFnsLocale(locale),
-  })
 
   const formattedGender = {
     male: t('male'),
@@ -99,15 +93,10 @@ export const SettingsScreen = () => {
     <View style={styles.container}>
       <Label primary={t('app:screen:settings:title')} />
 
-      <Scroll style={styles.scrollContainer}>
+      <Scroll style={styles.scrollContainer} marginTop={24} marginBottom={24}>
         <Value
           label={t('app:screen:profil:firstName')}
           value={me.firstName}
-          marginBottom={16}
-        />
-        <Value
-          label={t('app:screen:profil:birthDate')}
-          value={formattedBirthDate}
           marginBottom={16}
         />
         <Value
@@ -185,7 +174,6 @@ export const SettingsScreen = () => {
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     paddingTop: 55,
     backgroundColor: colors.skin100,
   },
@@ -194,9 +182,7 @@ export const styles = StyleSheet.create({
     paddingLeft: 24,
   },
   scrollContainer: {
-    width: '100%',
     flex: 1,
-    paddingTop: 24,
     paddingLeft: 24,
     paddingRight: 24,
   },
