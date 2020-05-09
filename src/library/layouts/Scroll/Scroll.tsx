@@ -12,18 +12,27 @@ export const Scroll: FC<ScrollProps> = ({
   style = {},
   marginBottom,
   marginTop,
-}) => (
-  <ScrollView
-    showsVerticalScrollIndicator={false}
-    style={{ ...styles.container, ...style }}
-  >
-    <View style={{ height: 1, ...(marginTop ? { marginTop } : {}) }} />
+}) => {
+  const containerStyle = { ...styles.container, ...style }
 
-    {children}
+  const topElementStyle = {
+    height: 1,
+    ...(marginTop ? { marginTop } : {}),
+  }
 
-    <View style={{ height: 1, ...(marginBottom ? { marginBottom } : {}) }} />
-  </ScrollView>
-)
+  const bottomElementStyle = {
+    height: 1,
+    ...(marginBottom ? { marginBottom } : {}),
+  }
+
+  return (
+    <ScrollView showsVerticalScrollIndicator={false} style={containerStyle}>
+      <View style={topElementStyle} />
+      {children}
+      <View style={bottomElementStyle} />
+    </ScrollView>
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
