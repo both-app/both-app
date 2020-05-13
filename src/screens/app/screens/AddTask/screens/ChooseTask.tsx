@@ -69,7 +69,7 @@ export const ChooseTaskScreen = () => {
         />
       }
     >
-      <Scroll marginTop={72} marginBottom={24}>
+      <Scroll marginTop={52} marginBottom={24}>
         {tasks.map((task: Task) => (
           <Task
             key={task.id}

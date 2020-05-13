@@ -60,16 +60,18 @@ export const FirstNameScreen = () => {
         <Info
           hide={!error.length}
           withHapticFeedback
-          color="danger"
+          color="critical"
           primary={error[0]}
           secondary={error[1]}
         />
       }
     >
-      <Input
-        placeholder={t('auth:screen:form:firstName:input')}
-        onChangeText={handleOnChangeText}
-      />
+      <View style={styles.inputContainer}>
+        <Input
+          placeholder={t('auth:screen:form:firstName:input')}
+          onChangeText={handleOnChangeText}
+        />
+      </View>
     </FormLayout>
   )
 }
@@ -78,6 +80,8 @@ const styles = StyleSheet.create({
   formContainer: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-between',
+  },
+  inputContainer: {
+    marginTop: 52,
   },
 })

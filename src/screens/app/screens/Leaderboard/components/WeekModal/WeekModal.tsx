@@ -35,7 +35,7 @@ export const WeekModal: FC<WeekModalProps> = ({
 
   const badgeColor = {
     winner: 'success',
-    loser: 'danger',
+    loser: 'critical',
   }[type] as Color
 
   const infoPrimary = {

@@ -1,0 +1,83 @@
+import React, { useState } from 'react'
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
+import { useNavigation, RouteProp, useRoute } from '@react-navigation/core'
+
+import { colors } from 'res/colors'
+
+import { FormLayout } from 'library/layouts/FormLayout'
+import { Label } from 'library/components/Label'
+
+import { EmojiModal } from 'screens/app/components/EmojiModal'
+
+import { CreateTaskStackParamList } from '../CreateTask.navigator'
+import { TaskPreview } from '../components/TaskPreview'
+
+type ChooseEmojiRouteProps = RouteProp<CreateTaskStackParamList, 'ChooseEmoji'>
+
+export const ChooseEmojiScreen = () => {
+  const navigation = useNavigation()
+  const route = useRoute<ChooseEmojiRouteProps>()
+  const [modalIsVisible, setModalIsVisible] = useState<boolean>(false)
+  const [selectedEmoji, setEmoji] = useState<string>('🌱')
+
+  const { taskName } = route.params
+
+  const handleEmojiSelected = (emoji: string) => {
+    setEmoji(emoji)
+    setModalIsVisible(false)
+  }
+
+  const handleOnBack = () => {
+    navigation.goBack()
+  }
+
+  const handleOnNext = () => {
+    navigation.navigate('ChoosePoints', { taskName, emoji: selectedEmoji })
+  }
+
+  return (
+    <FormLayout
+      containerStyle={styles.formContainer}
+      onBackAction={handleOnBack}
+      onNextAction={handleOnNext}
+      label={<Label primary="Super idée 👏" secondary="Choisis un Emoji" />}
+      bottomInfo={
+        <TaskPreview emoji={selectedEmoji} taskName={taskName} points={0} />
+      }
+    >
+      <TouchableOpacity
+        onPress={() => setModalIsVisible(true)}
+        activeOpacity={1}
+      >
+        <View style={styles.selectedEmoji}>
+          <Text style={styles.emoji}>{selectedEmoji}</Text>
+        </View>
+      </TouchableOpacity>
+
+      <EmojiModal
+        isVisible={modalIsVisible}
+        onClose={() => setModalIsVisible(false)}
+        onEmojiSelected={handleEmojiSelected}
+      />
+    </FormLayout>
+  )
+}
+
+const styles = StyleSheet.create({
+  formContainer: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  selectedEmoji: {
+    width: 108,
+    height: 108,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.skin200,
+    borderRadius: 19.2,
+    marginTop: 52,
+  },
+  emoji: {
+    fontSize: 60,
+  },
+})

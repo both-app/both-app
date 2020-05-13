@@ -56,7 +56,7 @@ export const ChooseTaskDifficultyScreen = () => {
         />
       }
     >
-      <Scroll marginTop={72} marginBottom={24}>
+      <Scroll marginTop={52} marginBottom={24}>
         {task.difficulties.map((taskDifficulty, index) => (
           <TaskDifficulty
             key={index}

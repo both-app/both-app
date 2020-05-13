@@ -4,6 +4,7 @@ import {
   View,
   TouchableWithoutFeedback,
   KeyboardAvoidingView,
+  Keyboard,
   Platform,
   StatusBar,
   SafeAreaView,
@@ -50,10 +51,10 @@ export const FormLayout: FC<FormLayoutProps> = ({
         testID={testID}
         behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
       >
-        <TouchableWithoutFeedback>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <>
             {Platform.OS == 'ios' && (
-              <>
+              <View style={{ paddingLeft: 24 }}>
                 {onBackAction && (
                   <MinimalButton
                     iconName="chevron_left"
@@ -69,12 +70,21 @@ export const FormLayout: FC<FormLayoutProps> = ({
                     iconColor="dark100"
                   />
                 )}
-              </>
+              </View>
             )}
 
             <View style={{ marginTop: 24, ...containerStyle }}>
               {label}
-              {children}
+
+              <View
+                style={{
+                  flex: 1,
+                  paddingHorizontal: 24,
+                  marginBottom: 12,
+                }}
+              >
+                {children}
+              </View>
 
               {(onNextAction || onFinishAction || bottomInfo) && (
                 <View style={styles.bottomContainer}>
@@ -118,14 +128,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 24,
-    paddingLeft: 24,
-    paddingRight: 24,
   },
   buttonContainer: {
     alignItems: 'center',
     marginTop: 16,
   },
   bottomContainer: {
-    marginBottom: 32,
+    width: '100%',
+    overflow: 'hidden',
+    bottom: 12,
   },
 })
