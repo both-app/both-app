@@ -10,7 +10,7 @@ import {
 import { UsersContext } from 'screens/app/contexts/Users.context'
 import { TaskContext } from 'screens/app/contexts/Task.context'
 
-import { UserRecap } from './components/UserRecap'
+import { UserRecap, UserRecapPlaceholder } from './components/UserRecap'
 import { CountdownBadge } from './components/CountdownBadge'
 import { DrawHeader, WinnerHeader } from './components/Header'
 
@@ -90,6 +90,8 @@ export const LeaderboardScreen = () => {
             taskName={user.favoriteTask?.name || ''}
           />
         ))}
+
+        {ranking.length === 1 && <UserRecapPlaceholder />}
       </Scroll>
     </Layout>
   )
