@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { StyleSheet } from 'react-native'
 import { useNavigation, RouteProp, useRoute } from '@react-navigation/core'
+
+import { colors } from 'res/colors'
 
 import { FormLayout } from 'library/layouts/FormLayout'
 import { Label } from 'library/components/Label'
@@ -10,6 +12,7 @@ import { Point } from 'library/components/Point'
 
 import { CreateTaskStackParamList } from '../CreateTask.navigator'
 import { TaskPreview } from '../components/TaskPreview'
+import { CreateTaskContext } from '../CreateTask.context'
 
 type ChoosePointsRouteProps = RouteProp<
   CreateTaskStackParamList,
@@ -52,7 +55,9 @@ const CONFIG_POINTS = [
 export const ChoosePointsScreen = () => {
   const navigation = useNavigation()
   const route = useRoute<ChoosePointsRouteProps>()
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
   const [points, setPoints] = useState<number>(0)
+  const { createTask } = useContext(CreateTaskContext)
 
   const { taskName, emoji } = route.params
 
@@ -60,15 +65,21 @@ export const ChoosePointsScreen = () => {
     navigation.goBack()
   }
 
-  const handleOnNext = () => {
+  const handleOnFinish = async () => {
+    await createTask({ emoji, name: taskName, points })
     navigation.navigate('Home')
+  }
+
+  const handleOnAction = (index: number, points: number) => {
+    setSelectedIndex(index)
+    setPoints(points)
   }
 
   return (
     <FormLayout
       containerStyle={styles.formContainer}
       onBackAction={handleOnBack}
-      onFinishAction={handleOnNext}
+      onFinishAction={handleOnFinish}
       label={
         <Label primary="Et enfin 🤔" secondary="Le niveau de difficulté..." />
       }
@@ -83,8 +94,11 @@ export const ChoosePointsScreen = () => {
             emoji={config.emoji}
             title={config.title}
             rightContent={<Point points={config.points} />}
-            onAction={() => setPoints(config.points)}
+            onAction={() => handleOnAction(index, config.points)}
             containerStyle={{ marginBottom: 8 }}
+            activeBackgroundColor={colors.dark200}
+            activeTextColor={colors.white}
+            active={index === selectedIndex}
           />
         ))}
       </Scroll>

@@ -28,6 +28,7 @@ export const api = axios.create({
 api.interceptors.request.use(async (config) => {
   const jwtToken = await getItem('jwtToken')
   if (jwtToken) {
+    console.log(jwtToken)
     config.headers.Authorization = `Bearer ${jwtToken}`
   }
 
