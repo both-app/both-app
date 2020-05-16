@@ -25,7 +25,7 @@ export const Layout: FC<LayoutProps> = ({ children, header, badge }) => {
         <View style={styles.header}>{header}</View>
 
         <View style={styles.body}>
-          <View style={styles.badge}>{badge}</View>
+          {!!badge && <View style={styles.badge}>{badge}</View>}
           {children}
         </View>
       </View>
