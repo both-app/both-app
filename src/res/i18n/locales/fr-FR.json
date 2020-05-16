@@ -143,7 +143,6 @@
   "app:screen:newUserTask:chooseTaskDifficulty:subtitle": "C'était...",
   "app:screen:newUserTask:chooseTask:createNewTask:title": "Créer une nouvelle tâche",
   "app:screen:newUserTask:chooseTask:createNewTask:subtitle": "3 étapes rapides",
-
   "app:screen:createTask:chooseName:title": "Nouvelle tâche 🌱",
   "app:screen:createTask:chooseName:subtitle": "Donne lui un nom...",
   "app:screen:createTask:chooseName:input:placeholder": "Nom de la tâche",
@@ -154,7 +153,6 @@
   "app:screen:createTask:chooseDifficulties:title": "Et enfin 🤔",
   "app:screen:createTask:chooseDifficulties:subtitle": "Les niveaux de difficulté...",
   "app:screen:createTask:taskPreview:title": "Aperçu de ta nouvelle tâche",
-  "app:screen:createTask:taskPreview:button:subtitle": "1 niveau de difficulté",
 
   "app:screen:leaderboard:winnersOfTheWeek": "Champions de la semaine",
   "app:screen:leaderboard:winnerOfTheWeek:male": "Champion de la semaine",
