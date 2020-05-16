@@ -104,6 +104,8 @@
   "app:screen:settings:button:theTeam:subtitle": "Hello, that's us!",
   "app:screen:settings:button:shareIdeas:title": "Share ideas for improvement (FR)",
   "app:screen:settings:button:shareIdeas:subtitle": "New category or new feature",
+  "app:screen:settings:button:joinBothClub:title": "Join the Both club (FR)",
+  "app:screen:settings:button:joinBothClub:subtitle": "Participate in the evolution of the app.",
   "app:screen:settings:button:voteTheApp:title": "Give a 5-Star rating on the store",
   "app:screen:settings:button:voteTheApp:subtitle": "It would make us really happy",
   "app:screen:settings:button:protectData:title": "Privacy policy",

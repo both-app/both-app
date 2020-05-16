@@ -105,6 +105,8 @@
   "app:screen:settings:button:theTeam:subtitle": "Coucou c’est nous !",
   "app:screen:settings:button:shareIdeas:title": "Partager des idées d’amélioration",
   "app:screen:settings:button:shareIdeas:subtitle": "Nouvelle catégorie ou fonctionnalité",
+  "app:screen:settings:button:joinBothClub:title": "Rejoindre le Both Club",
+  "app:screen:settings:button:joinBothClub:subtitle": "Participe à l’évolution de l’app.",
   "app:screen:settings:button:voteTheApp:title": "Donner 5 étoiles sur le store",
   "app:screen:settings:button:voteTheApp:subtitle": "Ça nous ferait vraiment plaisir",
   "app:screen:settings:button:protectData:title": "Politique de confidentialité",
