@@ -1,23 +1,26 @@
 import React, { useContext, useEffect } from 'react'
 import * as Haptics from 'expo-haptics'
 
-import { TaskAddedModal } from './TaskAddedModal'
 import { UsersContext } from 'screens/app/contexts/Users.context'
 import { TaskAddedModalContext } from 'screens/app/contexts/TaskAddedModal.context'
 
+import { TaskAddedModal } from './TaskAddedModal'
+
 export const TaskAddedModalContainer = () => {
   const { me } = useContext(UsersContext)
-  const { taskAdded, closeTaskAddedModal } = useContext(TaskAddedModalContext)
+  const { taskAdded, closeTaskAddedModal, modalIsOpen } = useContext(
+    TaskAddedModalContext
+  )
 
   useEffect(() => {
-    if (taskAdded) {
+    if (modalIsOpen) {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success)
     }
-  }, [taskAdded])
+  }, [modalIsOpen])
 
   return (
     <TaskAddedModal
-      visible={!!taskAdded}
+      visible={modalIsOpen}
       userFirstName={me.firstName}
       points={taskAdded?.points}
       emoji={taskAdded?.emoji}
