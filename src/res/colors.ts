@@ -20,6 +20,7 @@ export type CategoryColor =
   | 'children'
   | 'specialCouple'
   | 'administrative'
+  | 'other'
 
 export type Color = AppColor | CategoryColor
 
@@ -46,6 +47,7 @@ export const colors = {
     children: '#FFA171',
     specialCouple: '#7489E1',
     administrative: '#698FBF',
+    other: '#A674E1',
   },
 }
 
