@@ -73,16 +73,19 @@ export const ChooseDifficultiesScreen = () => {
       categoryId: category.id,
     })
 
+    /**
+     * The params newTaskId is use to display a badge (New) on the task
+     */
     navigation.navigate('AddTaskModal', {
       screen: 'ChooseTask',
-      params: { category, selectedTaskId: task.id },
+      params: { category, newTaskId: task.id },
     })
   }
 
   const handleOnAction = (index: number) => {
     const config = CONFIG_POINTS[index]
 
-    // Delete
+    // Remove
     if (selectedIndexs.includes(index)) {
       const newSelectedIndexs = selectedIndexs.filter(
         (selectedIndex) => selectedIndex !== index
@@ -119,7 +122,7 @@ export const ChooseDifficultiesScreen = () => {
       bottomInfo={
         <TaskPreview
           emoji={emoji}
-          taskName={taskName}
+          name={taskName}
           difficulties={difficulties}
         />
       }

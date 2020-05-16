@@ -87,7 +87,7 @@ const TaskContextProvider: FC = ({ children }) => {
       return difficultiesSorted[0].points
     }
 
-    return '?'
+    return null
   }
 
   const getPoints = useCallback(

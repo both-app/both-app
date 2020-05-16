@@ -20,7 +20,7 @@ export type AddTaskStackParamList = {
   ChooseCategory: undefined
   ChooseTask: {
     category: Category
-    selectedTaskId?: string
+    newTaskId?: string
   }
   ChooseTaskDifficulty: {
     category: Category

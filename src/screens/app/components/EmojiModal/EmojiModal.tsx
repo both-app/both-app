@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { View, StyleSheet } from 'react-native'
 import EmojiSelector from 'react-native-emoji-selector'
 import RModal from 'react-native-modal'
@@ -7,28 +7,36 @@ import { colors } from 'res/colors'
 
 const MAX_HEIGHT = 400
 
-export const EmojiModal = ({ isVisible, onClose, onEmojiSelected }) => {
-  return (
-    <RModal
-      isVisible={isVisible}
-      style={styles.modal}
-      animationIn="slideInUp"
-      animationOut="slideOutDown"
-      onBackdropPress={onClose}
-    >
-      <View style={styles.container}>
-        <EmojiSelector
-          onEmojiSelected={onEmojiSelected}
-          theme={colors.dark200}
-          showHistory={false}
-          showSearchBar={false}
-          showSectionTitles={false}
-          columns={7}
-        />
-      </View>
-    </RModal>
-  )
+interface EmojiModalProps {
+  isVisible: boolean
+  onClose: () => void
+  onEmojiSelected: (emoji: string) => void
 }
+
+export const EmojiModal: FC<EmojiModalProps> = ({
+  isVisible,
+  onClose,
+  onEmojiSelected,
+}) => (
+  <RModal
+    isVisible={isVisible}
+    style={styles.modal}
+    animationIn="slideInUp"
+    animationOut="slideOutDown"
+    onBackdropPress={onClose}
+  >
+    <View style={styles.container}>
+      <EmojiSelector
+        onEmojiSelected={onEmojiSelected}
+        theme={colors.dark200}
+        showHistory={false}
+        showSearchBar={false}
+        showSectionTitles={false}
+        columns={7}
+      />
+    </View>
+  </RModal>
+)
 
 const styles = StyleSheet.create({
   modal: {

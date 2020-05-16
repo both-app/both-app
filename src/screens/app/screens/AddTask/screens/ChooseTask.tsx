@@ -33,7 +33,7 @@ export const ChooseTaskScreen = () => {
   const { getTasksByCategoryId } = useContext(TaskContext)
   const { addTask } = useContext(AddTaskContext)
 
-  const { category, selectedTaskId } = route.params
+  const { category, newTaskId } = route.params
 
   useFocusEffect(
     useCallback(() => {
@@ -92,7 +92,7 @@ export const ChooseTaskScreen = () => {
         {tasks.map((task: Task) => (
           <Task
             key={task.id}
-            isNew={task.id === selectedTaskId}
+            isNew={task.id === newTaskId}
             task={task}
             category={category}
             selectedId={selectedId}

@@ -16,7 +16,31 @@ import { ROUTES } from '../CreateTask.navigator'
 
 type ChooseEmojiRouteProps = RouteProp<CreateTaskStackParamList, 'ChooseEmoji'>
 
-const EMOJIS = ['🌱', '👅', '🐱', '🐶']
+const EMOJIS = [
+  '🌱',
+  '👅',
+  '🐱',
+  '🐶',
+  '🧸',
+  '💙',
+  '💡',
+  '💥',
+  '⛄️',
+  '🌴',
+  '🌎',
+  '🍒',
+  '🥑',
+  '🍔',
+  '🍻',
+  '🎤',
+  '🎮',
+  '⏰',
+  '🎙',
+  '💰',
+  '💊',
+  '🎉',
+  '💬',
+]
 
 const getRandomNumber = () => {
   return Math.floor(Math.random() * EMOJIS.length)
@@ -60,11 +84,7 @@ export const ChooseEmojiScreen = () => {
         />
       }
       bottomInfo={
-        <TaskPreview
-          emoji={selectedEmoji}
-          taskName={taskName}
-          difficulties={[]}
-        />
+        <TaskPreview emoji={selectedEmoji} name={taskName} difficulties={[]} />
       }
     >
       <TouchableOpacity

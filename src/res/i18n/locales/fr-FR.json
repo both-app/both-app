@@ -18,6 +18,7 @@
   "app:difficulty:5": "Très difficile",
 
   "levelOfDifficulity": {
+    "zero": "%{count} niveau de difficulté",
     "one": "%{count} niveau de difficulté",
     "other": "%{count} niveaux de difficulté"
   },

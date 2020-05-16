@@ -11,17 +11,17 @@ import { TaskContext } from 'screens/app/contexts/Task.context'
 
 interface TaskPreviewProps {
   emoji: string
-  taskName: string
-  points?: number
+  name: string
   difficulties: TaskDifficulty[]
 }
 
 export const TaskPreview: FC<TaskPreviewProps> = memo(
-  ({ emoji, taskName, difficulties }) => {
+  ({ emoji, name, difficulties }) => {
     const { t } = useT()
     const { getPointsFromDifficulties } = useContext(TaskContext)
 
     const isTaskWithDifficulties = difficulties.length > 1
+    const points = getPointsFromDifficulties(difficulties) || '?'
 
     return (
       <View style={styles.bottom}>
@@ -31,12 +31,12 @@ export const TaskPreview: FC<TaskPreviewProps> = memo(
           </Text>
           <CardButton
             emoji={emoji}
-            title={taskName}
+            title={name}
             subtitle={t('levelOfDifficulity', { count: difficulties.length })}
             disabled
             rightContent={
               <Point
-                points={getPointsFromDifficulties(difficulties)}
+                points={points}
                 shape={isTaskWithDifficulties ? 'rectangle' : 'circle'}
               />
             }

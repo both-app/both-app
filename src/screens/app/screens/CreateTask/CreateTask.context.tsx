@@ -23,18 +23,23 @@ const CreateTaskContextProvider: FC = ({ children }) => {
   const { addTask } = useContext(TaskContext)
 
   const createTask: CreateTaskContextProps['createTask'] = async (params) => {
-    const result = await api.post<CreateCustomTaskResponse>('tasks/custom', {
+    const {
+      data: {
+        data: { customTask: task },
+      },
+    } = await api.post<CreateCustomTaskResponse>('tasks/custom', {
       emoji: params.emoji,
       name: params.name,
       categoryId: params.categoryId,
       difficulties: params.difficulties,
     })
 
-    const task = result.data.data.customTask
-
     addTask(task)
 
-    Analytics.logEvent('CreateTask')
+    Analytics.logEvent('CreateTask', {
+      categoryId: params.categoryId,
+      difficultiesLength: params.difficulties.length,
+    })
 
     return task
   }
