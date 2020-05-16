@@ -17,6 +17,11 @@
   "app:difficulty:4": "Difficile",
   "app:difficulty:5": "Très difficile",
 
+  "levelOfDifficulity": {
+    "one": "%{count} niveau de difficulté",
+    "other": "%{count} niveaux de difficulté"
+  },
+
   "input:date:day": "Jour",
   "input:date:day:placeholder": "JJ",
   "input:date:month": "Mois",
@@ -134,10 +139,6 @@
   },
   "app:screen:newUserTask:chooseTask:subtitle": "Et qu'as-tu fait ?",
   "app:screen:newUserTask:chooseTaskDifficulty:subtitle": "C'était...",
-  "app:screen:newUserTask:chooseTask:levelOfDifficulity": {
-    "one": "%{count} niveau de difficulté",
-    "other": "%{count} niveaux de difficulté"
-  },
   "app:screen:newUserTask:chooseTask:createNewTask:title": "Créer une nouvelle tâche",
   "app:screen:newUserTask:chooseTask:createNewTask:subtitle": "3 étapes rapides",
 
@@ -148,8 +149,8 @@
   "app:screen:createTask:chooseName:error:missing:subtitle": "Aide : “Faire le repas” par exemple",
   "app:screen:createTask:chooseEmoji:title": "Super idée 👏",
   "app:screen:createTask:chooseEmoji:subtitle": "Choisis un Emoji",
-  "app:screen:createTask:choosePoints:title": "Et enfin 🤔",
-  "app:screen:createTask:choosePoints:subtitle": "Le niveau de difficulté...",
+  "app:screen:createTask:chooseDifficulties:title": "Et enfin 🤔",
+  "app:screen:createTask:chooseDifficulties:subtitle": "Les niveaux de difficulté...",
   "app:screen:createTask:taskPreview:title": "Aperçu de ta nouvelle tâche",
   "app:screen:createTask:taskPreview:button:subtitle": "1 niveau de difficulté",
 

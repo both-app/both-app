@@ -11,9 +11,9 @@ interface CreateTaskContextProps {
   createTask: (params: {
     categoryId: string
     emoji: string
-    points: number
+    difficulties: TaskDifficulty[]
     name: string
-  }) => Promise<void>
+  }) => Promise<Task>
 }
 
 // @ts-ignore
@@ -27,18 +27,16 @@ const CreateTaskContextProvider: FC = ({ children }) => {
       emoji: params.emoji,
       name: params.name,
       categoryId: params.categoryId,
-      difficulties: [
-        {
-          emoji: '',
-          name: '',
-          points: params.points,
-        },
-      ],
+      difficulties: params.difficulties,
     })
 
-    addTask(result.data.data.customTask)
+    const task = result.data.data.customTask
+
+    addTask(task)
 
     Analytics.logEvent('CreateTask')
+
+    return task
   }
 
   const createTaskContextApi = useMemo(() => ({ createTask }), [createTask])

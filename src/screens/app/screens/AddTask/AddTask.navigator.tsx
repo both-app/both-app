@@ -18,7 +18,10 @@ export const initialRoute = ROUTES.CHOOSE_CATEGORY
 
 export type AddTaskStackParamList = {
   ChooseCategory: undefined
-  ChooseTask: { category: Category }
+  ChooseTask: {
+    category: Category
+    selectedTaskId?: string
+  }
   ChooseTaskDifficulty: {
     category: Category
     task: Task
@@ -42,7 +45,6 @@ export const AddTaskNavigator = () => (
         component={ChooseTaskDifficultyScreen}
         name={ROUTES.CHOOSE_TASK_DIFFICULTY}
       />
-
       <AddTaskStack.Screen
         component={CreateTaskNavigator}
         name={ROUTES.CREATE_TASK}

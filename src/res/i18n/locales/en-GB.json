@@ -16,6 +16,11 @@
   "app:difficulty:4": "Hard",
   "app:difficulty:5": "Very hard",
 
+  "levelOfDifficulity": {
+    "one": "%{count} level of difficulty",
+    "other": "%{count} levels of difficulty"
+  },
+
   "input:date:day": "Day",
   "input:date:day:placeholder": "DD",
   "input:date:month": "Month",
@@ -133,10 +138,6 @@
   },
   "app:screen:newUserTask:chooseTask:subtitle": "What did you do?",
   "app:screen:newUserTask:chooseTaskDifficulty:subtitle": "It was...",
-  "app:screen:newUserTask:chooseTask:levelOfDifficulity": {
-    "one": "%{count} level of difficulty",
-    "other": "%{count} levels of difficulty"
-  },
   "app:screen:newUserTask:chooseTask:createNewTask:title": "Create a new task",
   "app:screen:newUserTask:chooseTask:createNewTask:subtitle": "3 quick steps",
 

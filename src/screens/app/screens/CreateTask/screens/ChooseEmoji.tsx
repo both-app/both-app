@@ -12,17 +12,24 @@ import { EmojiModal } from 'screens/app/components/EmojiModal'
 
 import { CreateTaskStackParamList } from '../CreateTask.navigator'
 import { TaskPreview } from '../components/TaskPreview'
+import { ROUTES } from '../CreateTask.navigator'
 
 type ChooseEmojiRouteProps = RouteProp<CreateTaskStackParamList, 'ChooseEmoji'>
+
+const EMOJIS = ['🌱', '👅', '🐱', '🐶']
+
+const getRandomNumber = () => {
+  return Math.floor(Math.random() * EMOJIS.length)
+}
 
 export const ChooseEmojiScreen = () => {
   const { t } = useT()
   const navigation = useNavigation()
   const route = useRoute<ChooseEmojiRouteProps>()
   const [modalIsVisible, setModalIsVisible] = useState<boolean>(false)
-  const [selectedEmoji, setEmoji] = useState<string>('🌱')
+  const [selectedEmoji, setEmoji] = useState<string>(EMOJIS[getRandomNumber()])
 
-  const { taskName, categoryId } = route.params
+  const { taskName, category } = route.params
 
   const handleEmojiSelected = (emoji: string) => {
     setEmoji(emoji)
@@ -34,8 +41,8 @@ export const ChooseEmojiScreen = () => {
   }
 
   const handleOnNext = () => {
-    navigation.navigate('ChoosePoints', {
-      categoryId,
+    navigation.navigate(ROUTES.CHOOSE_DIFFICULTIES, {
+      category,
       taskName,
       emoji: selectedEmoji,
     })
@@ -53,7 +60,11 @@ export const ChooseEmojiScreen = () => {
         />
       }
       bottomInfo={
-        <TaskPreview emoji={selectedEmoji} taskName={taskName} points={0} />
+        <TaskPreview
+          emoji={selectedEmoji}
+          taskName={taskName}
+          difficulties={[]}
+        />
       }
     >
       <TouchableOpacity

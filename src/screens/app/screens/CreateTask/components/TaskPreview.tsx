@@ -1,4 +1,4 @@
-import React, { FC, memo } from 'react'
+import React, { FC, memo, useContext } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
 import { colors } from 'res/colors'
@@ -7,15 +7,21 @@ import { useT } from 'res/i18n'
 import { CardButton } from 'library/components/CardButton'
 import { Point } from 'library/components/Point'
 
+import { TaskContext } from 'screens/app/contexts/Task.context'
+
 interface TaskPreviewProps {
   emoji: string
   taskName: string
   points?: number
+  difficulties: TaskDifficulty[]
 }
 
 export const TaskPreview: FC<TaskPreviewProps> = memo(
-  ({ emoji, taskName, points = 0 }) => {
+  ({ emoji, taskName, difficulties }) => {
     const { t } = useT()
+    const { getPointsFromDifficulties } = useContext(TaskContext)
+
+    const isTaskWithDifficulties = difficulties.length > 1
 
     return (
       <View style={styles.bottom}>
@@ -26,9 +32,14 @@ export const TaskPreview: FC<TaskPreviewProps> = memo(
           <CardButton
             emoji={emoji}
             title={taskName}
-            subtitle={t('app:screen:createTask:taskPreview:button:subtitle')}
+            subtitle={t('levelOfDifficulity', { count: difficulties.length })}
             disabled
-            rightContent={<Point points={points} />}
+            rightContent={
+              <Point
+                points={getPointsFromDifficulties(difficulties)}
+                shape={isTaskWithDifficulties ? 'rectangle' : 'circle'}
+              />
+            }
           />
         </View>
       </View>

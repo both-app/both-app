@@ -19,6 +19,7 @@ interface TaskContextProps {
   getPoints: (id: string) => string
   fetchTasks: () => Promise<void>
   addTask: (task: Task) => void
+  getPointsFromDifficulties: (difficulties: TaskDifficulty[]) => number
 }
 
 type TasksResponse = APIResponse<{ tasks: Task[] }>
@@ -73,26 +74,33 @@ const TaskContextProvider: FC = ({ children }) => {
     [tasks]
   )
 
+  const getPointsFromDifficulties = (difficulties: TaskDifficulty[]) => {
+    const difficultiesSorted = difficulties.sort((a, b) => a.points - b.points)
+
+    if (difficultiesSorted.length > 1) {
+      return `${difficultiesSorted[0].points}-${
+        difficultiesSorted[difficultiesSorted.length - 1].points
+      }`
+    }
+
+    if (difficultiesSorted.length === 1) {
+      return difficultiesSorted[0].points
+    }
+
+    return '?'
+  }
+
   const getPoints = useCallback(
     (taskId: string) => {
       const task = tasks.find((task) => task.id === taskId)
-      const difficultiesSorted = task.difficulties.sort(
-        (a, b) => a.points - b.points
-      )
 
-      if (difficultiesSorted.length > 1) {
-        return `${difficultiesSorted[0].points}-${
-          difficultiesSorted[difficultiesSorted.length - 1].points
-        }`
-      }
-
-      return difficultiesSorted[0].points
+      return getPointsFromDifficulties(task.difficulties)
     },
     [tasks]
   )
 
   const addTask = (task: Task) => {
-    const newTasks = [...tasks, task]
+    const newTasks = [task, ...tasks]
 
     setItem('tasks', newTasks)
     setTasks(newTasks)
@@ -106,8 +114,17 @@ const TaskContextProvider: FC = ({ children }) => {
       getPoints,
       fetchTasks,
       addTask,
+      getPointsFromDifficulties,
     }),
-    [tasks, getTasksByCategoryId, getTaskById, getPoints, fetchTasks, addTask]
+    [
+      tasks,
+      getTasksByCategoryId,
+      getTaskById,
+      getPoints,
+      fetchTasks,
+      addTask,
+      getPointsFromDifficulties,
+    ]
   )
 
   return (

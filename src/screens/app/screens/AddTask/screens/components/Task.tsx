@@ -9,6 +9,7 @@ import { useT } from 'res/i18n'
 interface TaskProps {
   task: Task
   category: Category
+  isNew: boolean
   selectedId: string
   onAction: (taskId: Task, difficulty?: number) => void
 }
@@ -16,6 +17,7 @@ interface TaskProps {
 export const Task: FC<TaskProps> = ({
   task,
   category,
+  isNew,
   selectedId,
   onAction,
 }) => {
@@ -35,7 +37,7 @@ export const Task: FC<TaskProps> = ({
     <CardButton
       emoji={task.emoji}
       title={task.name}
-      subtitle={t('app:screen:newUserTask:chooseTask:levelOfDifficulity', {
+      subtitle={t('levelOfDifficulity', {
         count: task.difficulties.length,
       })}
       onAction={handleOnAction}

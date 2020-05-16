@@ -15,9 +15,9 @@ import { CreateTaskStackParamList } from '../CreateTask.navigator'
 import { TaskPreview } from '../components/TaskPreview'
 import { CreateTaskContext } from '../CreateTask.context'
 
-type ChoosePointsRouteProps = RouteProp<
+type ChooseDifficultiesRouteProps = RouteProp<
   CreateTaskStackParamList,
-  'ChoosePoints'
+  'ChooseDifficulties'
 >
 
 const CONFIG_POINTS = [
@@ -47,28 +47,62 @@ const CONFIG_POINTS = [
   },
 ]
 
-export const ChoosePointsScreen = () => {
+export const ChooseDifficultiesScreen = () => {
   const { t } = useT()
   const navigation = useNavigation()
-  const route = useRoute<ChoosePointsRouteProps>()
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
-  const [points, setPoints] = useState<number>(0)
+  const route = useRoute<ChooseDifficultiesRouteProps>()
+  const [selectedIndexs, setSelectedIndexs] = useState<number[]>([])
+  const [difficulties, setDifficulties] = useState<TaskDifficulty[]>([])
   const { createTask } = useContext(CreateTaskContext)
 
-  const { taskName, emoji, categoryId } = route.params
+  const { taskName, emoji, category } = route.params
 
   const handleOnBack = () => {
     navigation.goBack()
   }
 
   const handleOnFinish = async () => {
-    await createTask({ emoji, name: taskName, points, categoryId })
-    navigation.navigate('Home')
+    if (difficulties.length <= 0) {
+      return
+    }
+
+    const task = await createTask({
+      emoji,
+      name: taskName,
+      difficulties,
+      categoryId: category.id,
+    })
+
+    navigation.navigate('AddTask', {
+      screen: 'ChooseTask',
+      params: { category, selectedTaskId: task.id },
+    })
   }
 
-  const handleOnAction = (index: number, points: number) => {
-    setSelectedIndex(index)
-    setPoints(points)
+  const handleOnAction = (index: number) => {
+    const config = CONFIG_POINTS[index]
+
+    // Delete
+    if (selectedIndexs.includes(index)) {
+      const newSelectedIndexs = selectedIndexs.filter(
+        (selectedIndex) => selectedIndex !== index
+      )
+      const newDifficulties = difficulties.filter(
+        (taskDifficulty) => taskDifficulty.points !== config.points
+      )
+
+      setSelectedIndexs(newSelectedIndexs)
+      setDifficulties(newDifficulties)
+    }
+
+    // Add
+    if (!selectedIndexs.includes(index)) {
+      const newSelectedIndexs = [...selectedIndexs, index]
+      const newDifficulties = [...difficulties, { ...config, name: '' }]
+
+      setSelectedIndexs(newSelectedIndexs)
+      setDifficulties(newDifficulties)
+    }
   }
 
   return (
@@ -78,12 +112,16 @@ export const ChoosePointsScreen = () => {
       onFinishAction={handleOnFinish}
       label={
         <Label
-          primary={t('app:screen:createTask:choosePoints:title')}
-          secondary={t('app:screen:createTask:choosePoints:subtitle')}
+          primary={t('app:screen:createTask:chooseDifficulties:title')}
+          secondary={t('app:screen:createTask:chooseDifficulties:subtitle')}
         />
       }
       bottomInfo={
-        <TaskPreview emoji={emoji} taskName={taskName} points={points} />
+        <TaskPreview
+          emoji={emoji}
+          taskName={taskName}
+          difficulties={difficulties}
+        />
       }
     >
       <Scroll marginTop={52} marginBottom={24}>
@@ -93,11 +131,11 @@ export const ChoosePointsScreen = () => {
             emoji={config.emoji}
             title={t(`app:difficulty:${config.points}`)}
             rightContent={<Point points={config.points} />}
-            onAction={() => handleOnAction(index, config.points)}
+            onAction={() => handleOnAction(index)}
             containerStyle={{ marginBottom: 8 }}
             activeBackgroundColor={colors.dark200}
             activeTextColor={colors.white}
-            active={index === selectedIndex}
+            active={selectedIndexs.includes(index)}
           />
         ))}
       </Scroll>

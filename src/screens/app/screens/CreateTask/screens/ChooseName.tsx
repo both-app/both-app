@@ -9,7 +9,7 @@ import { Label } from 'library/components/Label'
 import { Info } from 'library/components/Info'
 
 import { Input } from 'screens/auth/components/Input'
-import { CreateTaskStackParamList } from '../CreateTask.navigator'
+import { CreateTaskStackParamList, ROUTES } from '../CreateTask.navigator'
 
 type ChooseNameRouteProps = RouteProp<CreateTaskStackParamList, 'ChooseName'>
 
@@ -30,8 +30,8 @@ export const ChooseNameScreen = () => {
       ])
     }
 
-    navigation.navigate('ChooseEmoji', {
-      categoryId: category.id,
+    navigation.navigate(ROUTES.CHOOSE_EMOJI, {
+      category,
       taskName,
     })
 
