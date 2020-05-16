@@ -10,11 +10,18 @@
   "other": "Other",
   "me": "me",
 
+  "app:difficulty:0": "Gift",
   "app:difficulty:1": "Very easy",
   "app:difficulty:2": "Easy",
   "app:difficulty:3": "Medium",
   "app:difficulty:4": "Hard",
   "app:difficulty:5": "Very hard",
+
+  "levelOfDifficulity": {
+    "zero": "%{count} level of difficulty",
+    "one": "%{count} level of difficulty",
+    "other": "%{count} levels of difficulty"
+  },
 
   "input:date:day": "Day",
   "input:date:day:placeholder": "DD",
@@ -99,6 +106,8 @@
   "app:screen:settings:button:theTeam:subtitle": "Hello, that's us!",
   "app:screen:settings:button:shareIdeas:title": "Share ideas for improvement (FR)",
   "app:screen:settings:button:shareIdeas:subtitle": "New category or new feature",
+  "app:screen:settings:button:joinBothClub:title": "Join the Both club (FR)",
+  "app:screen:settings:button:joinBothClub:subtitle": "Participate in the evolution of the app.",
   "app:screen:settings:button:voteTheApp:title": "Give a 5-Star rating on the store",
   "app:screen:settings:button:voteTheApp:subtitle": "It would make us really happy",
   "app:screen:settings:button:protectData:title": "Privacy policy",
@@ -133,10 +142,18 @@
   },
   "app:screen:newUserTask:chooseTask:subtitle": "What did you do?",
   "app:screen:newUserTask:chooseTaskDifficulty:subtitle": "It was...",
-  "app:screen:newUserTask:chooseTask:levelOfDifficulity": {
-    "one": "%{count} level of difficulty",
-    "other": "%{count} levels of difficulty"
-  },
+  "app:screen:newUserTask:chooseTask:createNewTask:title": "Create a new task",
+  "app:screen:newUserTask:chooseTask:createNewTask:subtitle": "3 quick steps",
+  "app:screen:createTask:chooseName:title": "New task 🌱",
+  "app:screen:createTask:chooseName:subtitle": "Give it a name...",
+  "app:screen:createTask:chooseName:input:placeholder": "Name of the task",
+  "app:screen:createTask:chooseName:error:missing:title": "🤔 Oops, it takes a name to continue!",
+  "app:screen:createTask:chooseName:error:missing:subtitle": "Help: “Make the meal” for example",
+  "app:screen:createTask:chooseEmoji:title": "Great idea 👏",
+  "app:screen:createTask:chooseEmoji:subtitle": "Choose an Emoji",
+  "app:screen:createTask:chooseDifficulties:title": "And finally 🤔",
+  "app:screen:createTask:chooseDifficulties:subtitle": "Difficulty levels...",
+  "app:screen:createTask:taskPreview:title": "Preview of the task",
 
   "app:screen:leaderboard:winnersOfTheWeek": "Leaders of the week",
   "app:screen:leaderboard:winnerOfTheWeek:male": "Leader of the week",

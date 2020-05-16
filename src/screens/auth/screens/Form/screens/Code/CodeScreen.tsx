@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import { useT } from 'res/i18n'
@@ -60,18 +60,20 @@ export const CodeScreen = () => {
         <Info
           hide={!error.length}
           withHapticFeedback
-          color="danger"
+          color="critical"
           primary={error[0]}
           secondary={error[1]}
         />
       }
     >
-      <InputCode
-        value={values.code}
-        placeholder="------"
-        length={CODE_LENGTH}
-        onChange={handleOnChangeText}
-      />
+      <View style={styles.codeContainer}>
+        <InputCode
+          value={values.code}
+          placeholder="------"
+          length={CODE_LENGTH}
+          onChange={handleOnChangeText}
+        />
+      </View>
     </FormLayout>
   )
 }
@@ -79,7 +81,8 @@ export const CodeScreen = () => {
 const styles = StyleSheet.create({
   formContainer: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'space-between',
+  },
+  codeContainer: {
+    marginTop: 52,
   },
 })

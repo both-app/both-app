@@ -6,7 +6,6 @@ export type AppColor =
   | 'white'
   | 'skin100'
   | 'skin200'
-  | 'danger'
   | 'warning'
   | 'critical'
   | 'success'
@@ -21,6 +20,7 @@ export type CategoryColor =
   | 'children'
   | 'specialCouple'
   | 'administrative'
+  | 'other'
 
 export type Color = AppColor | CategoryColor
 
@@ -33,7 +33,6 @@ export const colors = {
   white: '#FFFFFF',
   skin100: '#F9F0EB',
   skin200: '#EEE2DC',
-  danger: '#C14E7C',
   warning: '#F4A82C',
   critical: '#F42C2C',
   success: '#69CE7F',
@@ -48,6 +47,7 @@ export const colors = {
     children: '#FFA171',
     specialCouple: '#7489E1',
     administrative: '#698FBF',
+    other: '#A674E1',
   },
 }
 

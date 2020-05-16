@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    backgroundColor: 'rgba(0,0,0,0.1)',
   },
   pointsNumber: {
     fontFamily: fonts['DMSerifDisplay-Regular'],
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontSize: 8,
     position: 'relative',
-    top: -6,
+    top: -7,
     fontWeight: '500',
   },
 })

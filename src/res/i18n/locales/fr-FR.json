@@ -10,11 +10,18 @@
   "other": "Autre",
   "me": "moi",
 
+  "app:difficulty:0": "Cadeau",
   "app:difficulty:1": "Très facile",
   "app:difficulty:2": "Facile",
   "app:difficulty:3": "Contraignant",
   "app:difficulty:4": "Difficile",
   "app:difficulty:5": "Très difficile",
+
+  "levelOfDifficulity": {
+    "zero": "%{count} niveau de difficulté",
+    "one": "%{count} niveau de difficulté",
+    "other": "%{count} niveaux de difficulté"
+  },
 
   "input:date:day": "Jour",
   "input:date:day:placeholder": "JJ",
@@ -99,6 +106,8 @@
   "app:screen:settings:button:theTeam:subtitle": "Coucou c’est nous !",
   "app:screen:settings:button:shareIdeas:title": "Partager des idées d’amélioration",
   "app:screen:settings:button:shareIdeas:subtitle": "Nouvelle catégorie ou fonctionnalité",
+  "app:screen:settings:button:joinBothClub:title": "Rejoindre le Both Club",
+  "app:screen:settings:button:joinBothClub:subtitle": "Participe à l’évolution de l’app.",
   "app:screen:settings:button:voteTheApp:title": "Donner 5 étoiles sur le store",
   "app:screen:settings:button:voteTheApp:subtitle": "Ça nous ferait vraiment plaisir",
   "app:screen:settings:button:protectData:title": "Politique de confidentialité",
@@ -131,12 +140,20 @@
     "one": "%{tasks} tâche",
     "other": "%{tasks} tâches"
   },
-  "app:screen:newUserTask:chooseTask:subtitle": "Et qu'as tu fait ?",
+  "app:screen:newUserTask:chooseTask:subtitle": "Et qu'as-tu fait ?",
   "app:screen:newUserTask:chooseTaskDifficulty:subtitle": "C'était...",
-  "app:screen:newUserTask:chooseTask:levelOfDifficulity": {
-    "one": "%{count} niveau de difficulté",
-    "other": "%{count} niveaux de difficulté"
-  },
+  "app:screen:newUserTask:chooseTask:createNewTask:title": "Créer une nouvelle tâche",
+  "app:screen:newUserTask:chooseTask:createNewTask:subtitle": "3 étapes rapides",
+  "app:screen:createTask:chooseName:title": "Nouvelle tâche 🌱",
+  "app:screen:createTask:chooseName:subtitle": "Donne lui un nom...",
+  "app:screen:createTask:chooseName:input:placeholder": "Nom de la tâche",
+  "app:screen:createTask:chooseName:error:missing:title": "🤔 Oups, il faut un nom pour continuer !",
+  "app:screen:createTask:chooseName:error:missing:subtitle": "Aide : “Faire le repas” par exemple",
+  "app:screen:createTask:chooseEmoji:title": "Super idée 👏",
+  "app:screen:createTask:chooseEmoji:subtitle": "Choisis un Emoji",
+  "app:screen:createTask:chooseDifficulties:title": "Et enfin 🤔",
+  "app:screen:createTask:chooseDifficulties:subtitle": "Les niveaux de difficulté...",
+  "app:screen:createTask:taskPreview:title": "Aperçu de ta nouvelle tâche",
 
   "app:screen:leaderboard:winnersOfTheWeek": "Champions de la semaine",
   "app:screen:leaderboard:winnerOfTheWeek:male": "Champion de la semaine",

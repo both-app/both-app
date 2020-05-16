@@ -61,7 +61,7 @@ export const BirthDateScreen = () => {
         <Info
           hide={!error.length}
           withHapticFeedback
-          color="danger"
+          color="critical"
           primary={error[0]}
           secondary={error[1]}
         />

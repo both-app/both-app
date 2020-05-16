@@ -1,14 +1,17 @@
 import React, { FC, useContext } from 'react'
 
+import { useT } from 'res/i18n'
+
 import { CardButton } from 'library/components/CardButton'
 import { Point } from 'library/components/Point'
+import { Badge } from 'library/components/Badge'
 
 import { TaskContext } from 'screens/app/contexts/Task.context'
-import { useT } from 'res/i18n'
 
 interface TaskProps {
   task: Task
   category: Category
+  isNew: boolean
   selectedId: string
   onAction: (taskId: Task, difficulty?: number) => void
 }
@@ -16,6 +19,7 @@ interface TaskProps {
 export const Task: FC<TaskProps> = ({
   task,
   category,
+  isNew,
   selectedId,
   onAction,
 }) => {
@@ -35,7 +39,14 @@ export const Task: FC<TaskProps> = ({
     <CardButton
       emoji={task.emoji}
       title={task.name}
-      subtitle={t('app:screen:newUserTask:chooseTask:levelOfDifficulity', {
+      badge={
+        isNew ? (
+          <Badge size="xs" color="highlight100">
+            Nouveau
+          </Badge>
+        ) : null
+      }
+      subtitle={t('levelOfDifficulity', {
         count: task.difficulties.length,
       })}
       onAction={handleOnAction}
@@ -49,7 +60,8 @@ export const Task: FC<TaskProps> = ({
         />
       }
       containerStyle={{
-        marginBottom: 10,
+        marginBottom: 8,
+        ...(isNew ? { paddingTop: 16, paddingBottom: 16 } : {}),
       }}
     />
   )

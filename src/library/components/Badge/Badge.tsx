@@ -5,31 +5,31 @@ import { Color, colors } from 'res/colors'
 
 interface BadgeProps {
   color: Color
+  size?: 'xs' | 's'
 }
 
-export const Badge: FC<BadgeProps> = ({ color, children }) => {
+export const Badge: FC<BadgeProps> = ({ color, children, size = 's' }) => {
   const badgeStyle = {
-    ...styles.badge,
+    borderRadius: size === 's' ? 8 : 4,
+    paddingHorizontal: size === 's' ? 8 : 4,
+    paddingVertical: size === 's' ? 2 : 3,
     backgroundColor: colors[color],
+  }
+
+  const textStyle = {
+    ...styles.text,
+    fontSize: size === 's' ? 14 : 8,
   }
 
   return (
     <View style={badgeStyle}>
-      <Text style={styles.text}>{children}</Text>
+      <Text style={textStyle}>{children}</Text>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  badge: {
-    borderRadius: 8,
-    paddingLeft: 8,
-    paddingRight: 8,
-    paddingBottom: 2,
-    paddingTop: 2,
-  },
   text: {
-    fontSize: 14,
     fontWeight: 'bold',
     color: colors.white,
   },

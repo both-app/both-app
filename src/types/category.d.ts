@@ -3,4 +3,5 @@ interface Category {
   emoji: string
   name: string
   color: string
+  order: number
 }

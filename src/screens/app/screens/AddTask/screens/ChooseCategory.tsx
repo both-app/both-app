@@ -49,7 +49,7 @@ export const ChooseCategoryScreen = () => {
         />
       }
     >
-      <Scroll marginTop={72} marginBottom={24}>
+      <Scroll marginTop={52} marginBottom={24}>
         {categories.map((category: Category) => {
           const taskNumber = getTasksByCategoryId(category.id).length
 
@@ -67,7 +67,7 @@ export const ChooseCategoryScreen = () => {
               activeBackgroundColor={category.color}
               activeTextColor="white"
               containerStyle={{
-                marginBottom: 10,
+                marginBottom: 8,
               }}
             />
           )
