@@ -53,14 +53,6 @@ export const ChooseCategoryScreen = () => {
         {categories.map((category: Category) => {
           const taskNumber = getTasksByCategoryId(category.id).length
 
-          /**
-           * If we have a category without tasks inside, hide it
-           * Usefull for the category with the custom tasks
-           */
-          if (taskNumber <= 0) {
-            return null
-          }
-
           return (
             <CardButton
               key={category.id}

@@ -131,12 +131,14 @@
     "one": "%{tasks} tâche",
     "other": "%{tasks} tâches"
   },
-  "app:screen:newUserTask:chooseTask:subtitle": "Et qu'as tu fait ?",
+  "app:screen:newUserTask:chooseTask:subtitle": "Et qu'as-tu fait ?",
   "app:screen:newUserTask:chooseTaskDifficulty:subtitle": "C'était...",
   "app:screen:newUserTask:chooseTask:levelOfDifficulity": {
     "one": "%{count} niveau de difficulté",
     "other": "%{count} niveaux de difficulté"
   },
+  "app:screen:newUserTask:chooseTask:createNewTask:title": "Créer une nouvelle tâche",
+  "app:screen:newUserTask:chooseTask:createNewTask:subtitle": "3 étapes rapide",
 
   "app:screen:leaderboard:winnersOfTheWeek": "Champions de la semaine",
   "app:screen:leaderboard:winnerOfTheWeek:male": "Champion de la semaine",

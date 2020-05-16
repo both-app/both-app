@@ -19,6 +19,8 @@ import { Task } from './components/Task'
 import { AddTaskStackParamList } from '../AddTask.navigator'
 import { AddTaskContext } from '../AddTask.context'
 import { ROUTES } from '../AddTask.navigator'
+import { CardButton } from 'library/components/CardButton'
+import { colors } from 'res/colors'
 
 type ChooseTaskRouteProps = RouteProp<AddTaskStackParamList, 'ChooseTask'>
 
@@ -70,6 +72,15 @@ export const ChooseTaskScreen = () => {
       }
     >
       <Scroll marginTop={52} marginBottom={24}>
+        <CardButton
+          emoji="🔮"
+          title={t('app:screen:newUserTask:chooseTask:createNewTask:title')}
+          subtitle={t(
+            'app:screen:newUserTask:chooseTask:createNewTask:subtitle'
+          )}
+          containerStyle={styles.createNewTaskButton}
+        />
+
         {tasks.map((task: Task) => (
           <Task
             key={task.id}
@@ -87,5 +98,12 @@ export const ChooseTaskScreen = () => {
 const styles = StyleSheet.create({
   formContainer: {
     flex: 1,
+  },
+  createNewTaskButton: {
+    marginBottom: 16,
+    borderColor: colors.grey100,
+    borderStyle: 'dotted',
+    borderWidth: 3,
+    backgroundColor: colors.skin200,
   },
 })

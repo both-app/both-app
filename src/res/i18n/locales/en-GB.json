@@ -137,6 +137,8 @@
     "one": "%{count} level of difficulty",
     "other": "%{count} levels of difficulty"
   },
+  "app:screen:newUserTask:chooseTask:createNewTask:title": "Create a new task",
+  "app:screen:newUserTask:chooseTask:createNewTask:subtitle": "3 quick steps",
 
   "app:screen:leaderboard:winnersOfTheWeek": "Leaders of the week",
   "app:screen:leaderboard:winnerOfTheWeek:male": "Leader of the week",
