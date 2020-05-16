@@ -1,10 +1,9 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
-import BottomSheetBehavior from 'reanimated-bottom-sheet'
 import EmojiSelector from 'react-native-emoji-selector'
+import RModal from 'react-native-modal'
 
 import { colors } from 'res/colors'
-import RModal from 'react-native-modal'
 
 const MAX_HEIGHT = 400
 

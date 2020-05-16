@@ -1,12 +1,15 @@
-import React, { FC, createContext, useMemo } from 'react'
+import React, { FC, createContext, useMemo, useContext } from 'react'
 import * as Analytics from 'expo-firebase-analytics'
 
 import { api, APIResponse } from 'res/api'
 
-type CreateCustomTaskResponse = APIResponse<{ data: { customTask: Task } }>
+import { TaskContext } from 'screens/app/contexts/Task.context'
+
+type CreateCustomTaskResponse = APIResponse<{ customTask: Task }>
 
 interface CreateTaskContextProps {
   createTask: (params: {
+    categoryId: string
     emoji: string
     points: number
     name: string
@@ -17,12 +20,13 @@ interface CreateTaskContextProps {
 const CreateTaskContext = createContext<CreateTaskContextProps>({})
 
 const CreateTaskContextProvider: FC = ({ children }) => {
+  const { addTask } = useContext(TaskContext)
+
   const createTask: CreateTaskContextProps['createTask'] = async (params) => {
     const result = await api.post<CreateCustomTaskResponse>('tasks/custom', {
       emoji: params.emoji,
       name: params.name,
-      // TODO Create a enum with the categoryIds @mathieuletyrant
-      categoryId: 'custom_tasks',
+      categoryId: params.categoryId,
       difficulties: [
         {
           emoji: '',
@@ -32,7 +36,7 @@ const CreateTaskContextProvider: FC = ({ children }) => {
       ],
     })
 
-    console.log(result)
+    addTask(result.data.data.customTask)
 
     Analytics.logEvent('CreateTask')
   }

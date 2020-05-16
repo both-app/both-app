@@ -8,19 +8,19 @@ import {
 } from '@react-navigation/core'
 
 import { useT } from 'res/i18n'
+import { colors } from 'res/colors'
 
 import { TaskContext } from 'screens/app/contexts/Task.context'
 
 import { FormLayout } from 'library/layouts/FormLayout'
 import { Label } from 'library/components/Label'
 import { Scroll } from 'library/layouts/Scroll'
+import { CardButton } from 'library/components/CardButton'
 
 import { Task } from './components/Task'
 import { AddTaskStackParamList } from '../AddTask.navigator'
 import { AddTaskContext } from '../AddTask.context'
 import { ROUTES } from '../AddTask.navigator'
-import { CardButton } from 'library/components/CardButton'
-import { colors } from 'res/colors'
 
 type ChooseTaskRouteProps = RouteProp<AddTaskStackParamList, 'ChooseTask'>
 
@@ -56,6 +56,13 @@ export const ChooseTaskScreen = () => {
     })
   }
 
+  const handleOnCreateTask = () => {
+    return navigation.navigate(ROUTES.CREATE_TASK, {
+      screen: 'ChooseName',
+      params: { category },
+    })
+  }
+
   const handleOnBack = () => navigation.goBack()
 
   const tasks = getTasksByCategoryId(category.id)
@@ -79,6 +86,7 @@ export const ChooseTaskScreen = () => {
             'app:screen:newUserTask:chooseTask:createNewTask:subtitle'
           )}
           containerStyle={styles.createNewTaskButton}
+          onAction={handleOnCreateTask}
         />
 
         {tasks.map((task: Task) => (

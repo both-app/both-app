@@ -15,11 +15,15 @@ export const ROUTES = {
 export const initialRoute = ROUTES.CHOOSE_NAME
 
 export type CreateTaskStackParamList = {
-  ChooseName: undefined
+  ChooseName: {
+    category: Category
+  }
   ChooseEmoji: {
+    categoryId: string
     taskName: string
   }
   ChoosePoints: {
+    categoryId: string
     taskName: string
     emoji: string
   }

@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native'
 import { useNavigation, RouteProp, useRoute } from '@react-navigation/core'
 
 import { colors } from 'res/colors'
+import { useT } from 'res/i18n'
 
 import { FormLayout } from 'library/layouts/FormLayout'
 import { Label } from 'library/components/Label'
@@ -22,51 +23,46 @@ type ChoosePointsRouteProps = RouteProp<
 const CONFIG_POINTS = [
   {
     emoji: '🎁',
-    title: 'Cadeau',
     points: 0,
   },
   {
     emoji: '😎',
-    title: 'Très facile',
     points: 1,
   },
   {
     emoji: '😊',
-    title: 'Facile',
     points: 2,
   },
   {
     emoji: '😓',
-    title: 'Contraignant',
     points: 3,
   },
   {
     emoji: '😣',
-    title: 'Difficle',
     points: 4,
   },
   {
     emoji: '😰',
-    title: 'Très difficile',
     points: 5,
   },
 ]
 
 export const ChoosePointsScreen = () => {
+  const { t } = useT()
   const navigation = useNavigation()
   const route = useRoute<ChoosePointsRouteProps>()
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
   const [points, setPoints] = useState<number>(0)
   const { createTask } = useContext(CreateTaskContext)
 
-  const { taskName, emoji } = route.params
+  const { taskName, emoji, categoryId } = route.params
 
   const handleOnBack = () => {
     navigation.goBack()
   }
 
   const handleOnFinish = async () => {
-    await createTask({ emoji, name: taskName, points })
+    await createTask({ emoji, name: taskName, points, categoryId })
     navigation.navigate('Home')
   }
 
@@ -81,7 +77,10 @@ export const ChoosePointsScreen = () => {
       onBackAction={handleOnBack}
       onFinishAction={handleOnFinish}
       label={
-        <Label primary="Et enfin 🤔" secondary="Le niveau de difficulté..." />
+        <Label
+          primary={t('app:screen:createTask:choosePoints:title')}
+          secondary={t('app:screen:createTask:choosePoints:subtitle')}
+        />
       }
       bottomInfo={
         <TaskPreview emoji={emoji} taskName={taskName} points={points} />
@@ -92,7 +91,7 @@ export const ChoosePointsScreen = () => {
           <CardButton
             key={index}
             emoji={config.emoji}
-            title={config.title}
+            title={t(`app:difficulty:${config.points}`)}
             rightContent={<Point points={config.points} />}
             onAction={() => handleOnAction(index, config.points)}
             containerStyle={{ marginBottom: 8 }}

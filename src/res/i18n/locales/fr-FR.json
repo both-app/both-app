@@ -10,6 +10,7 @@
   "other": "Autre",
   "me": "moi",
 
+  "app:difficulty:0": "Cadeau",
   "app:difficulty:1": "Très facile",
   "app:difficulty:2": "Facile",
   "app:difficulty:3": "Contraignant",
@@ -139,6 +140,18 @@
   },
   "app:screen:newUserTask:chooseTask:createNewTask:title": "Créer une nouvelle tâche",
   "app:screen:newUserTask:chooseTask:createNewTask:subtitle": "3 étapes rapide",
+
+  "app:screen:createTask:chooseName:title": "Nouvelle tâche 🌱",
+  "app:screen:createTask:chooseName:subtitle": "Donne lui un nom...",
+  "app:screen:createTask:chooseName:input:placeholder": "Nom de la tâche",
+  "app:screen:createTask:chooseName:error:missing:title": "🤔 Oups, il faut un nom pour continuer !",
+  "app:screen:createTask:chooseName:error:missing:subtitle": "Aide : “Faire le repas” par exemple",
+  "app:screen:createTask:chooseEmoji:title": "Super idée 👏",
+  "app:screen:createTask:chooseEmoji:subtitle": "Choisis un Emoji",
+  "app:screen:createTask:choosePoints:title": "Et enfin 🤔",
+  "app:screen:createTask:choosePoints:subtitle": "Le niveau de difficulté...",
+  "app:screen:createTask:taskPreview:title": "Aperçu de ta nouvelle tâche",
+  "app:screen:createTask:taskPreview:button:subtitle": "1 niveau de difficulté",
 
   "app:screen:leaderboard:winnersOfTheWeek": "Champions de la semaine",
   "app:screen:leaderboard:winnerOfTheWeek:male": "Champion de la semaine",

@@ -5,11 +5,13 @@ import { ChooseCategoryScreen } from './screens/ChooseCategory'
 import { ChooseTaskScreen } from './screens/ChooseTask'
 import { ChooseTaskDifficultyScreen } from './screens/ChooseTaskDifficulty'
 import { AddTaskContextProvider } from './AddTask.context'
+import { CreateTaskNavigator } from '../CreateTask'
 
 export const ROUTES = {
   CHOOSE_CATEGORY: 'ChooseCategory',
   CHOOSE_TASK: 'ChooseTask',
   CHOOSE_TASK_DIFFICULTY: 'ChooseTaskDifficulty',
+  CREATE_TASK: 'CreateTask',
 }
 
 export const initialRoute = ROUTES.CHOOSE_CATEGORY
@@ -39,6 +41,11 @@ export const AddTaskNavigator = () => (
       <AddTaskStack.Screen
         component={ChooseTaskDifficultyScreen}
         name={ROUTES.CHOOSE_TASK_DIFFICULTY}
+      />
+
+      <AddTaskStack.Screen
+        component={CreateTaskNavigator}
+        name={ROUTES.CREATE_TASK}
       />
     </AddTaskStack.Navigator>
   </AddTaskContextProvider>

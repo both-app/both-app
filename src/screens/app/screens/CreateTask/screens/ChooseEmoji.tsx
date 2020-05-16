@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 import { useNavigation, RouteProp, useRoute } from '@react-navigation/core'
 
 import { colors } from 'res/colors'
+import { useT } from 'res/i18n'
 
 import { FormLayout } from 'library/layouts/FormLayout'
 import { Label } from 'library/components/Label'
@@ -15,12 +16,13 @@ import { TaskPreview } from '../components/TaskPreview'
 type ChooseEmojiRouteProps = RouteProp<CreateTaskStackParamList, 'ChooseEmoji'>
 
 export const ChooseEmojiScreen = () => {
+  const { t } = useT()
   const navigation = useNavigation()
   const route = useRoute<ChooseEmojiRouteProps>()
   const [modalIsVisible, setModalIsVisible] = useState<boolean>(false)
   const [selectedEmoji, setEmoji] = useState<string>('🌱')
 
-  const { taskName } = route.params
+  const { taskName, categoryId } = route.params
 
   const handleEmojiSelected = (emoji: string) => {
     setEmoji(emoji)
@@ -32,7 +34,11 @@ export const ChooseEmojiScreen = () => {
   }
 
   const handleOnNext = () => {
-    navigation.navigate('ChoosePoints', { taskName, emoji: selectedEmoji })
+    navigation.navigate('ChoosePoints', {
+      categoryId,
+      taskName,
+      emoji: selectedEmoji,
+    })
   }
 
   return (
@@ -40,7 +46,12 @@ export const ChooseEmojiScreen = () => {
       containerStyle={styles.formContainer}
       onBackAction={handleOnBack}
       onNextAction={handleOnNext}
-      label={<Label primary="Super idée 👏" secondary="Choisis un Emoji" />}
+      label={
+        <Label
+          primary={t('app:screen:createTask:chooseEmoji:title')}
+          secondary={t('app:screen:createTask:chooseEmoji:subtitle')}
+        />
+      }
       bottomInfo={
         <TaskPreview emoji={selectedEmoji} taskName={taskName} points={0} />
       }

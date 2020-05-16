@@ -2,6 +2,7 @@ import React, { FC, memo } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
 import { colors } from 'res/colors'
+import { useT } from 'res/i18n'
 
 import { CardButton } from 'library/components/CardButton'
 import { Point } from 'library/components/Point'
@@ -13,20 +14,26 @@ interface TaskPreviewProps {
 }
 
 export const TaskPreview: FC<TaskPreviewProps> = memo(
-  ({ emoji, taskName, points = 0 }) => (
-    <View style={styles.bottom}>
-      <View style={{ paddingHorizontal: 24 }}>
-        <Text style={styles.newTask}>Aperçu de ta nouvelle tâche</Text>
-        <CardButton
-          emoji={emoji}
-          title={taskName}
-          subtitle="1 niveau de difficulté"
-          disabled
-          rightContent={<Point points={points} />}
-        />
+  ({ emoji, taskName, points = 0 }) => {
+    const { t } = useT()
+
+    return (
+      <View style={styles.bottom}>
+        <View style={{ paddingHorizontal: 24 }}>
+          <Text style={styles.newTask}>
+            {t('app:screen:createTask:taskPreview:title')}
+          </Text>
+          <CardButton
+            emoji={emoji}
+            title={taskName}
+            subtitle={t('app:screen:createTask:taskPreview:button:subtitle')}
+            disabled
+            rightContent={<Point points={points} />}
+          />
+        </View>
       </View>
-    </View>
-  )
+    )
+  }
 )
 
 const styles = StyleSheet.create({

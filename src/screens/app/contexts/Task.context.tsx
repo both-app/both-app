@@ -10,11 +10,15 @@ import React, {
 import { api, APIResponse } from 'res/api'
 import { setItem, getItem } from 'res/storage'
 
+import { useAppState } from 'hooks/useAppState'
+
 interface TaskContextProps {
   tasks: Task[]
   getTasksByCategoryId: (id: string) => Task[]
   getTaskById: (id: string) => Task
   getPoints: (id: string) => string
+  fetchTasks: () => Promise<void>
+  addTask: (task: Task) => void
 }
 
 type TasksResponse = APIResponse<{ tasks: Task[] }>
@@ -23,20 +27,10 @@ type TasksResponse = APIResponse<{ tasks: Task[] }>
 const TaskContext = createContext<TaskContextProps>({})
 
 const TaskContextProvider: FC = ({ children }) => {
+  const { appState } = useAppState()
   const [tasks, setTasks] = useState<Task[]>([])
 
   useEffect(() => {
-    const fetchTasks = async () => {
-      const {
-        data: {
-          data: { tasks },
-        },
-      } = await api.get<TasksResponse>('/tasks')
-
-      setItem('tasks', tasks)
-      setTasks(tasks)
-    }
-
     const reHydrateData = async () => {
       const tasks = await getItem('tasks')
       if (tasks) {
@@ -48,6 +42,23 @@ const TaskContextProvider: FC = ({ children }) => {
 
     reHydrateData()
   }, [])
+
+  useEffect(() => {
+    if (appState === 'active') {
+      fetchTasks()
+    }
+  }, [appState])
+
+  const fetchTasks = async () => {
+    const {
+      data: {
+        data: { tasks },
+      },
+    } = await api.get<TasksResponse>('/tasks')
+
+    setItem('tasks', tasks)
+    setTasks(tasks)
+  }
 
   const getTasksByCategoryId = useCallback(
     (categoryId: string) =>
@@ -80,14 +91,23 @@ const TaskContextProvider: FC = ({ children }) => {
     [tasks]
   )
 
+  const addTask = (task: Task) => {
+    const newTasks = [...tasks, task]
+
+    setItem('tasks', newTasks)
+    setTasks(newTasks)
+  }
+
   const taskContextApi = useMemo(
     () => ({
       tasks,
       getTasksByCategoryId,
       getTaskById,
       getPoints,
+      fetchTasks,
+      addTask,
     }),
-    [tasks, getTasksByCategoryId, getTaskById, getPoints]
+    [tasks, getTasksByCategoryId, getTaskById, getPoints, fetchTasks, addTask]
   )
 
   return (
