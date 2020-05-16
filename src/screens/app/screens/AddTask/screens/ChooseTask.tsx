@@ -108,10 +108,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   createNewTaskButton: {
-    marginBottom: 16,
+    marginBottom: 8,
     borderColor: colors.grey100,
-    borderStyle: 'dotted',
-    borderWidth: 3,
+    borderStyle: 'dashed',
+    borderWidth: 2,
     backgroundColor: colors.skin200,
   },
 })

@@ -139,7 +139,7 @@
     "other": "%{count} niveaux de difficulté"
   },
   "app:screen:newUserTask:chooseTask:createNewTask:title": "Créer une nouvelle tâche",
-  "app:screen:newUserTask:chooseTask:createNewTask:subtitle": "3 étapes rapide",
+  "app:screen:newUserTask:chooseTask:createNewTask:subtitle": "3 étapes rapides",
 
   "app:screen:createTask:chooseName:title": "Nouvelle tâche 🌱",
   "app:screen:createTask:chooseName:subtitle": "Donne lui un nom...",
