@@ -73,7 +73,7 @@ export const ChooseDifficultiesScreen = () => {
       categoryId: category.id,
     })
 
-    navigation.navigate('AddTask', {
+    navigation.navigate('AddTaskModal', {
       screen: 'ChooseTask',
       params: { category, selectedTaskId: task.id },
     })

@@ -6,10 +6,8 @@ exports[`Badge should display a badge with a color 1`] = `
     Object {
       "backgroundColor": "#0A1D2B",
       "borderRadius": 8,
-      "paddingBottom": 2,
-      "paddingLeft": 8,
-      "paddingRight": 8,
-      "paddingTop": 2,
+      "paddingHorizontal": 8,
+      "paddingVertical": 2,
     }
   }
 >
