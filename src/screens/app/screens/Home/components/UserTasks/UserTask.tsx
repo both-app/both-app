@@ -1,16 +1,14 @@
 import React, { FC, useContext } from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, View, Text } from 'react-native'
 
 import { CardButton } from 'library/components/CardButton'
 
-import { colors, lightenDarkenColor } from 'res/colors'
-import { useT } from 'res/i18n'
+import { colors } from 'res/colors'
 
 import { Point } from 'library/components/Point'
 
 import { TaskContext } from 'screens/app/contexts/Task.context'
 import { UsersContext } from 'screens/app/contexts/Users.context'
-import { CategoryContext } from 'screens/app/contexts/Category.context'
 import Swipeable from 'react-native-gesture-handler/Swipeable'
 import { DeleteAction } from './DeleteAction'
 
@@ -19,20 +17,18 @@ interface UserTaskProps {
 }
 
 export const UserTask: FC<UserTaskProps> = ({ userTask }) => {
-  const { t } = useT()
   const { me } = useContext(UsersContext)
   const { getTaskById } = useContext(TaskContext)
   const { getUserById } = useContext(UsersContext)
-  const { getCategoryById } = useContext(CategoryContext)
 
   const task = getTaskById(userTask.taskId)
-  const category = getCategoryById(task.categoryId)
   const user = getUserById(userTask.userId)
 
-  if (!user || !category || !task) {
+  if (!user || !task) {
     return null
   }
 
+  const isMyTask = user.id === me.id
   const isDeletable =
     userTask.taskId !== 'create_both' &&
     userTask.taskId !== 'join_both' &&
@@ -47,26 +43,45 @@ export const UserTask: FC<UserTaskProps> = ({ userTask }) => {
       <CardButton
         emoji={task.emoji}
         title={task.name}
-        subtitle={t('app:screen:home:userTask:subtitle', {
-          firstName: user.firstName,
-        })}
-        activeBackgroundColor={lightenDarkenColor(category.color, 10)}
-        activeTextColor={colors.white}
+        subtitle={
+          <View style={styles.subtitleContainer}>
+            <View
+              style={{
+                ...styles.badge,
+                backgroundColor: isMyTask
+                  ? colors.highlight100
+                  : colors.warning,
+              }}
+            />
+            <Text style={styles.author}>{user.firstName}</Text>
+          </View>
+        }
         containerStyle={{
-          backgroundColor: category.color,
           marginTop: 8,
           marginHorizontal: 24,
         }}
-        textStyle={styles.cardText}
         rightContent={<Point points={userTask.points} />}
-        disabled={!isDeletable}
+        disabled
       />
     </Swipeable>
   )
 }
 
 const styles = StyleSheet.create({
-  cardText: {
-    color: colors.white,
+  subtitleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  badge: {
+    width: 10,
+    height: 10,
+    borderRadius: 4,
+    marginRight: 4,
+    display: 'flex',
+  },
+  author: {
+    color: colors.dark200,
+    opacity: 0.75,
+    textTransform: 'capitalize',
   },
 })

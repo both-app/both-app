@@ -89,7 +89,6 @@
   "auth:screen:form:joinOrCreate:info:title": "💡 Une clé te permet de rejoindre une relation !",
   "auth:screen:form:joinOrCreate:info:subtitle": "Aide : Ton partenaire doit t’inviter en t’envoyer la clé de votre relation, un code unique comportant 6 caractères.",
 
-  "app:screen:home:userTask:subtitle": "Par %{firstName} ",
   "app:screen:home:shareRelationKey": "Partager la clé Both",
   "app:screen:home:delete": "Supprimer",
 
