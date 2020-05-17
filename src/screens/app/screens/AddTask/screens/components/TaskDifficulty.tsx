@@ -22,7 +22,7 @@ export const TaskDifficulty: FC<TaskDifficultyProps> = ({
 }) => {
   const { t } = useT()
 
-  const difficultyTitle = t(`app:difficulty:${taskDifficulty.points || 1}`)
+  const difficultyTitle = t(`app:difficulty:${taskDifficulty.points}`)
 
   const handleOnAction = () => onAction(taskDifficultyIndex)
 

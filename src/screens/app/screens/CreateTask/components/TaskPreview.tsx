@@ -21,7 +21,7 @@ export const TaskPreview: FC<TaskPreviewProps> = memo(
     const { getPointsFromDifficulties } = useContext(TaskContext)
 
     const isTaskWithDifficulties = difficulties.length > 1
-    const points = getPointsFromDifficulties(difficulties) || '?'
+    const points = getPointsFromDifficulties(difficulties)
 
     return (
       <View style={styles.bottom}>
@@ -36,7 +36,7 @@ export const TaskPreview: FC<TaskPreviewProps> = memo(
             disabled
             rightContent={
               <Point
-                points={points}
+                points={points === null ? '?' : points}
                 shape={isTaskWithDifficulties ? 'rectangle' : 'circle'}
               />
             }

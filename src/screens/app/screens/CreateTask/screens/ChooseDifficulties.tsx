@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { StyleSheet } from 'react-native'
 import { useNavigation, RouteProp, useRoute } from '@react-navigation/core'
+import * as Haptics from 'expo-haptics'
 
 import { colors } from 'res/colors'
 import { useT } from 'res/i18n'
@@ -63,6 +64,7 @@ export const ChooseDifficultiesScreen = () => {
 
   const handleOnFinish = async () => {
     if (difficulties.length <= 0) {
+      await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error)
       return
     }
 
