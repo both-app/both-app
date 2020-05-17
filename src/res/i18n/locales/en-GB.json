@@ -89,7 +89,6 @@
   "auth:screen:form:joinOrCreate:info:title": "💡 A key allows you to join a relationship!",
   "auth:screen:form:joinOrCreate:info:subtitle": "Tips: Your partner has to send you your relationship's key. A unique 6 characters code.",
 
-  "app:screen:home:userTask:subtitle": "By %{firstName} ",
   "app:screen:home:shareRelationKey": "Share the Both key",
   "app:screen:home:delete": "Remove",
 

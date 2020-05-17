@@ -15,7 +15,7 @@ export interface CardButtonProps {
   emoji: string
   title: string
   badge?: ReactNode
-  subtitle?: string
+  subtitle?: ReactNode
   containerStyle?: ViewStyle
   activeBackgroundColor?: string
   textStyle?: TextStyle
@@ -93,7 +93,11 @@ export const CardButton: FC<CardButtonProps> = ({
 
           <Text style={titleStyle}>{title}</Text>
 
-          {!!subtitle && <Text style={subTitleStyle}>{subtitle}</Text>}
+          {typeof subtitle === 'string' ? (
+            <Text style={subTitleStyle}>{subtitle}</Text>
+          ) : (
+            subtitle
+          )}
         </View>
       </View>
 
