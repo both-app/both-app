@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   codeContainer: {
+    alignItems: 'center',
     marginTop: 52,
   },
 })
