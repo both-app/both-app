@@ -13,7 +13,7 @@ import { lightenDarkenColor, colors } from 'res/colors'
 
 export interface CardButtonProps {
   emoji: string
-  title: string
+  title?: ReactNode
   badge?: ReactNode
   subtitle?: ReactNode
   containerStyle?: ViewStyle
@@ -91,13 +91,15 @@ export const CardButton: FC<CardButtonProps> = ({
         <View style={styles.texts}>
           {!!badge && <View style={styles.badgeContainer}>{badge}</View>}
 
-          <Text style={titleStyle}>{title}</Text>
-
-          {typeof subtitle === 'string' ? (
-            <Text style={subTitleStyle}>{subtitle}</Text>
-          ) : (
-            subtitle
+          {typeof title === 'string' && title.length > 1 && (
+            <Text style={titleStyle}>{title}</Text>
           )}
+          {typeof title !== 'string' && title}
+
+          {typeof subtitle === 'string' && subtitle.length > 1 && (
+            <Text style={subTitleStyle}>{subtitle}</Text>
+          )}
+          {typeof subtitle !== 'string' && subtitle}
         </View>
       </View>
 
