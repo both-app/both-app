@@ -57,13 +57,15 @@ export const CodeScreen = () => {
         />
       }
       bottomInfo={
-        <Info
-          hide={!error.length}
-          withHapticFeedback
-          color="critical"
-          primary={error[0]}
-          secondary={error[1]}
-        />
+        <View style={{ paddingHorizontal: 24 }}>
+          <Info
+            hide={!error.length}
+            withHapticFeedback
+            color="critical"
+            primary={error[0]}
+            secondary={error[1]}
+          />
+        </View>
       }
     >
       <View style={styles.codeContainer}>

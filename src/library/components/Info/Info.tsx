@@ -5,7 +5,7 @@ import * as Haptics from 'expo-haptics'
 import { Color, colors } from 'res/colors'
 
 interface InfoProps {
-  primary: string
+  primary?: string
   secondary: string
   hide?: boolean
   withHapticFeedback?: boolean
@@ -47,9 +47,11 @@ export const Info: FC<InfoProps> = ({
 
   return (
     <View style={containerStyle}>
-      <Text testID="infoPrimaryText" style={primaryStyle}>
-        {primary}
-      </Text>
+      {!!primary && (
+        <Text testID="infoPrimaryText" style={primaryStyle}>
+          {primary}
+        </Text>
+      )}
       <Text testID="infoSecondaryText" style={secondaryStyle}>
         {secondary}
       </Text>

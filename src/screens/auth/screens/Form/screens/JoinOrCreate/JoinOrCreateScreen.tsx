@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import { useT } from 'res/i18n'
@@ -37,12 +37,14 @@ export const JoinOrCreateScreen = () => {
         />
       }
       bottomInfo={
-        <Info
-          hide={false}
-          color="dark100"
-          primary={t('auth:screen:form:joinOrCreate:info:title')}
-          secondary={t('auth:screen:form:joinOrCreate:info:subtitle')}
-        />
+        <View style={{ paddingHorizontal: 24 }}>
+          <Info
+            hide={false}
+            color="dark100"
+            primary={t('auth:screen:form:joinOrCreate:info:title')}
+            secondary={t('auth:screen:form:joinOrCreate:info:subtitle')}
+          />
+        </View>
       }
     >
       <Select
