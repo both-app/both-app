@@ -11,6 +11,7 @@ export type AppColor =
   | 'success'
   | 'highlight100'
   | 'highlight200'
+  | 'red100'
 
 export type CategoryColor =
   | 'daily'
@@ -38,6 +39,7 @@ export const colors = {
   success: '#69CE7F',
   highlight100: '#7489E1',
   highlight200: '#A8B9FE',
+  red100: '#E87180',
   categories: {
     // CATEGORIES
     daily: '#E87180',

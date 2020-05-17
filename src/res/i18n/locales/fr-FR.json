@@ -62,6 +62,8 @@
   "auth:screen:form:pushNotification:select:no:subtitle": "Noté. On fera sans dans ce cas",
   "auth:screen:form:pushNotification:error:wrongCode:title": "😥 Code invalide !",
   "auth:screen:form:pushNotification:error:wrongCode:subtitle": "Aide : Vérifie bien le code que ton partenaire t'a donné...",
+  "auth:screen:form:pushNotification:info:cgu:title": "📝 Les CGU(s)",
+  "auth:screen:form:pushNotification:info:cgu:subtitle": "En continuant vous acceptez nos conditions générales d’utilisation.",
 
   "auth:screen:form:code:title": "Ton partenaire t’attend 🥰",
   "auth:screen:form:code:subtitle": "Tape ta clé...",

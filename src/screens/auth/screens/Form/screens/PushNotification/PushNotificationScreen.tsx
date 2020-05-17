@@ -82,13 +82,20 @@ export const PushNotificationScreen = () => {
         />
       }
       bottomInfo={
-        <Info
-          hide={!error.length}
-          withHapticFeedback
-          color="critical"
-          primary={error[0]}
-          secondary={error[1]}
-        />
+        error.length > 0 ? (
+          <Info
+            withHapticFeedback
+            color="critical"
+            primary={error[0]}
+            secondary={error[1]}
+          />
+        ) : (
+          <Info
+            color="dark100"
+            primary={t('auth:screen:form:pushNotification:info:cgu:title')}
+            secondary={t('auth:screen:form:pushNotification:info:cgu:subtitle')}
+          />
+        )
       }
     >
       <Select
