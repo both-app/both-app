@@ -62,6 +62,8 @@
   "auth:screen:form:pushNotification:select:no:subtitle": "Deal. We'll manage without it",
   "auth:screen:form:pushNotification:error:wrongCode:title": "😥 Invalid code!",
   "auth:screen:form:pushNotification:error:wrongCode:subtitle": "Tips: Check the code your partner gave you",
+  "auth:screen:form:pushNotification:info:cgu:title": "📝 The CGU(s)",
+  "auth:screen:form:pushNotification:info:cgu:subtitle": "By continuing you accept our general conditions of use.",
 
   "auth:screen:form:code:title": "Your partner is waiting for you 🥰",
   "auth:screen:form:code:subtitle": "Type your key...",
