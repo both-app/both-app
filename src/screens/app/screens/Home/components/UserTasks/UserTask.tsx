@@ -48,9 +48,7 @@ export const UserTask: FC<UserTaskProps> = ({ userTask }) => {
             <View
               style={{
                 ...styles.badge,
-                backgroundColor: isMyTask
-                  ? colors.highlight100
-                  : colors.warning,
+                backgroundColor: isMyTask ? colors.highlight100 : colors.red100,
               }}
             />
             <Text style={styles.author}>{user.firstName}</Text>
