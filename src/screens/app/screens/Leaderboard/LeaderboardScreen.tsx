@@ -1,5 +1,6 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { StyleSheet } from 'react-native'
+import SegmentedControl from 'react-native-segmented-control-tab'
 
 import { Layout } from 'library/layouts/Layout'
 import { Scroll } from 'library/layouts/Scroll'
@@ -13,6 +14,7 @@ import { TaskContext } from 'screens/app/contexts/Task.context'
 import { UserRecap, UserRecapPlaceholder } from './components/UserRecap'
 import { CountdownBadge } from './components/CountdownBadge'
 import { DrawHeader, WinnerHeader } from './components/Header'
+import { colors } from 'res/colors'
 
 interface RankedUser extends User {
   points: number
@@ -31,6 +33,7 @@ export const LeaderboardScreen = () => {
   } = useContext(UserScoreContext)
   const { me, partner } = useContext(UsersContext)
   const { getTaskById } = useContext(TaskContext)
+  const [selectedIndex, setSelectedIndex] = useState(0)
 
   const rankedUser = {
     ...me,
@@ -68,14 +71,36 @@ export const LeaderboardScreen = () => {
   return (
     <Layout
       header={
-        scoreStatus === ScoreSatus.Draw ? (
-          <DrawHeader />
-        ) : (
-          <WinnerHeader
-            firstName={ranking[0].firstName}
-            gender={ranking[0].gender}
+        <>
+          <SegmentedControl
+            values={['Semaine', 'Global']}
+            selectedIndex={selectedIndex}
+            onTabPress={setSelectedIndex}
+            tabsContainerStyle={{
+              marginBottom: 50,
+              height: 35,
+              backgroundColor: 'rgba(118,118,128,0.24)',
+              borderRadius: 8,
+            }}
+            borderRadius={6}
+            tabStyle={{
+              backgroundColor: 'transparent',
+              borderColor: 'transparent',
+              borderRadius: 6,
+              margin: 3,
+            }}
+            activeTabStyle={{ backgroundColor: '#636366' }}
+            tabTextStyle={{ color: 'white', fontWeight: '500' }}
           />
-        )
+          {scoreStatus === ScoreSatus.Draw ? (
+            <DrawHeader />
+          ) : (
+            <WinnerHeader
+              firstName={ranking[0].firstName}
+              gender={ranking[0].gender}
+            />
+          )}
+        </>
       }
       badge={<CountdownBadge />}
     >
