@@ -6,12 +6,12 @@ export type AppColor =
   | 'white'
   | 'skin100'
   | 'skin200'
-  | 'danger'
   | 'warning'
   | 'critical'
   | 'success'
   | 'highlight100'
   | 'highlight200'
+  | 'red100'
 
 export type CategoryColor =
   | 'daily'
@@ -21,6 +21,7 @@ export type CategoryColor =
   | 'children'
   | 'specialCouple'
   | 'administrative'
+  | 'other'
 
 export type Color = AppColor | CategoryColor
 
@@ -33,12 +34,12 @@ export const colors = {
   white: '#FFFFFF',
   skin100: '#F9F0EB',
   skin200: '#EEE2DC',
-  danger: '#C14E7C',
   warning: '#F4A82C',
   critical: '#F42C2C',
   success: '#69CE7F',
   highlight100: '#7489E1',
   highlight200: '#A8B9FE',
+  red100: '#E87180',
   categories: {
     // CATEGORIES
     daily: '#E87180',
@@ -48,6 +49,7 @@ export const colors = {
     children: '#FFA171',
     specialCouple: '#7489E1',
     administrative: '#698FBF',
+    other: '#A674E1',
   },
 }
 

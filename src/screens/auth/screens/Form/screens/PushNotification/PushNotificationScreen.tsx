@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import { useT } from 'res/i18n'
@@ -82,13 +82,23 @@ export const PushNotificationScreen = () => {
         />
       }
       bottomInfo={
-        <Info
-          hide={!error.length}
-          withHapticFeedback
-          color="danger"
-          primary={error[0]}
-          secondary={error[1]}
-        />
+        <View style={{ paddingHorizontal: 24 }}>
+          {error.length > 0 ? (
+            <Info
+              withHapticFeedback
+              color="critical"
+              primary={error[0]}
+              secondary={error[1]}
+            />
+          ) : (
+            <Info
+              color="dark100"
+              secondary={t(
+                'auth:screen:form:pushNotification:info:cgu:subtitle'
+              )}
+            />
+          )}
+        </View>
       }
     >
       <Select

@@ -8,6 +8,7 @@ import { useT } from 'res/i18n'
 import { UsersContext } from 'screens/app/contexts/Users.context'
 import { UserScoreContext } from 'screens/app/contexts/UserScore.context'
 import { UserTaskContext } from 'screens/app/contexts/UserTask.context'
+import { TaskContext } from 'screens/app/contexts/Task.context'
 
 import { Section } from './Section'
 import { UserTask } from './UserTask'
@@ -18,12 +19,13 @@ export const UserTasks = () => {
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false)
   const { fetchUserTasks, userTasksByDate } = useContext(UserTaskContext)
   const { fetchUserScore } = useContext(UserScoreContext)
+  const { fetchTasks } = useContext(TaskContext)
 
   const handleOnRefresh = async () => {
     setIsRefreshing(true)
 
     await fetchUsers()
-    await Promise.all([fetchUserScore(), fetchUserTasks()])
+    await Promise.all([fetchUserScore(), fetchUserTasks(), fetchTasks()])
 
     setIsRefreshing(false)
   }

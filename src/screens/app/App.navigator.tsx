@@ -1,5 +1,6 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createStackNavigator } from '@react-navigation/stack'
 
 import { Icon } from 'library/components/Icon'
 import { TabBar } from './components/TabBar'
@@ -9,7 +10,6 @@ import { RelationScreen } from './screens/Relation'
 import { AddTaskNavigator } from './screens/AddTask'
 import { LeaderboardScreen } from './screens/Leaderboard'
 import { SettingsNavigator } from './screens/Settings'
-import { createStackNavigator } from '@react-navigation/stack'
 
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator()

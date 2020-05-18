@@ -66,6 +66,10 @@ export const SettingsScreen = () => {
     await WebBrowser.openBrowserAsync('https://forms.gle/vFxTrrKXZNstFsz17')
   }
 
+  const handleBothClub = async () => {
+    await WebBrowser.openBrowserAsync('https://bit.ly/JoinBothClub')
+  }
+
   const handleRateApp = () => StoreReview.requestReview()
 
   const handleEndRelation = () => {
@@ -127,6 +131,13 @@ export const SettingsScreen = () => {
         <Text style={styles.sectionTitle}>
           {t('app:screen:settings:section:together')}
         </Text>
+        <CardButton
+          emoji="🧸"
+          title={t('app:screen:settings:button:joinBothClub:title')}
+          subtitle={t('app:screen:settings:button:joinBothClub:subtitle')}
+          onAction={handleBothClub}
+          containerStyle={styles.button}
+        />
         <CardButton
           emoji="💡"
           title={t('app:screen:settings:button:shareIdeas:title')}

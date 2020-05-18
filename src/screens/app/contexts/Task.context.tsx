@@ -10,11 +10,16 @@ import React, {
 import { api, APIResponse } from 'res/api'
 import { setItem, getItem } from 'res/storage'
 
+import { useAppState } from 'hooks/useAppState'
+
 interface TaskContextProps {
   tasks: Task[]
   getTasksByCategoryId: (id: string) => Task[]
   getTaskById: (id: string) => Task
   getPoints: (id: string) => string
+  fetchTasks: () => Promise<void>
+  addTask: (task: Task) => void
+  getPointsFromDifficulties: (difficulties: TaskDifficulty[]) => number
 }
 
 type TasksResponse = APIResponse<{ tasks: Task[] }>
@@ -23,20 +28,10 @@ type TasksResponse = APIResponse<{ tasks: Task[] }>
 const TaskContext = createContext<TaskContextProps>({})
 
 const TaskContextProvider: FC = ({ children }) => {
+  const { appState } = useAppState()
   const [tasks, setTasks] = useState<Task[]>([])
 
   useEffect(() => {
-    const fetchTasks = async () => {
-      const {
-        data: {
-          data: { tasks },
-        },
-      } = await api.get<TasksResponse>('/tasks')
-
-      setItem('tasks', tasks)
-      setTasks(tasks)
-    }
-
     const reHydrateData = async () => {
       const tasks = await getItem('tasks')
       if (tasks) {
@@ -48,6 +43,23 @@ const TaskContextProvider: FC = ({ children }) => {
 
     reHydrateData()
   }, [])
+
+  useEffect(() => {
+    if (appState === 'active') {
+      fetchTasks()
+    }
+  }, [appState])
+
+  const fetchTasks = async () => {
+    const {
+      data: {
+        data: { tasks },
+      },
+    } = await api.get<TasksResponse>('/tasks')
+
+    setItem('tasks', tasks)
+    setTasks(tasks)
+  }
 
   const getTasksByCategoryId = useCallback(
     (categoryId: string) =>
@@ -62,23 +74,37 @@ const TaskContextProvider: FC = ({ children }) => {
     [tasks]
   )
 
+  const getPointsFromDifficulties = (difficulties: TaskDifficulty[]) => {
+    const difficultiesSorted = difficulties.sort((a, b) => a.points - b.points)
+
+    if (difficultiesSorted.length > 1) {
+      return `${difficultiesSorted[0].points}-${
+        difficultiesSorted[difficultiesSorted.length - 1].points
+      }`
+    }
+
+    if (difficultiesSorted.length === 1) {
+      return difficultiesSorted[0].points
+    }
+
+    return null
+  }
+
   const getPoints = useCallback(
     (taskId: string) => {
       const task = tasks.find((task) => task.id === taskId)
-      const difficultiesSorted = task.difficulties.sort(
-        (a, b) => a.points - b.points
-      )
 
-      if (difficultiesSorted.length > 1) {
-        return `${difficultiesSorted[0].points}-${
-          difficultiesSorted[difficultiesSorted.length - 1].points
-        }`
-      }
-
-      return difficultiesSorted[0].points
+      return getPointsFromDifficulties(task.difficulties)
     },
     [tasks]
   )
+
+  const addTask = (task: Task) => {
+    const newTasks = [task, ...tasks]
+
+    setItem('tasks', newTasks)
+    setTasks(newTasks)
+  }
 
   const taskContextApi = useMemo(
     () => ({
@@ -86,8 +112,19 @@ const TaskContextProvider: FC = ({ children }) => {
       getTasksByCategoryId,
       getTaskById,
       getPoints,
+      fetchTasks,
+      addTask,
+      getPointsFromDifficulties,
     }),
-    [tasks, getTasksByCategoryId, getTaskById, getPoints]
+    [
+      tasks,
+      getTasksByCategoryId,
+      getTaskById,
+      getPoints,
+      fetchTasks,
+      addTask,
+      getPointsFromDifficulties,
+    ]
   )
 
   return (

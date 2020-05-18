@@ -13,8 +13,9 @@ import { lightenDarkenColor, colors } from 'res/colors'
 
 export interface CardButtonProps {
   emoji: string
-  title: string
-  subtitle?: string
+  title?: ReactNode
+  badge?: ReactNode
+  subtitle?: ReactNode
   containerStyle?: ViewStyle
   activeBackgroundColor?: string
   textStyle?: TextStyle
@@ -30,6 +31,7 @@ export interface CardButtonProps {
 export const CardButton: FC<CardButtonProps> = ({
   emoji,
   title,
+  badge,
   subtitle,
   onAction,
   rightContent,
@@ -87,8 +89,17 @@ export const CardButton: FC<CardButtonProps> = ({
       <View style={styles.leftInner}>
         <Text style={styles.emoji}>{emoji}</Text>
         <View style={styles.texts}>
-          <Text style={titleStyle}>{title}</Text>
-          {!!subtitle && <Text style={subTitleStyle}>{subtitle}</Text>}
+          {!!badge && <View style={styles.badgeContainer}>{badge}</View>}
+
+          {typeof title === 'string' && title.length > 1 && (
+            <Text style={titleStyle}>{title}</Text>
+          )}
+          {typeof title !== 'string' && title}
+
+          {typeof subtitle === 'string' && subtitle.length > 1 && (
+            <Text style={subTitleStyle}>{subtitle}</Text>
+          )}
+          {typeof subtitle !== 'string' && subtitle}
         </View>
       </View>
 
@@ -118,6 +129,10 @@ const styles = StyleSheet.create({
   },
   emoji: {
     fontSize: 26,
+  },
+  badgeContainer: {
+    alignItems: 'flex-start',
+    marginBottom: 2,
   },
   texts: {
     flex: 1,

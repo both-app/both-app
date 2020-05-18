@@ -10,5 +10,6 @@ interface Task {
   emoji: string
   name: string
   serverOnly: boolean
+  relationId?: string
   difficulties: TaskDifficulty[]
 }
