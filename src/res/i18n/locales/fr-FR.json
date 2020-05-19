@@ -137,6 +137,7 @@
   "app:screen:newUserTask:chooseCategory:title": "Sélectionne...",
   "app:screen:newUserTask:chooseCategory:subtitle": "Une catégorie 📦",
   "app:screen:newUserTask:category:taskNumber": {
+    "zero": "%{tasks} tâche",
     "one": "%{tasks} tâche",
     "other": "%{tasks} tâches"
   },
