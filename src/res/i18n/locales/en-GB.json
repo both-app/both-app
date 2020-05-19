@@ -161,6 +161,8 @@
   "app:screen:leaderboard:winnerOfTheWeek:other": "Leader of the week",
   "app:screen:leaderboard:speciality": "Speciality: %{taskName}",
   "app:screen:leaderBoard:counterEndOfWeek": "End in %{time}",
+  "app:screen:leaderboard:tabs:week": "Week",
+  "app:screen:leaderboard:tabs:global": "Global",
 
   "modal:newTaskAdded:badgeText": "Well done %{firstName} 🎉",
   "modal:newTaskAdded:info:primary": "👏 We just added them to your score",

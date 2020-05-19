@@ -14,7 +14,7 @@ import { TaskContext } from 'screens/app/contexts/Task.context'
 import { UserRecap, UserRecapPlaceholder } from './components/UserRecap'
 import { CountdownBadge } from './components/CountdownBadge'
 import { DrawHeader, WinnerHeader } from './components/Header'
-import { colors } from 'res/colors'
+import { useT } from 'res/i18n'
 
 interface RankedUser extends User {
   points: number
@@ -24,24 +24,26 @@ interface RankedUser extends User {
 }
 
 export const LeaderboardScreen = () => {
-  const {
-    userTotalPoints,
-    partnerTotalPoints,
-    userFavoriteTask,
-    partnerFavoriteTask,
-    scoreStatus,
-  } = useContext(UserScoreContext)
+  const { current, global } = useContext(UserScoreContext)
   const { me, partner } = useContext(UsersContext)
   const { getTaskById } = useContext(TaskContext)
   const [selectedIndex, setSelectedIndex] = useState(0)
+  const { t } = useT()
+
+  const {
+    userTotalPoints,
+    partnerFavoriteTask,
+    partnerTotalPoints,
+    userFavoriteTask,
+    status,
+  } = selectedIndex ? global : current
 
   const rankedUser = {
     ...me,
     isMe: true,
     points: userTotalPoints,
     favoriteTask: getTaskById(userFavoriteTask),
-    isWinner:
-      scoreStatus === ScoreSatus.UserWins || scoreStatus === ScoreSatus.Draw,
+    isWinner: status === ScoreSatus.UserWins || status === ScoreSatus.Draw,
   }
 
   let ranking: RankedUser[]
@@ -54,14 +56,12 @@ export const LeaderboardScreen = () => {
       isMe: false,
       points: partnerTotalPoints,
       favoriteTask: getTaskById(partnerFavoriteTask),
-      isWinner:
-        scoreStatus === ScoreSatus.PartnerWins ||
-        scoreStatus === ScoreSatus.Draw,
+      isWinner: status === ScoreSatus.PartnerWins || status === ScoreSatus.Draw,
     }
 
-    if (scoreStatus === ScoreSatus.Draw) {
+    if (status === ScoreSatus.Draw) {
       ranking = [rankedUser, rankedPartner]
-    } else if (scoreStatus === ScoreSatus.UserWins) {
+    } else if (status === ScoreSatus.UserWins) {
       ranking = [rankedUser, rankedPartner]
     } else {
       ranking = [rankedPartner, rankedUser]
@@ -73,26 +73,19 @@ export const LeaderboardScreen = () => {
       header={
         <>
           <SegmentedControl
-            values={['Semaine', 'Global']}
+            values={[
+              t('app:screen:leaderboard:tabs:week'),
+              t('app:screen:leaderboard:tabs:global'),
+            ]}
             selectedIndex={selectedIndex}
             onTabPress={setSelectedIndex}
-            tabsContainerStyle={{
-              marginBottom: 50,
-              height: 35,
-              backgroundColor: 'rgba(118,118,128,0.24)',
-              borderRadius: 8,
-            }}
+            tabsContainerStyle={styles.tabsContainer}
+            tabStyle={styles.tab}
             borderRadius={6}
-            tabStyle={{
-              backgroundColor: 'transparent',
-              borderColor: 'transparent',
-              borderRadius: 6,
-              margin: 3,
-            }}
-            activeTabStyle={{ backgroundColor: '#636366' }}
-            tabTextStyle={{ color: 'white', fontWeight: '500' }}
+            activeTabStyle={styles.activeTab}
+            tabTextStyle={styles.tabText}
           />
-          {scoreStatus === ScoreSatus.Draw ? (
+          {status === ScoreSatus.Draw ? (
             <DrawHeader />
           ) : (
             <WinnerHeader
@@ -126,4 +119,19 @@ const styles = StyleSheet.create({
   scrollContainer: {
     marginHorizontal: 24,
   },
+  tabsContainer: {
+    marginTop: 10,
+    marginBottom: 50,
+    height: 35,
+    backgroundColor: 'rgba(118,118,128,0.24)',
+    borderRadius: 8,
+  },
+  tab: {
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    borderRadius: 6,
+    margin: 3,
+  },
+  activeTab: { backgroundColor: '#636366' },
+  tabText: { color: 'white', fontWeight: '500' },
 })

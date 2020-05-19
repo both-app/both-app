@@ -5,7 +5,9 @@ import { Body } from './Body'
 
 export const RelationInfo = () => {
   const { me, partner } = useContext(UsersContext)
-  const { userTotalPoints, partnerTotalPoints } = useContext(UserScoreContext)
+  const {
+    current: { userTotalPoints, partnerTotalPoints },
+  } = useContext(UserScoreContext)
   return (
     <Body
       leftFirstName={me.firstName}

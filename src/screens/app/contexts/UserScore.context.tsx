@@ -4,34 +4,42 @@ import { useAppState } from 'hooks/useAppState'
 import { api, APIResponse } from 'res/api'
 import { getItem, setItem } from 'res/storage'
 
-export enum ScoreSatus {
-  Draw,
-  UserWins,
-  PartnerWins,
-}
-
 type GetUserScoreResponse = APIResponse<UserScore>
 
+export enum ScoreSatus {
+  Draw = 'Draw',
+  UserWins = 'UserWins',
+  PartnerWins = 'PartnerWins',
+}
+
 interface UserScoreState {
-  partnerTotalPoints: number
-  userTotalPoints: number
-  userFavoriteTask: string | null
-  partnerFavoriteTask: string | null
-  total: number
+  current: UserScore
+  global: UserScore
 }
 
 const initialState: UserScoreState = {
-  partnerTotalPoints: 0,
-  userTotalPoints: 0,
-  userFavoriteTask: null,
-  partnerFavoriteTask: null,
-  total: 0,
+  current: {
+    partnerTotalPoints: 0,
+    userTotalPoints: 0,
+    userFavoriteTask: null,
+    partnerFavoriteTask: null,
+    total: 0,
+    status: ScoreSatus.Draw,
+  },
+  global: {
+    partnerTotalPoints: 0,
+    userTotalPoints: 0,
+    userFavoriteTask: null,
+    partnerFavoriteTask: null,
+    total: 0,
+    status: ScoreSatus.Draw,
+  },
 }
 
 interface UserScoreContextProps extends UserScoreState {
   fetchUserScore: () => Promise<void>
+  fetchGlobalUserScore: () => Promise<void>
   incrementUserPoints: (points: number) => void
-  scoreStatus: ScoreSatus
 }
 
 // @ts-ignore
@@ -44,12 +52,14 @@ const UserScoreContextProvider: FC = ({ children }) => {
   useEffect(() => {
     const reHydrateData = async () => {
       const userScore = await getItem('userScore')
+      const userGlobalScore = await getItem('userGlobalScore')
 
-      if (userScore) {
-        setState(userScore)
+      if (userScore && userGlobalScore) {
+        setState({ current: userScore, global: userGlobalScore })
       }
 
       fetchUserScore()
+      fetchGlobalUserScore()
     }
 
     reHydrateData()
@@ -58,39 +68,58 @@ const UserScoreContextProvider: FC = ({ children }) => {
   useEffect(() => {
     if (appState === 'active') {
       fetchUserScore()
+      fetchGlobalUserScore()
     }
   }, [appState])
 
   const fetchUserScore = async () => {
     const result = await api.get<GetUserScoreResponse>('user_tasks/recap')
+    const userScore = {
+      ...result.data.data,
+      status: getScoreStatus(result.data.data),
+    }
 
-    setItem('userScore', result.data.data)
-    setState(result.data.data)
+    setItem('userScore', userScore)
+    setState((userScoreState) => ({ ...userScoreState, current: userScore }))
   }
 
-  const incrementUserPoints = (points: number) =>
-    setState({ ...state, userTotalPoints: state.userTotalPoints + points })
+  const fetchGlobalUserScore = async () => {
+    const result = await api.get<GetUserScoreResponse>(
+      'user_tasks/recap/general'
+    )
+    const userGlobalScore = {
+      ...result.data.data,
+      status: getScoreStatus(result.data.data),
+    }
+    setItem('userGlobalScore', userGlobalScore)
+    setState((userScoreState) => ({
+      ...userScoreState,
+      global: userGlobalScore,
+    }))
+  }
 
-  const scoreStatus = useMemo((): ScoreSatus => {
-    if (state.userTotalPoints === state.partnerTotalPoints) {
-      return ScoreSatus.Draw
-    }
-    if (state.userTotalPoints > state.partnerTotalPoints) {
-      return ScoreSatus.UserWins
-    }
-    if (state.userTotalPoints < state.partnerTotalPoints) {
-      return ScoreSatus.PartnerWins
-    }
-  }, [state])
+  const incrementUserPoints = (points: number) => {
+    return setState((userScoreState) => ({
+      ...userScoreState,
+      current: {
+        ...userScoreState.current,
+        userTotalPoints: userScoreState.current.userTotalPoints + points,
+      },
+      global: {
+        ...userScoreState.global,
+        userTotalPoints: userScoreState.global.userTotalPoints + points,
+      },
+    }))
+  }
 
   const userScoreContextApi = useMemo(
     () => ({
       ...state,
       fetchUserScore,
+      fetchGlobalUserScore,
       incrementUserPoints,
-      scoreStatus,
     }),
-    [state, fetchUserScore, incrementUserPoints]
+    [state, fetchUserScore, fetchGlobalUserScore, incrementUserPoints]
   )
 
   return (
@@ -98,6 +127,18 @@ const UserScoreContextProvider: FC = ({ children }) => {
       {children}
     </UserScoreContext.Provider>
   )
+}
+
+const getScoreStatus = (userScore: UserScore): ScoreSatus => {
+  if (userScore.userTotalPoints === userScore.partnerTotalPoints) {
+    return ScoreSatus.Draw
+  }
+  if (userScore.userTotalPoints > userScore.partnerTotalPoints) {
+    return ScoreSatus.UserWins
+  }
+  if (userScore.userTotalPoints < userScore.partnerTotalPoints) {
+    return ScoreSatus.PartnerWins
+  }
 }
 
 export { UserScoreContext, UserScoreContextProvider }

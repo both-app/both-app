@@ -4,4 +4,5 @@ interface UserScore {
   partnerTotalPoints: number
   userFavoriteTask: string | null
   partnerFavoriteTask: string | null
+  status?: 'Draw' | 'UserWins' | 'PartnerWins'
 }

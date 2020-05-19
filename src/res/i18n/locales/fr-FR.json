@@ -161,6 +161,8 @@
   "app:screen:leaderboard:winnerOfTheWeek:other": "Champion de la semaine",
   "app:screen:leaderboard:speciality": "Spécialité: %{taskName}",
   "app:screen:leaderBoard:counterEndOfWeek": "Fin dans %{time}",
+  "app:screen:leaderboard:tabs:week": "Semaine",
+  "app:screen:leaderboard:tabs:global": "Global",
 
   "modal:newTaskAdded:badgeText": "Bravo %{firstName} 🎉",
   "modal:newTaskAdded:info:primary": "👏 On vient de les ajouter à ton compteur",
