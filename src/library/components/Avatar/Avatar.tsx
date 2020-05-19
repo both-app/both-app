@@ -1,12 +1,5 @@
 import React, { FC } from 'react'
-import {
-  Text,
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  ViewStyle,
-  Image,
-} from 'react-native'
+import { Text, StyleSheet, View, ViewStyle, Image } from 'react-native'
 
 import { colors, Color } from 'res/colors'
 import { fonts } from 'res/fonts'
@@ -20,7 +13,6 @@ interface AvatarProps {
   borderWidth?: number
   backgroundColor?: Color
   avatarColor?: Color
-  onAction?: VoidFunction
 }
 
 export const Avatar: FC<AvatarProps> = ({
@@ -30,7 +22,6 @@ export const Avatar: FC<AvatarProps> = ({
   borderColor,
   backgroundColor,
   avatarColor,
-  onAction,
   containerStyle,
   avatarUrl,
 }) => {
@@ -67,26 +58,22 @@ export const Avatar: FC<AvatarProps> = ({
     fontSize,
   }
 
-  const handleOnPress = () => onAction && onAction()
-
   return (
-    <TouchableOpacity activeOpacity={1} onPress={handleOnPress}>
-      <View style={avatarStyle}>
-        {!!firstname && (
-          <Text style={avatarText}>{firstname[0].toUpperCase()}</Text>
-        )}
-        {!!avatarUrl && (
-          <Image
-            source={avatarUrl}
-            style={{
-              width: sizeNumber,
-              height: sizeNumber,
-              borderRadius: sizeNumber / 2,
-            }}
-          />
-        )}
-      </View>
-    </TouchableOpacity>
+    <View style={avatarStyle}>
+      {!!firstname && !avatarUrl && (
+        <Text style={avatarText}>{firstname[0].toUpperCase()}</Text>
+      )}
+      {!!avatarUrl && (
+        <Image
+          source={avatarUrl}
+          style={{
+            width: sizeNumber,
+            height: sizeNumber,
+            borderRadius: sizeNumber / 2,
+          }}
+        />
+      )}
+    </View>
   )
 }
 

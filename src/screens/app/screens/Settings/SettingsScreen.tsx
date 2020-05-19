@@ -62,6 +62,10 @@ export const SettingsScreen = () => {
     navigation.navigate('TheTeam')
   }
 
+  const goToTheProfil = () => {
+    navigation.navigate('Profil')
+  }
+
   const handleFeedback = async () => {
     await WebBrowser.openBrowserAsync('https://forms.gle/vFxTrrKXZNstFsz17')
   }
@@ -98,17 +102,14 @@ export const SettingsScreen = () => {
       <Label primary={t('app:screen:settings:title')} />
 
       <Scroll style={styles.scrollContainer} marginTop={24} marginBottom={24}>
-        <Value
-          label={t('app:screen:profil:firstName')}
-          value={me.firstName}
-          marginBottom={16}
+        <Text style={styles.sectionTitle}>Tes préférences</Text>
+        <CardButton
+          emoji="🙈"
+          title="Infos. personnelles"
+          subtitle="Informations classées secret défense"
+          onAction={goToTheProfil}
+          containerStyle={styles.button}
         />
-        <Value
-          label={t('app:screen:profil:gender')}
-          value={formattedGender}
-          marginBottom={16}
-        />
-
         <CardButton
           emoji="💔"
           title={t('app:screen:settings:button:endRelation:title')}

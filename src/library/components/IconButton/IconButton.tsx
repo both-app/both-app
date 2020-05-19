@@ -10,9 +10,11 @@ interface IconButtonProps extends IconProps {
   onAction: () => void
   buttonStyle?: any
   buttonColor?: Color
+  size: number
+  radius?: number
+  iconSize?: number
   iconStyle?: any
   iconColor?: Color
-  size: 40 | 64
 }
 
 export const IconButton: FC<IconButtonProps> = ({ onAction, ...props }) => {
@@ -27,6 +29,7 @@ export const IconButton: FC<IconButtonProps> = ({ onAction, ...props }) => {
   const buttonStyle = {
     width: props.size,
     height: props.size,
+    borderRadius: props.radius || 19.2,
     ...(props.buttonColor
       ? { backgroundColor: colors[props.buttonColor] }
       : {}),
@@ -45,7 +48,12 @@ export const IconButton: FC<IconButtonProps> = ({ onAction, ...props }) => {
       onPress={handleOnPress}
       activeOpacity={0.9}
     >
-      <Icon style={iconStyle} width={30} height={30} {...props} />
+      <Icon
+        style={iconStyle}
+        width={props.iconSize || 30}
+        height={props.iconSize || 30}
+        {...props}
+      />
     </TouchableOpacity>
   )
 }
@@ -54,6 +62,5 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 19.2,
   },
 })

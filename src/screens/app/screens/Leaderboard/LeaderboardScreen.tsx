@@ -77,7 +77,7 @@ export const LeaderboardScreen = () => {
           />
         )
       }
-      badge={<CountdownBadge />}
+      center={<CountdownBadge />}
     >
       <Scroll style={styles.scrollContainer} marginTop={24} marginBottom={24}>
         {ranking.map((user: RankedUser) => (
