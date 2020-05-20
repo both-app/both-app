@@ -54,8 +54,21 @@ const UserScoreContextProvider: FC = ({ children }) => {
       const userScore = await getItem('userScore')
       const userGlobalScore = await getItem('userGlobalScore')
 
-      if (userScore && userGlobalScore) {
-        setState({ current: userScore, global: userGlobalScore })
+      if (userScore) {
+        setState((userScoreState) => ({
+          ...userScoreState,
+          current: { ...userScore, status: getScoreStatus(userScore) },
+        }))
+      }
+
+      if (userGlobalScore) {
+        setState((userScoreState) => ({
+          ...userScoreState,
+          global: {
+            ...userGlobalScore,
+            status: getScoreStatus(userGlobalScore),
+          },
+        }))
       }
 
       fetchUserScore()
