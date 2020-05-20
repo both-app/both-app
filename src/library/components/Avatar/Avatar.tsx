@@ -6,7 +6,7 @@ import { fonts } from 'res/fonts'
 
 interface AvatarProps {
   firstname?: string
-  avatarUrl?: any
+  avatar?: any
   size: 'large' | 'medium' | 'small'
   containerStyle?: ViewStyle
   borderColor?: Color
@@ -23,7 +23,7 @@ export const Avatar: FC<AvatarProps> = ({
   backgroundColor,
   avatarColor,
   containerStyle,
-  avatarUrl,
+  avatar,
 }) => {
   const sizeNumber = {
     large: 120,
@@ -43,7 +43,9 @@ export const Avatar: FC<AvatarProps> = ({
     height: sizeNumber,
     borderRadius: sizeNumber / 2,
     ...(containerStyle ? containerStyle : {}),
-    ...(backgroundColor ? { backgroundColor: colors[backgroundColor] } : {}),
+    ...(backgroundColor && !avatar
+      ? { backgroundColor: colors[backgroundColor] }
+      : {}),
     ...(borderColor
       ? {
           borderWidth,
@@ -58,18 +60,26 @@ export const Avatar: FC<AvatarProps> = ({
     fontSize,
   }
 
+  const avatarSource = typeof avatar === 'string' ? { uri: avatar } : avatar
+
   return (
     <View style={avatarStyle}>
-      {!!firstname && !avatarUrl && (
+      {!!firstname && !avatar && (
         <Text style={avatarText}>{firstname[0].toUpperCase()}</Text>
       )}
-      {!!avatarUrl && (
+      {!!avatar && (
         <Image
-          source={avatarUrl}
+          source={avatarSource}
           style={{
             width: sizeNumber,
             height: sizeNumber,
             borderRadius: sizeNumber / 2,
+            ...(borderColor
+              ? {
+                  borderWidth,
+                  borderColor: colors[borderColor],
+                }
+              : {}),
           }}
         />
       )}
@@ -80,7 +90,6 @@ export const Avatar: FC<AvatarProps> = ({
 const styles = StyleSheet.create({
   avatar: {
     backgroundColor: colors.skin100,
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },

@@ -10,12 +10,19 @@ import * as Sentry from 'sentry-expo'
 import * as Analytics from 'expo-firebase-analytics'
 
 import { api, APIResponse } from 'res/api'
+import { omitBy } from 'res/utils'
+import { getUrlFromPath } from 'res/image'
+
 import { useAppState } from 'hooks/useAppState'
 
 type GetRelationInfoResponse = APIResponse<{
   relation: Relation
-  user: User
-  partner?: User
+  user: ApiUser
+  partner?: ApiUser
+}>
+
+type UpdateUserResponse = APIResponse<{
+  user: ApiUser
 }>
 
 interface UsersContextState {
@@ -27,6 +34,7 @@ interface UsersContextState {
 interface UsersContextProps extends UsersContextState {
   hasError: boolean
   getUserById: (userId: string) => User
+  updateUser: (user: Partial<User>) => Promise<void>
   fetchUsers: () => Promise<void>
 }
 
@@ -37,6 +45,7 @@ const initialState: UsersContextState = {
     gender: 'other',
     relationId: '',
     pushToken: '',
+    avatarUrl: '',
   },
   partner: {
     id: '',
@@ -44,6 +53,7 @@ const initialState: UsersContextState = {
     gender: 'other',
     relationId: '',
     pushToken: '',
+    avatarUrl: '',
   },
   relation: null,
 }
@@ -66,6 +76,19 @@ const UsersContextProvider: FC = ({ children }) => {
     }
   }, [appState])
 
+  const updateUserState = async (state) => {
+    const newState = state
+    if (newState.me.avatarPath) {
+      newState.me.avatarUrl = await getUrlFromPath(newState.me.avatarPath)
+    }
+
+    if (newState.partner.avatarPath) {
+      newState.me.avatarUrl = await getUrlFromPath(newState.partner.avatarPath)
+    }
+
+    setUserState(newState)
+  }
+
   const fetchUsers = async () => {
     try {
       const {
@@ -79,13 +102,11 @@ const UsersContextProvider: FC = ({ children }) => {
         gender: data.user.gender,
       })
 
-      const newState = {
+      return updateUserState({
         me: data.user,
         partner: data.partner || userState.partner,
         relation: data.relation,
-      }
-
-      return setUserState(newState)
+      })
     } catch (error) {
       if (
         error.response?.status === 404 || // RelationNotFound
@@ -95,6 +116,23 @@ const UsersContextProvider: FC = ({ children }) => {
         setHasError(true)
       }
     }
+  }
+
+  const updateUser: UsersContextProps['updateUser'] = async (userToUpdate) => {
+    const params = omitBy(
+      {
+        ...userState.me,
+        ...userToUpdate,
+      },
+      // Theses fields can't be update
+      ['id', 'language', 'relationId']
+    )
+
+    const {
+      data: { data },
+    } = await api.put<UpdateUserResponse>('users', params)
+
+    updateUserState({ ...userState, me: { ...userState.me, ...data.user } })
   }
 
   const getUserById = useCallback(
@@ -113,8 +151,8 @@ const UsersContextProvider: FC = ({ children }) => {
   )
 
   const usersContextApi = useMemo(
-    () => ({ ...userState, getUserById, fetchUsers, hasError }),
-    [userState, getUserById, fetchUsers, hasError]
+    () => ({ ...userState, getUserById, fetchUsers, hasError, updateUser }),
+    [userState, getUserById, fetchUsers, hasError, updateUser]
   )
 
   return (

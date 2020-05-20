@@ -10,7 +10,9 @@ import { useCounter } from './useCounter'
 
 interface BodyProps {
   leftFirstName: string
+  leftAvatarUrl?: string
   rightFirstName: string
+  rightAvatarUrl?: string
   leftPoints: number
   rightPoints: number
 }
@@ -18,7 +20,8 @@ interface BodyProps {
 export const Body: FC<BodyProps> = ({
   leftFirstName,
   rightFirstName,
-
+  leftAvatarUrl,
+  rightAvatarUrl,
   ...props
 }) => {
   const leftPoints = useCounter(props.leftPoints)
@@ -26,7 +29,7 @@ export const Body: FC<BodyProps> = ({
 
   return (
     <View style={styles.bodyContainer}>
-      <Avatar firstname={leftFirstName} size="small" />
+      <Avatar firstname={leftFirstName} avatar={leftAvatarUrl} size="small" />
 
       <View style={styles.counterContainer}>
         <View style={styles.left}>
@@ -44,7 +47,7 @@ export const Body: FC<BodyProps> = ({
         </View>
       </View>
 
-      <Avatar firstname={rightFirstName} size="small" />
+      <Avatar firstname={rightFirstName} avatar={rightAvatarUrl} size="small" />
     </View>
   )
 }

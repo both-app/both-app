@@ -34,7 +34,8 @@
       "playStoreUrl": "https://play.google.com/store/apps/details?id=com.both.bothapp",
       "versionCode": 9,
       "googleServicesFile": "./google-services.json",
-      "icon": "./assets/appIcons/playstore.png"
+      "icon": "./assets/appIcons/playstore.png",
+      "permissions": ["CAMERA"]
     },
     "notification": {
       "icon": "./assets/notif-icon.png",

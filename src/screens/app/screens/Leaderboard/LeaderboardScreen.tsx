@@ -72,6 +72,7 @@ export const LeaderboardScreen = () => {
           <DrawHeader />
         ) : (
           <WinnerHeader
+            avatarUrl={ranking[0].avatarUrl}
             firstName={ranking[0].firstName}
             gender={ranking[0].gender}
           />
@@ -84,6 +85,7 @@ export const LeaderboardScreen = () => {
           <UserRecap
             key={user.id}
             isMe={user.isMe}
+            avatarUrl={user.avatarUrl}
             firstName={user.firstName}
             isWinner={user.isWinner}
             points={user.points}

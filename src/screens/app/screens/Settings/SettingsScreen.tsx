@@ -1,5 +1,5 @@
 import React, { useContext, useCallback } from 'react'
-import { View, StyleSheet, Text, Alert } from 'react-native'
+import { View, StyleSheet, Text, Alert, StatusBar } from 'react-native'
 import * as WebBrowser from 'expo-web-browser'
 import * as StoreReview from 'expo-store-review'
 import { Asset } from 'expo-asset'
@@ -15,66 +15,32 @@ import { UsersContext } from 'screens/app/contexts/Users.context'
 
 import { useNavigation, useFocusEffect } from '@react-navigation/native'
 import { AuthContext, AuthApiContext } from 'screens/auth/contexts'
-import { Value } from './components'
 
 export const SettingsScreen = () => {
   const { t } = useT()
   const navigation = useNavigation()
-  const { me, partner } = useContext(UsersContext)
+  const { partner } = useContext(UsersContext)
   const { logout } = useContext(AuthContext)
   const { deleteRelation } = useContext(AuthApiContext)
 
   useFocusEffect(
     useCallback(() => {
+      const loadTeamAvatars = async () => {
+        const images = [
+          require('../../../../../assets/team/mathieu.png'),
+          require('../../../../../assets/team/gauthier.png'),
+          require('../../../../../assets/team/vincent.png'),
+        ]
+
+        await Promise.all(
+          images.map((image) => Asset.fromModule(image).downloadAsync())
+        )
+      }
+
+      StatusBar.setBarStyle('dark-content')
       loadTeamAvatars()
     }, [])
   )
-
-  const formattedGender = {
-    male: t('male'),
-    female: t('female'),
-    other: t('other'),
-  }[me.gender]
-
-  const loadTeamAvatars = async () => {
-    const images = [
-      require('../../../../../assets/team/mathieu.png'),
-      require('../../../../../assets/team/gauthier.png'),
-      require('../../../../../assets/team/vincent.png'),
-    ]
-
-    await Promise.all(
-      images.map((image) => Asset.fromModule(image).downloadAsync())
-    )
-  }
-
-  const goToPrivacyPolicy = async () => {
-    await WebBrowser.openBrowserAsync('https://appboth.com/privacy-policy')
-  }
-
-  const goToTermsAndConditions = async () => {
-    await WebBrowser.openBrowserAsync(
-      'https://appboth.com/terms-and-conditions'
-    )
-  }
-
-  const goToTheTeam = () => {
-    navigation.navigate('TheTeam')
-  }
-
-  const goToTheProfil = () => {
-    navigation.navigate('Profil')
-  }
-
-  const handleFeedback = async () => {
-    await WebBrowser.openBrowserAsync('https://forms.gle/vFxTrrKXZNstFsz17')
-  }
-
-  const handleBothClub = async () => {
-    await WebBrowser.openBrowserAsync('https://bit.ly/JoinBothClub')
-  }
-
-  const handleRateApp = () => StoreReview.requestReview()
 
   const handleEndRelation = () => {
     Alert.alert(
@@ -107,7 +73,7 @@ export const SettingsScreen = () => {
           emoji="🙈"
           title="Infos. personnelles"
           subtitle="Informations classées secret défense"
-          onAction={goToTheProfil}
+          onAction={() => navigation.navigate('Profil')}
           containerStyle={styles.button}
         />
         <CardButton
@@ -136,21 +102,25 @@ export const SettingsScreen = () => {
           emoji="🧸"
           title={t('app:screen:settings:button:joinBothClub:title')}
           subtitle={t('app:screen:settings:button:joinBothClub:subtitle')}
-          onAction={handleBothClub}
+          onAction={() =>
+            WebBrowser.openBrowserAsync('https://bit.ly/JoinBothClub')
+          }
           containerStyle={styles.button}
         />
         <CardButton
           emoji="💡"
           title={t('app:screen:settings:button:shareIdeas:title')}
           subtitle={t('app:screen:settings:button:shareIdeas:subtitle')}
-          onAction={handleFeedback}
+          onAction={() =>
+            WebBrowser.openBrowserAsync('https://forms.gle/vFxTrrKXZNstFsz17')
+          }
           containerStyle={styles.button}
         />
         <CardButton
           emoji="⭐️"
           title={t('app:screen:settings:button:voteTheApp:title')}
           subtitle={t('app:screen:settings:button:voteTheApp:subtitle')}
-          onAction={handleRateApp}
+          onAction={() => StoreReview.requestReview()}
           containerStyle={styles.button}
         />
 
@@ -161,21 +131,27 @@ export const SettingsScreen = () => {
           emoji="👨‍👦‍👦"
           title={t('app:screen:settings:button:theTeam:title')}
           subtitle={t('app:screen:settings:button:theTeam:subtitle')}
-          onAction={goToTheTeam}
+          onAction={() => navigation.navigate('TheTeam')}
           containerStyle={styles.button}
         />
         <CardButton
           emoji="🔐"
           title={t('app:screen:settings:button:protectData:title')}
           subtitle={t('app:screen:settings:button:protectData:subtitle')}
-          onAction={goToPrivacyPolicy}
+          onAction={() =>
+            WebBrowser.openBrowserAsync('https://appboth.com/privacy-policy')
+          }
           containerStyle={styles.button}
         />
         <CardButton
           emoji="📑"
           title={t('app:screen:settings:button:cgu:title')}
           subtitle={t('app:screen:settings:button:cgu:subtitle')}
-          onAction={goToTermsAndConditions}
+          onAction={() =>
+            WebBrowser.openBrowserAsync(
+              'https://appboth.com/terms-and-conditions'
+            )
+          }
           containerStyle={styles.button}
         />
       </Scroll>
