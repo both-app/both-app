@@ -103,7 +103,7 @@ export const LeaderboardScreen = ({ navigation }) => {
               gender={ranking[0].gender}
             />
           )}
-          <RelationStatus scoreStatus={scoreContext.status} />
+          <RelationStatus scoreStatus={status} />
         </>
       }
       badge={<CountdownBadge />}
