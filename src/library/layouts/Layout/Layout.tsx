@@ -1,5 +1,11 @@
 import React, { useCallback, FC, ReactNode } from 'react'
-import { View, StyleSheet, StatusBar, SafeAreaView } from 'react-native'
+import {
+  View,
+  StyleSheet,
+  StatusBar,
+  SafeAreaView,
+  Platform,
+} from 'react-native'
 import { useFocusEffect } from '@react-navigation/native'
 
 import { colors } from 'res/colors'
@@ -19,13 +25,15 @@ export const Layout: FC<LayoutProps> = ({ children, header, badge }) => {
     }, [])
   )
 
+  const paddingTop = Platform.OS === 'android' ? StatusBar.currentHeight : 0
+
   return (
-    <SafeAreaView style={styles.safeView}>
+    <SafeAreaView style={{ ...styles.safeView, paddingTop }}>
       <View style={styles.container}>
         <View style={styles.header}>{header}</View>
 
         <View style={styles.body}>
-          {!!badge && <View style={styles.badge}>{badge}</View>}
+          <View style={styles.badge}>{badge}</View>
           {children}
         </View>
       </View>
