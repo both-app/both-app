@@ -33,7 +33,6 @@ export const WinnerHeader: FC<WinnerHeaderProps> = ({ firstName, gender }) => {
       <Text style={styles.winnerOfTheWeek}>
         {t(`app:screen:leaderboard:winnerOfTheWeek:${gender}`)}
       </Text>
-      <RelationStatus />
     </>
   )
 }

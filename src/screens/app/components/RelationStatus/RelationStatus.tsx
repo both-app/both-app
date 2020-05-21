@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, FC } from 'react'
 
 import { Info } from 'library/components/Info'
 
@@ -9,10 +9,13 @@ import {
 import { UsersContext } from 'screens/app/contexts/Users.context'
 import { useT } from 'res/i18n'
 
-export const RelationStatus = () => {
+interface RelationStatusProps {
+  scoreStatus: ScoreSatus
+}
+
+export const RelationStatus: FC<RelationStatusProps> = ({ scoreStatus }) => {
   const { t } = useT()
   const { me, partner } = useContext(UsersContext)
-  const { scoreStatus } = useContext(UserScoreContext)
 
   if (!partner.id) {
     return (

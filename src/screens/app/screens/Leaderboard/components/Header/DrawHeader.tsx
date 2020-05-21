@@ -38,7 +38,6 @@ export const DrawHeader = () => {
       <Text style={styles.winnersOfTheWeek}>
         {t(`app:screen:leaderboard:winnersOfTheWeek`)}
       </Text>
-      <RelationStatus />
     </>
   )
 }

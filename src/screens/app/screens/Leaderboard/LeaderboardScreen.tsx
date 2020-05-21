@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { StyleSheet } from 'react-native'
 import SegmentedControl from 'react-native-segmented-control-tab'
 
@@ -15,6 +15,7 @@ import { UserRecap, UserRecapPlaceholder } from './components/UserRecap'
 import { CountdownBadge } from './components/CountdownBadge'
 import { DrawHeader, WinnerHeader } from './components/Header'
 import { useT } from 'res/i18n'
+import { RelationStatus } from 'screens/app/components/RelationStatus'
 
 interface RankedUser extends User {
   points: number
@@ -23,12 +24,21 @@ interface RankedUser extends User {
   isMe: boolean
 }
 
-export const LeaderboardScreen = () => {
+export const LeaderboardScreen = ({ navigation }) => {
   const { current, global } = useContext(UserScoreContext)
   const { me, partner } = useContext(UsersContext)
   const { getTaskById } = useContext(TaskContext)
-  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [sectionIndex, setSectionIndex] = useState(0)
   const { t } = useT()
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('blur', () => {
+      setSectionIndex(0)
+    })
+    return unsubscribe
+  }, [navigation])
+
+  const scoreContext = sectionIndex ? global : current
 
   const {
     userTotalPoints,
@@ -36,7 +46,7 @@ export const LeaderboardScreen = () => {
     partnerTotalPoints,
     userFavoriteTask,
     status,
-  } = selectedIndex ? global : current
+  } = scoreContext
 
   const rankedUser = {
     ...me,
@@ -77,8 +87,8 @@ export const LeaderboardScreen = () => {
               t('app:screen:leaderboard:tabs:week'),
               t('app:screen:leaderboard:tabs:global'),
             ]}
-            selectedIndex={selectedIndex}
-            onTabPress={setSelectedIndex}
+            selectedIndex={sectionIndex}
+            onTabPress={setSectionIndex}
             tabsContainerStyle={styles.tabsContainer}
             tabStyle={styles.tab}
             borderRadius={6}
@@ -93,6 +103,7 @@ export const LeaderboardScreen = () => {
               gender={ranking[0].gender}
             />
           )}
+          <RelationStatus scoreStatus={scoreContext.status} />
         </>
       }
       badge={<CountdownBadge />}
@@ -120,7 +131,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 24,
   },
   tabsContainer: {
-    marginTop: 10,
     marginBottom: 50,
     height: 35,
     backgroundColor: 'rgba(118,118,128,0.24)',
