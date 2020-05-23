@@ -1,1 +1,0 @@
-export { BirthDateScreen } from './BirthDateScreen'

@@ -57,10 +57,8 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.dark100,
   },
   header: {
-    paddingTop: PADDINGY,
-    paddingLeft: PADDINGX,
-    paddingRight: PADDINGX,
-    paddingBottom: PADDINGY,
+    paddingHorizontal: PADDINGX,
+    paddingVertical: PADDINGY,
     display: 'flex',
     alignItems: 'center',
   },

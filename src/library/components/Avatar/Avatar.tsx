@@ -4,9 +4,9 @@ import { Text, StyleSheet, View, ViewStyle, Image } from 'react-native'
 import { colors, Color } from 'res/colors'
 import { fonts } from 'res/fonts'
 
-interface AvatarProps {
+export interface AvatarProps {
   firstname?: string
-  avatar?: any
+  avatar?: string | number
   size: 'large' | 'medium' | 'small'
   containerStyle?: ViewStyle
   borderColor?: Color
@@ -17,7 +17,7 @@ interface AvatarProps {
 
 export const Avatar: FC<AvatarProps> = ({
   firstname,
-  size = 48,
+  size = 'medium',
   borderWidth = 4,
   borderColor,
   backgroundColor,
@@ -37,20 +37,26 @@ export const Avatar: FC<AvatarProps> = ({
     small: 26,
   }[size]
 
+  const hasAvatar =
+    // @ts-ignore
+    (typeof avatar === 'string' && avatar.length > 0) || parseInt(avatar)
+
+  const borderStyle = borderColor
+    ? {
+        borderWidth,
+        borderColor: colors[borderColor],
+      }
+    : {}
+
   const avatarStyle = {
     ...styles.avatar,
+    ...(containerStyle ? containerStyle : {}),
     width: sizeNumber,
     height: sizeNumber,
     borderRadius: sizeNumber / 2,
-    ...(containerStyle ? containerStyle : {}),
-    ...(backgroundColor && !avatar
+    ...borderStyle,
+    ...(backgroundColor && !hasAvatar
       ? { backgroundColor: colors[backgroundColor] }
-      : {}),
-    ...(borderColor
-      ? {
-          borderWidth,
-          borderColor: colors[borderColor],
-        }
       : {}),
   }
 
@@ -60,26 +66,19 @@ export const Avatar: FC<AvatarProps> = ({
     fontSize,
   }
 
-  const avatarSource = typeof avatar === 'string' ? { uri: avatar } : avatar
-
   return (
     <View style={avatarStyle}>
-      {!!firstname && !avatar && (
+      {!!firstname && !hasAvatar && (
         <Text style={avatarText}>{firstname[0].toUpperCase()}</Text>
       )}
-      {!!avatar && (
+      {!!hasAvatar && (
         <Image
-          source={avatarSource}
+          source={typeof avatar === 'string' ? { uri: avatar } : avatar}
           style={{
             width: sizeNumber,
             height: sizeNumber,
             borderRadius: sizeNumber / 2,
-            ...(borderColor
-              ? {
-                  borderWidth,
-                  borderColor: colors[borderColor],
-                }
-              : {}),
+            ...borderStyle,
           }}
         />
       )}

@@ -45,6 +45,7 @@ const initialState: UsersContextState = {
     gender: 'other',
     relationId: '',
     pushToken: '',
+    avatarPath: '',
     avatarUrl: '',
   },
   partner: {
@@ -53,6 +54,7 @@ const initialState: UsersContextState = {
     gender: 'other',
     relationId: '',
     pushToken: '',
+    avatarPath: '',
     avatarUrl: '',
   },
   relation: null,
@@ -125,7 +127,7 @@ const UsersContextProvider: FC = ({ children }) => {
         ...userToUpdate,
       },
       // Theses fields can't be update
-      ['id', 'language', 'relationId']
+      ['id', 'language', 'relationId', 'avatarUrl']
     )
 
     const {

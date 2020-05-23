@@ -68,11 +68,13 @@ export const SettingsScreen = () => {
       <Label primary={t('app:screen:settings:title')} />
 
       <Scroll style={styles.scrollContainer} marginTop={24} marginBottom={24}>
-        <Text style={styles.sectionTitle}>Tes préférences</Text>
+        <Text style={styles.sectionTitle}>
+          {t('app:screen:settings:section:yourSettings')}
+        </Text>
         <CardButton
           emoji="🙈"
-          title="Infos. personnelles"
-          subtitle="Informations classées secret défense"
+          title={t('app:screen:settings:button:profil:title')}
+          subtitle={t('app:screen:settings:button:profil:subtitle')}
           onAction={() => navigation.navigate('Profil')}
           containerStyle={styles.button}
         />

@@ -6,6 +6,9 @@ import { Color, colors } from 'res/colors'
 
 import { Icon, IconProps } from '../Icon'
 
+const DEFAULT_RADIUS = 19.2
+const DEFAULT_ICON_SIZE = 30
+
 interface IconButtonProps extends IconProps {
   onAction: () => void
   buttonStyle?: any
@@ -29,7 +32,7 @@ export const IconButton: FC<IconButtonProps> = ({ onAction, ...props }) => {
   const buttonStyle = {
     width: props.size,
     height: props.size,
-    borderRadius: props.radius || 19.2,
+    borderRadius: props.radius || DEFAULT_RADIUS,
     ...(props.buttonColor
       ? { backgroundColor: colors[props.buttonColor] }
       : {}),
@@ -50,8 +53,8 @@ export const IconButton: FC<IconButtonProps> = ({ onAction, ...props }) => {
     >
       <Icon
         style={iconStyle}
-        width={props.iconSize || 30}
-        height={props.iconSize || 30}
+        width={props.iconSize || DEFAULT_ICON_SIZE}
+        height={props.iconSize || DEFAULT_ICON_SIZE}
         {...props}
       />
     </TouchableOpacity>

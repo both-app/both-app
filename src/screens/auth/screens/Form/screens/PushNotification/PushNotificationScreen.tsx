@@ -45,6 +45,7 @@ export const PushNotificationScreen = () => {
     const result = await createRelation({
       firstName: values.firstName,
       gender: values.gender,
+      avatarPath: values.avatarPath,
       ...(pushToken ? { pushToken } : {}),
     })
 
@@ -57,6 +58,7 @@ export const PushNotificationScreen = () => {
         firstName: values.firstName,
         gender: values.gender,
         code: values.code,
+        avatarPath: values.avatarPath,
         ...(pushToken ? { pushToken } : {}),
       })
 

@@ -4,7 +4,7 @@ interface ApiUser {
   gender: 'male' | 'female' | 'other'
   relationId: string
   pushToken: string
-  avatarPath?: string
+  avatarPath: string
   birthDate?: string
 }
 

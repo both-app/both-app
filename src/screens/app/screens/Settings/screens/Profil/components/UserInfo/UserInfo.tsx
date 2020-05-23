@@ -18,8 +18,12 @@ export const UserInfo = () => {
 
   return (
     <View style={styles.userInfoBlock}>
-      <Value label="Prénom" value={me.firstName} marginBottom={16} />
-      <Value label="Genre" value={formattedGender} />
+      <Value
+        label={t('app:screen:profil:firstName')}
+        value={me.firstName}
+        marginBottom={16}
+      />
+      <Value label={t('app:screen:profil:gender')} value={formattedGender} />
     </View>
   )
 }

@@ -1,6 +1,7 @@
 import Constants from 'expo-constants'
 import * as Permissions from 'expo-permissions'
 import { nanoid } from 'nanoid/async/index.native.js'
+import * as Sentry from 'sentry-expo'
 
 import firebase from './firebase'
 
@@ -35,7 +36,7 @@ export const uploadImage = async (type: 'avatar', uri: string) => {
     xhr.send(null)
   })) as Blob
 
-  const key = (await nanoid()) as string
+  const key = (await nanoid(42)) as string
   const ref = storage.ref().child(type).child(key)
   const snapshot = await ref.put(blob)
 
@@ -50,12 +51,15 @@ export const getUrlFromPath = (path: string) => {
   try {
     return storage.ref(path).getDownloadURL()
   } catch (e) {
+    Sentry.captureException(e)
     return ''
   }
 }
 
 export const deleteFromPath = (url: string) => {
   try {
-    storage.ref(url).delete()
-  } catch (e) {}
+    return storage.ref(url).delete()
+  } catch (e) {
+    Sentry.captureException(e)
+  }
 }

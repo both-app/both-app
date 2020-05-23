@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import { useT } from 'res/i18n'
+import { deleteFromPath } from 'res/image'
 
 import { Layout } from 'library/layouts/Layout'
 import { IconButton } from 'library/components/IconButton'
@@ -10,29 +11,44 @@ import { Label } from 'library/components/Label'
 import { Scroll } from 'library/layouts/Scroll'
 import { Info } from 'library/components/Info'
 
-import { UserAvatar } from './components/UserAvatar'
+import { UserAvatar } from 'screens/components/UserAvatar'
 import { SecurityBlock } from './components/SecurityBlock'
 import { UserInfo } from './components/UserInfo'
+import { UsersContext } from 'screens/app/contexts/Users.context'
 
 export const ProfilScreen = () => {
   const { t } = useT()
   const navigation = useNavigation()
+  const { me, updateUser } = useContext(UsersContext)
+
+  const handleAvatarUploaded = async (path: string) => {
+    const avatarPath = me.avatarPath
+
+    await updateUser({ avatarPath: path })
+    await deleteFromPath(avatarPath)
+  }
 
   return (
     <Layout
       header={
         <View style={styles.header}>
-          <Label primary="Infos. personnelles" color="white" />
+          <Label primary={t('app:screen:profil:pageTitle')} color="white" />
         </View>
       }
       centerTopPosition={-60}
-      center={<UserAvatar />}
+      center={
+        <UserAvatar
+          firstName={me.firstName}
+          avatarUrl={me.avatarUrl}
+          onAvatarUploaded={handleAvatarUploaded}
+        />
+      }
     >
       <View style={styles.container}>
         <Scroll style={styles.scrollContainer} marginTop={32} marginBottom={32}>
           <Info
-            primary="👋 Salut Mathieu"
-            secondary="Ici tu peux ajouter une photo en guise d’avatar ou bien voir les informations personnelles te concernant"
+            primary={t('app:screen:profil:title', { firstName: me.firstName })}
+            secondary={t('app:screen:profil:subtitle')}
             color="dark200"
           />
 

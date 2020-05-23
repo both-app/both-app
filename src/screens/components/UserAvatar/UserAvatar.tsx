@@ -1,19 +1,28 @@
-import React, { useContext } from 'react'
+import React, { FC } from 'react'
 import { View, StyleSheet } from 'react-native'
 import * as ImagePicker from 'expo-image-picker'
 
-import { getCameraPermission, uploadImage, deleteFromPath } from 'res/image'
+import { getCameraPermission, uploadImage } from 'res/image'
 
-import { Avatar } from 'library/components/Avatar'
+import { Avatar, AvatarProps } from 'library/components/Avatar'
 import { IconButton } from 'library/components/IconButton'
 
-import { UsersContext } from 'screens/app/contexts/Users.context'
+interface UserAvatarProps extends Partial<AvatarProps> {
+  firstName: string
+  avatarUrl?: string
+  onAvatarUploaded: (path: string) => void
+  onError?: VoidFunction
+}
 
 const AVATAR_IMAGE_QUALITY = 0.1
 
-export const UserAvatar = () => {
-  const { me, updateUser } = useContext(UsersContext)
-
+export const UserAvatar: FC<UserAvatarProps> = ({
+  firstName,
+  avatarUrl,
+  onAvatarUploaded,
+  onError,
+  ...props
+}) => {
   const handleOnTakePicture = async () => {
     await getCameraPermission()
 
@@ -28,26 +37,24 @@ export const UserAvatar = () => {
       if (!result.cancelled) {
         // @ts-ignore
         const path = await uploadImage('avatar', result.uri)
-
-        // Delete the old avatar
-        await deleteFromPath(me.avatarUrl)
-
-        // Save the new avatar path
-        updateUser({ avatarUrl: path, birthDate: '01/01/2001' })
+        onAvatarUploaded(path)
       }
-    } catch (error) {}
+    } catch (error) {
+      onError && onError()
+    }
   }
 
   return (
     <View>
       <Avatar
-        firstname={me.firstName}
-        avatar={me.avatarUrl}
+        firstname={firstName}
+        avatar={avatarUrl}
         avatarColor="skin100"
         backgroundColor="dark200"
         size="large"
         borderColor="skin100"
         borderWidth={4}
+        {...props}
       />
 
       <IconButton

@@ -13,8 +13,8 @@ export const SecurityBlock = () => {
     <View style={styles.securityBlock}>
       <Text style={styles.lock}>🔒</Text>
       <Info
-        primary="Tes données sont en sécurité"
-        secondary="Ne t’inquiètes pas pour ça, on les conserve bien au chaud et ça ne sortira pas de chez nous !"
+        primary={t('app:screen:profil:securityBlock:title')}
+        secondary={t('app:screen:profil:securityBlock:subtitle')}
         color="dark200"
       />
     </View>
