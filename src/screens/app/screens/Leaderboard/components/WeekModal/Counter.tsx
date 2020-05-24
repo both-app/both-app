@@ -5,12 +5,14 @@ import { colors } from 'res/colors'
 import { fonts } from 'res/fonts'
 
 interface CounterProps {
-  type: 'winner' | 'loser'
+  type: 'winner' | 'loser' | 'draw'
 }
 
 export const Counter: FC<CounterProps> = ({ type, children }) => {
   const counterStyle =
-    type === 'winner' ? styles.winnerCounter : styles.loserCounter
+    type === 'winner' || type === 'draw'
+      ? styles.winnerCounter
+      : styles.loserCounter
 
   return <Text style={counterStyle}>{children}</Text>
 }

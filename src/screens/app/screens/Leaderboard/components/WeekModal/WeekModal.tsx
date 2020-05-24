@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useContext } from 'react'
 import { View, StyleSheet } from 'react-native'
 
 import { Color } from 'res/colors'
@@ -9,78 +9,103 @@ import { Modal } from 'library/components/Modal'
 import { Avatar } from 'library/components/Avatar'
 import { Medal } from '../Medal'
 import { Counter } from './Counter'
+import {
+  UserScoreContext,
+  ScoreSatus,
+} from 'screens/app/contexts/UserScore.context'
+import { UsersContext } from 'screens/app/contexts/Users.context'
+import { useT } from 'res/i18n'
 
-interface WeekModalProps {
-  visible: boolean
-  onClose: VoidFunction
-  onAction: VoidFunction
-  type: 'winner' | 'loser'
+enum Rank {
+  Draw = 'draw',
+  Winner = 'winner',
+  Loser = 'loser',
 }
 
-export const WeekModal: FC<WeekModalProps> = ({
-  visible,
-  onClose,
-  onAction,
-  type,
-}) => {
+export const WeekModal = () => {
+  const { lastWeek, shoulDisplayWeeklyRecap, closeWeeklyRecap } = useContext(
+    UserScoreContext
+  )
+  const { me, partner } = useContext(UsersContext)
+  const { t } = useT()
+
+  let userRank: Rank, partnerRank: Rank
+  if (lastWeek.status === ScoreSatus.Draw) {
+    userRank = Rank.Draw
+    partnerRank = Rank.Draw
+  } else if (lastWeek.status === ScoreSatus.UserWins) {
+    userRank = Rank.Winner
+    partnerRank = Rank.Loser
+  } else {
+    userRank = Rank.Loser
+    partnerRank = Rank.Winner
+  }
+
   const emoji = {
     winner: '🏆',
     loser: '💩',
-  }[type]
+    draw: '🏆',
+  }[userRank]
 
   const badgeTitle = {
     winner: "C'est gagné 🥳",
     loser: "C'est perdu 😓",
-  }[type]
+    draw: '',
+  }[userRank]
 
   const badgeColor = {
     winner: 'success',
     loser: 'critical',
-  }[type] as Color
+    draw: '',
+  }[userRank] as Color
 
   const infoPrimary = {
-    winner: '👍 Tu as gagné cette semaine !',
-    loser: '👎 Tu as perdu cette semaine !',
-  }[type]
+    winner: t(`app:relationStatus:winner:title:${me.gender}`),
+    loser: t('app:relationStatus:looser:title'),
+    draw: t('app:relationStatus:equality:title'),
+  }[userRank]
 
   const infoSecondary = {
-    winner: 'Demande ce que tu veux à ton acolyte…',
-    loser: 'Tu pourrais faire mieux, vraiment…',
-  }[type]
+    winner: t('app:relationStatus:winner:description', {
+      partnerName: partner.firstName,
+    }),
+    loser: t('app:relationStatus:looser:description'),
+    draw: t('app:relationStatus:equality:description'),
+  }[userRank]
 
   return (
     <Modal
-      visible={visible}
+      visible={shoulDisplayWeeklyRecap}
       emoji={emoji}
-      onClose={onClose}
-      onAction={onAction}
+      onClose={closeWeeklyRecap}
+      onAction={closeWeeklyRecap}
       primaryActionIconName="check"
     >
       <Badge color={badgeColor}>{badgeTitle}</Badge>
 
       <View style={styles.container}>
-        <View style={{ ...styles.user, ...styles.winnerUser }}>
+        <View style={styles.user}>
           <View style={styles.avatarContainer}>
-            <Medal type="winner" />
+            <Medal type={userRank} />
 
             <Avatar
-              firstname="Mathieu"
+              firstname={me.firstName}
               size="large"
               borderColor="highlight200"
             />
           </View>
 
-          <Counter type="winner">180</Counter>
+          <Counter type={userRank}>{lastWeek.userTotalPoints}</Counter>
         </View>
 
         <View style={styles.user}>
           <View style={styles.avatarContainer}>
-            <Medal type="loser" />
+            <Medal type={partnerRank} />
 
-            <Avatar firstname="Selena" size="medium" />
+            <Avatar firstname={partner.firstName} size="medium" />
           </View>
 
-          <Counter type="loser">0</Counter>
+          <Counter type={partnerRank}>{lastWeek.partnerTotalPoints}</Counter>
         </View>
       </View>
 
@@ -104,9 +129,7 @@ const styles = StyleSheet.create({
   user: {
     alignItems: 'center',
     justifyContent: 'flex-end',
-  },
-  winnerUser: {
-    marginRight: 21,
+    marginHorizontal: 21,
   },
   avatarContainer: {
     position: 'relative',

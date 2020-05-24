@@ -10,12 +10,12 @@ import { ShareRelationKey } from './components/ShareRelationKey'
 import { UsersContext } from 'screens/app/contexts/Users.context'
 import { Layout } from 'library/layouts/Layout'
 import { CountdownBadge } from '../Leaderboard/components/CountdownBadge'
-import { UserTaskContext } from 'screens/app/contexts/UserTask.context'
 import { UserScoreContext } from 'screens/app/contexts/UserScore.context'
+import { WeekModal } from '../Leaderboard/components/WeekModal'
 
 export const HomeScreen = () => {
   const { partner } = useContext(UsersContext)
-  const { current } = useContext(UserScoreContext)
+  const { currentWeek } = useContext(UserScoreContext)
 
   return (
     <Layout
@@ -23,7 +23,7 @@ export const HomeScreen = () => {
         <>
           <WeekInfo />
           <RelationInfo />
-          <RelationStatus scoreStatus={current.status} />
+          <RelationStatus scoreStatus={currentWeek.status} />
         </>
       }
       badge={!partner.id ? <ShareRelationKey /> : <CountdownBadge />}
@@ -32,6 +32,7 @@ export const HomeScreen = () => {
 
       <ShareRelationKeyModal />
       <TaskAddedModal />
+      <WeekModal />
     </Layout>
   )
 }

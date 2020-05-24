@@ -25,7 +25,7 @@ interface RankedUser extends User {
 }
 
 export const LeaderboardScreen = ({ navigation }) => {
-  const { current, global } = useContext(UserScoreContext)
+  const { currentWeek, global } = useContext(UserScoreContext)
   const { me, partner } = useContext(UsersContext)
   const { getTaskById } = useContext(TaskContext)
   const [sectionIndex, setSectionIndex] = useState(0)
@@ -38,7 +38,7 @@ export const LeaderboardScreen = ({ navigation }) => {
     return unsubscribe
   }, [navigation])
 
-  const scoreContext = sectionIndex ? global : current
+  const scoreContext = sectionIndex ? global : currentWeek
 
   const {
     userTotalPoints,

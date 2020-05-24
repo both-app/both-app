@@ -9,6 +9,7 @@ export type StorageKey =
   | 'tasks'
   | 'userScore'
   | 'userGlobalScore'
+  | 'lastWeeklyRecapDate'
 
 export const setItem = (key: StorageKey, value: any) => {
   Sentry.withScope((scope) => {
