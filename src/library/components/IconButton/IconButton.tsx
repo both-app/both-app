@@ -6,13 +6,18 @@ import { Color, colors } from 'res/colors'
 
 import { Icon, IconProps } from '../Icon'
 
+const DEFAULT_RADIUS = 19.2
+const DEFAULT_ICON_SIZE = 30
+
 interface IconButtonProps extends IconProps {
   onAction: () => void
   buttonStyle?: any
   buttonColor?: Color
+  size: number
+  radius?: number
+  iconSize?: number
   iconStyle?: any
   iconColor?: Color
-  size: 40 | 64
 }
 
 export const IconButton: FC<IconButtonProps> = ({ onAction, ...props }) => {
@@ -27,6 +32,7 @@ export const IconButton: FC<IconButtonProps> = ({ onAction, ...props }) => {
   const buttonStyle = {
     width: props.size,
     height: props.size,
+    borderRadius: props.radius || DEFAULT_RADIUS,
     ...(props.buttonColor
       ? { backgroundColor: colors[props.buttonColor] }
       : {}),
@@ -45,7 +51,12 @@ export const IconButton: FC<IconButtonProps> = ({ onAction, ...props }) => {
       onPress={handleOnPress}
       activeOpacity={0.9}
     >
-      <Icon style={iconStyle} width={30} height={30} {...props} />
+      <Icon
+        style={iconStyle}
+        width={props.iconSize || DEFAULT_ICON_SIZE}
+        height={props.iconSize || DEFAULT_ICON_SIZE}
+        {...props}
+      />
     </TouchableOpacity>
   )
 }
@@ -54,6 +65,5 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 19.2,
   },
 })

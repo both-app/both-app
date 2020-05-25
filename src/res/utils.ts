@@ -14,3 +14,12 @@ export const groupBy = <T>(
     }
   }, {})
 }
+
+export const omitBy = (values: object, keys: string[]) =>
+  Object.entries(values).reduce((acc, [key, value]) => {
+    if (!keys.includes(key)) {
+      acc[key] = value
+    }
+
+    return acc
+  }, {})

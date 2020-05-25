@@ -6,11 +6,11 @@ import { colors } from 'res/colors'
 interface ValueProps {
   label: string
   value: string
-  marginBottom: number
+  marginBottom?: number
 }
 
 export const Value: FC<ValueProps> = ({ label, value, marginBottom }) => (
-  <View style={{ marginBottom }}>
+  <View style={{ marginBottom: marginBottom || 0 }}>
     <Text style={styles.label}>{label}</Text>
     <Text style={styles.value}>{value}</Text>
   </View>

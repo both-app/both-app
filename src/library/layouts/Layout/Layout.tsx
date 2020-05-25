@@ -6,13 +6,19 @@ import { colors } from 'res/colors'
 
 interface LayoutProps {
   header: ReactNode
-  badge?: ReactNode
+  center?: ReactNode
+  centerTopPosition?: number
 }
 
 const PADDINGX = 24
 const PADDINGY = 24
 
-export const Layout: FC<LayoutProps> = ({ children, header, badge }) => {
+export const Layout: FC<LayoutProps> = ({
+  children,
+  header,
+  center,
+  centerTopPosition = -10,
+}) => {
   useFocusEffect(
     useCallback(() => {
       StatusBar.setBarStyle('light-content')
@@ -20,33 +26,39 @@ export const Layout: FC<LayoutProps> = ({ children, header, badge }) => {
   )
 
   return (
-    <SafeAreaView style={styles.safeView}>
+    <View style={{ flex: 1 }}>
       <View style={styles.container}>
-        <View style={styles.header}>{header}</View>
+        <SafeAreaView>
+          <View style={styles.header}>{header}</View>
+        </SafeAreaView>
 
-        <View style={styles.body}>
-          {!!badge && <View style={styles.badge}>{badge}</View>}
-          {children}
-        </View>
+        <SafeAreaView style={styles.body}>
+          <View style={styles.body}>
+            {!!center && (
+              <View style={{ ...styles.center, top: centerTopPosition }}>
+                {center}
+              </View>
+            )}
+            {children}
+          </View>
+        </SafeAreaView>
       </View>
-    </SafeAreaView>
+    </View>
   )
 }
 
 export const styles = StyleSheet.create({
   safeView: {
     flex: 1,
-    backgroundColor: colors.dark100,
+    backgroundColor: colors.skin100,
   },
   container: {
     flex: 1,
     backgroundColor: colors.dark100,
-    paddingTop: PADDINGY,
   },
   header: {
-    paddingLeft: PADDINGX,
-    paddingRight: PADDINGX,
-    paddingBottom: PADDINGY,
+    paddingHorizontal: PADDINGX,
+    paddingVertical: PADDINGY,
     display: 'flex',
     alignItems: 'center',
   },
@@ -57,9 +69,8 @@ export const styles = StyleSheet.create({
     borderTopLeftRadius: 10,
     position: 'relative',
   },
-  badge: {
+  center: {
     position: 'absolute',
-    top: -10,
     left: 0,
     right: 0,
     alignItems: 'center',

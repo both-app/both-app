@@ -48,7 +48,7 @@ export const TheTeamScreen = () => {
           firsName="Mathieu"
           emoji="🐸"
           post={t('app:screen:theTeam:developer')}
-          avatarUrl={require('../../../../../../../assets/team/mathieu.png')}
+          avatar={require('../../../../../../../assets/team/mathieu.png')}
           relationStatus={t('app:screen:theTeam:search')}
           onAction={() =>
             handleOnAction(
@@ -60,7 +60,7 @@ export const TheTeamScreen = () => {
           firsName="Vincent"
           emoji="🤖"
           post={t('app:screen:theTeam:developer')}
-          avatarUrl={require('../../../../../../../assets/team/vincent.png')}
+          avatar={require('../../../../../../../assets/team/vincent.png')}
           relationStatus={t('app:screen:theTeam:search')}
           onAction={() =>
             handleOnAction('https://www.linkedin.com/in/vincentdufrasnes')
@@ -70,7 +70,7 @@ export const TheTeamScreen = () => {
           firsName="Gauthier"
           emoji="🦊"
           post={t('app:screen:theTeam:designer')}
-          avatarUrl={require('../../../../../../../assets/team/gauthier.png')}
+          avatar={require('../../../../../../../assets/team/gauthier.png')}
           relationStatus={t('app:screen:theTeam:inRelationSince')}
           onAction={() =>
             handleOnAction(

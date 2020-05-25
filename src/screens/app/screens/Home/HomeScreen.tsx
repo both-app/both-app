@@ -23,7 +23,7 @@ export const HomeScreen = () => {
           <RelationStatus />
         </>
       }
-      badge={!partner.id ? <ShareRelationKey /> : <CountdownBadge />}
+      center={!partner.id ? <ShareRelationKey /> : <CountdownBadge />}
     >
       <UserTasks />
 

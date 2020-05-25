@@ -9,7 +9,7 @@ import { Avatar } from 'library/components/Avatar'
 interface MemberProps {
   firsName: string
   emoji: string
-  avatarUrl: any
+  avatar: number
   post: string
   relationStatus: string
   onAction: VoidFunction
@@ -20,7 +20,7 @@ export const Member: FC<MemberProps> = ({
   post,
   emoji,
   relationStatus,
-  avatarUrl,
+  avatar,
   onAction,
 }) => (
   <View style={styles.teamMember}>
@@ -28,7 +28,7 @@ export const Member: FC<MemberProps> = ({
       <Text style={styles.emoji}>{emoji}</Text>
       <Avatar
         size="small"
-        avatarUrl={avatarUrl}
+        avatar={avatar}
         borderWidth={2}
         borderColor="skin200"
       />
