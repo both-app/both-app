@@ -1,9 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { StyleSheet } from 'react-native'
-import SegmentedControl from 'react-native-segmented-control-tab'
 
 import { Layout } from 'library/layouts/Layout'
 import { Scroll } from 'library/layouts/Scroll'
+import { SegmentedControl } from 'library/components/SegmentedControl'
+
 import {
   UserScoreContext,
   ScoreSatus,
@@ -89,11 +90,6 @@ export const LeaderboardScreen = ({ navigation }) => {
             ]}
             selectedIndex={sectionIndex}
             onTabPress={setSectionIndex}
-            tabsContainerStyle={styles.tabsContainer}
-            tabStyle={styles.tab}
-            borderRadius={6}
-            activeTabStyle={styles.activeTab}
-            tabTextStyle={styles.tabText}
           />
           {status === ScoreSatus.Draw ? (
             <DrawHeader />
@@ -130,18 +126,4 @@ const styles = StyleSheet.create({
   scrollContainer: {
     marginHorizontal: 24,
   },
-  tabsContainer: {
-    marginBottom: 50,
-    height: 35,
-    backgroundColor: 'rgba(118,118,128,0.24)',
-    borderRadius: 8,
-  },
-  tab: {
-    backgroundColor: 'transparent',
-    borderColor: 'transparent',
-    borderRadius: 6,
-    margin: 3,
-  },
-  activeTab: { backgroundColor: '#636366' },
-  tabText: { color: 'white', fontWeight: '500' },
 })
