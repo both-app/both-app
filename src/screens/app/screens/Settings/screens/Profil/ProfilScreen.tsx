@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native'
 
 import { useT } from 'res/i18n'
 import { deleteFromPath } from 'res/image'
+import { useStatusBar } from 'hooks/useStatusBar'
 
 import { Layout } from 'library/layouts/Layout'
 import { IconButton } from 'library/components/IconButton'
@@ -17,6 +18,7 @@ import { UserInfo } from './components/UserInfo'
 import { UsersContext } from 'screens/app/contexts/Users.context'
 
 export const ProfilScreen = () => {
+  useStatusBar('light-content')
   const { t } = useT()
   const navigation = useNavigation()
   const { me, updateUser } = useContext(UsersContext)

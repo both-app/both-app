@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native'
 
 import { colors } from 'res/colors'
 import { useT } from 'res/i18n'
+import { useStatusBar } from 'hooks/useStatusBar'
 
 import { MinimalButton } from 'library/components/MinimalButton'
 import { Label } from 'library/components/Label'
@@ -14,6 +15,7 @@ import { Scroll } from 'library/layouts/Scroll'
 import { Member } from './components/Member'
 
 export const TheTeamScreen = () => {
+  useStatusBar('dark-content')
   const { t } = useT()
   const navigation = useNavigation()
 

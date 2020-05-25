@@ -8,13 +8,15 @@ import {
 } from '@react-navigation/core'
 
 import { useT } from 'res/i18n'
+import { useStatusBar } from 'hooks/useStatusBar'
 
 import { FormLayout } from 'library/layouts/FormLayout'
 import { Label } from 'library/components/Label'
+import { Scroll } from 'library/layouts/Scroll'
+
 import { TaskDifficulty } from './components/TaskDifficulty'
 import { AddTaskStackParamList } from '../AddTask.navigator'
 import { AddTaskContext } from '../AddTask.context'
-import { Scroll } from 'library/layouts/Scroll'
 
 type ChooseTaskDifficultyRouteProps = RouteProp<
   AddTaskStackParamList,
@@ -22,6 +24,7 @@ type ChooseTaskDifficultyRouteProps = RouteProp<
 >
 
 export const ChooseTaskDifficultyScreen = () => {
+  useStatusBar('dark-content')
   const { t } = useT()
   const route = useRoute<ChooseTaskDifficultyRouteProps>()
   const navigation = useNavigation()

@@ -4,14 +4,17 @@ import { useNavigation } from '@react-navigation/native'
 
 import { useT } from 'res/i18n'
 import { getUrlFromPath, deleteFromPath } from 'res/image'
+import { useStatusBar } from 'hooks/useStatusBar'
 
 import { Label } from 'library/components/Label'
 import { Info } from 'library/components/Info'
 import { FormLayout } from 'library/layouts/FormLayout'
+
 import { FormContext } from '../../Form.context'
 import { UserAvatar } from 'screens/components/UserAvatar'
 
 export const AvatarScreen = () => {
+  useStatusBar('dark-content')
   const navigation = useNavigation()
   const { t } = useT()
   const [avatarUrl, setAvatarUrl] = useState<string>('')

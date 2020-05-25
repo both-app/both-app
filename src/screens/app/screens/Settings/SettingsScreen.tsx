@@ -1,22 +1,23 @@
 import React, { useContext, useCallback } from 'react'
-import { View, StyleSheet, Text, Alert, StatusBar } from 'react-native'
+import { View, StyleSheet, Text, Alert } from 'react-native'
 import * as WebBrowser from 'expo-web-browser'
 import * as StoreReview from 'expo-store-review'
 import { Asset } from 'expo-asset'
+import { useNavigation, useFocusEffect } from '@react-navigation/native'
 
 import { colors } from 'res/colors'
 import { useT } from 'res/i18n'
+import { useStatusBar } from 'hooks/useStatusBar'
 
 import { Label } from 'library/components/Label'
 import { CardButton } from 'library/components/CardButton'
 import { Scroll } from 'library/layouts/Scroll'
 
 import { UsersContext } from 'screens/app/contexts/Users.context'
-
-import { useNavigation, useFocusEffect } from '@react-navigation/native'
 import { AuthContext, AuthApiContext } from 'screens/auth/contexts'
 
 export const SettingsScreen = () => {
+  useStatusBar('dark-content')
   const { t } = useT()
   const navigation = useNavigation()
   const { partner } = useContext(UsersContext)
@@ -37,7 +38,6 @@ export const SettingsScreen = () => {
         )
       }
 
-      StatusBar.setBarStyle('dark-content')
       loadTeamAvatars()
     }, [])
   )

@@ -9,6 +9,7 @@ import {
 
 import { useT } from 'res/i18n'
 import { colors } from 'res/colors'
+import { useStatusBar } from 'hooks/useStatusBar'
 
 import { TaskContext } from 'screens/app/contexts/Task.context'
 
@@ -25,6 +26,7 @@ import { ROUTES } from '../AddTask.navigator'
 type ChooseTaskRouteProps = RouteProp<AddTaskStackParamList, 'ChooseTask'>
 
 export const ChooseTaskScreen = () => {
+  useStatusBar('dark-content')
   const { t } = useT()
   const route = useRoute<ChooseTaskRouteProps>()
   const navigation = useNavigation()
