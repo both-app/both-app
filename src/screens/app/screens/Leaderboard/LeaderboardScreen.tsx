@@ -1,6 +1,8 @@
 import React, { useContext } from 'react'
 import { StyleSheet } from 'react-native'
 
+import { useStatusBar } from 'hooks/useStatusBar'
+
 import { Layout } from 'library/layouts/Layout'
 import { Scroll } from 'library/layouts/Scroll'
 import {
@@ -22,6 +24,7 @@ interface RankedUser extends User {
 }
 
 export const LeaderboardScreen = () => {
+  useStatusBar('light-content')
   const {
     userTotalPoints,
     partnerTotalPoints,

@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import { useT } from 'res/i18n'
+import { useStatusBar } from 'hooks/useStatusBar'
 
 import { Label } from 'library/components/Label'
 import { Info } from 'library/components/Info'
@@ -12,6 +13,7 @@ import { Select } from 'screens/auth/components/Select'
 import { FormContext } from '../../Form.context'
 
 export const JoinOrCreateScreen = () => {
+  useStatusBar('dark-content')
   const navigation = useNavigation()
   const { t } = useT()
   const { values, setValue } = useContext(FormContext)

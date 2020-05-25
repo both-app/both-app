@@ -1,21 +1,18 @@
-import React, { useCallback } from 'react'
-import { View, StyleSheet, StatusBar } from 'react-native'
-import { useFocusEffect } from '@react-navigation/native'
+import React from 'react'
+import { View, StyleSheet } from 'react-native'
 
 import { colors } from 'res/colors'
 import { useT } from 'res/i18n'
 
-import { Relation } from './components'
+import { useStatusBar } from 'hooks/useStatusBar'
+
 import { Label } from 'library/components/Label'
 
-export const RelationScreen = () => {
-  const { t } = useT()
+import { Relation } from './components'
 
-  useFocusEffect(
-    useCallback(() => {
-      StatusBar.setBarStyle('dark-content')
-    }, [])
-  )
+export const RelationScreen = () => {
+  useStatusBar('dark-content')
+  const { t } = useT()
 
   return (
     <View style={styles.container}>
