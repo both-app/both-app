@@ -80,13 +80,14 @@ const UsersContextProvider: FC = ({ children }) => {
 
   const updateUserState = async (state) => {
     const newState = state
-    if (newState.me.avatarPath) {
-      newState.me.avatarUrl = await getUrlFromPath(newState.me.avatarPath)
-    }
 
-    if (newState.partner.avatarPath) {
-      newState.me.avatarUrl = await getUrlFromPath(newState.partner.avatarPath)
-    }
+    const [myAvatarUrl, partnerAvatarUrl] = await Promise.all([
+      getUrlFromPath(newState.me.avatarPath),
+      getUrlFromPath(newState.partner.avatarPath),
+    ])
+
+    newState.me.avatarUrl = myAvatarUrl
+    newState.partner.avatarUrl = partnerAvatarUrl
 
     setUserState(newState)
   }
