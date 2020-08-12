@@ -7,6 +7,8 @@ import firebase from './firebase'
 
 const storage = firebase.storage()
 
+const { Native: SentryNative } = Sentry
+
 export const getCameraPermission = async () => {
   if (Constants.platform.ios) {
     const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL)
@@ -51,7 +53,7 @@ export const getUrlFromPath = (path: string) => {
   try {
     return storage.ref(path).getDownloadURL()
   } catch (e) {
-    Sentry.captureException(e)
+    SentryNative.captureException(e)
     return ''
   }
 }
@@ -60,6 +62,6 @@ export const deleteFromPath = (url: string) => {
   try {
     return storage.ref(url).delete()
   } catch (e) {
-    Sentry.captureException(e)
+    SentryNative.captureException(e)
   }
 }

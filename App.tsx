@@ -14,15 +14,17 @@ import { Main } from './src/Main'
 
 const { manifest } = Constants
 
+const { Native: SentryNative } = Sentry
+
 Sentry.init({
   dsn:
     'https://4a2650410f1a4db499d777c1abf78ebf@o381103.ingest.sentry.io/5207931',
-  enableInExpoDevelopment: false,
+  enableInExpoDevelopment: true,
   environment: manifest.releaseChannel || 'development',
   debug: manifest.releaseChannel === 'production' ? false : true,
 })
 
-Sentry.setRelease(manifest.revisionId)
+SentryNative.setRelease(manifest.revisionId)
 
 initI18n()
 

@@ -1,6 +1,8 @@
 import { AsyncStorage } from 'react-native'
 import * as Sentry from 'sentry-expo'
 
+const { Native: SentryNative } = Sentry
+
 export type StorageKey =
   | 'jwtToken'
   | 'relation'
@@ -10,14 +12,14 @@ export type StorageKey =
   | 'userScore'
 
 export const setItem = (key: StorageKey, value: any) => {
-  Sentry.withScope((scope) => {
+  SentryNative.withScope((scope) => {
     scope.setExtra(`storage.${key}`, value)
   })
 
   try {
     return AsyncStorage.setItem(key, JSON.stringify(value))
   } catch (error) {
-    Sentry.captureException(error)
+    SentryNative.captureException(error)
   }
 }
 
@@ -27,7 +29,7 @@ export const getItem = async (key: StorageKey) => {
   try {
     return JSON.parse(value)
   } catch (error) {
-    Sentry.captureException(error)
+    SentryNative.captureException(error)
   }
 }
 
