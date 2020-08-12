@@ -18,14 +18,19 @@ export const UserTasks = () => {
   const { fetchUsers } = useContext(UsersContext)
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false)
   const { fetchUserTasks, userTasksByDate } = useContext(UserTaskContext)
-  const { fetchUserScore } = useContext(UserScoreContext)
+  const { fetchUserScore, fetchGlobalUserScore } = useContext(UserScoreContext)
   const { fetchTasks } = useContext(TaskContext)
 
   const handleOnRefresh = async () => {
     setIsRefreshing(true)
 
     await fetchUsers()
-    await Promise.all([fetchUserScore(), fetchUserTasks(), fetchTasks()])
+    await Promise.all([
+      fetchUserScore(),
+      fetchGlobalUserScore(),
+      fetchUserTasks(),
+      fetchTasks(),
+    ])
 
     setIsRefreshing(false)
   }

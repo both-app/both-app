@@ -1,47 +1,58 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { StyleSheet } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
 import { useStatusBar } from 'hooks/useStatusBar'
 
 import { Layout } from 'library/layouts/Layout'
 import { Scroll } from 'library/layouts/Scroll'
-import {
-  UserScoreContext,
-  ScoreSatus,
-} from 'screens/app/contexts/UserScore.context'
+import { SegmentedControl } from 'library/components/SegmentedControl'
+
+import { useT } from 'res/i18n'
+
+import { UserScoreContext } from 'screens/app/contexts/UserScore.context'
 import { UsersContext } from 'screens/app/contexts/Users.context'
 import { TaskContext } from 'screens/app/contexts/Task.context'
+import { RelationStatus } from 'screens/app/components/RelationStatus'
 
 import { UserRecap, UserRecapPlaceholder } from './components/UserRecap'
 import { CountdownBadge } from './components/CountdownBadge'
 import { DrawHeader, WinnerHeader } from './components/Header'
-
-interface RankedUser extends User {
-  points: number
-  favoriteTask: Task
-  isWinner: boolean
-  isMe: boolean
-}
+import { GlobalRelationStatus } from './components/GlobalRelationStatus'
 
 export const LeaderboardScreen = () => {
   useStatusBar('light-content')
-  const {
-    userTotalPoints,
-    partnerTotalPoints,
-    userFavoriteTask,
-    partnerFavoriteTask,
-    scoreStatus,
-  } = useContext(UserScoreContext)
+  const { currentWeek, global } = useContext(UserScoreContext)
+  const navigation = useNavigation()
   const { me, partner } = useContext(UsersContext)
   const { getTaskById } = useContext(TaskContext)
+  const [sectionIndex, setSectionIndex] = useState(0)
+  const { t } = useT()
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('blur', () => {
+      setSectionIndex(0)
+    })
+    return unsubscribe
+  }, [navigation])
+
+  const currentTab = (sectionIndex ? 'global' : 'currentWeek') as ScoreType
+  const scoreContext = currentTab === 'global' ? global : currentWeek
+
+  const {
+    userTotalPoints,
+    partnerFavoriteTask,
+    partnerTotalPoints,
+    userFavoriteTask,
+    status,
+  } = scoreContext
 
   const rankedUser = {
     ...me,
     isMe: true,
     points: userTotalPoints,
     favoriteTask: getTaskById(userFavoriteTask),
-    isWinner:
-      scoreStatus === ScoreSatus.UserWins || scoreStatus === ScoreSatus.Draw,
+    isWinner: status === 'UserWins' || status === 'Draw',
   }
 
   let ranking: RankedUser[]
@@ -54,14 +65,12 @@ export const LeaderboardScreen = () => {
       isMe: false,
       points: partnerTotalPoints,
       favoriteTask: getTaskById(partnerFavoriteTask),
-      isWinner:
-        scoreStatus === ScoreSatus.PartnerWins ||
-        scoreStatus === ScoreSatus.Draw,
+      isWinner: status === 'PartnerWins' || status === 'Draw',
     }
 
-    if (scoreStatus === ScoreSatus.Draw) {
+    if (status === 'Draw') {
       ranking = [rankedUser, rankedPartner]
-    } else if (scoreStatus === ScoreSatus.UserWins) {
+    } else if (status === 'UserWins') {
       ranking = [rankedUser, rankedPartner]
     } else {
       ranking = [rankedPartner, rankedUser]
@@ -71,15 +80,28 @@ export const LeaderboardScreen = () => {
   return (
     <Layout
       header={
-        scoreStatus === ScoreSatus.Draw ? (
-          <DrawHeader />
-        ) : (
-          <WinnerHeader
-            avatarUrl={ranking[0].avatarUrl}
-            firstName={ranking[0].firstName}
-            gender={ranking[0].gender}
+        <>
+          <SegmentedControl
+            values={[
+              t('app:screen:leaderboard:tabs:week'),
+              t('app:screen:leaderboard:tabs:global'),
+            ]}
+            selectedIndex={sectionIndex}
+            onTabPress={setSectionIndex}
           />
-        )
+
+          {status === 'Draw' ? (
+            <DrawHeader scoreType={currentTab} />
+          ) : (
+            <WinnerHeader scoreType={currentTab} rankedUser={ranking[0]} />
+          )}
+
+          {currentTab === 'global' ? (
+            <GlobalRelationStatus scoreStatus={status} />
+          ) : (
+            <RelationStatus scoreStatus={status} />
+          )}
+        </>
       }
       center={<CountdownBadge />}
     >
