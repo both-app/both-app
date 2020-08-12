@@ -79,7 +79,7 @@
     "eslint-plugin-react": "7.19.0",
     "expo-postpublish-slack-notify": "1.2.0",
     "husky": "4.2.5",
-    "jest": "25.4.0",
+    "jest": "26.3.0",
     "jest-expo": "^38.0.0",
     "lint-staged": "10.1.7",
     "metro-config": "0.59.0",
