@@ -18,6 +18,8 @@ export const TabBar: FC<BottomTabBarProps> = ({
       const { options } = descriptors[route.key]
       const isFocused = state.index === index
       const isPrimary = index === DEFAULT_STATE_INDEX
+      // @ts-ignore The typing of react-navigation is wrong
+      const withBadge = options.tabBarBadge > 0 || options.tabBarBadge
 
       const onPress = () => {
         const event = navigation.emit({
@@ -37,6 +39,7 @@ export const TabBar: FC<BottomTabBarProps> = ({
           onPress={onPress}
           isFocused={isFocused}
           isPrimary={isPrimary}
+          withBadge={withBadge}
         >
           {options.tabBarIcon &&
             options.tabBarIcon({

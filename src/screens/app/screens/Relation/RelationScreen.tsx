@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useLayoutEffect, useEffect } from 'react'
 import { View, StyleSheet } from 'react-native'
 
 import { colors } from 'res/colors'
@@ -8,11 +8,19 @@ import { useStatusBar } from 'hooks/useStatusBar'
 
 import { Label } from 'library/components/Label'
 
-import { Relation } from './components'
+import { Relation } from './components/Relation'
+import { RelationTasks } from './components/RelationTasks'
+import { AppNavigatorContext } from 'screens/app/contexts/AppNavigator.context'
+import { useNavigation } from '@react-navigation/native'
 
 export const RelationScreen = () => {
   useStatusBar('dark-content')
   const { t } = useT()
+  const { unSetRouteBadge } = useContext(AppNavigatorContext)
+
+  useEffect(() => {
+    unSetRouteBadge('Relation')
+  }, [])
 
   return (
     <View style={styles.container}>
@@ -20,6 +28,10 @@ export const RelationScreen = () => {
 
       <View style={styles.relationContainer}>
         <Relation />
+      </View>
+
+      <View style={styles.relationTasksContainer}>
+        <RelationTasks />
       </View>
     </View>
   )
@@ -35,5 +47,10 @@ export const styles = StyleSheet.create({
   },
   relationContainer: {
     marginTop: 24,
+    marginBottom: 30,
+  },
+  relationTasksContainer: {
+    flex: 1,
+    marginTop: 40,
   },
 })

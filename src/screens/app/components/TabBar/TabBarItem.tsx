@@ -13,11 +13,13 @@ import { colors } from 'res/colors'
 interface TabBarItemProps extends TouchableOpacityProps {
   isFocused?: boolean
   isPrimary?: boolean
+  withBadge?: boolean
 }
 
 export const TabBarItem: FC<TabBarItemProps> = ({
   isFocused = false,
   isPrimary = false,
+  withBadge = false,
   children,
   onPress,
   ...props
@@ -44,6 +46,7 @@ export const TabBarItem: FC<TabBarItemProps> = ({
       activeOpacity={1}
       onPress={handleOnPress}
     >
+      {withBadge && <View style={styles.badge} />}
       <View
         style={{
           ...styles.buttonBase,
@@ -94,5 +97,14 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 12,
+  },
+  badge: {
+    width: 10,
+    height: 10,
+    borderRadius: 10,
+    top: 0,
+    right: 0,
+    backgroundColor: colors.highlight100,
+    position: 'absolute',
   },
 })

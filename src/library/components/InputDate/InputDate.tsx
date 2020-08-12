@@ -118,23 +118,27 @@ const styles = StyleSheet.create({
   dateContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
+    borderWidth: 1,
   },
   container: {
     display: 'flex',
     alignItems: 'center',
     marginRight: 18,
     marginLeft: 18,
+    borderWidth: 1,
+    borderColor: 'red',
   },
   label: {
+    color: colors.white,
     fontSize: 14,
     marginBottom: 4,
   },
   placeholder: {
-    color: colors.grey100,
+    color: colors.white,
     fontSize: 28,
   },
   value: {
-    color: colors.dark100,
+    color: colors.dark200,
   },
   input: {
     fontSize: 0,

@@ -91,15 +91,17 @@ export const CardButton: FC<CardButtonProps> = ({
         <View style={styles.texts}>
           {!!badge && <View style={styles.badgeContainer}>{badge}</View>}
 
-          {typeof title === 'string' && title.length > 1 && (
+          {!!title && typeof title === 'string' ? (
             <Text style={titleStyle}>{title}</Text>
+          ) : (
+            title
           )}
-          {typeof title !== 'string' && title}
 
-          {typeof subtitle === 'string' && subtitle.length > 1 && (
+          {!!subtitle && typeof subtitle === 'string' ? (
             <Text style={subTitleStyle}>{subtitle}</Text>
+          ) : (
+            subtitle
           )}
-          {typeof subtitle !== 'string' && subtitle}
         </View>
       </View>
 

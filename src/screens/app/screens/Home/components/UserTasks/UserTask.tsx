@@ -1,16 +1,22 @@
 import React, { FC, useContext } from 'react'
 import { StyleSheet, View, Text } from 'react-native'
-
-import { CardButton } from 'library/components/CardButton'
+import * as Haptics from 'expo-haptics'
+import Swipeable, {
+  SwipeableProperties,
+} from 'react-native-gesture-handler/Swipeable'
 
 import { colors } from 'res/colors'
+import { useT } from 'res/i18n'
 
 import { Point } from 'library/components/Point'
+import { CardButton } from 'library/components/CardButton'
+import { SwipeAction } from 'library/components/SwipeAction'
 
 import { TaskContext } from 'screens/app/contexts/Task.context'
 import { UsersContext } from 'screens/app/contexts/Users.context'
-import Swipeable from 'react-native-gesture-handler/Swipeable'
-import { DeleteAction } from './DeleteAction'
+import { CategoryContext } from 'screens/app/contexts/Category.context'
+import { UserTaskContext } from 'screens/app/contexts/UserTask.context'
+import { UserScoreContext } from 'screens/app/contexts/UserScore.context'
 
 interface UserTaskProps {
   userTask: UserTask
@@ -18,8 +24,11 @@ interface UserTaskProps {
 
 export const UserTask: FC<UserTaskProps> = ({ userTask }) => {
   const { me } = useContext(UsersContext)
+  const { t } = useT()
   const { getTaskById } = useContext(TaskContext)
   const { getUserById } = useContext(UsersContext)
+  const { deleteUserTask } = useContext(UserTaskContext)
+  const { fetchUserScore } = useContext(UserScoreContext)
 
   const task = getTaskById(userTask.taskId)
   const user = getUserById(userTask.userId)
@@ -34,38 +43,60 @@ export const UserTask: FC<UserTaskProps> = ({ userTask }) => {
     userTask.taskId !== 'join_both' &&
     userTask.userId === me.id
 
-  const renderRightActions = (progress) => {
-    return <DeleteAction progress={progress} userTask={userTask} />
+  const onDelete = async () => {
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+
+    await deleteUserTask(userTask.id)
+    await fetchUserScore()
   }
 
+  const renderRightActions: SwipeableProperties['renderRightActions'] = (
+    progress
+  ) => (
+    <SwipeAction
+      progress={progress}
+      color="critical"
+      iconName="trash"
+      onAction={onDelete}
+    >
+      {t('app:screen:home:delete')}
+    </SwipeAction>
+  )
+
   return (
-    <Swipeable renderRightActions={isDeletable && renderRightActions}>
-      <CardButton
-        emoji={task.emoji}
-        title={task.name}
-        subtitle={
-          <View style={styles.subtitleContainer}>
-            <View
-              style={{
-                ...styles.badge,
-                backgroundColor: isMyTask ? colors.highlight100 : colors.red100,
-              }}
-            />
-            <Text style={styles.author}>{user.firstName}</Text>
-          </View>
-        }
-        containerStyle={{
-          marginTop: 8,
-          marginHorizontal: 24,
-        }}
-        rightContent={<Point points={userTask.points} />}
-        disabled
-      />
-    </Swipeable>
+    <View style={styles.container}>
+      <Swipeable renderRightActions={isDeletable && renderRightActions}>
+        <CardButton
+          emoji={task.emoji}
+          title={task.name}
+          subtitle={
+            <View style={styles.subtitleContainer}>
+              <View
+                style={{
+                  ...styles.badge,
+                  backgroundColor: isMyTask
+                    ? colors.highlight100
+                    : colors.red100,
+                }}
+              />
+              <Text style={styles.author}>{user.firstName}</Text>
+            </View>
+          }
+          containerStyle={{
+            marginHorizontal: 24,
+          }}
+          rightContent={<Point points={userTask.points} />}
+          disabled={!isDeletable}
+        />
+      </Swipeable>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
+  container: {
+    marginTop: 8,
+  },
   subtitleContainer: {
     flexDirection: 'row',
     alignItems: 'center',

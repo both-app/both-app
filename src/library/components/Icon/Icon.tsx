@@ -19,6 +19,7 @@ import Trash from '../../../../assets/icons/trash.svg'
 import Users from '../../../../assets/icons/users.svg'
 import Settings from '../../../../assets/icons/settings.svg'
 import Home from '../../../../assets/icons/home.svg'
+import Archive from '../../../../assets/icons/archive.svg'
 
 export type IconName =
   | 'arrow_right'
@@ -39,6 +40,7 @@ export type IconName =
   | 'users'
   | 'settings'
   | 'home'
+  | 'archive'
 
 export interface IconProps extends SvgProps {
   iconName: IconName
@@ -65,6 +67,7 @@ export const Icon: FC<IconProps> = ({ iconName, ...props }) => {
     users: Users,
     home: Home,
     settings: Settings,
+    archive: Archive,
   }
 
   const Icon = mapping[iconName]
