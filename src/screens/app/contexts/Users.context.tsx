@@ -15,6 +15,8 @@ import { getUrlFromPath } from 'res/image'
 
 import { useAppState } from 'hooks/useAppState'
 
+const { Native: NativeSentry } = Sentry
+
 type GetRelationInfoResponse = APIResponse<{
   relation: Relation
   user: ApiUser
@@ -98,7 +100,7 @@ const UsersContextProvider: FC = ({ children }) => {
         data: { data },
       } = await api.get<GetRelationInfoResponse>('relations/informations')
 
-      Sentry.setUser(data.user)
+      NativeSentry.setUser(data.user)
       await Analytics.setUserId(data.user.id)
       await Analytics.setUserProperties({
         relationId: data.user.relationId,

@@ -10,6 +10,8 @@ import * as Sentry from 'sentry-expo'
 import { getItem } from 'res/storage'
 import { UsersContext } from './Users.context'
 
+const { Native: NativeSentry } = Sentry
+
 interface RelationContextProps {
   shareKeyModalOpen: boolean
   relation: Relation
@@ -33,7 +35,7 @@ const RelationContextProvider: FC = ({ children }) => {
     const reHydrateData = async () => {
       const storedRelation = await getItem('relation')
       if (storedRelation) {
-        Sentry.setContext('relation', storedRelation)
+        NativeSentry.setContext('relation', storedRelation)
         setRelation(storedRelation)
       }
     }
@@ -43,7 +45,7 @@ const RelationContextProvider: FC = ({ children }) => {
 
   useEffect(() => {
     if (relation) {
-      Sentry.setContext('relation', relation)
+      NativeSentry.setContext('relation', relation)
       setRelation(relation)
     }
   }, [relation])

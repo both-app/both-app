@@ -5,6 +5,7 @@
 # Start the project
 
 ```shell
+npm i -g expo-cli
 npm install && npm start
 ```
 

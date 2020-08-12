@@ -13,6 +13,8 @@ export interface APIResponse<T> {
 
 const { manifest } = Constants
 
+const { Native: SentryNative } = Sentry
+
 const API_URL =
   __DEV__ || manifest.releaseChannel === 'staging'
     ? 'https://both-app-staging.herokuapp.com/'
@@ -47,7 +49,7 @@ api.interceptors.request.use(async (config) => {
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    Sentry.captureException(error)
+    SentryNative.captureException(error)
     return Promise.reject(error)
   }
 )
