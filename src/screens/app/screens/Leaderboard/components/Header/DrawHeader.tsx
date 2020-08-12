@@ -1,14 +1,20 @@
-import React, { useContext } from 'react'
+import React, { useContext, FC } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
+
 import { colors } from 'res/colors'
 import { fonts } from 'res/fonts'
 import { useT } from 'res/i18n'
-import { RelationStatus } from 'screens/app/components/RelationStatus'
-import { Confetti } from 'screens/app/components/Confetti'
-import { Avatar } from 'library/components/Avatar'
-import { UsersContext } from 'screens/app/contexts/Users.context'
 
-export const DrawHeader = () => {
+import { Avatar } from 'library/components/Avatar'
+
+import { UsersContext } from 'screens/app/contexts/Users.context'
+import { Confetti } from 'screens/app/components/Confetti'
+
+interface DrawHeaderProps {
+  scoreType: ScoreType
+}
+
+export const DrawHeader: FC<DrawHeaderProps> = ({ scoreType }) => {
   const { t } = useT()
   const { me, partner } = useContext(UsersContext)
 
@@ -19,6 +25,7 @@ export const DrawHeader = () => {
           <Avatar
             containerStyle={{ ...styles.avatar, marginRight: -12 }}
             firstname={me.firstName}
+            avatar={me.avatarUrl}
             size="large"
             backgroundColor="dark200"
             avatarColor="white"
@@ -27,6 +34,7 @@ export const DrawHeader = () => {
           <Avatar
             containerStyle={{ ...styles.avatar, marginLeft: -12 }}
             firstname={partner.firstName}
+            avatar={partner.avatarUrl}
             size="large"
             backgroundColor="dark200"
             avatarColor="white"
@@ -35,16 +43,17 @@ export const DrawHeader = () => {
         </View>
         <Text style={styles.medal}>🏆</Text>
       </Confetti>
-      <Text style={styles.winnersOfTheWeek}>
-        {t(`app:screen:leaderboard:winnersOfTheWeek`)}
+      <Text style={styles.text}>
+        {scoreType === 'global'
+          ? t('app:screen:leaderboard:winners')
+          : t('app:screen:leaderboard:winnersOfTheWeek')}
       </Text>
-      <RelationStatus />
     </>
   )
 }
 
 export const styles = StyleSheet.create({
-  winnersOfTheWeek: {
+  text: {
     fontFamily: fonts['DMSerifDisplay-Regular'],
     fontSize: 26,
     color: colors.white,

@@ -3,22 +3,20 @@ import { StyleSheet, Text } from 'react-native'
 import { useT } from 'res/i18n'
 import { Confetti } from 'screens/app/components/Confetti'
 import { Avatar } from 'library/components/Avatar'
-import { RelationStatus } from 'screens/app/components/RelationStatus'
 import { fonts } from 'res/fonts'
 import { colors } from 'res/colors'
 
-type WinnerHeaderProps = {
-  avatarUrl?: string
-  firstName: string
-  gender: string
+interface WinnerHeaderProps {
+  scoreType: ScoreType
+  rankedUser: RankedUser
 }
 
 export const WinnerHeader: FC<WinnerHeaderProps> = ({
-  avatarUrl,
-  firstName,
-  gender,
+  rankedUser,
+  scoreType,
 }) => {
   const { t } = useT()
+  const { avatarUrl, firstName, gender } = rankedUser
 
   return (
     <>
@@ -36,16 +34,17 @@ export const WinnerHeader: FC<WinnerHeaderProps> = ({
         </>
       </Confetti>
 
-      <Text style={styles.winnerOfTheWeek}>
-        {t(`app:screen:leaderboard:winnerOfTheWeek:${gender}`)}
+      <Text style={styles.text}>
+        {scoreType === 'global'
+          ? t('app:screen:leaderboard:winners')
+          : t(`app:screen:leaderboard:winnerOfTheWeek:${gender}`)}
       </Text>
-      <RelationStatus />
     </>
   )
 }
 
 export const styles = StyleSheet.create({
-  winnerOfTheWeek: {
+  text: {
     fontFamily: fonts['DMSerifDisplay-Regular'],
     fontSize: 26,
     color: colors.white,

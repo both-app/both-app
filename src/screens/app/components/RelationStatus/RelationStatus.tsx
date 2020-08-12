@@ -1,18 +1,18 @@
-import React, { useContext } from 'react'
+import React, { useContext, FC } from 'react'
 
 import { Info } from 'library/components/Info'
 
-import {
-  UserScoreContext,
-  ScoreSatus,
-} from 'screens/app/contexts/UserScore.context'
-import { UsersContext } from 'screens/app/contexts/Users.context'
 import { useT } from 'res/i18n'
 
-export const RelationStatus = () => {
+import { UsersContext } from 'screens/app/contexts/Users.context'
+
+interface RelationStatusProps {
+  scoreStatus: ScoreSatus
+}
+
+export const RelationStatus: FC<RelationStatusProps> = ({ scoreStatus }) => {
   const { t } = useT()
   const { me, partner } = useContext(UsersContext)
-  const { scoreStatus } = useContext(UserScoreContext)
 
   if (!partner.id) {
     return (
@@ -24,7 +24,7 @@ export const RelationStatus = () => {
     )
   }
 
-  if (scoreStatus === ScoreSatus.Draw) {
+  if (scoreStatus === 'Draw') {
     return (
       <Info
         color="white"
@@ -34,7 +34,7 @@ export const RelationStatus = () => {
     )
   }
 
-  if (scoreStatus === ScoreSatus.UserWins) {
+  if (scoreStatus === 'UserWins') {
     return (
       <Info
         color="white"
@@ -46,7 +46,7 @@ export const RelationStatus = () => {
     )
   }
 
-  if (scoreStatus === ScoreSatus.PartnerWins) {
+  if (scoreStatus === 'PartnerWins') {
     return (
       <Info
         color="white"

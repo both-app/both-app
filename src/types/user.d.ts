@@ -11,3 +11,10 @@ interface ApiUser {
 interface User extends ApiUser {
   avatarUrl: string
 }
+
+interface RankedUser extends User {
+  points: number
+  favoriteTask: Task
+  isWinner: boolean
+  isMe: boolean
+}

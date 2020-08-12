@@ -1,5 +1,11 @@
 import React, { FC, ReactNode } from 'react'
-import { View, StyleSheet, SafeAreaView } from 'react-native'
+import {
+  View,
+  StyleSheet,
+  SafeAreaView,
+  StatusBar,
+  Platform,
+} from 'react-native'
 
 import { colors } from 'res/colors'
 
@@ -17,26 +23,30 @@ export const Layout: FC<LayoutProps> = ({
   header,
   center,
   centerTopPosition = -10,
-}) => (
-  <View style={{ flex: 1 }}>
-    <View style={styles.container}>
-      <SafeAreaView>
-        <View style={styles.header}>{header}</View>
-      </SafeAreaView>
+}) => {
+  const paddingTop = Platform.OS === 'android' ? StatusBar.currentHeight : 0
 
-      <SafeAreaView style={styles.body}>
-        <View style={styles.body}>
-          {!!center && (
-            <View style={{ ...styles.center, top: centerTopPosition }}>
-              {center}
-            </View>
-          )}
-          {children}
-        </View>
-      </SafeAreaView>
+  return (
+    <View style={{ flex: 1, paddingTop }}>
+      <View style={styles.container}>
+        <SafeAreaView>
+          <View style={styles.header}>{header}</View>
+        </SafeAreaView>
+
+        <SafeAreaView style={styles.body}>
+          <View style={styles.body}>
+            {!!center && (
+              <View style={{ ...styles.center, top: centerTopPosition }}>
+                {center}
+              </View>
+            )}
+            {children}
+          </View>
+        </SafeAreaView>
+      </View>
     </View>
-  </View>
-)
+  )
+}
 
 export const styles = StyleSheet.create({
   safeView: {

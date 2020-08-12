@@ -13,10 +13,12 @@ import { WeekInfo } from './components/WeekInfo'
 import { ShareRelationKey } from './components/ShareRelationKey'
 import { UsersContext } from 'screens/app/contexts/Users.context'
 import { CountdownBadge } from '../Leaderboard/components/CountdownBadge'
+import { UserScoreContext } from 'screens/app/contexts/UserScore.context'
 
 export const HomeScreen = () => {
   useStatusBar('light-content')
   const { partner } = useContext(UsersContext)
+  const { currentWeek } = useContext(UserScoreContext)
 
   return (
     <Layout
@@ -24,7 +26,7 @@ export const HomeScreen = () => {
         <>
           <WeekInfo />
           <RelationInfo />
-          <RelationStatus />
+          <RelationStatus scoreStatus={currentWeek.status} />
         </>
       }
       center={!partner.id ? <ShareRelationKey /> : <CountdownBadge />}
