@@ -3,74 +3,44 @@ import { View, StyleSheet, Text, Alert } from 'react-native'
 import * as WebBrowser from 'expo-web-browser'
 import * as StoreReview from 'expo-store-review'
 import { Asset } from 'expo-asset'
+import { useNavigation, useFocusEffect } from '@react-navigation/native'
 
 import { colors } from 'res/colors'
 import { useT } from 'res/i18n'
+import { useStatusBar } from 'hooks/useStatusBar'
 
 import { Label } from 'library/components/Label'
 import { CardButton } from 'library/components/CardButton'
 import { Scroll } from 'library/layouts/Scroll'
 
 import { UsersContext } from 'screens/app/contexts/Users.context'
-
-import { useNavigation, useFocusEffect } from '@react-navigation/native'
 import { AuthContext, AuthApiContext } from 'screens/auth/contexts'
-import { Value } from './components'
 
 export const SettingsScreen = () => {
+  useStatusBar('dark-content')
   const { t } = useT()
   const navigation = useNavigation()
-  const { me, partner } = useContext(UsersContext)
+  const { partner } = useContext(UsersContext)
   const { logout } = useContext(AuthContext)
   const { deleteRelation } = useContext(AuthApiContext)
 
   useFocusEffect(
     useCallback(() => {
+      const loadTeamAvatars = async () => {
+        const images = [
+          require('../../../../../assets/team/mathieu.png'),
+          require('../../../../../assets/team/gauthier.png'),
+          require('../../../../../assets/team/vincent.png'),
+        ]
+
+        await Promise.all(
+          images.map((image) => Asset.fromModule(image).downloadAsync())
+        )
+      }
+
       loadTeamAvatars()
     }, [])
   )
-
-  const formattedGender = {
-    male: t('male'),
-    female: t('female'),
-    other: t('other'),
-  }[me.gender]
-
-  const loadTeamAvatars = async () => {
-    const images = [
-      require('../../../../../assets/team/mathieu.png'),
-      require('../../../../../assets/team/gauthier.png'),
-      require('../../../../../assets/team/vincent.png'),
-    ]
-
-    await Promise.all(
-      images.map((image) => Asset.fromModule(image).downloadAsync())
-    )
-  }
-
-  const goToPrivacyPolicy = async () => {
-    await WebBrowser.openBrowserAsync('https://appboth.com/privacy-policy')
-  }
-
-  const goToTermsAndConditions = async () => {
-    await WebBrowser.openBrowserAsync(
-      'https://appboth.com/terms-and-conditions'
-    )
-  }
-
-  const goToTheTeam = () => {
-    navigation.navigate('TheTeam')
-  }
-
-  const handleFeedback = async () => {
-    await WebBrowser.openBrowserAsync('https://forms.gle/vFxTrrKXZNstFsz17')
-  }
-
-  const handleBothClub = async () => {
-    await WebBrowser.openBrowserAsync('https://bit.ly/JoinBothClub')
-  }
-
-  const handleRateApp = () => StoreReview.requestReview()
 
   const handleEndRelation = () => {
     Alert.alert(
@@ -98,17 +68,16 @@ export const SettingsScreen = () => {
       <Label primary={t('app:screen:settings:title')} />
 
       <Scroll style={styles.scrollContainer} marginTop={24} marginBottom={24}>
-        <Value
-          label={t('app:screen:profil:firstName')}
-          value={me.firstName}
-          marginBottom={16}
+        <Text style={styles.sectionTitle}>
+          {t('app:screen:settings:section:yourSettings')}
+        </Text>
+        <CardButton
+          emoji="🙈"
+          title={t('app:screen:settings:button:profil:title')}
+          subtitle={t('app:screen:settings:button:profil:subtitle')}
+          onAction={() => navigation.navigate('Profil')}
+          containerStyle={styles.button}
         />
-        <Value
-          label={t('app:screen:profil:gender')}
-          value={formattedGender}
-          marginBottom={16}
-        />
-
         <CardButton
           emoji="💔"
           title={t('app:screen:settings:button:endRelation:title')}
@@ -135,21 +104,25 @@ export const SettingsScreen = () => {
           emoji="🧸"
           title={t('app:screen:settings:button:joinBothClub:title')}
           subtitle={t('app:screen:settings:button:joinBothClub:subtitle')}
-          onAction={handleBothClub}
+          onAction={() =>
+            WebBrowser.openBrowserAsync('https://bit.ly/JoinBothClub')
+          }
           containerStyle={styles.button}
         />
         <CardButton
           emoji="💡"
           title={t('app:screen:settings:button:shareIdeas:title')}
           subtitle={t('app:screen:settings:button:shareIdeas:subtitle')}
-          onAction={handleFeedback}
+          onAction={() =>
+            WebBrowser.openBrowserAsync('https://forms.gle/vFxTrrKXZNstFsz17')
+          }
           containerStyle={styles.button}
         />
         <CardButton
           emoji="⭐️"
           title={t('app:screen:settings:button:voteTheApp:title')}
           subtitle={t('app:screen:settings:button:voteTheApp:subtitle')}
-          onAction={handleRateApp}
+          onAction={() => StoreReview.requestReview()}
           containerStyle={styles.button}
         />
 
@@ -160,21 +133,27 @@ export const SettingsScreen = () => {
           emoji="👨‍👦‍👦"
           title={t('app:screen:settings:button:theTeam:title')}
           subtitle={t('app:screen:settings:button:theTeam:subtitle')}
-          onAction={goToTheTeam}
+          onAction={() => navigation.navigate('TheTeam')}
           containerStyle={styles.button}
         />
         <CardButton
           emoji="🔐"
           title={t('app:screen:settings:button:protectData:title')}
           subtitle={t('app:screen:settings:button:protectData:subtitle')}
-          onAction={goToPrivacyPolicy}
+          onAction={() =>
+            WebBrowser.openBrowserAsync('https://appboth.com/privacy-policy')
+          }
           containerStyle={styles.button}
         />
         <CardButton
           emoji="📑"
           title={t('app:screen:settings:button:cgu:title')}
           subtitle={t('app:screen:settings:button:cgu:subtitle')}
-          onAction={goToTermsAndConditions}
+          onAction={() =>
+            WebBrowser.openBrowserAsync(
+              'https://appboth.com/terms-and-conditions'
+            )
+          }
           containerStyle={styles.button}
         />
       </Scroll>

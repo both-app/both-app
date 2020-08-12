@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import { useT } from 'res/i18n'
+import { useStatusBar } from 'hooks/useStatusBar'
 
 import { Label } from 'library/components/Label'
 import { Select } from 'screens/auth/components/Select'
@@ -11,6 +12,7 @@ import { FormLayout } from 'library/layouts/FormLayout'
 import { FormContext } from '../../Form.context'
 
 export const GenderScreen = () => {
+  useStatusBar('dark-content')
   const navigation = useNavigation()
   const { t } = useT()
   const { values, setValue } = useContext(FormContext)
@@ -18,7 +20,7 @@ export const GenderScreen = () => {
   const handleOnChange = (value: 'female' | 'male' | 'other') => {
     setValue('gender', value)
 
-    return navigation.navigate('PushNotification')
+    return navigation.navigate('Avatar')
   }
 
   const handleOnBack = () => {

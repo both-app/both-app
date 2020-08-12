@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native'
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/core'
 
 import { useT } from 'res/i18n'
+import { useStatusBar } from 'hooks/useStatusBar'
 
 import { FormLayout } from 'library/layouts/FormLayout'
 import { Label } from 'library/components/Label'
@@ -14,6 +15,7 @@ import { CreateTaskStackParamList, ROUTES } from '../CreateTask.navigator'
 type ChooseNameRouteProps = RouteProp<CreateTaskStackParamList, 'ChooseName'>
 
 export const ChooseNameScreen = () => {
+  useStatusBar('dark-content')
   const { t } = useT()
   const navigation = useNavigation()
   const route = useRoute<ChooseNameRouteProps>()

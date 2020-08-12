@@ -8,11 +8,16 @@ import { fonts } from 'res/fonts'
 import { colors } from 'res/colors'
 
 type WinnerHeaderProps = {
+  avatarUrl?: string
   firstName: string
   gender: string
 }
 
-export const WinnerHeader: FC<WinnerHeaderProps> = ({ firstName, gender }) => {
+export const WinnerHeader: FC<WinnerHeaderProps> = ({
+  avatarUrl,
+  firstName,
+  gender,
+}) => {
   const { t } = useT()
 
   return (
@@ -20,6 +25,7 @@ export const WinnerHeader: FC<WinnerHeaderProps> = ({ firstName, gender }) => {
       <Confetti containerStyle={styles.confettiContainer}>
         <>
           <Avatar
+            avatar={avatarUrl}
             firstname={firstName}
             size="large"
             backgroundColor="dark200"

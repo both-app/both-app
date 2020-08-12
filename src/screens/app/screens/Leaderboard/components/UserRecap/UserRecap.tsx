@@ -9,6 +9,7 @@ import { Point } from 'library/components/Point'
 import { Medal } from '../Medal'
 
 interface UserRecapProps {
+  avatarUrl?: string
   firstName: string
   isWinner: boolean
   taskName: string
@@ -17,6 +18,7 @@ interface UserRecapProps {
 }
 
 export const UserRecap: FC<UserRecapProps> = ({
+  avatarUrl,
   firstName,
   isWinner,
   points,
@@ -45,6 +47,7 @@ export const UserRecap: FC<UserRecapProps> = ({
       <View style={styles.avatarContainer}>
         <Medal type={isWinner ? 'winner' : 'loser'} />
         <Avatar
+          avatar={avatarUrl}
           firstname={firstName}
           size="small"
           borderWidth={1}

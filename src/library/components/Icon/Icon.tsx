@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import { SvgProps } from 'react-native-svg'
 
 import ArrowRight from '../../../../assets/icons/arrow-right.svg'
+import ArrowLeft from '../../../../assets/icons/arrow-left.svg'
 import ChevronLeft from '../../../../assets/icons/chevron-left.svg'
 import Check from '../../../../assets/icons/check.svg'
 import Plus from '../../../../assets/icons/plus.svg'
@@ -21,6 +22,7 @@ import Home from '../../../../assets/icons/home.svg'
 
 export type IconName =
   | 'arrow_right'
+  | 'arrow_left'
   | 'chevron_left'
   | 'check'
   | 'plus'
@@ -46,6 +48,7 @@ export interface IconProps extends SvgProps {
 export const Icon: FC<IconProps> = ({ iconName, ...props }) => {
   const mapping: Record<IconName, React.FC<SvgProps>> = {
     arrow_right: ArrowRight,
+    arrow_left: ArrowLeft,
     chevron_left: ChevronLeft,
     check: Check,
     plus: Plus,

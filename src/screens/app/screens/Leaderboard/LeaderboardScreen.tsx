@@ -1,6 +1,8 @@
 import React, { useContext } from 'react'
 import { StyleSheet } from 'react-native'
 
+import { useStatusBar } from 'hooks/useStatusBar'
+
 import { Layout } from 'library/layouts/Layout'
 import { Scroll } from 'library/layouts/Scroll'
 import {
@@ -22,6 +24,7 @@ interface RankedUser extends User {
 }
 
 export const LeaderboardScreen = () => {
+  useStatusBar('light-content')
   const {
     userTotalPoints,
     partnerTotalPoints,
@@ -72,18 +75,20 @@ export const LeaderboardScreen = () => {
           <DrawHeader />
         ) : (
           <WinnerHeader
+            avatarUrl={ranking[0].avatarUrl}
             firstName={ranking[0].firstName}
             gender={ranking[0].gender}
           />
         )
       }
-      badge={<CountdownBadge />}
+      center={<CountdownBadge />}
     >
       <Scroll style={styles.scrollContainer} marginTop={24} marginBottom={24}>
         {ranking.map((user: RankedUser) => (
           <UserRecap
             key={user.id}
             isMe={user.isMe}
+            avatarUrl={user.avatarUrl}
             firstName={user.firstName}
             isWinner={user.isWinner}
             points={user.points}

@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native'
 
 import { useT } from 'res/i18n'
 import { getExpoPushToken } from 'res/notification'
+import { useStatusBar } from 'hooks/useStatusBar'
 
 import { Label } from 'library/components/Label'
 import { FormLayout } from 'library/layouts/FormLayout'
@@ -15,12 +16,11 @@ import { Select } from 'screens/auth/components/Select'
 import { FormContext } from '../../Form.context'
 
 export const PushNotificationScreen = () => {
+  useStatusBar('dark-content')
   const navigation = useNavigation()
   const { t } = useT()
-
   const [isSelected, setIsSelected] = useState<boolean>(false)
   const [error, setError] = useState<[string, string] | []>([])
-
   const { values } = useContext(FormContext)
   const { createRelation, joinRelation } = useContext(AuthApiContext)
   const { login } = useContext(AuthContext)
@@ -45,6 +45,7 @@ export const PushNotificationScreen = () => {
     const result = await createRelation({
       firstName: values.firstName,
       gender: values.gender,
+      avatarPath: values.avatarPath,
       ...(pushToken ? { pushToken } : {}),
     })
 
@@ -57,6 +58,7 @@ export const PushNotificationScreen = () => {
         firstName: values.firstName,
         gender: values.gender,
         code: values.code,
+        avatarPath: values.avatarPath,
         ...(pushToken ? { pushToken } : {}),
       })
 

@@ -49,10 +49,9 @@
   "auth:screen:select:subtitle": "Let's begin...",
   "auth:screen:select:tapYourFirstname": "Type your name",
 
-  "auth:screen:form:birthDate:title": "And lastly 🎁",
-  "auth:screen:form:birthDate:subtitle": "Your date of birth...",
-  "auth:screen:form:birthDate:error:wrongDate:title": "🙄 Are you sure about your date of birth?",
-  "auth:screen:form:birthDate:error:wrongDate:subtitle": "Tips: Make an effort or ask your mom...",
+  "auth:screen:form:avatar:title": "1,2,3, Cheese 📸",
+  "auth:screen:form:avatar:subtitle": "Your profil picture",
+  "auth:screen:form:avatar:info:subtitle": "The photo is not mandatory, we can do without if you want.",
 
   "auth:screen:form:pushNotification:title": "Ding 🔔",
   "auth:screen:form:pushNotification:subtitle": "About notifications...",
@@ -115,10 +114,6 @@
   "app:screen:settings:button:cgu:title": "Terms of service",
   "app:screen:settings:button:cgu:subtitle": "Happy reading...",
 
-  "app:screen:profil:firstName": "First name",
-  "app:screen:profil:birthDate": "Date of birth",
-  "app:screen:profil:gender": "Gender",
-
   "app:screen:relation:pageTitle": "Relation",
   "app:screen:relation:onBothSince": {
     "one": "Both since %{daysOfRelation} day",
@@ -134,9 +129,18 @@
   "app:screen:theTeam:search": "Looking for a partner",
   "app:screen:theTeam:inRelationSince": "In a relationship since 6 years",
 
+  "app:screen:profil:pageTitle": "Info. personal",
+  "app:screen:profil:title": "👋 Hello %{firstName}",
+  "app:screen:profil:subtitle": "Here you can add a photo as an avatar or see your personal information",
+  "app:screen:profil:securityBlock:title": "Your data is safe",
+  "app:screen:profil:securityBlock:subtitle": "Don't worry about that, we keep them warm and it won't leave our house!",
+  "app:screen:profil:firstName": "First name",
+  "app:screen:profil:gender": "Gender",
+
   "app:screen:newUserTask:chooseCategory:title": "Choose...",
   "app:screen:newUserTask:chooseCategory:subtitle": "A category 📦",
   "app:screen:newUserTask:category:taskNumber": {
+    "zero": "%{tasks} task",
     "one": "%{tasks} task",
     "other": "%{tasks} tasks"
   },

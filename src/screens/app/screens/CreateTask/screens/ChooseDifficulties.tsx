@@ -5,6 +5,7 @@ import * as Haptics from 'expo-haptics'
 
 import { colors } from 'res/colors'
 import { useT } from 'res/i18n'
+import { useStatusBar } from 'hooks/useStatusBar'
 
 import { FormLayout } from 'library/layouts/FormLayout'
 import { Label } from 'library/components/Label'
@@ -49,6 +50,7 @@ const CONFIG_POINTS = [
 ]
 
 export const ChooseDifficultiesScreen = () => {
+  useStatusBar('dark-content')
   const { t } = useT()
   const navigation = useNavigation()
   const route = useRoute<ChooseDifficultiesRouteProps>()

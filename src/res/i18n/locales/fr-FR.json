@@ -49,10 +49,9 @@
   "auth:screen:select:subtitle": "Commençons...",
   "auth:screen:select:tapYourFirstname": "Tape ton prénom",
 
-  "auth:screen:form:birthDate:title": "Et enfin 🎁",
-  "auth:screen:form:birthDate:subtitle": "Ton anniversaire...",
-  "auth:screen:form:birthDate:error:wrongDate:title": "🙄 Es-tu certain de ta date d’anniversaire ?",
-  "auth:screen:form:birthDate:error:wrongDate:subtitle": "Aide : Fais un effort ou bien demande à ta maman...",
+  "auth:screen:form:avatar:title": "1,2,3, Cheese 📸",
+  "auth:screen:form:avatar:subtitle": "Ta photo de profil",
+  "auth:screen:form:avatar:info:subtitle": "La photo n’est pas obligatoire, on peut faire sans si tu veux.",
 
   "auth:screen:form:pushNotification:title": "Ding 🔔",
   "auth:screen:form:pushNotification:subtitle": "À propos des notifs...",
@@ -81,6 +80,7 @@
   "auth:screen:form:gender:select:woman:label": "Je suis une femme",
   "auth:screen:form:gender:select:male:label": "Je suis un homme",
   "auth:screen:form:gender:select:other:label": "Je suis non-binaire",
+
   "auth:screen:form:joinOrCreate:title": "Enchanté 🙂",
   "auth:screen:form:joinOrCreate:subtitle": "As tu une clé ?",
   "auth:screen:form:joinOrCreate:select:join:label": "Oui, je suis invité par un partenaire",
@@ -123,8 +123,12 @@
   "app:screen:theTeam:search": "À la recherche d'une partenaire",
   "app:screen:theTeam:inRelationSince": "En relation depuis 6 ans",
 
+  "app:screen:profil:pageTitle": "Infos. personnelles",
+  "app:screen:profil:title": "👋 Salut %{firstName}",
+  "app:screen:profil:subtitle": "Ici tu peux ajouter une photo en guise d’avatar ou bien voir les informations personnelles te concernant",
+  "app:screen:profil:securityBlock:title": "Tes données sont en sécurité",
+  "app:screen:profil:securityBlock:subtitle": "Ne t’inquiètes pas pour ça, on les conserve bien au chaud et ça ne sortira pas de chez nous !",
   "app:screen:profil:firstName": "Prénom",
-  "app:screen:profil:birthDate": "Date de naissance",
   "app:screen:profil:gender": "Genre",
 
   "app:screen:relation:pageTitle": "Relation",
@@ -137,6 +141,7 @@
   "app:screen:newUserTask:chooseCategory:title": "Sélectionne...",
   "app:screen:newUserTask:chooseCategory:subtitle": "Une catégorie 📦",
   "app:screen:newUserTask:category:taskNumber": {
+    "zero": "%{tasks} tâche",
     "one": "%{tasks} tâche",
     "other": "%{tasks} tâches"
   },

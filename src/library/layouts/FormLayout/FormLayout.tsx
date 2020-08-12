@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useCallback } from 'react'
+import React, { FC, ReactNode } from 'react'
 import {
   StyleSheet,
   View,
@@ -6,10 +6,8 @@ import {
   KeyboardAvoidingView,
   Keyboard,
   Platform,
-  StatusBar,
   SafeAreaView,
 } from 'react-native'
-import { useFocusEffect } from '@react-navigation/native'
 
 import { MinimalButton } from 'library/components/MinimalButton'
 import { IconButton } from 'library/components/IconButton'
@@ -37,88 +35,80 @@ export const FormLayout: FC<FormLayoutProps> = ({
   onNextAction,
   children,
   testID,
-}) => {
-  useFocusEffect(
-    useCallback(() => {
-      StatusBar.setBarStyle('dark-content')
-    }, [])
-  )
+}) => (
+  <SafeAreaView style={styles.safeView}>
+    <KeyboardAvoidingView
+      style={styles.container}
+      testID={testID}
+      behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <>
+          {Platform.OS == 'ios' && (
+            <View style={{ paddingLeft: 24 }}>
+              {onBackAction && (
+                <MinimalButton
+                  iconName="chevron_left"
+                  onAction={onBackAction}
+                  iconColor="dark100"
+                />
+              )}
 
-  return (
-    <SafeAreaView style={styles.safeView}>
-      <KeyboardAvoidingView
-        style={styles.container}
-        testID={testID}
-        behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
-      >
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <>
-            {Platform.OS == 'ios' && (
-              <View style={{ paddingLeft: 24 }}>
-                {onBackAction && (
-                  <MinimalButton
-                    iconName="chevron_left"
-                    onAction={onBackAction}
-                    iconColor="dark100"
-                  />
-                )}
-
-                {onCloseAction && (
-                  <MinimalButton
-                    iconName="close"
-                    onAction={onCloseAction}
-                    iconColor="dark100"
-                  />
-                )}
-              </View>
-            )}
-
-            <View style={{ marginTop: 24, ...containerStyle }}>
-              {label}
-
-              <View
-                style={{
-                  flex: 1,
-                  paddingHorizontal: 24,
-                  marginBottom: 12,
-                }}
-              >
-                {children}
-              </View>
-
-              {(onNextAction || onFinishAction || bottomInfo) && (
-                <View style={styles.bottomContainer}>
-                  {bottomInfo}
-                  <View style={styles.buttonContainer}>
-                    {onNextAction && (
-                      <IconButton
-                        iconName="arrow_right"
-                        onAction={onNextAction}
-                        size={64}
-                        buttonColor="dark100"
-                        iconColor="white"
-                      />
-                    )}
-
-                    {onFinishAction && (
-                      <IconButton
-                        iconName="check"
-                        onAction={onFinishAction}
-                        size={64}
-                        buttonColor="dark100"
-                        iconColor="white"
-                      />
-                    )}
-                  </View>
-                </View>
+              {onCloseAction && (
+                <MinimalButton
+                  iconName="close"
+                  onAction={onCloseAction}
+                  iconColor="dark100"
+                />
               )}
             </View>
-          </>
-        </TouchableWithoutFeedback>
-      </KeyboardAvoidingView>
-    </SafeAreaView>
-  )
-}
+          )}
+
+          <View style={{ marginTop: 24, ...containerStyle }}>
+            {label}
+
+            <View
+              style={{
+                flex: 1,
+                paddingHorizontal: 24,
+                marginBottom: 12,
+              }}
+            >
+              {children}
+            </View>
+
+            {(onNextAction || onFinishAction || bottomInfo) && (
+              <View style={styles.bottomContainer}>
+                {bottomInfo}
+                <View style={styles.buttonContainer}>
+                  {onNextAction && (
+                    <IconButton
+                      iconName="arrow_right"
+                      onAction={onNextAction}
+                      size={64}
+                      buttonColor="dark100"
+                      iconColor="white"
+                    />
+                  )}
+
+                  {onFinishAction && (
+                    <IconButton
+                      iconName="check"
+                      onAction={onFinishAction}
+                      size={64}
+                      buttonColor="dark100"
+                      iconColor="white"
+                    />
+                  )}
+                </View>
+              </View>
+            )}
+          </View>
+        </>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
+  </SafeAreaView>
+)
 
 const styles = StyleSheet.create({
   safeView: {

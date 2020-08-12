@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native'
 import { useNavigation, useFocusEffect } from '@react-navigation/core'
 
 import { useT } from 'res/i18n'
+import { useStatusBar } from 'hooks/useStatusBar'
 
 import { CategoryContext } from 'screens/app/contexts/Category.context'
 import { TaskContext } from 'screens/app/contexts/Task.context'
@@ -15,6 +16,7 @@ import { Scroll } from 'library/layouts/Scroll'
 import { ROUTES } from '../AddTask.navigator'
 
 export const ChooseCategoryScreen = () => {
+  useStatusBar('dark-content')
   const { t } = useT()
   const navigation = useNavigation()
   const [selectedId, setSelectedId] = useState<string | null>(null)

@@ -11,23 +11,19 @@ import { getCurrentRouteName } from 'res/stackNavigation'
 
 import { SettingsScreen } from './SettingsScreen'
 import { TheTeamScreen } from './screens/TheTeam'
+import { ProfilScreen } from './screens/Profil'
 
 export const Stack = createStackNavigator()
 
 const ROUTES = {
   SETTINGS: 'Settings',
   THE_TEAM: 'TheTeam',
+  PROFIL: 'Profil',
 }
 
 export const SettingsNavigator = () => {
   const navigation = useNavigation()
   const route = useRoute()
-
-  useFocusEffect(
-    useCallback(() => {
-      StatusBar.setBarStyle('dark-content')
-    }, [])
-  )
 
   useLayoutEffect(() => {
     const routeName = getCurrentRouteName(route)
@@ -43,6 +39,7 @@ export const SettingsNavigator = () => {
     <Stack.Navigator headerMode="none">
       <Stack.Screen component={SettingsScreen} name={ROUTES.SETTINGS} />
       <Stack.Screen component={TheTeamScreen} name={ROUTES.THE_TEAM} />
+      <Stack.Screen component={ProfilScreen} name={ROUTES.PROFIL} />
     </Stack.Navigator>
   )
 }

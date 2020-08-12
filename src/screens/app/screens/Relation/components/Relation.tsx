@@ -17,8 +17,14 @@ export const Relation = () => {
   return (
     <View style={styles.container}>
       <View style={styles.avatars}>
-        <Avatar firstname={me.firstName} size="small" borderColor="skin200" />
         <Avatar
+          avatar={me.avatarUrl}
+          firstname={me.firstName}
+          size="small"
+          borderColor="skin200"
+        />
+        <Avatar
+          avatar={partner.avatarUrl}
           firstname={partner.firstName || '⌛️'}
           size="small"
           borderColor="skin200"

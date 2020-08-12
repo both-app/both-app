@@ -14,12 +14,14 @@ interface AuthApiContextProps {
     firstName: string
     gender: string
     pushToken: string
+    avatarPath: string
   }) => Promise<AxiosResponse<AuthResponse>>
   joinRelation: (params: {
     firstName: string
     gender: string
     code: string
     pushToken: string
+    avatarPath: string
   }) => Promise<AxiosResponse<AuthResponse>>
   deleteRelation: () => Promise<AxiosResponse<APIResponse<{}>>>
 }

@@ -1,28 +1,18 @@
-import React, { useCallback } from 'react'
-import {
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  StatusBar,
-} from 'react-native'
-import { useNavigation, useFocusEffect } from '@react-navigation/native'
+import React from 'react'
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
 import { colors } from 'res/colors'
 import { useT } from 'res/i18n'
 
 import { Label } from 'library/components/Label'
 import { Logo } from '../../components/Logo'
+import { useStatusBar } from 'hooks/useStatusBar'
 
 export const SelectScreen = () => {
+  useStatusBar('light-content')
   const navigation = useNavigation()
   const { t } = useT()
-
-  useFocusEffect(
-    useCallback(() => {
-      StatusBar.setBarStyle('light-content')
-    }, [])
-  )
 
   return (
     <View style={styles.container}>

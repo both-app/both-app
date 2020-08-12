@@ -6,10 +6,13 @@ import { Body } from './Body'
 export const RelationInfo = () => {
   const { me, partner } = useContext(UsersContext)
   const { userTotalPoints, partnerTotalPoints } = useContext(UserScoreContext)
+
   return (
     <Body
       leftFirstName={me.firstName}
+      leftAvatarUrl={me.avatarUrl}
       rightFirstName={partner.firstName || '⌛️'}
+      rightAvatarUrl={partner.avatarUrl}
       leftPoints={userTotalPoints}
       rightPoints={partnerTotalPoints}
     />

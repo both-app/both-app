@@ -3,16 +3,19 @@ import { StyleSheet, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import { useT } from 'res/i18n'
+import { useStatusBar } from 'hooks/useStatusBar'
 
 import { Info } from 'library/components/Info'
 import { Label } from 'library/components/Label'
-import { InputCode } from 'screens/auth/components/InputCode'
 import { FormLayout } from 'library/layouts/FormLayout'
+
+import { InputCode } from 'screens/auth/components/InputCode'
 import { FormContext } from '../../Form.context'
 
 const CODE_LENGTH = 6
 
 export const CodeScreen = () => {
+  useStatusBar('dark-content')
   const navigation = useNavigation()
   const { t } = useT()
   const [error, setError] = useState<[string, string] | []>([])
