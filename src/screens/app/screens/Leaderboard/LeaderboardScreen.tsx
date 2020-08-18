@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import { useStatusBar } from 'hooks/useStatusBar'
@@ -81,17 +81,19 @@ export const LeaderboardScreen = () => {
     <Layout
       header={
         <>
-          <SegmentedControl
-            values={[
-              t('app:screen:leaderboard:tabs:week'),
-              t('app:screen:leaderboard:tabs:global'),
-            ]}
-            selectedIndex={sectionIndex}
-            onTabPress={setSectionIndex}
-            activeTabBackgroundColor="grey100"
-            backgroundColor="rgba(118,118,128,0.24)"
-            textColor="white"
-          />
+          <View style={styles.menuContainer}>
+            <SegmentedControl
+              values={[
+                t('app:screen:leaderboard:tabs:week'),
+                t('app:screen:leaderboard:tabs:global'),
+              ]}
+              selectedIndex={sectionIndex}
+              onTabPress={setSectionIndex}
+              activeTabBackgroundColor="grey100"
+              backgroundColor="rgba(118,118,128,0.24)"
+              textColor="white"
+            />
+          </View>
 
           {status === 'Draw' ? (
             <DrawHeader scoreType={currentTab} />
@@ -130,5 +132,9 @@ export const LeaderboardScreen = () => {
 const styles = StyleSheet.create({
   scrollContainer: {
     marginHorizontal: 24,
+  },
+  menuContainer: {
+    width: '100%',
+    marginBottom: 50,
   },
 })

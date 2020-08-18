@@ -39,7 +39,6 @@ export const SegmentedControl: FC<SegmentedControlProps> = ({
 
 const styles = StyleSheet.create({
   tabsContainer: {
-    marginBottom: 50,
     height: 35,
     borderRadius: 8,
   },

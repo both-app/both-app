@@ -11,7 +11,6 @@ import { Label } from 'library/components/Label'
 import { Relation } from './components/Relation'
 import { RelationTasks } from './components/RelationTasks'
 import { AppNavigatorContext } from 'screens/app/contexts/AppNavigator.context'
-import { useNavigation } from '@react-navigation/native'
 
 export const RelationScreen = () => {
   useStatusBar('dark-content')

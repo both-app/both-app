@@ -3,23 +3,26 @@ import { View, Text, StyleSheet } from 'react-native'
 
 import { colors } from 'res/colors'
 
-import { SegmentedControl } from 'library/components/SegmentedControl'
 import { Scroll } from 'library/layouts/Scroll'
+import { SegmentedControl } from 'library/components/SegmentedControl'
 
 import { RelationTask } from '../RelationTask/RelationTask'
 
 export const RelationTasks = () => {
   return (
     <View style={styles.container}>
-      <SegmentedControl
-        values={['Mes tâches (0)', 'Mes demandes (1)']}
-        selectedIndex={0}
-        onTabPress={console.log}
-        activeTabBackgroundColor="white"
-        backgroundColor="rgba(118,118,128,0.24)"
-        textColor="dark200"
-      />
+      <View style={styles.menuContainer}>
+        <SegmentedControl
+          values={['Mes tâches (0)', 'Mes demandes (1)']}
+          selectedIndex={0}
+          onTabPress={console.log}
+          activeTabBackgroundColor="white"
+          backgroundColor="rgba(118,118,128,0.24)"
+          textColor="dark200"
+        />
+      </View>
 
+      <Text style={styles.remainderTasks}>1 tâche restante</Text>
       <Scroll marginBottom={24} marginTop={8}>
         <RelationTask
           isDone={true}
@@ -35,5 +38,12 @@ export const RelationTasks = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  menuContainer: {
+    marginBottom: 16,
+  },
+  remainderTasks: {
+    fontSize: 14,
+    color: colors.dark200,
   },
 })
