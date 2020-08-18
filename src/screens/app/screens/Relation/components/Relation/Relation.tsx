@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, FC } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 
 import { colors } from 'res/colors'
@@ -9,64 +9,78 @@ import { Avatar } from 'library/components/Avatar'
 import { RelationContext } from 'screens/app/contexts/Relation.context'
 import { UsersContext } from 'screens/app/contexts/Users.context'
 
+const Avatars: FC<{ me: User; partner: User }> = ({ me, partner }) => (
+  <View style={styles.avatarsContainer}>
+    <Avatar
+      avatar={me.avatarUrl}
+      firstname={me.firstName}
+      size="small"
+      borderColor="skin200"
+    />
+    <Avatar
+      avatar={partner.avatarUrl}
+      firstname={partner.firstName || '⌛️'}
+      size="small"
+      borderColor="skin200"
+      containerStyle={{ marginLeft: -10 }}
+    />
+  </View>
+)
+
+const Code: FC<{ code: string }> = ({ code }) => {
+  const { t } = useT()
+
+  return (
+    <View style={styles.codeContainer}>
+      <Text style={styles.relationKey}>
+        {t('app:screen:relation:keyOfTheRelation')}
+      </Text>
+      <Text style={styles.code}>{code}</Text>
+    </View>
+  )
+}
+
 export const Relation = () => {
   const { t } = useT()
   const { me, partner } = useContext(UsersContext)
   const { relation, daysOfRelation } = useContext(RelationContext)
 
   return (
-    <View style={styles.container}>
-      <View style={styles.avatars}>
-        <Avatar
-          avatar={me.avatarUrl}
-          firstname={me.firstName}
-          size="small"
-          borderColor="skin200"
-        />
-        <Avatar
-          avatar={partner.avatarUrl}
-          firstname={partner.firstName || '⌛️'}
-          size="small"
-          borderColor="skin200"
-          containerStyle={{ marginLeft: -10 }}
-        />
-      </View>
+    <>
+      <View style={styles.relationInfoContainer}>
+        <Avatars me={me} partner={partner} />
 
-      <Text style={styles.name}>
-        {me.firstName} + {partner.firstName || '💖'}
-      </Text>
-      <Text style={styles.relationDuration}>
-        {t('app:screen:relation:onBothSince', {
-          count: daysOfRelation,
-          daysOfRelation,
-        })}
-      </Text>
-
-      <View style={styles.codePosition}>
-        <View style={styles.codeContainer}>
-          <Text style={styles.relationKey}>
-            {t('app:screen:relation:keyOfTheRelation')}
+        <View style={{ marginLeft: 8 }}>
+          <Text style={styles.name}>
+            {me.firstName} + {partner.firstName || '💖'}
           </Text>
-          <Text style={styles.code}>{relation.code.split('').join(' ')}</Text>
+          <Text style={styles.relationDuration}>
+            {t('app:screen:relation:onBothSince', {
+              count: daysOfRelation,
+              daysOfRelation,
+            })}
+          </Text>
         </View>
       </View>
-    </View>
+
+      <Code code={relation.code.split('').join(' ')} />
+    </>
   )
 }
 
 export const styles = StyleSheet.create({
-  container: {
+  relationInfoContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
     backgroundColor: colors.skin200,
     borderRadius: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
     paddingTop: 24,
-    paddingBottom: 48,
-    position: 'relative',
+    paddingBottom: 22,
+    paddingLeft: 16,
+    marginBottom: 10,
   },
-  avatars: {
+  avatarsContainer: {
     flexDirection: 'row',
-    marginBottom: 14,
   },
   name: {
     fontWeight: '500',
@@ -84,13 +98,13 @@ export const styles = StyleSheet.create({
     right: 0,
   },
   codeContainer: {
-    backgroundColor: colors.dark200,
-    borderRadius: 24.6,
-    paddingTop: 8,
-    paddingBottom: 8,
-    paddingLeft: 32,
-    paddingRight: 32,
+    flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: colors.dark200,
+    borderRadius: 8,
+    paddingVertical: 24,
+    paddingHorizontal: 16,
   },
   relationKey: {
     color: colors.white,

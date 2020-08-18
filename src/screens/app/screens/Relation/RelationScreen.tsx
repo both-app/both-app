@@ -46,7 +46,7 @@ export const styles = StyleSheet.create({
   },
   relationContainer: {
     marginTop: 24,
-    marginBottom: 30,
+    marginBottom: 40,
   },
   relationTasksContainer: {
     flex: 1,
