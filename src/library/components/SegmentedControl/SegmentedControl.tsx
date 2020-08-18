@@ -3,15 +3,37 @@ import { StyleSheet } from 'react-native'
 import RSegmentedControl, {
   SegmentedControlTabProperties,
 } from 'react-native-segmented-control-tab'
+import { Color, colors } from 'res/colors'
 
-export const SegmentedControl: FC<SegmentedControlTabProperties> = (props) => (
+interface SegmentedControlProps {
+  values: any[]
+  selectedIndex: number
+  onTabPress: (index: number) => void
+  activeTabBackgroundColor?: Color
+  backgroundColor?: string
+  textColor?: Color
+}
+
+export const SegmentedControl: FC<SegmentedControlProps> = ({
+  values,
+  selectedIndex,
+  onTabPress,
+  activeTabBackgroundColor,
+  backgroundColor,
+  textColor,
+}) => (
   <RSegmentedControl
-    tabsContainerStyle={styles.tabsContainer}
+    tabsContainerStyle={{ ...styles.tabsContainer, backgroundColor }}
     tabStyle={styles.tab}
     borderRadius={6}
-    activeTabStyle={styles.activeTab}
-    tabTextStyle={styles.tabText}
-    {...props}
+    activeTabStyle={{
+      backgroundColor: colors[activeTabBackgroundColor],
+    }}
+    tabTextStyle={{ ...styles.tabText, color: colors[textColor] }}
+    activeTabTextStyle={{ ...styles.activeTabText, color: colors[textColor] }}
+    values={values}
+    selectedIndex={selectedIndex}
+    onTabPress={onTabPress}
   />
 )
 
@@ -19,7 +41,6 @@ const styles = StyleSheet.create({
   tabsContainer: {
     marginBottom: 50,
     height: 35,
-    backgroundColor: 'rgba(118,118,128,0.24)',
     borderRadius: 8,
   },
   tab: {
@@ -28,6 +49,10 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     margin: 3,
   },
-  activeTab: { backgroundColor: '#636366' },
-  tabText: { color: 'white', fontWeight: '500' },
+  tabText: {
+    fontWeight: '500',
+  },
+  activeTabText: {
+    fontWeight: '600',
+  },
 })

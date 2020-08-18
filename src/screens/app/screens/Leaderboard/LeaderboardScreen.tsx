@@ -88,6 +88,9 @@ export const LeaderboardScreen = () => {
             ]}
             selectedIndex={sectionIndex}
             onTabPress={setSectionIndex}
+            activeTabBackgroundColor="grey100"
+            backgroundColor="rgba(118,118,128,0.24)"
+            textColor="white"
           />
 
           {status === 'Draw' ? (

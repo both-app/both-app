@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native'
 
 import { colors } from 'res/colors'
 
-import { Badge } from 'library/components/Badge'
+import { SegmentedControl } from 'library/components/SegmentedControl'
 import { Scroll } from 'library/layouts/Scroll'
 
 import { RelationTask } from '../RelationTask/RelationTask'
@@ -11,13 +11,14 @@ import { RelationTask } from '../RelationTask/RelationTask'
 export const RelationTasks = () => {
   return (
     <View style={styles.container}>
-      <View style={styles.badge}>
-        <Badge color="warning" size="s">
-          Tâches à réaliser
-        </Badge>
-
-        <Text style={styles.remainingTasks}>2 tâches restantes</Text>
-      </View>
+      <SegmentedControl
+        values={['Mes tâches (0)', 'Mes demandes (1)']}
+        selectedIndex={0}
+        onTabPress={console.log}
+        activeTabBackgroundColor="white"
+        backgroundColor="rgba(118,118,128,0.24)"
+        textColor="dark200"
+      />
 
       <Scroll marginBottom={24} marginTop={8}>
         <RelationTask
@@ -34,14 +35,5 @@ export const RelationTasks = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  badge: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  remainingTasks: {
-    color: colors.dark200,
-    opacity: 0.75,
   },
 })
