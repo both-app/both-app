@@ -70,6 +70,7 @@ export const FormLayout: FC<FormLayoutProps> = ({
             <View
               style={{
                 flex: 1,
+                width: '100%',
                 paddingHorizontal: 24,
                 marginBottom: 12,
               }}
