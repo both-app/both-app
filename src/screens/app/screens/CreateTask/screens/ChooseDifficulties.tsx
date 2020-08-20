@@ -55,6 +55,7 @@ export const ChooseDifficultiesScreen = () => {
   const navigation = useNavigation()
   const route = useRoute<ChooseDifficultiesRouteProps>()
   const [selectedIndexs, setSelectedIndexs] = useState<number[]>([])
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
   const [difficulties, setDifficulties] = useState<TaskDifficulty[]>([])
   const { createTask } = useContext(CreateTaskContext)
 
@@ -70,6 +71,11 @@ export const ChooseDifficultiesScreen = () => {
       return
     }
 
+    if (isSubmitting) {
+      return
+    }
+
+    setIsSubmitting(true)
     const task = await createTask({
       emoji,
       name: taskName,

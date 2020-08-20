@@ -89,20 +89,22 @@ export const ChooseEmojiScreen = () => {
         <TaskPreview emoji={selectedEmoji} name={taskName} difficulties={[]} />
       }
     >
-      <TouchableOpacity
-        onPress={() => setModalIsVisible(true)}
-        activeOpacity={1}
-      >
-        <View style={styles.selectedEmoji}>
-          <Text style={styles.emoji}>{selectedEmoji}</Text>
-        </View>
-      </TouchableOpacity>
+      <View style={styles.container}>
+        <TouchableOpacity
+          onPress={() => setModalIsVisible(true)}
+          activeOpacity={1}
+        >
+          <View style={styles.selectedEmoji}>
+            <Text style={styles.emoji}>{selectedEmoji}</Text>
+          </View>
+        </TouchableOpacity>
 
-      <EmojiModal
-        isVisible={modalIsVisible}
-        onClose={() => setModalIsVisible(false)}
-        onEmojiSelected={handleEmojiSelected}
-      />
+        <EmojiModal
+          isVisible={modalIsVisible}
+          onClose={() => setModalIsVisible(false)}
+          onEmojiSelected={handleEmojiSelected}
+        />
+      </View>
     </FormLayout>
   )
 }
@@ -110,6 +112,9 @@ export const ChooseEmojiScreen = () => {
 const styles = StyleSheet.create({
   formContainer: {
     flex: 1,
+    alignItems: 'center',
+  },
+  container: {
     alignItems: 'center',
   },
   selectedEmoji: {
