@@ -161,6 +161,12 @@
   "app:screen:createTask:chooseDifficulties:subtitle": "Difficulty levels...",
   "app:screen:createTask:taskPreview:title": "Preview of the task",
 
+  "app:screen:addRelationTask:recap:label:primary": "Then...",
+  "app:screen:addRelationTask:recap:label:secondary": "We recap 🧐",
+  "app:screen:addRelationTask:recap:info:primary": "💡 Your partner will indicate the difficulty!",
+  "app:screen:addRelationTask:recap:info:secondary": "Help: If the task has several levels, your partner will have to choose the one corresponding to what he has achieved.",
+  "app:screen:addRelationTask:youAskTo": "You ask %{firstName} to",
+
   "app:screen:leaderboard:winners": "Leader",
   "app:screen:leaderboard:winnersOfTheWeek": "Leaders of the week",
   "app:screen:leaderboard:winnerOfTheWeek:male": "Leader of the week",
@@ -183,6 +189,17 @@
   "modal:shareRelationKey:info:secondary": "Share it to your partner, he/she will join you!",
   "modal:shareRelationKey:shareBySMS:title": "Join Both relation",
   "modal:shareRelationKey:shareBySMS:message": "Hi there, meet me on Both to share love and some of our daily life! Download the app links.appboth.com and use the key %{code} to join me! ❤️",
+  "modal:taskMode:button:addTask:title": "Add a task",
+  "modal:taskMode:button:addTask:subtitle": {
+    "zero": "%{tasks} task available",
+    "one": "%{tasks} task available",
+    "other": "%{tasks} tasks available"
+  },
+  "modal:taskMode:button:askHelp:title": "Asking your partner for help",
+  "modal:taskMode:button:askHelp:subtitle": "3 quicks steps",
+  "modal:newRelationTaskAdded:badgeText": "We warned %{firstName} 😎",
+  "modal:newRelationTaskAdded:info:primary": "🙏 Good initiative",
+  "modal:newRelationTaskAdded:info:secondary": "You can now follow your request for help from the Relationship page in order to know if your partner has completed the task or not so that you can gently restart it if necessary...",
 
   "alert:endRelation:title": "End the relationship",
   "alert:endRelation:description": "Oh no... you were both so cute. On our side, this means that we'll delete all your data and your account won't be accessible anymore. Are you really sure you want to leave us?",
