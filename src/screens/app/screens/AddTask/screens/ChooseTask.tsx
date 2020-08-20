@@ -35,7 +35,7 @@ export const ChooseTaskScreen = () => {
   const { getTasksByCategoryId } = useContext(TaskContext)
   const { addTask } = useContext(AddTaskContext)
 
-  const { category, newTaskId, addRelationTask } = route.params
+  const { category, newTaskId, mode } = route.params
 
   useFocusEffect(
     useCallback(() => {
@@ -46,7 +46,7 @@ export const ChooseTaskScreen = () => {
   const handleOnAction = async (task: Task, difficulty: number) => {
     setSelectedId(task.id)
 
-    if (addRelationTask) {
+    if (mode === 'relationTask') {
       return navigation.navigate(ROUTES.ADD_RELATION_TASK, {
         screen: 'Recap',
         params: { task },

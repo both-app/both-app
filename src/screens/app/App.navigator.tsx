@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 import { Icon } from 'library/components/Icon'
 import { TabBar } from './components/TabBar'
-import { AddModal } from './components/AddModal'
+import { TaskModeModal } from './components/TaskModeModal'
 
 import { HomeScreen } from './screens/Home'
 import { RelationScreen } from './screens/Relation'
@@ -26,7 +26,7 @@ const ROUTES: Record<string, AppRoute> = {
 }
 
 const MainNavigator = () => {
-  const [addModalIsVisible, setAddModalIsVisible] = useState(false)
+  const [taskModeModalIsOpen, setTaskModeModalIsOpen] = useState(false)
   const { appRoutesWithBadge } = useContext(AppNavigatorContext)
 
   return (
@@ -70,7 +70,7 @@ const MainNavigator = () => {
           listeners={() => ({
             tabPress: (e) => {
               e.preventDefault()
-              setAddModalIsVisible(true)
+              setTaskModeModalIsOpen(true)
             },
           })}
           options={{
@@ -117,9 +117,9 @@ const MainNavigator = () => {
         />
       </Tab.Navigator>
 
-      <AddModal
-        isVisible={addModalIsVisible}
-        onClose={() => setAddModalIsVisible(false)}
+      <TaskModeModal
+        isVisible={taskModeModalIsOpen}
+        onClose={() => setTaskModeModalIsOpen(false)}
       />
     </>
   )

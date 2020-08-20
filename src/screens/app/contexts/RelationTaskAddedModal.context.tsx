@@ -18,9 +18,8 @@ const RelationTaskAddedModalContextProvider: FC = ({ children }) => {
     setModalIsOpen(true)
   }
 
-  const closeRelationTaskAddedModal = async () => {
+  const closeRelationTaskAddedModal = () => {
     setModalIsOpen(false)
-    await wait(1000)
   }
 
   const relationRelationTaskAddedModalContextApi = useMemo(

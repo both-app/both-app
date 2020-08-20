@@ -32,7 +32,7 @@ export const ChooseCategoryScreen = () => {
   const { categories } = useContext(CategoryContext)
   const { getTasksByCategoryId } = useContext(TaskContext)
 
-  const { addRelationTask } = route.params
+  const { mode } = route.params
 
   useFocusEffect(
     useCallback(() => {
@@ -43,7 +43,7 @@ export const ChooseCategoryScreen = () => {
   const handleOnAction = async (category: Category) => {
     setSelectedId(category.id)
 
-    navigation.navigate(ROUTES.CHOOSE_TASK, { category, addRelationTask })
+    navigation.navigate(ROUTES.CHOOSE_TASK, { category, mode })
   }
 
   const handleOnClose = () => {

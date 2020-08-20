@@ -20,12 +20,12 @@ export const initialRoute = ROUTES.CHOOSE_CATEGORY
 
 export type AddTaskStackParamList = {
   ChooseCategory: {
-    addRelationTask: boolean
+    mode: 'userTask' | 'relationTask'
   }
   ChooseTask: {
     category: Category
     newTaskId?: string
-    addRelationTask: boolean
+    mode: 'userTask' | 'relationTask'
   }
   ChooseTaskDifficulty: {
     category: Category

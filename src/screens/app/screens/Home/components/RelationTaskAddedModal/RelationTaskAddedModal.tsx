@@ -1,6 +1,8 @@
 import React, { FC } from 'react'
 import { View, StyleSheet } from 'react-native'
 
+import { useT } from 'res/i18n'
+
 import { Badge } from 'library/components/Badge'
 import { Info } from 'library/components/Info'
 import { Modal } from 'library/components/Modal'
@@ -18,6 +20,8 @@ export const RelationTaskAddedModal: FC<RelationTaskAddedModalProps> = ({
   onClose,
   onAction,
 }) => {
+  const { t } = useT()
+
   return (
     <Modal
       visible={visible}
@@ -26,13 +30,17 @@ export const RelationTaskAddedModal: FC<RelationTaskAddedModalProps> = ({
       onAction={onAction}
       primaryActionIconName="check"
     >
-      <Badge color="highlight200">On a prévenu {userFirstName} 😎</Badge>
+      <Badge color="highlight200">
+        {t('modal:newRelationTaskAdded:badgeText', {
+          firstName: userFirstName,
+        })}
+      </Badge>
 
       <View style={styles.infoContainer}>
         <Info
           color="white"
-          primary="🙏 Bonne initiative"
-          secondary="Tu peux désormais suivre ta demande d’aide depuis la page Relation afin de savoir si ton partenaire a réalisé la tâche ou non afin de pouvoir gentiment le relancer si nécessaire..."
+          primary={t('modal:newRelationTaskAdded:info:primary')}
+          secondary={t('modal:newRelationTaskAdded:info:secondary')}
         />
       </View>
     </Modal>

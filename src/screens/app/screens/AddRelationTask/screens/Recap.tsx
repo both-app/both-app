@@ -4,6 +4,8 @@ import { useNavigation, useRoute, RouteProp } from '@react-navigation/core'
 
 import { useStatusBar } from 'hooks/useStatusBar'
 
+import { useT } from 'res/i18n'
+
 import { FormLayout } from 'library/layouts/FormLayout'
 import { Label } from 'library/components/Label'
 
@@ -44,6 +46,7 @@ const Avatars: FC<{ me: User; partner: User }> = ({ me, partner }) => (
 
 export const RecapScreen = () => {
   useStatusBar('dark-content')
+  const { t } = useT()
   const { me, partner } = useContext(UsersContext)
   const { addRelationTask } = useContext(AddRelationTaskContext)
   const navigation = useNavigation()
@@ -65,13 +68,18 @@ export const RecapScreen = () => {
       containerStyle={styles.formContainer}
       onBackAction={handleOnBack}
       onFinishAction={handleOnFinish}
-      label={<Label primary="Alors..." secondary="On récapitule 🧐" />}
+      label={
+        <Label
+          primary={t('app:screen:addRelationTask:recap:label:primary')}
+          secondary={t('app:screen:addRelationTask:recap:label:secondary')}
+        />
+      }
       bottomInfo={
         <View style={{ paddingHorizontal: 24 }}>
           <Info
             color="dark200"
-            primary="💡 Ton partenaire indiquera la difficulté !"
-            secondary="Aide : Si la tâche a plusieurs niveaux, ton partenaire devra choisir celle correspondant à ce qu’il a réalisé."
+            primary={t('app:screen:addRelationTask:recap:info:primary')}
+            secondary={t('app:screen:addRelationTask:recap:info:secondary')}
           />
         </View>
       }
@@ -79,7 +87,9 @@ export const RecapScreen = () => {
       <View style={styles.container}>
         <Avatars me={me} partner={partner} />
         <Text style={styles.youAskTo}>
-          Tu demandes à {partner.firstName} de
+          {t('app:screen:addRelationTask:youAskTo', {
+            firstName: partner.firstName,
+          })}
         </Text>
 
         <Task task={task} disabled />
@@ -98,5 +108,8 @@ const styles = StyleSheet.create({
   },
   youAskTo: {
     marginVertical: 16,
+  },
+  strongText: {
+    fontWeight: '500',
   },
 })
