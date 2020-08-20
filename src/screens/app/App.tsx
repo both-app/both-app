@@ -8,6 +8,7 @@ import { UsersContextProvider } from './contexts/Users.context'
 import { UserTaskContextProvider } from './contexts/UserTask.context'
 import { UserScoreContextProvider } from './contexts/UserScore.context'
 import { TaskAddedModalContextProvider } from './contexts/TaskAddedModal.context'
+import { RelationTaskAddedModalContextProvider } from './contexts/RelationTaskAddedModal.context'
 import { AppNavigatorContextProvider } from './contexts/AppNavigator.context'
 import { AppLoader } from './AppLoader'
 
@@ -20,9 +21,11 @@ export const App = () => (
             <UserTaskContextProvider>
               <UserScoreContextProvider>
                 <TaskAddedModalContextProvider>
-                  <AppLoader>
-                    <AppNavigator />
-                  </AppLoader>
+                  <RelationTaskAddedModalContextProvider>
+                    <AppLoader>
+                      <AppNavigator />
+                    </AppLoader>
+                  </RelationTaskAddedModalContextProvider>
                 </TaskAddedModalContextProvider>
               </UserScoreContextProvider>
             </UserTaskContextProvider>

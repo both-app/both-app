@@ -1,6 +1,11 @@
 import React, { useContext, useState, useCallback } from 'react'
 import { StyleSheet } from 'react-native'
-import { useNavigation, useFocusEffect } from '@react-navigation/core'
+import {
+  useNavigation,
+  useFocusEffect,
+  RouteProp,
+  useRoute,
+} from '@react-navigation/core'
 
 import { useT } from 'res/i18n'
 import { useStatusBar } from 'hooks/useStatusBar'
@@ -13,16 +18,21 @@ import { Label } from 'library/components/Label'
 import { CardButton } from 'library/components/CardButton'
 import { Scroll } from 'library/layouts/Scroll'
 
-import { ROUTES } from '../AddTask.navigator'
+import { ROUTES, AddTaskStackParamList } from '../AddTask.navigator'
+
+type ChooseTaskRouteProps = RouteProp<AddTaskStackParamList, 'ChooseCategory'>
 
 export const ChooseCategoryScreen = () => {
   useStatusBar('dark-content')
   const { t } = useT()
   const navigation = useNavigation()
+  const route = useRoute<ChooseTaskRouteProps>()
   const [selectedId, setSelectedId] = useState<string | null>(null)
 
   const { categories } = useContext(CategoryContext)
   const { getTasksByCategoryId } = useContext(TaskContext)
+
+  const { addRelationTask } = route.params
 
   useFocusEffect(
     useCallback(() => {
@@ -33,7 +43,7 @@ export const ChooseCategoryScreen = () => {
   const handleOnAction = async (category: Category) => {
     setSelectedId(category.id)
 
-    navigation.navigate(ROUTES.CHOOSE_TASK, { category })
+    navigation.navigate(ROUTES.CHOOSE_TASK, { category, addRelationTask })
   }
 
   const handleOnClose = () => {

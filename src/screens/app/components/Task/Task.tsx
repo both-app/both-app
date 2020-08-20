@@ -10,10 +10,11 @@ import { TaskContext } from 'screens/app/contexts/Task.context'
 
 interface TaskProps {
   task: Task
-  category: Category
-  isNew: boolean
-  selectedId: string
-  onAction: (taskId: Task, difficulty?: number) => void
+  category?: Category
+  isNew?: boolean
+  selectedId?: string
+  disabled?: boolean
+  onAction?: (taskId: Task, difficulty?: number) => void
 }
 
 export const Task: FC<TaskProps> = ({
@@ -22,6 +23,7 @@ export const Task: FC<TaskProps> = ({
   isNew,
   selectedId,
   onAction,
+  disabled,
 }) => {
   const { t } = useT()
   const isTaskWithDifficulties = task.difficulties.length > 1
@@ -42,15 +44,16 @@ export const Task: FC<TaskProps> = ({
       badge={
         isNew ? (
           <Badge size="xs" color="highlight100">
-            Nouveau
+            {t('new')}
           </Badge>
         ) : null
       }
       subtitle={t('levelOfDifficulity', {
         count: task.difficulties.length,
       })}
-      onAction={handleOnAction}
+      onAction={onAction && handleOnAction}
       activeBackgroundColor={category?.color}
+      disabled={disabled}
       activeTextColor="white"
       active={selectedId === task.id}
       rightContent={

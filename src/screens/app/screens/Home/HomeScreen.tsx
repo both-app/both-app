@@ -5,6 +5,7 @@ import { Layout } from 'library/layouts/Layout'
 import { useStatusBar } from 'hooks/useStatusBar'
 
 import { TaskAddedModal } from './components/TaskAddedModal'
+import { RelationTaskAddedModal } from './components/RelationTaskAddedModal'
 import { ShareRelationKeyModal } from './components/ShareRelationKeyModal'
 import { UserTasks } from './components/UserTasks'
 import { RelationStatus } from '../../components/RelationStatus'
@@ -35,6 +36,7 @@ export const HomeScreen = () => {
 
       <ShareRelationKeyModal />
       <TaskAddedModal />
+      <RelationTaskAddedModal />
     </Layout>
   )
 }

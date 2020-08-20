@@ -6,21 +6,26 @@ import { ChooseTaskScreen } from './screens/ChooseTask'
 import { ChooseTaskDifficultyScreen } from './screens/ChooseTaskDifficulty'
 import { AddTaskContextProvider } from './AddTask.context'
 import { CreateTaskNavigator } from '../CreateTask'
+import { AddRelationTaskNavigator } from '../AddRelationTask'
 
 export const ROUTES = {
   CHOOSE_CATEGORY: 'ChooseCategory',
   CHOOSE_TASK: 'ChooseTask',
   CHOOSE_TASK_DIFFICULTY: 'ChooseTaskDifficulty',
   CREATE_TASK: 'CreateTask',
+  ADD_RELATION_TASK: 'AddRelationTask',
 }
 
 export const initialRoute = ROUTES.CHOOSE_CATEGORY
 
 export type AddTaskStackParamList = {
-  ChooseCategory: undefined
+  ChooseCategory: {
+    addRelationTask: boolean
+  }
   ChooseTask: {
     category: Category
     newTaskId?: string
+    addRelationTask: boolean
   }
   ChooseTaskDifficulty: {
     category: Category
@@ -48,6 +53,10 @@ export const AddTaskNavigator = () => (
       <AddTaskStack.Screen
         component={CreateTaskNavigator}
         name={ROUTES.CREATE_TASK}
+      />
+      <AddTaskStack.Screen
+        component={AddRelationTaskNavigator}
+        name={ROUTES.ADD_RELATION_TASK}
       />
     </AddTaskStack.Navigator>
   </AddTaskContextProvider>

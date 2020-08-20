@@ -31,7 +31,10 @@ export const AddModal: FC<AddModalProps> = ({ isVisible, onClose }) => {
           subtitle="83 tâches disponibles"
           containerStyle={styles.addTaskButton}
           onAction={() => {
-            navigation.navigate('AddTaskModal')
+            navigation.navigate('AddTaskModal', {
+              screen: 'ChooseCategory',
+              params: { addRelationTask: false },
+            })
             onClose()
           }}
         />
@@ -39,6 +42,13 @@ export const AddModal: FC<AddModalProps> = ({ isVisible, onClose }) => {
           emoji="👋"
           title="Demander de l'aide à ton partenaire"
           subtitle="3 étapes rapides"
+          onAction={() => {
+            navigation.navigate('AddTaskModal', {
+              screen: 'ChooseCategory',
+              params: { addRelationTask: true },
+            })
+            onClose()
+          }}
         />
 
         <IconButton

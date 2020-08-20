@@ -18,7 +18,7 @@ import { Label } from 'library/components/Label'
 import { Scroll } from 'library/layouts/Scroll'
 import { CardButton } from 'library/components/CardButton'
 
-import { Task } from './components/Task'
+import { Task } from '../../../components/Task'
 import { AddTaskStackParamList } from '../AddTask.navigator'
 import { AddTaskContext } from '../AddTask.context'
 import { ROUTES } from '../AddTask.navigator'
@@ -35,7 +35,7 @@ export const ChooseTaskScreen = () => {
   const { getTasksByCategoryId } = useContext(TaskContext)
   const { addTask } = useContext(AddTaskContext)
 
-  const { category, newTaskId } = route.params
+  const { category, newTaskId, addRelationTask } = route.params
 
   useFocusEffect(
     useCallback(() => {
@@ -45,6 +45,13 @@ export const ChooseTaskScreen = () => {
 
   const handleOnAction = async (task: Task, difficulty: number) => {
     setSelectedId(task.id)
+
+    if (addRelationTask) {
+      return navigation.navigate(ROUTES.ADD_RELATION_TASK, {
+        screen: 'Recap',
+        params: { task },
+      })
+    }
 
     if (difficulty === 0) {
       addTask(task, difficulty)
