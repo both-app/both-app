@@ -10,6 +10,7 @@ import { CardButton } from 'library/components/CardButton'
 import { IconButton } from 'library/components/IconButton'
 
 import { TaskContext } from 'screens/app/contexts/Task.context'
+import { UsersContext } from 'screens/app/contexts/Users.context'
 
 interface TaskModeModalProps {
   isVisible: boolean
@@ -23,6 +24,7 @@ export const TaskModeModal: FC<TaskModeModalProps> = ({
   const { t } = useT()
   const navigation = useNavigation()
   const { tasks } = useContext(TaskContext)
+  const { partner } = useContext(UsersContext)
 
   return (
     <RModal
@@ -50,19 +52,21 @@ export const TaskModeModal: FC<TaskModeModalProps> = ({
             })
           }}
         />
-        <CardButton
-          emoji="👋"
-          title={t('modal:taskMode:button:askHelp:title')}
-          subtitle={t('modal:taskMode:button:askHelp:subtitle')}
-          onAction={() => {
-            // Close first the modal and after open the screen
-            onClose()
-            navigation.navigate('AddTaskModal', {
-              screen: 'ChooseCategory',
-              params: { mode: 'relationTask' },
-            })
-          }}
-        />
+        {!!partner.id && (
+          <CardButton
+            emoji="👋"
+            title={t('modal:taskMode:button:askHelp:title')}
+            subtitle={t('modal:taskMode:button:askHelp:subtitle')}
+            onAction={() => {
+              // Close first the modal and after open the screen
+              onClose()
+              navigation.navigate('AddTaskModal', {
+                screen: 'ChooseCategory',
+                params: { mode: 'relationTask' },
+              })
+            }}
+          />
+        )}
 
         <IconButton
           size={64}

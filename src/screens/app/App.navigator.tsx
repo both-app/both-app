@@ -12,6 +12,8 @@ import { AddTaskNavigator } from './screens/AddTask'
 import { LeaderboardScreen } from './screens/Leaderboard'
 import { SettingsNavigator } from './screens/Settings'
 import { AppNavigatorContext, AppRoute } from './contexts/AppNavigator.context'
+import { UsersContext } from './contexts/Users.context'
+import { useNavigation } from '@react-navigation/native'
 
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator()
@@ -26,8 +28,12 @@ const ROUTES: Record<string, AppRoute> = {
 }
 
 const MainNavigator = () => {
+  const navigation = useNavigation()
   const [taskModeModalIsOpen, setTaskModeModalIsOpen] = useState(false)
   const { appRoutesWithBadge } = useContext(AppNavigatorContext)
+  const { partner } = useContext(UsersContext)
+
+  const hasPartner = !!partner.id
 
   return (
     <>
@@ -70,7 +76,19 @@ const MainNavigator = () => {
           listeners={() => ({
             tabPress: (e) => {
               e.preventDefault()
-              setTaskModeModalIsOpen(true)
+
+              /**
+               * This modal propose to add a task and choose if it's UserTask or a RelationTask
+               * But if we don't have a partner, it's useless to propose RelationTask
+               */
+              if (hasPartner) {
+                return setTaskModeModalIsOpen(true)
+              }
+
+              return navigation.navigate('AddTaskModal', {
+                screen: 'ChooseCategory',
+                params: { mode: 'userTask' },
+              })
             },
           })}
           options={{

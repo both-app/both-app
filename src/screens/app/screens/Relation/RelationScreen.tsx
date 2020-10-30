@@ -1,5 +1,6 @@
-import React, { useContext, useLayoutEffect, useEffect } from 'react'
+import React, { useCallback, useContext } from 'react'
 import { View, StyleSheet } from 'react-native'
+import { useFocusEffect } from '@react-navigation/native'
 
 import { colors } from 'res/colors'
 import { useT } from 'res/i18n'
@@ -11,15 +12,21 @@ import { Label } from 'library/components/Label'
 import { Relation } from './components/Relation'
 import { RelationTasks } from './components/RelationTasks'
 import { AppNavigatorContext } from 'screens/app/contexts/AppNavigator.context'
+import { UsersContext } from 'screens/app/contexts/Users.context'
 
 export const RelationScreen = () => {
   useStatusBar('dark-content')
   const { t } = useT()
   const { unSetRouteBadge } = useContext(AppNavigatorContext)
+  const { partner } = useContext(UsersContext)
 
-  useEffect(() => {
-    unSetRouteBadge('Relation')
-  }, [])
+  const hasPartner = !!partner.id
+
+  useFocusEffect(
+    useCallback(() => {
+      unSetRouteBadge('Relation')
+    }, [])
+  )
 
   return (
     <View style={styles.container}>
@@ -29,9 +36,15 @@ export const RelationScreen = () => {
         <Relation />
       </View>
 
-      <View style={styles.relationTasksContainer}>
-        <RelationTasks />
-      </View>
+      {hasPartner && (
+        <>
+          <View style={styles.separator} />
+
+          <View style={styles.relationTasksContainer}>
+            <RelationTasks />
+          </View>
+        </>
+      )}
     </View>
   )
 }
@@ -40,16 +53,19 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 55,
-    paddingLeft: 24,
-    paddingRight: 24,
     backgroundColor: colors.skin100,
   },
+  separator: {
+    height: 1,
+    backgroundColor: colors.skin200,
+  },
   relationContainer: {
-    marginTop: 24,
-    marginBottom: 40,
+    marginVertical: 24,
+    paddingHorizontal: 24,
   },
   relationTasksContainer: {
     flex: 1,
-    marginTop: 40,
+    marginTop: 24,
+    paddingHorizontal: 24,
   },
 })

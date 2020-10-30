@@ -93,6 +93,16 @@
 
   "app:screen:home:shareRelationKey": "Share the Both key",
   "app:screen:home:delete": "Remove",
+  "app:screen:home:button:relationTasks:title": {
+    "zero": "%{tasks} task to perform",
+    "one": "%{tasks} task to perform",
+    "other": "%{tasks} tasks to perform"
+  },
+  "app:screen:home:button:relationTasks:subtitle": {
+    "zero": "Asked by %{partnerName}",
+    "one": "Asked by %{partnerName}",
+    "other": "Asked by %{partnerName}"
+  },
 
   "app:screen:settings:title": "Settings",
   "app:screen:settings:section:yourSettings": "Your settings",
@@ -122,6 +132,20 @@
     "other": "Both since %{daysOfRelation} days"
   },
   "app:screen:relation:keyOfTheRelation": "Relationship's key",
+  "app:screen:relation:relationTasks:control:toDo": "To do (%{number})",
+  "app:screen:relation:relationTasks:control:requests": "My requests (%{number})",
+  "app:screen:relation:relationTasks:tasksToDo": {
+    "zero": "%{tasks} task remaining",
+    "one": "%{tasks} task remaining",
+    "other": "%{tasks} tasks remaining"
+  },
+  "app:screen:relation:relationTasks:requested": {
+    "zero": "%{tasks} pending request",
+    "one": "%{tasks} pending request",
+    "other": "%{tasks} pending requests"
+  },
+  "app:screen:relation:relationTasks:task:toDo": "To do...",
+  "app:screen:relation:relationTasks:task:inPending": "Pending...",
 
   "app:screen:theTeam:pageTitle": "The team behind Both",
   "app:screen:theTeam:title": "😎 Hello you...",

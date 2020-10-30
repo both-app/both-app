@@ -11,6 +11,7 @@ export type StorageKey =
   | 'tasks'
   | 'userScore'
   | 'userGlobalScore'
+  | 'tasksRequest'
 
 export const setItem = (key: StorageKey, value: any) => {
   SentryNative.withScope((scope) => {

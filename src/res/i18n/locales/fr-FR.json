@@ -94,6 +94,16 @@
 
   "app:screen:home:shareRelationKey": "Partager la clé Both",
   "app:screen:home:delete": "Supprimer",
+  "app:screen:home:button:relationTasks:title": {
+    "zero": "%{tasks} tâche à réaliser",
+    "one": "%{tasks} tâche à réaliser",
+    "other": "%{tasks} tâches à réaliser"
+  },
+  "app:screen:home:button:relationTasks:subtitle": {
+    "zero": "Demandée par %{partnerName}",
+    "one": "Demandée par %{partnerName}",
+    "other": "Demandées par %{partnerName}"
+  },
 
   "app:screen:settings:title": "Paramètres",
   "app:screen:settings:section:yourSettings": "Tes préférences",
@@ -139,6 +149,20 @@
     "other": "Both depuis %{daysOfRelation} jours"
   },
   "app:screen:relation:keyOfTheRelation": "Clé de la relation",
+  "app:screen:relation:relationTasks:control:toDo": "À faire (%{number})",
+  "app:screen:relation:relationTasks:control:requests": "Mes demandes (%{number})",
+  "app:screen:relation:relationTasks:tasksToDo": {
+    "zero": "%{tasks} tâche restante",
+    "one": "%{tasks} tâche restante",
+    "other": "%{tasks} tâche restantes"
+  },
+  "app:screen:relation:relationTasks:requested": {
+    "zero": "%{tasks} demande en attente",
+    "one": "%{tasks} demande en attente",
+    "other": "%{tasks} demandes en attentes"
+  },
+  "app:screen:relation:relationTasks:task:toDo": "A faire...",
+  "app:screen:relation:relationTasks:task:inPending": "En attente...",
 
   "app:screen:newUserTask:chooseCategory:title": "Sélectionne...",
   "app:screen:newUserTask:chooseCategory:subtitle": "Une catégorie 📦",

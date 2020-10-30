@@ -58,6 +58,7 @@ export const Task: FC<TaskProps> = ({
       active={selectedId === task.id}
       rightContent={
         <Point
+          // @ts-ignore
           points={getPoints(task.id)}
           shape={isTaskWithDifficulties ? 'rectangle' : 'circle'}
         />

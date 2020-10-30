@@ -27,23 +27,10 @@ const Avatars: FC<{ me: User; partner: User }> = ({ me, partner }) => (
   </View>
 )
 
-const Code: FC<{ code: string }> = ({ code }) => {
-  const { t } = useT()
-
-  return (
-    <View style={styles.codeContainer}>
-      <Text style={styles.relationKey}>
-        {t('app:screen:relation:keyOfTheRelation')}
-      </Text>
-      <Text style={styles.code}>{code}</Text>
-    </View>
-  )
-}
-
 export const Relation = () => {
   const { t } = useT()
   const { me, partner } = useContext(UsersContext)
-  const { relation, daysOfRelation } = useContext(RelationContext)
+  const { daysOfRelation } = useContext(RelationContext)
 
   return (
     <>
@@ -62,8 +49,6 @@ export const Relation = () => {
           </Text>
         </View>
       </View>
-
-      <Code code={relation.code.split('').join(' ')} />
     </>
   )
 }
@@ -77,7 +62,6 @@ export const styles = StyleSheet.create({
     paddingTop: 24,
     paddingBottom: 22,
     paddingLeft: 16,
-    marginBottom: 10,
   },
   avatarsContainer: {
     flexDirection: 'row',

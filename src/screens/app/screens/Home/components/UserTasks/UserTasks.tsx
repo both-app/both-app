@@ -12,6 +12,8 @@ import { TaskContext } from 'screens/app/contexts/Task.context'
 
 import { Section } from './Section'
 import { UserTask } from './UserTask'
+import { TasksRequestButton } from './TasksRequestButton'
+import { TaskRequestContext } from 'screens/app/contexts/TaskRequest.context'
 
 export const UserTasks = () => {
   const { locale } = useT()
@@ -20,6 +22,7 @@ export const UserTasks = () => {
   const { fetchUserTasks, userTasksByDate } = useContext(UserTaskContext)
   const { fetchUserScore, fetchGlobalUserScore } = useContext(UserScoreContext)
   const { fetchTasks } = useContext(TaskContext)
+  const { fetchTasksRequest } = useContext(TaskRequestContext)
 
   const handleOnRefresh = async () => {
     setIsRefreshing(true)
@@ -30,6 +33,7 @@ export const UserTasks = () => {
       fetchGlobalUserScore(),
       fetchUserTasks(),
       fetchTasks(),
+      fetchTasksRequest(),
     ])
 
     setIsRefreshing(false)
@@ -55,7 +59,7 @@ export const UserTasks = () => {
         <RefreshControl refreshing={isRefreshing} onRefresh={handleOnRefresh} />
       }
       stickySectionHeadersEnabled={false}
-      ListHeaderComponent={<View style={styles.listHeader} />}
+      ListHeaderComponent={<TasksRequestButton />}
       renderSectionHeader={({ section: { title } }) => (
         <Section title={title} />
       )}
@@ -71,8 +75,5 @@ const styles = StyleSheet.create({
   },
   listFooter: {
     marginBottom: 24,
-  },
-  listHeader: {
-    marginTop: 12,
   },
 })

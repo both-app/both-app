@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import { useCallback } from 'react'
 import { StatusBar, StatusBarStyle } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native'
 

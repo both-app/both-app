@@ -10,6 +10,7 @@ import { UserScoreContextProvider } from './contexts/UserScore.context'
 import { TaskAddedModalContextProvider } from './contexts/TaskAddedModal.context'
 import { RelationTaskAddedModalContextProvider } from './contexts/RelationTaskAddedModal.context'
 import { AppNavigatorContextProvider } from './contexts/AppNavigator.context'
+import { TaskRequestContextProvider } from './contexts/TaskRequest.context'
 import { AppLoader } from './AppLoader'
 
 export const App = () => (
@@ -19,15 +20,17 @@ export const App = () => (
         <TaskContextProvider>
           <RelationContextProvider>
             <UserTaskContextProvider>
-              <UserScoreContextProvider>
-                <TaskAddedModalContextProvider>
-                  <RelationTaskAddedModalContextProvider>
-                    <AppLoader>
-                      <AppNavigator />
-                    </AppLoader>
-                  </RelationTaskAddedModalContextProvider>
-                </TaskAddedModalContextProvider>
-              </UserScoreContextProvider>
+              <TaskRequestContextProvider>
+                <UserScoreContextProvider>
+                  <TaskAddedModalContextProvider>
+                    <RelationTaskAddedModalContextProvider>
+                      <AppLoader>
+                        <AppNavigator />
+                      </AppLoader>
+                    </RelationTaskAddedModalContextProvider>
+                  </TaskAddedModalContextProvider>
+                </UserScoreContextProvider>
+              </TaskRequestContextProvider>
             </UserTaskContextProvider>
           </RelationContextProvider>
         </TaskContextProvider>

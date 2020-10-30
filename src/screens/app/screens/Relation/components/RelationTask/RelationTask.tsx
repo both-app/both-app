@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, ReactNode } from 'react'
 import { StyleSheet, View } from 'react-native'
 import Swipeable, {
   SwipeableProperties,
@@ -12,13 +12,13 @@ import { SwipeAction } from 'library/components/SwipeAction'
 import { Title } from './Title'
 import { Subtitle } from './Subtitle'
 
-// TODO To Define with the Backend team
 interface RelationTaskProps {
   title: string
   subtitle: string
   emoji: string
   isDone: boolean
   onAction?: () => void
+  rightContent?: ReactNode
 }
 
 export const RelationTask: FC<RelationTaskProps> = ({
@@ -27,6 +27,7 @@ export const RelationTask: FC<RelationTaskProps> = ({
   subtitle,
   emoji,
   onAction,
+  rightContent,
 }) => {
   const renderRightActions: SwipeableProperties['renderRightActions'] = (
     progress
@@ -52,6 +53,7 @@ export const RelationTask: FC<RelationTaskProps> = ({
           title={<Title isDone={isDone}>{title}</Title>}
           subtitle={<Subtitle isDone={isDone}>{subtitle}</Subtitle>}
           onAction={onAction}
+          rightContent={rightContent}
         />
       </Swipeable>
     </View>
